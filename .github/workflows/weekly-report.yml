@@ -48,5 +48,9 @@ jobs:
             echo "沒有新的變更"
           else
             git commit -m "週報資料 $(TZ=Asia/Taipei date +%G-W%V)"
-            git push
+            # 執行期間 main 可能有新的提交（例如程式更新），先接上再推送
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push && break
+              sleep $((i * 5))
+            done
           fi
