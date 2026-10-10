@@ -3,16 +3,25 @@
 
 # 你的背景：會用來讓「新題目建議」更貼近你能落地的方向。請改成你的實際狀況。
 researcher_profile: |
-  （請填寫）例如：所屬單位類型（研究機構／企業研發／新創）、既有專長與設備
-  （如熱裂解爐、厭氧消化槽、觸媒開發、分析儀器）、目標產業或客戶、
-  可投入的時間與預算規模、偏好的原料（農業廢棄物、禽畜糞、廚餘、林業剩材、藻類等）。
+  單位：工研院綠能與環境研究所（研究機構，負責技術開發與產業技術移轉）。
+  專長與設備：
+  - 厭氧醱酵與乾式厭氧醱酵（具乾式厭氧醱酵設備）
+  - 廢水處理
+  - 生質燃料、生質燃油；法尼烯（farnesene）生產
+  - 基因改質酵母菌、分子生物、微生物技術（合成生物學、菌株開發）
+  - PHA／PHB 等生物可分解塑膠的微生物生產
+  - 化學分析
+  目標產業客戶：沼氣中心、養豬場、酒廠、化妝品業、可分解生物塑膠包材業者。
+  可用原料：農業廢棄物、禽畜糞、廚餘、林業資材、藻類，以及微生物、酵母菌、細菌（菌種資源）。
+  題目偏好：能結合既有設備與菌株平台、可與上述客戶做先導驗證或技術移轉的方向；
+  例如把沼氣、酒廠副產物、禽畜糞等廢棄物轉成高附加價值產品（farnesene 衍生物、PHA、化妝品原料）。
 
 # 新聞往回抓幾天；論文因為索引有延遲，往回抓久一點，靠歷史紀錄去重。
 news_lookback_days: 7
 papers_lookback_days: 21
 
 # 送進分析的資料上限（避免單週資料過多）
-max_items_for_analysis: 260
+max_items_for_analysis: 320
 
 # Google News 搜尋（不需金鑰）。每組 query 會分別抓取。
 google_news:
@@ -35,6 +44,12 @@ google_news:
       - 廚餘 厭氧消化
       - 生質 碳捕捉 BECCS
       - 能源署 生質
+      - 乾式厭氧醱酵
+      - 養豬場 沼氣
+      - 酒糟 再利用
+      - 生物可分解塑膠 PHA
+      - 合成生物學 酵母菌
+      - 工研院 生質
   - lang: en
     hl: en-US
     gl: US
@@ -56,6 +71,14 @@ google_news:
       - biomass gasification hydrogen
       - alcohol-to-jet
       - biorefinery
+      - dry anaerobic digestion
+      - polyhydroxyalkanoates PHA
+      - farnesene
+      - precision fermentation
+      - synthetic biology yeast biomanufacturing
+      - biogas to bioplastics OR "methane to PHA"
+      - distillery waste valorization
+      - bio-based cosmetic ingredients squalane
   - lang: ja
     hl: ja
     gl: JP
@@ -101,3 +124,12 @@ openalex:
     - bio-oil upgrading catalyst
     - microalgae biofuel
     - torrefaction biomass
+    - dry anaerobic digestion solid-state
+    - polyhydroxyalkanoates production waste feedstock
+    - polyhydroxybutyrate mixed microbial culture
+    - farnesene Saccharomyces cerevisiae
+    - engineered yeast terpene production
+    - swine manure anaerobic digestion
+    - distillery stillage valorization
+    - methanotroph PHB biogas
+    - volatile fatty acids anaerobic fermentation
