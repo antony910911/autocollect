@@ -79,6 +79,18 @@ google_news:
       - biogas to bioplastics OR "methane to PHA"
       - distillery waste valorization
       - bio-based cosmetic ingredients squalane
+  # 產業媒體：用 Google News 依網站搜尋，作為 RSS 失效時的備援
+  - lang: en
+    hl: en-US
+    gl: US
+    ceid: "US:en"
+    max_per_query: 15
+    queries:
+      - site:biomassmagazine.com
+      - site:biofuelsdigest.com
+      - site:bioenergy-news.com
+      - site:greencarcongress.com biofuel OR biogas OR bioplastic
+      - site:bioplasticsnews.com OR site:european-bioplastics.org
   - lang: ja
     hl: ja
     gl: JP
@@ -97,17 +109,14 @@ rss_feeds:
     url: https://www.biofuelsdigest.com/bdigest/feed/
   - name: IEA Bioenergy
     url: https://www.ieabioenergy.com/feed/
-  - name: Biomass Magazine
-    url: https://biomassmagazine.com/rss/
   - name: European Biogas Association
     url: https://www.europeanbiogas.eu/feed/
   - name: Bioenergy Insight
     url: https://www.bioenergy-news.com/feed/
-  - name: Green Car Congress (biofuels)
-    url: https://www.greencarcongress.com/biofuels/atom.xml
 
-# OpenAlex 學術論文（免費 API，不需金鑰）。
-# mailto 可提高速率限制；也可用環境變數 OPENALEX_MAILTO 設定。
+# OpenAlex 學術論文。mailto 可用環境變數 OPENALEX_MAILTO 設定；
+# 若有 OpenAlex API key，設成環境變數 OPENALEX_API_KEY（GitHub Secret）可避免 429 請求過多。
+# OpenAlex 失敗時會自動改用 Crossref 查同一組關鍵字。
 openalex:
   mailto: ""
   max_per_query: 25

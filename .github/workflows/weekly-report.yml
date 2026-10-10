@@ -32,6 +32,7 @@ jobs:
       - name: 收集資料
         env:
           OPENALEX_MAILTO: ${{ vars.OPENALEX_MAILTO }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
           TZ: Asia/Taipei
         run: |
           python -m autocollect collect

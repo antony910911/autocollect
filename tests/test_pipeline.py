@@ -153,3 +153,36 @@ def test_collect_then_build_without_api(tmp_path, monkeypatch):
 
     good.write_text("## 一、本週重點摘要\n- 不存在的引用造成驗證失敗的一段敘述 [S7]\n", "utf-8")
     assert cli.main(["build", "--week", "2026-W41", "--analysis", "data/analysis/2026-W41.md"]) == 1
+
+
+def test_crossref_parsing():
+    work = {"DOI": "10.1/x", "title": ["PHA from <i>swine</i> manure"], "container-title": ["Bioresour. Technol."],
+            "published-online": {"date-parts": [[2026, 10, 2]]}, "abstract": "<jats:p>VFA to PHA.</jats:p>",
+            "author": [{"affiliation": [{"name": "ITRI"}]}], "is-referenced-by-count": 1}
+    it = sources.parse_crossref_work(work, "pha")
+    assert it["title"] == "PHA from swine manure" and it["url"] == "https://doi.org/10.1/x"
+    assert it["published"] == "2026-10-02" and it["summary"] == "VFA to PHA."
+    assert it["meta"]["institutions"] == ["ITRI"]
+
+
+def test_papers_fall_back_to_crossref(monkeypatch):
+    import requests as rq
+
+    def boom(*a, **k):
+        raise rq.HTTPError("429")
+    monkeypatch.setattr(sources, "openalex", boom)
+    monkeypatch.setattr(sources, "crossref", lambda q, d, r, m="": [{"kind": "paper", "title": "t", "url": "u", "query": q}])
+    monkeypatch.setattr(sources.time, "sleep", lambda s: None)
+    items, status = sources.collect_all({"openalex": {"queries": ["pha"]}})
+    assert len(items) == 1
+    assert status[0]["ok"] and "Crossref" in status[-1]["source"]
+    out = report.status_section(status)
+    assert "成功 1 / 1" in out and "↪️" in out
+
+
+def test_rss_without_entries_is_reported_as_failure(monkeypatch):
+    class R:
+        content = b"<html>blocked</html>"
+    monkeypatch.setattr(sources, "_get", lambda *a, **k: R())
+    with pytest.raises(ValueError):
+        sources.rss({"name": "X", "url": "https://x"}, 7)

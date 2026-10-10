@@ -82,11 +82,17 @@ def stats_section(stats: dict) -> str:
 
 
 def status_section(status: list[dict]) -> str:
-    failed = [s for s in status if not s["ok"]]
-    ok = sum(1 for s in status if s["ok"])
-    lines = [f"- 成功 {ok} / {len(status)} 個查詢"]
+    notes = [s for s in status if s.get("note")]
+    queries = [s for s in status if not s.get("note")]
+    failed = [s for s in queries if not s["ok"]]
+    empty = [s["source"] for s in queries if s["ok"] and s["count"] == 0]
+    lines = [f"- 成功 {len(queries) - len(failed)} / {len(queries)} 個查詢"]
     for s in failed:
         lines.append(f"- ❌ {s['source']}：{s.get('error', '')}")
+    for s in notes:
+        lines.append(f"- ↪️ {s['source']}")
+    if empty:
+        lines.append(f"- 本週沒有結果的查詢（{len(empty)} 個）：{'、'.join(empty)}")
     return "\n".join(lines)
 
 
