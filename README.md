@@ -26,10 +26,10 @@
 | 類型 | 來源 | 說明 |
 |---|---|---|
 | 新聞 | Google News RSS | 中文（台灣）、英文、日文關鍵字搜尋 |
-| 產業媒體 | Bioenergy International、Biofuels Digest、IEA Bioenergy、Biomass Magazine、European Biogas Association 等 RSS | |
-| 學術論文 | [OpenAlex](https://openalex.org) | 含摘要、作者機構與國家，用來看「誰在研究什麼」 |
+| 產業媒體 | Bioenergy International、Biofuels Digest、IEA Bioenergy、Biomass Magazine、Bioplastics News 等 | 以 Google News 依網站搜尋；European Biogas Association、Bioenergy Insight 用 RSS |
+| 學術論文 | [OpenAlex](https://openalex.org)（失敗時改用 Crossref） | 含摘要、作者機構與國家，用來看「誰在研究什麼」；需設定 Secret `OPENALEX_API_KEY` |
 
-同一則消息被多個關鍵字抓到時會合併；在先前週報出現過的資料會自動排除（紀錄在 `data/history.json`），所以每週只看到新東西。每週的原始資料存在 `data/raw/`。
+每週送進分析的資料有上限，並依類型分配名額（預設產業媒體 40、新聞 200、論文 120，可在設定檔調整），論文會平均取自每組關鍵字的前幾名。同一則消息被多個關鍵字抓到時會合併；在先前週報出現過的資料會自動排除（紀錄在 `data/history.json`），所以每週只看到新東西。每週的原始資料存在 `data/raw/`。
 
 **請先修改 `config/sources.yaml` 最上方的 `researcher_profile`**，寫下你的單位、專長、設備與目標產業，新題目建議才會貼近你能做的方向。
 

@@ -36,6 +36,8 @@ def dedupe(items: list[dict]) -> list[dict]:
         if hit:
             if it["query"] not in hit["queries"]:
                 hit["queries"].append(it["query"])
+            if "rank" in it:
+                hit["rank"] = min(hit.get("rank", it["rank"]), it["rank"])
             continue
         it = {**it, "queries": [it["query"]]}
         it.pop("query", None)
@@ -69,25 +71,44 @@ class History:
         self.path.write_text(json.dumps(self.data, ensure_ascii=False, indent=0, sort_keys=True), "utf-8")
 
 
-def select_for_analysis(items: list[dict], limit: int) -> list[dict]:
-    """超過上限時保留：被多個關鍵字命中的、產業媒體、較新的、被引用多的。"""
-    def newest_first(it):
-        return it.get("published") or ""
+DEFAULT_QUOTAS = {"industry": 40, "news": 200, "paper": 120}
 
-    def priority(it):
-        return (-len(it.get("queries", [])), KIND_PRIORITY.get(it["kind"], 9),
-                -(it.get("meta", {}).get("cited_by") or 0))
 
-    # Python 的排序是穩定的：先依日期，再依優先度，同優先度時較新的在前
-    chosen = sorted(items, key=newest_first, reverse=True)
-    chosen.sort(key=priority)
-    chosen = chosen[:limit]
-    # 編號順序：產業媒體 → 新聞 → 論文，各自依日期新到舊
-    chosen.sort(key=newest_first, reverse=True)
-    chosen.sort(key=lambda it: KIND_PRIORITY.get(it["kind"], 9))
-    for i, it in enumerate(chosen, 1):
+def select_for_analysis(items: list[dict], limit: int, quotas: dict | None = None) -> list[dict]:
+    """依類型配額挑選，避免新聞擠掉論文；某類用不完的名額分給其他類。
+
+    新聞與產業媒體：被多個關鍵字命中的優先，其次較新的。
+    論文：被多個關鍵字命中的優先，其次是各關鍵字搜尋結果的前幾名（平均分配到每個關鍵字）。
+    """
+    quotas = {**DEFAULT_QUOTAS, **(quotas or {})}
+
+    def ranked(kind):
+        group = [it for it in items if it["kind"] == kind]
+        group.sort(key=lambda it: it.get("published") or "", reverse=True)
+        if kind == "paper":
+            group.sort(key=lambda it: (-len(it.get("queries", [])), it.get("rank", 0)))
+        else:
+            group.sort(key=lambda it: -len(it.get("queries", [])))
+        return group
+
+    groups = {kind: ranked(kind) for kind in sorted({it["kind"] for it in items}, key=lambda k: KIND_PRIORITY.get(k, 9))}
+    chosen = {kind: g[:quotas.get(kind, 0)] for kind, g in groups.items()}
+    # 剩下的名額依類型優先順序補上
+    spare = limit - sum(len(c) for c in chosen.values())
+    for kind, g in groups.items():
+        if spare <= 0:
+            break
+        extra = g[len(chosen[kind]):len(chosen[kind]) + spare]
+        chosen[kind] += extra
+        spare -= len(extra)
+    out = []
+    for kind in groups:
+        # 編號順序：產業媒體 → 新聞 → 論文，各自依日期新到舊
+        out += sorted(chosen[kind], key=lambda it: it.get("published") or "", reverse=True)
+    out = out[:limit]
+    for i, it in enumerate(out, 1):
         it["sid"] = f"S{i}"
-    return chosen
+    return out
 
 
 def compute_stats(items: list[dict]) -> dict:

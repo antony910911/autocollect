@@ -62,7 +62,8 @@ def collect(cfg: dict, today: date) -> dict:
     unique = store.dedupe(items)
     new_items = history.filter_new(unique, week)
     print(f"收集 {len(items)} 筆，去重後 {len(unique)} 筆，排除先前週報已出現者後 {len(new_items)} 筆")
-    selected = store.select_for_analysis(new_items, cfg.get("max_items_for_analysis", 260))
+    selected = store.select_for_analysis(new_items, cfg.get("max_items_for_analysis", 360),
+                                          cfg.get("quotas"))
     start = today - timedelta(days=cfg.get("news_lookback_days", 7))
     bundle = {
         "week": week,

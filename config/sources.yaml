@@ -20,8 +20,12 @@ researcher_profile: |
 news_lookback_days: 7
 papers_lookback_days: 21
 
-# 送進分析的資料上限（避免單週資料過多）
-max_items_for_analysis: 320
+# 送進分析的資料上限，以及各類型的配額（避免新聞擠掉論文；某類用不完的名額會分給其他類）
+max_items_for_analysis: 360
+quotas:
+  industry: 40
+  news: 200
+  paper: 120
 
 # Google News 搜尋（不需金鑰）。每組 query 會分別抓取。
 google_news:
@@ -91,6 +95,8 @@ google_news:
       - site:bioenergy-news.com
       - site:greencarcongress.com biofuel OR biogas OR bioplastic
       - site:bioplasticsnews.com OR site:european-bioplastics.org
+      - site:bioenergyinternational.com
+      - site:ieabioenergy.com
   - lang: ja
     hl: ja
     gl: JP
@@ -101,14 +107,9 @@ google_news:
       - 持続可能な航空燃料
       - バイオガス
 
-# 產業媒體與國際組織 RSS
+# 產業媒體與國際組織 RSS（Bioenergy International、Biofuels Digest、IEA Bioenergy 的 RSS
+# 在 GitHub Actions 上讀不到，改用上方 Google News 依網站搜尋）
 rss_feeds:
-  - name: Bioenergy International
-    url: https://www.bioenergyinternational.com/feed/
-  - name: Biofuels Digest
-    url: https://www.biofuelsdigest.com/bdigest/feed/
-  - name: IEA Bioenergy
-    url: https://www.ieabioenergy.com/feed/
   - name: European Biogas Association
     url: https://www.europeanbiogas.eu/feed/
   - name: Bioenergy Insight

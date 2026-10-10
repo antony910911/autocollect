@@ -186,3 +186,17 @@ def test_rss_without_entries_is_reported_as_failure(monkeypatch):
     monkeypatch.setattr(sources, "_get", lambda *a, **k: R())
     with pytest.raises(ValueError):
         sources.rss({"name": "X", "url": "https://x"}, 7)
+
+
+def test_selection_keeps_paper_quota_and_spreads_across_queries():
+    news = [make(None, "news", url=f"https://n/{i}", published="2026-10-08") for i in range(50)]
+    papers = [make(None, "paper", url=f"https://p/{q}{r}", queries=[q], rank=r, published="2026-10-01")
+              for q in "abc" for r in range(10)]
+    out = store.select_for_analysis(news + papers, 20, {"industry": 0, "news": 14, "paper": 6})
+    picked = [it for it in out if it["kind"] == "paper"]
+    assert len(out) == 20 and len(picked) == 6
+    assert sorted(it["rank"] for it in picked) == [0, 0, 0, 1, 1, 1]  # 每個關鍵字取前兩名
+
+    # 論文不夠用時，多的名額給新聞
+    out = store.select_for_analysis(news + papers[:2], 20, {"industry": 0, "news": 14, "paper": 6})
+    assert len(out) == 20 and sum(it["kind"] == "news" for it in out) == 18

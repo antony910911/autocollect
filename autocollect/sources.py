@@ -155,7 +155,7 @@ def openalex(query: str, days: int, per_page: int, mailto: str = "", api_key: st
     if api_key:
         params["api_key"] = api_key
     data = _get("https://api.openalex.org/works", retries=3, params=params).json()
-    return [parse_openalex_work(w, query) for w in data.get("results", [])]
+    return [{**parse_openalex_work(w, query), "rank": i} for i, w in enumerate(data.get("results", []))]
 
 
 def _crossref_date(work: dict) -> str | None:
@@ -198,7 +198,7 @@ def crossref(query: str, days: int, rows: int, mailto: str = "") -> list[dict]:
         params["mailto"] = mailto
     data = _get("https://api.crossref.org/works", retries=2, params=params).json()
     works = data.get("message", {}).get("items", [])
-    return [it for it in (parse_crossref_work(w, query) for w in works) if it["title"]]
+    return [{**parse_crossref_work(w, query), "rank": i} for i, w in enumerate(works) if (w.get("title") or [""])[0]]
 
 
 def collect_all(cfg: dict, mailto: str = "") -> tuple[list[dict], list[dict]]:
