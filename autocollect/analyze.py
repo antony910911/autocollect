@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 import os
-from pathlib import Path
-
 import anthropic
 
 DEFAULT_MODEL = "claude-opus-5-5"
@@ -53,14 +51,11 @@ def build_user_message(items: list[dict], stats: dict, week: str, profile: str,
     return "\n".join(parts)
 
 
-def run_analysis(items: list[dict], stats: dict, week: str, profile: str,
-                 previous_report: str | None, prompt_path: Path) -> tuple[str, dict]:
+def run_analysis(system: str, user: str) -> tuple[str, dict]:
     """回傳 (markdown, info)。info 包含實際使用的模型與 token 用量。"""
     model = os.environ.get("AUTOCOLLECT_MODEL") or DEFAULT_MODEL
     effort = os.environ.get("AUTOCOLLECT_EFFORT") or "high"
     client = anthropic.Anthropic()
-    system = prompt_path.read_text("utf-8")
-    user = build_user_message(items, stats, week, profile, previous_report)
 
     try:
         with client.beta.messages.stream(

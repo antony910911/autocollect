@@ -129,7 +129,7 @@ def assemble(week: str, date_range: str, analysis: str | None, items: list[dict]
         for line in qa["uncited"][:10]:
             out.append(f"  - {line[:120]}")
     out.append(status_section(status))
-    if info:
+    if info and "input_tokens" in info:
         out.append(f"- 模型：{info['model']}；tokens 輸入 {info['input_tokens']:,}／輸出 {info['output_tokens']:,}")
     out += ["", appendix(items)]
     return "\n".join(out).rstrip() + "\n", qa

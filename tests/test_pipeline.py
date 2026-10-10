@@ -108,8 +108,8 @@ def test_full_run_offline(tmp_path, monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "test")
     seen = {}
 
-    def fake_analysis(items, stats, week, profile, prev, prompt_path):
-        seen["n"] = len(items)
+    def fake_analysis(system, user):
+        seen["n"] = user.count("\n[S")
         return ("## 一、本週重點摘要\n- 台灣某廠擴建沼氣發電設備，預計明年完工 [S1]\n- 錯誤引用的一條長長的敘述內容 [S99]\n",
                 {"model": "m", "stop_reason": "end_turn", "input_tokens": 10, "output_tokens": 5})
     monkeypatch.setattr(analyze, "run_analysis", fake_analysis)
@@ -125,3 +125,31 @@ def test_full_run_offline(tmp_path, monkeypatch):
     assert cli.main(["run", "--date", "2026-10-17", "--no-ai"]) == 2
     md2 = (root / "reports" / "2026-W42.md").read_text("utf-8")
     assert "沒有收集到任何新資料" in md2
+
+
+def test_collect_then_build_without_api(tmp_path, monkeypatch):
+    """免 API 流程：collect 產生分析包，build 驗證外部寫好的分析。"""
+    root = tmp_path
+    (root / "config").mkdir()
+    (root / "prompts").mkdir()
+    (root / "config" / "sources.yaml").write_text("researcher_profile: 熱裂解專長\n", "utf-8")
+    (root / "prompts" / "weekly_analysis.md").write_text("系統指示", "utf-8")
+    monkeypatch.setattr(cli, "ROOT", root)
+    fake = [{"kind": "paper", "title": "Bio-oil study", "url": "https://doi.org/1", "source": "Fuel",
+             "published": "2026-10-01", "lang": "en", "summary": "abs", "query": "pyrolysis",
+             "meta": {"institutions": ["NTU"], "countries": ["TW"]}}]
+    monkeypatch.setattr(sources, "collect_all", lambda cfg, mailto="": (fake, [{"source": "x", "ok": True, "count": 1}]))
+
+    assert cli.main(["collect", "--date", "2026-10-10"]) == 0
+    pack = (root / "data" / "packs" / "2026-W41.md").read_text("utf-8")
+    assert pack.startswith("系統指示") and "[S1] (論文" in pack and "熱裂解專長" in pack
+
+    (root / "data" / "analysis").mkdir()
+    good = root / "data" / "analysis" / "2026-W41.md"
+    good.write_text("## 一、本週重點摘要\n- 台大團隊發表熱裂解生質油升級研究成果 [S1]\n", "utf-8")
+    assert cli.main(["build", "--week", "2026-W41", "--analysis", "data/analysis/2026-W41.md"]) == 0
+    md = (root / "reports" / "2026-W41.md").read_text("utf-8")
+    assert "Claude（Claude Code 排程）" in md and "[Bio-oil study](https://doi.org/1)" in md
+
+    good.write_text("## 一、本週重點摘要\n- 不存在的引用造成驗證失敗的一段敘述 [S7]\n", "utf-8")
+    assert cli.main(["build", "--week", "2026-W41", "--analysis", "data/analysis/2026-W41.md"]) == 1

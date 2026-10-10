@@ -1,19 +1,10 @@
-name: 生質能週報
+name: 生質能週報資料收集
 
 on:
   schedule:
     # 每週一 06:47（台北時間）= 週日 22:47 UTC
     - cron: "47 22 * * 0"
   workflow_dispatch:
-    inputs:
-      no_ai:
-        description: "只收集資料，不做 AI 分析"
-        type: boolean
-        default: false
-      reuse_raw:
-        description: "不重新收集，用本週已收集的資料重跑分析"
-        type: boolean
-        default: false
 
 permissions:
   contents: write
@@ -32,24 +23,21 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: pip
 
       - run: pip install -r requirements.txt
 
-      - name: 收集並分析
-        id: run
+      # 只收集資料（免費）；分析由 Claude Code 每週排程任務讀取 data/packs/ 後完成。
+      # 若改用 Anthropic API 一次完成，把下面的指令換成 `python -m autocollect run`
+      # 並在 env 加上 ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: 收集資料
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENALEX_MAILTO: ${{ vars.OPENALEX_MAILTO }}
-          AUTOCOLLECT_MODEL: ${{ vars.AUTOCOLLECT_MODEL }}
           TZ: Asia/Taipei
         run: |
-          args=""
-          if [ "${{ inputs.no_ai }}" = "true" ]; then args="$args --no-ai"; fi
-          if [ "${{ inputs.reuse_raw }}" = "true" ]; then args="$args --reuse-raw"; fi
-          python -m autocollect run $args
+          python -m autocollect collect
+          python -m autocollect build   # 先產生「資料整理版」報告，分析完成後會被覆蓋
 
-      - name: 提交報告
+      - name: 提交資料
         if: always()
         run: |
           git config user.name "github-actions[bot]"
@@ -58,6 +46,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "沒有新的變更"
           else
-            git commit -m "週報 $(TZ=Asia/Taipei date +%G-W%V)"
+            git commit -m "週報資料 $(TZ=Asia/Taipei date +%G-W%V)"
             git push
           fi

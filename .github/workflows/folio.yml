@@ -1,0 +1,39 @@
+name: 週報同步到 Folio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/analysis/**"
+  schedule:
+    # 保險：每週一 14:07（台北時間）再同步一次最新一期（重複上傳不會產生重複頁面）
+    - cron: "7 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "週次（例如 2026-W41），留空為最新一期"
+        required: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+
+      - name: 上傳到 Folio
+        env:
+          FOLIO_SYNC_TOKEN: ${{ secrets.FOLIO_SYNC_TOKEN }}
+          FOLIO_URL: ${{ vars.FOLIO_URL }}
+        run: |
+          if [ -n "${{ inputs.week }}" ]; then
+            python -m autocollect folio --week "${{ inputs.week }}"
+          else
+            python -m autocollect folio
+          fi
