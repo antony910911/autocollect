@@ -1,0 +1,103 @@
+# 生質能週報資料來源設定
+# 修改這個檔案即可增減關鍵字與來源，不需要改程式。
+
+# 你的背景：會用來讓「新題目建議」更貼近你能落地的方向。請改成你的實際狀況。
+researcher_profile: |
+  （請填寫）例如：所屬單位類型（研究機構／企業研發／新創）、既有專長與設備
+  （如熱裂解爐、厭氧消化槽、觸媒開發、分析儀器）、目標產業或客戶、
+  可投入的時間與預算規模、偏好的原料（農業廢棄物、禽畜糞、廚餘、林業剩材、藻類等）。
+
+# 新聞往回抓幾天；論文因為索引有延遲，往回抓久一點，靠歷史紀錄去重。
+news_lookback_days: 7
+papers_lookback_days: 21
+
+# 送進分析的資料上限（避免單週資料過多）
+max_items_for_analysis: 260
+
+# Google News 搜尋（不需金鑰）。每組 query 會分別抓取。
+google_news:
+  - lang: zh-TW
+    hl: zh-TW
+    gl: TW
+    ceid: "TW:zh-Hant"
+    max_per_query: 20
+    queries:
+      - 生質能
+      - 生質能源 發電
+      - 生質燃料
+      - 永續航空燃料 SAF
+      - 沼氣 發電
+      - 生質甲烷
+      - 生物炭 碳匯
+      - 生質柴油
+      - 生質酒精 纖維素
+      - 農業廢棄物 再利用 能源
+      - 廚餘 厭氧消化
+      - 生質 碳捕捉 BECCS
+      - 能源署 生質
+  - lang: en
+    hl: en-US
+    gl: US
+    ceid: "US:en"
+    max_per_query: 15
+    queries:
+      - bioenergy
+      - biomass power plant
+      - sustainable aviation fuel
+      - renewable diesel HVO
+      - biomethane OR "renewable natural gas"
+      - biogas anaerobic digestion
+      - biochar carbon removal
+      - BECCS
+      - bio-methanol OR "biomethanol"
+      - cellulosic ethanol
+      - pyrolysis bio-oil
+      - hydrothermal liquefaction
+      - biomass gasification hydrogen
+      - alcohol-to-jet
+      - biorefinery
+  - lang: ja
+    hl: ja
+    gl: JP
+    ceid: "JP:ja"
+    max_per_query: 10
+    queries:
+      - バイオマス発電
+      - 持続可能な航空燃料
+      - バイオガス
+
+# 產業媒體與國際組織 RSS
+rss_feeds:
+  - name: Bioenergy International
+    url: https://www.bioenergyinternational.com/feed/
+  - name: Biofuels Digest
+    url: https://www.biofuelsdigest.com/bdigest/feed/
+  - name: IEA Bioenergy
+    url: https://www.ieabioenergy.com/feed/
+  - name: Biomass Magazine
+    url: https://biomassmagazine.com/rss/
+  - name: European Biogas Association
+    url: https://www.europeanbiogas.eu/feed/
+  - name: Bioenergy Insight
+    url: https://www.bioenergy-news.com/feed/
+  - name: Green Car Congress (biofuels)
+    url: https://www.greencarcongress.com/biofuels/atom.xml
+
+# OpenAlex 學術論文（免費 API，不需金鑰）。
+# mailto 可提高速率限制；也可用環境變數 OPENALEX_MAILTO 設定。
+openalex:
+  mailto: ""
+  max_per_query: 25
+  queries:
+    - biomass gasification
+    - biomass pyrolysis
+    - hydrothermal liquefaction biomass
+    - sustainable aviation fuel
+    - anaerobic digestion biogas
+    - biomethane upgrading
+    - biochar
+    - bioenergy carbon capture storage
+    - lignocellulosic biorefinery
+    - bio-oil upgrading catalyst
+    - microalgae biofuel
+    - torrefaction biomass

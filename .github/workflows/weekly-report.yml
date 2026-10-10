@@ -1,0 +1,63 @@
+name: 生質能週報
+
+on:
+  schedule:
+    # 每週一 06:47（台北時間）= 週日 22:47 UTC
+    - cron: "47 22 * * 0"
+  workflow_dispatch:
+    inputs:
+      no_ai:
+        description: "只收集資料，不做 AI 分析"
+        type: boolean
+        default: false
+      reuse_raw:
+        description: "不重新收集，用本週已收集的資料重跑分析"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: 收集並分析
+        id: run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENALEX_MAILTO: ${{ vars.OPENALEX_MAILTO }}
+          AUTOCOLLECT_MODEL: ${{ vars.AUTOCOLLECT_MODEL }}
+          TZ: Asia/Taipei
+        run: |
+          args=""
+          if [ "${{ inputs.no_ai }}" = "true" ]; then args="$args --no-ai"; fi
+          if [ "${{ inputs.reuse_raw }}" = "true" ]; then args="$args --reuse-raw"; fi
+          python -m autocollect run $args
+
+      - name: 提交報告
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports data
+          if git diff --cached --quiet; then
+            echo "沒有新的變更"
+          else
+            git commit -m "週報 $(TZ=Asia/Taipei date +%G-W%V)"
+            git push
+          fi
