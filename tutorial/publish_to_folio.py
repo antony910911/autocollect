@@ -96,4 +96,9 @@ if __name__ == "__main__":
     if nb_id != NB["id"] and f"nb:{NB['id']}" in existing:
         left = [k for k, d in existing.items() if k.startswith("sc:") and d and d.get("notebookId") == NB["id"]
                 and k != f"sc:{SC['id']}"]
-        print(f"多出來的筆記本 {NB['id']} 還在（沒有刪除），裡面其他分區：{left or '無'}")
+        if left:
+            print(f"多出來的筆記本 {NB['id']} 裡還有分區 {left}，沒有刪除")
+        else:
+            # 自動建的同名筆記本已經空了：標記刪除
+            gone = {"key": f"nb:{NB['id']}", "rev": make_rev(int(time.time() * 1000), 999), "deleted": 1, "data": None}
+            print(f"刪除空的筆記本 {NB['id']}：", publish(url, token, [gone]))
