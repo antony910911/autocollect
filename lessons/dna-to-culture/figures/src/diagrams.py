@@ -866,6 +866,74 @@ def fig17_pathway():
     return s
 
 
+def fig17_states():
+    d = json.loads((CODE / "farnesene_path.json").read_text("utf-8"))
+    s = Svg(1460, 880, "圖 17-8　四種狀態：什麼時候產油、什麼時候產色素、什麼時候產 farnesene")
+    s.text(40, 78, "兩個開關決定細胞在做什麼：氮還有沒有，以及有沒有逆境訊號（光照、靜止期、高溶氧、產物毒性）。"
+                   "象限的邊界是推論，不是量出來的。", size=14.5, color=MUTED)
+
+    X0, X1, Y0, Y1 = 150, 850, 150, 700
+    XM, YM = (X0 + X1) // 2, (Y0 + Y1) // 2
+    quads = [
+        (X0, YM, "專心生長", GREEN, "碳 → 蛋白質、核酸、膜脂\n油脂低、色素低",
+         "★ farnesene 競爭最小", True),
+        (XM, YM, "產油", ORANGE, "氮一耗盡就觸發\n油脂可到 50–70% 乾重", "乙醯輔酶A 被搶走", False),
+        (X0, Y0, "產類胡蘿蔔素", RED, "抗氧化防禦：光照、靜止期\n高溶氧、產物毒性", "FPP 被分流", False),
+        (XM, Y0, "油脂 ＋ 色素同時", BROWN, "一般批次培養的後期\n兩個開關都按下了", "兩邊都被搶", False),
+    ]
+    for x, y, name, col, body, cost, best in quads:
+        s.parts.append(f'<rect x="{x}" y="{y}" width="{(X1 - X0) // 2}" height="{(Y1 - Y0) // 2}" '
+                       f'fill="{tint(col, 0.9 if not best else 0.78)}" stroke="{col}" stroke-width="2"/>')
+        s.text(x + 24, y + 48, name, size=20, weight=700, color=col)
+        for i, line in enumerate(body.split("\n")):
+            s.text(x + 24, y + 86 + i * 26, line, size=14)
+        s.text(x + 24, y + 86 + 2 * 26 + 16, cost, size=14.5, weight=700,
+               color=GREEN if best else RED)
+
+    s.text(X0, Y1 + 26, "氮充足", size=15, weight=700)
+    s.text(X1, Y1 + 26, "氮耗盡", size=15, weight=700, anchor="end")
+    s.text((X0 + X1) // 2, Y1 + 26, "培養基裡的氮", size=15, anchor="middle", color=MUTED)
+    s.arrow([(X0, Y1 + 44), (X1, Y1 + 44)], color=MUTED, width=2)
+    s.text(X0 - 16, Y0 - 16, "逆境訊號高", size=14, weight=700, anchor="end")
+    s.text(X0 - 16, Y1 + 6, "逆境訊號低", size=14, weight=700, anchor="end")
+    s.arrow([(X0 - 30, Y1), (X0 - 30, Y0)], color=MUTED, width=2)
+
+    # 一般批次培養的軌跡
+    s.arrow([(X0 + 110, Y1 - 70), (XM + 60, YM + 40), (X1 - 120, Y0 + 90)],
+            color=PURPLE, width=3, dash=True, curve=True)
+    s.text(XM + 150, Y0 + 170, "批次培養會自己\n走到右上角", size=14, weight=700, color=PURPLE, anchor="end")
+
+    s.box(884, 150, 540, 250, "", color=GREEN, fill=tint(GREEN, 0.93))
+    s.text(910, 190, "要產 farnesene，就得把菌留在左下角", size=17, weight=700)
+    for i, line in enumerate([
+            "• 饋料批次：糖和氮一起補，不要讓氮歸零",
+            "• 遮光：光會誘導類胡蘿蔔素，遮光是零成本的事",
+            "• 十二烷覆蓋：把揮發又有毒的產物一直拉走",
+            "• 顧好溶氧，但不要過度曝氣（高溶氧本身是逆境）",
+            "• 用殘餘氮當指標，不要用時間"]):
+        s.text(910, 228 + i * 32, line, size=14)
+
+    eq = {c["carotenoid_mg_per_gdw"]: c["farnesene_equiv_mg_per_gdw"] for c in d["carotenoid_equiv"]}
+    s.box(884, 424, 540, 276, "", color=RED, fill=tint(RED, 0.95))
+    s.text(910, 464, "但色素不是主要的競爭者", size=17, weight=700)
+    s.text(910, 500, "把類胡蘿蔔素全部關掉，最多只能多拿：", size=14)
+    yy = 536
+    for v in (1.0, 3.0, 5.0):
+        s.text(930, yy, f"類胡蘿蔔素 {v:g} mg/g 乾重　→　α-farnesene 最多 +{eq[v]:.1f} mg/g",
+               size=14, weight=700)
+        yy += 30
+    s.text(910, 640, "（以異戊二烯 C5 單元換算；C40 色素 ＝ 8 個 C5，"
+                     "farnesene ＝ 3 個）", size=13, color=MUTED)
+    s.text(910, 668, "同一時間油脂是 500–700 mg/g。要搶碳，該動的是油脂。", size=14, weight=700)
+
+    s.box(40, 760, 1384, 96, "", color=GREY, fill="#fbfbfd")
+    s.text(68, 798, "菌變紅不是「不能產了」，而是一個指標：它告訴你細胞已經感覺到逆境或進入靜止期。",
+           size=15.5, weight=700)
+    s.text(68, 830, "該做的是回頭查原因（氮是不是早就沒了？溶氧？光？產物毒性？），"
+                    "而不是急著去改色素那條路。", size=15)
+    return s
+
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
@@ -874,7 +942,8 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig16-2-fpp": fig16_fpp,
         "fig17-1-overview": fig17_overview, "fig17-2-construct": fig17_construct,
         "fig17-3-array": fig17_array, "fig17-5-junction": fig17_junction,
-        "fig17-6-pathway": fig17_pathway}
+        "fig17-6-pathway": fig17_pathway,
+        "fig17-8-states": fig17_states}
 
 if __name__ == "__main__":
     want = sys.argv[1:] or list(FIGS)

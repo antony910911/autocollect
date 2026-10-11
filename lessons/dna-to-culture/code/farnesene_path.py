@@ -67,6 +67,23 @@ def carbon_yield(product_c: int, acetyl_coa: int, co2_in_mva: int, sugar: str) -
             "carbon_yield": round(product_c / substrate_c, 4)}
 
 
+# 類胡蘿蔔素：C40，由 2 個 GGPP（各 C15+C5）合成 → 8 個 C5 單元
+CAROTENOID = {"name": "torulene／β-胡蘿蔔素（C40）", "mw": 536.9, "c5_units": 8}
+
+
+def carotenoid_as_farnesene(mg_per_gdw: float) -> float:
+    """把「每克乾重幾毫克類胡蘿蔔素」換算成「最多能多拿幾毫克 α-farnesene」。
+
+    換算的基礎是**異戊二烯單元（C5）**，不是碳或質量：
+      C40 類胡蘿蔔素 = 8 個 C5；α-farnesene（C15）= 3 個 C5。
+    這是**上限**——真的把類胡蘿蔔素關掉，釋出的 FPP 不會 100% 流向你的產物，
+    有一部分會被麥角固醇那條路吃掉。
+    """
+    mol = mg_per_gdw / CAROTENOID["mw"]                   # mmol/g
+    c5 = mol * CAROTENOID["c5_units"]
+    return c5 / 3 * MW["farnesene"]
+
+
 def main():
     ipp, fpp = per_ipp(), per_farnesene()
     gluc = carbon_yield(15, fpp["acetyl_coa"], fpp["co2"], "glucose")
@@ -96,7 +113,13 @@ def main():
          "note": "產油酵母最大的競爭者，搶的是上游的乙醯輔酶A，不是 FPP"},
     ]
 
+    # 類胡蘿蔔素值得不值得動：換算成 α-farnesene 的當量
+    carot = [{"carotenoid_mg_per_gdw": v,
+              "farnesene_equiv_mg_per_gdw": round(carotenoid_as_farnesene(v), 3)}
+             for v in (0.2, 0.5, 1.0, 2.0, 3.0, 5.0)]
+
     out = {"per_ipp": ipp, "per_farnesene": fpp, "mva_steps": MVA_STEPS,
+           "carotenoid": CAROTENOID, "carotenoid_equiv": carot,
            "yield": {"glucose": gluc, "xylose": xyl},
            "compare": compare, "competitors": competitors, "mw": MW,
            "copies_functional": 11}
@@ -111,6 +134,10 @@ def main():
     for s, d in out["yield"].items():
         print(f"碳上限（{s}）：{d['sugar_mol']} mol 糖 → 1 mol 產物，"
               f"碳產率 {d['carbon_yield']:.1%}，質量產率 {d['mass_yield_g_per_g']:.3f} g/g")
+    print("\n類胡蘿蔔素換算成 α-farnesene 當量（以 C5 單元計，上限）：")
+    for c in carot:
+        print(f'  {c["carotenoid_mg_per_gdw"]:4.1f} mg/g 乾重 → 最多多拿 '
+              f'{c["farnesene_equiv_mg_per_gdw"]:5.2f} mg/g')
     print("\n寫入 farnesene_path.json")
 
 

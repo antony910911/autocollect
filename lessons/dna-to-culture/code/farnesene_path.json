@@ -56,6 +56,37 @@
    1
   ]
  ],
+ "carotenoid": {
+  "name": "torulene／β-胡蘿蔔素（C40）",
+  "mw": 536.9,
+  "c5_units": 8
+ },
+ "carotenoid_equiv": [
+  {
+   "carotenoid_mg_per_gdw": 0.2,
+   "farnesene_equiv_mg_per_gdw": 0.203
+  },
+  {
+   "carotenoid_mg_per_gdw": 0.5,
+   "farnesene_equiv_mg_per_gdw": 0.507
+  },
+  {
+   "carotenoid_mg_per_gdw": 1.0,
+   "farnesene_equiv_mg_per_gdw": 1.015
+  },
+  {
+   "carotenoid_mg_per_gdw": 2.0,
+   "farnesene_equiv_mg_per_gdw": 2.03
+  },
+  {
+   "carotenoid_mg_per_gdw": 3.0,
+   "farnesene_equiv_mg_per_gdw": 3.045
+  },
+  {
+   "carotenoid_mg_per_gdw": 5.0,
+   "farnesene_equiv_mg_per_gdw": 5.075
+  }
+ ],
  "yield": {
   "glucose": {
    "sugar": "glucose",
