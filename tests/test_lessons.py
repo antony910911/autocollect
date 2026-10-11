@@ -175,3 +175,15 @@ def test_check_refs_extracts_dois_with_parentheses():
     assert mod.extract_doi("沒有 DOI") is None
     refs = mod.references((LESSON_DIR / "06-qpcr-design.md").read_text("utf-8"))
     assert len(refs) == 20 and all(mod.extract_doi(r) for r in refs)
+
+
+def test_all_courses_build_with_unique_pages():
+    courses = lessons.all_courses(LESSON_DIR.parent)
+    assert {c.dir.name for c in courses} >= {"ammonia", "aiot", "aiot-advanced"}
+    page_ids = []
+    for course in courses:
+        records, uploads = lessons.build_course(course, None, now_ms=1000)
+        pages = [r["key"] for r in records if r["key"].startswith("pg:")]
+        assert pages and uploads, course.dir.name
+        page_ids += pages
+    assert len(page_ids) == len(set(page_ids))  # 不同教材的頁面 id 不能撞在一起

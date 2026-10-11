@@ -95,9 +95,9 @@
  "warning": {
   "真實 VFA 超過 1500 的時間（小時）": 9142,
   "pH < 7.0": {
-   "alarm_hour": 9137,
-   "lead_hours": 5,
-   "false_alarm_days": 1
+   "alarm_hour": 9139,
+   "lead_hours": 3,
+   "false_alarm_days": 0
   },
   "CH₄% 比 7 日中位數低 5 點": {
    "alarm_hour": 9121,

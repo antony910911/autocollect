@@ -240,7 +240,10 @@ def exp_warning(hourly, lab, soft_lin, soft_gbm, ekf_vfa, ekf_known):
     true_danger = first_cross(hourly["vfa_true"], VFA_DANGER, start, end)
     pct = ffill(hourly["ch4_pct"])
     pct_med = np.array([np.median(pct[max(0, i - 168):i + 1]) for i in range(n)])  # 只用過去 7 天
-    ph24 = np.convolve(ffill(hourly["ph"]), np.ones(6) / 6, mode="same")
+    ph_f = ffill(hourly["ph"])
+    c = np.concatenate([[0], np.cumsum(ph_f)])
+    i = np.arange(n)
+    ph24 = (c[i + 1] - c[np.maximum(0, i - 5)]) / (i + 1 - np.maximum(0, i - 5))  # 過去 6 小時平均，不用未來資料
     quiet = [(TRAIN_END * 24, ev0 - 24), (ev0 + 24 * 15, n)]
     methods = {
         "pH < 7.0": (ph24, 7.0, False),
