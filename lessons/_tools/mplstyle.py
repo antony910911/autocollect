@@ -22,14 +22,10 @@ from matplotlib import font_manager  # noqa: E402
 
 logging.getLogger("matplotlib.font_manager").setLevel(logging.ERROR)
 
-# 教材的色票（和 svgkit 的 C 一致；語意命名，不要在圖裡直接寫色碼）
-C = {
-    "blue": "#2f6fb3", "orange": "#d9821e", "red": "#c23b3b", "green": "#2f9e6e",
-    "purple": "#7b4bb3", "grey": "#6b7280", "brown": "#8a6d3b", "teal": "#1b8a8f",
-    "ink": "#1d2330", "muted": "#5b6475", "grid": "#e3e6ec", "axis": "#8a93a3",
-}
-# 分類資料的預設順序：相鄰兩色在明度與色相都分得開（灰階印出來也分得出）
-CYCLE = [C["blue"], C["orange"], C["teal"], C["purple"], C["green"], C["red"], C["brown"]]
+# 色票與字級集中在 tokens.py；這裡只補 matplotlib 專用的幾個
+from tokens import C as _C, CYCLE  # noqa: E402
+
+C = dict(_C, grid=_C["hairline"])
 
 
 def _install_fonts() -> bool:

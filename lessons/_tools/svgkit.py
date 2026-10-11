@@ -37,17 +37,8 @@ def ensure_fonts() -> bool:
 
 INK = "#1d2330"
 MUTED = "#5b6475"
-# 氮的各種形態固定用同一組顏色，章節之間看得出對應
-C = {
-    "nh4": "#2f6fb3",   # 氨氮
-    "no2": "#d9821e",   # 亞硝酸鹽
-    "no3": "#c23b3b",   # 硝酸鹽
-    "n2": "#2f9e6e",    # 氮氣
-    "org": "#8a6d3b",   # 有機氮
-    "amx": "#7b4bb3",   # 厭氧氨氧化
-    "gas": "#6b7280",   # 其他氣體
-    "grey": "#8a93a3",
-}
+# 色票、字級、間距都集中在 tokens.py（見第 11 章：設計決定要有名字、放一個地方）
+from tokens import C, ICON, RADIUS, SPACE, STROKE, TYPE, USAGE  # noqa: E402,F401
 
 
 def tint(hex_color: str, k: float = 0.86) -> str:
@@ -225,15 +216,27 @@ class Svg:
 
 
 def _rich(s: str) -> str:
-    """支援上下標：NH4^+^、NO3^-^、N_2_；`\\_` 與 `\\^` 印出字面；其餘照字面跳脫。"""
+    """支援 **粗體**、*斜體*、上下標 NH4^+^／N_2_；`\\_` `\\^` 印出字面；其餘照字面跳脫。"""
     out, i = [], 0
     s = html.escape(s, quote=False)
     while i < len(s):
+        if s.startswith("**", i):          # **粗體**：行內加粗，而不是印出星號
+            j = s.find("**", i + 2)
+            if j > i:
+                out.append(f'<tspan font-weight="700">{_rich(s[i + 2:j])}</tspan>')
+                i = j + 2
+                continue
         ch = s[i]
         if ch == "\\" and i + 1 < len(s) and s[i + 1] in "^_\\":
             out.append(s[i + 1])   # \_ \^ \\ ：印出字面，不當上下標
             i += 2
             continue
+        if ch == "*":                      # *斜體*：學名用
+            j = s.find("*", i + 1)
+            if j > i:
+                out.append(f'<tspan font-style="italic">{_rich(s[i + 1:j])}</tspan>')
+                i = j + 1
+                continue
         if ch in "^_":
             j = s.find(ch, i + 1)
             if j > i:

@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "_tools"))
-from svgkit import INK, MUTED, Svg, render, tint  # noqa: E402
+from svgkit import INK, MUTED, Svg, render, tint, wrap  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 CODE = OUT.parent / "code"
@@ -1004,6 +1004,289 @@ def fig18_strategy():
     return s
 
 
+# ───────── 手寫 SVG 插畫（不是方塊圖，是真的畫出來）─────────
+def _vessel(s, cx, top, bot, w, culture_top, overlay=None, seed=0):
+    """發酵槽切面：槽體、培養液（紅酵母是紅的）、氣泡、攪拌軸葉片、通氣管。"""
+    import random
+    hw, r = w / 2, w / 2
+    body = (f"M{cx - hw},{top} L{cx - hw},{bot - r} "
+            f"A{r},{r} 0 0 0 {cx + hw},{bot - r} L{cx + hw},{top}")
+    cid = f"clip{cx}_{seed}"
+    s.raw(f'<defs><clipPath id="{cid}"><path d="{body} Z"/></clipPath>'
+          f'<linearGradient id="gr{cid}" x1="0" y1="0" x2="0" y2="1">'
+          f'<stop offset="0" stop-color="#e8907f"/><stop offset="1" stop-color="#b8453a"/>'
+          f'</linearGradient></defs>')
+    s.raw(f'<rect x="{cx - hw}" y="{culture_top}" width="{w}" height="{bot - culture_top}" '
+          f'fill="url(#gr{cid})" clip-path="url(#{cid})"/>')
+    if overlay:
+        oy0, oy1 = overlay
+        s.raw(f'<rect x="{cx - hw}" y="{oy0}" width="{w}" height="{oy1 - oy0}" '
+              f'fill="#f6d9a8" opacity="0.92" clip-path="url(#{cid})"/>')
+        s.raw(f'<line x1="{cx - hw}" y1="{oy1}" x2="{cx + hw}" y2="{oy1}" '
+              f'stroke="{ORANGE}" stroke-width="2.5"/>')
+    rng = random.Random(seed)
+    for _ in range(26):
+        bx = cx + rng.uniform(-hw + 18, hw - 18)
+        by = rng.uniform(culture_top + 22, bot - 30)
+        s.raw(f'<circle cx="{bx:.0f}" cy="{by:.0f}" r="{rng.uniform(2.5, 6):.1f}" '
+              f'fill="#ffffff" opacity="0.45" clip-path="url(#{cid})"/>')
+    s.raw(f'<rect x="{cx - 5}" y="{top - 46}" width="10" height="{bot - 86 - top}" '
+          f'rx="4" fill="#b9bfca"/>')
+    for yy in (bot - 120, bot - 72):
+        s.raw(f'<rect x="{cx - 44}" y="{yy}" width="88" height="11" rx="5" fill="#9aa2b1"/>')
+    s.raw(f'<rect x="{cx - 34}" y="{top - 62}" width="68" height="20" rx="6" fill="#8a93a3"/>')
+    s.raw(f'<path d="M{cx - hw - 52},{bot - 150} L{cx - hw - 52},{bot - 46} L{cx - 56},{bot - 46}" '
+          f'fill="none" stroke="{BLUE}" stroke-width="5" stroke-linecap="round"/>')
+    s.text(cx - hw - 58, bot - 158, "通氣", size=13, color=BLUE, anchor="end")
+    s.raw(f'<path d="{body}" fill="none" stroke="#5b6475" stroke-width="4" '
+          f'stroke-linejoin="round"/>')
+    s.raw(f'<line x1="{cx - hw - 14}" y1="{top}" x2="{cx + hw + 14}" y2="{top}" '
+          f'stroke="#5b6475" stroke-width="5" stroke-linecap="round"/>')
+
+
+def fig17_overlay():
+    s = Svg(1420, 900, "圖 17-9　為什麼沒有有機相覆蓋，你量到的產量是假的")
+    s.text(40, 80, "α-farnesene 是揮發性倍半萜。它一邊被做出來，一邊從培養液裡跑掉——"
+                   "你取水相去量，只會量到「還沒跑掉的那一點」。", size=15.5, color=MUTED)
+
+    L, R = 350, 1000
+    _vessel(s, L, 236, 666, 300, 356, seed=1)
+    _vessel(s, R, 236, 666, 300, 356, overlay=(284, 356), seed=2)
+    s.text(L, 714, "不加有機相", size=19, weight=700, anchor="middle")
+    s.text(R, 714, "加十二烷覆蓋層", size=19, weight=700, anchor="middle")
+
+    for i, yy in enumerate((222, 188, 156, 132)):
+        op = 0.85 - i * 0.18
+        s.raw(f'<circle cx="{L - 40 + i * 26}" cy="{yy}" r="{7 - i}" fill="{TEAL}" '
+              f'opacity="{op:.2f}"/>')
+        s.raw(f'<circle cx="{L + 48 + i * 22}" cy="{yy + 14}" r="{6 - i * 0.8}" '
+              f'fill="{TEAL}" opacity="{op * 0.8:.2f}"/>')
+    s.arrow([(L, 222), (L, 146)], color=TEAL, width=3, dash=True)
+    s.text(L, 120, "產物揮發掉了", size=16, weight=700, color=TEAL, anchor="middle")
+    s.icon("triangle-alert", L + 148, 176, 26, RED, 2.2)
+    s.text(L + 182, 196, "量到的產量嚴重低估", size=15, weight=700, color=RED)
+
+    import random
+    for i in range(14):
+        rr = random.Random(100 + i)
+        s.raw(f'<circle cx="{R - 130 + rr.uniform(0, 260):.0f}" '
+              f'cy="{292 + rr.uniform(0, 56):.0f}" r="{rr.uniform(3, 6):.1f}" '
+              f'fill="{TEAL}" opacity="0.9"/>')
+    s.arrow([(R + 212, 316), (R + 162, 316)], color=TEAL, width=3)
+    s.text(R + 220, 308, "產物往上跑，", size=15, weight=700, color=TEAL)
+    s.text(R + 220, 332, "被十二烷留住", size=15, weight=700, color=TEAL)
+    s.text(R + 220, 372, "取樣取這一層做 GC-MS", size=14, color=MUTED)
+    s.chip(R - 152, 222, "十二烷　約 20% v/v", ORANGE, size=13, icon="droplet")
+
+    s.card(40, 752, 660, ["覆蓋層裡加 1 g/L pentadecane 當內標",
+                          "因為十二烷自己也會揮發，要用不揮發的內標把損失還原回去"],
+           title="還要再加一個內標", icon="flask-conical", color=ORANGE, size=14.5)
+    s.card(740, 752, 640, ["Yaegashi 2017：700 mL 培養液 ＋ 150 mL 覆蓋層（約 21% v/v）",
+                           "這是這株菌做倍半萜的標準配置，見第 18 章"],
+           title="文獻怎麼做", icon="book-open", color=BLUE, size=14.5)
+    return s
+
+
+def fig15_cell():
+    s = Svg(1440, 900, "圖 15-4　為什麼細菌的工具鏈不能用在酵母菌上")
+    s.text(40, 80, "差別不是「比較複雜」而已，是結構上不同——而那些工具的假設，就建立在那些結構上。",
+           size=15.5, color=MUTED)
+
+    # 左：細菌（原核）
+    bx, by = 330, 400
+    s.raw(f'<ellipse cx="{bx}" cy="{by}" rx="210" ry="128" fill="#eef3f9" '
+          f'stroke="{BLUE}" stroke-width="4"/>')
+    s.raw(f'<ellipse cx="{bx}" cy="{by}" rx="198" ry="116" fill="none" '
+          f'stroke="{BLUE}" stroke-width="2" opacity="0.5"/>')
+    s.raw(f'<path d="M{bx - 110},{by + 10} C{bx - 60},{by - 56} {bx + 10},{by + 60} '
+          f'{bx + 60},{by - 20} S{bx + 140},{by + 30} {bx + 120},{by - 2}" '
+          f'fill="none" stroke="{PURPLE}" stroke-width="5" stroke-linecap="round"/>')
+    import random
+    rr = random.Random(7)
+    for _ in range(34):
+        a, b = rr.uniform(-180, 180), rr.uniform(-100, 100)
+        if (a / 190) ** 2 + (b / 110) ** 2 < 1:
+            s.raw(f'<circle cx="{bx + a:.0f}" cy="{by + b:.0f}" r="3.2" fill="{GREY}" '
+                  f'opacity="0.5"/>')
+    s.text(bx, by - 164, "細菌（原核）", size=21, weight=700, anchor="middle", color=BLUE)
+    s.line(bx - 226, by - 54, bx - 108, by + 4, color=PURPLE, width=1.4)
+    s.text(bx - 232, by - 60, "DNA 散在細胞質裡", size=13.5, color=PURPLE, anchor="end")
+    s.text(bx + 60, by + 150, "沒有胞器、沒有核膜", size=13.5, color=MUTED, anchor="middle")
+
+    # 右：酵母（真核）
+    yx, yy2 = 1020, 400
+    s.raw(f'<circle cx="{yx}" cy="{yy2}" r="178" fill="#f3f0fa" stroke="{PURPLE}" '
+          f'stroke-width="4"/>')
+    s.raw(f'<circle cx="{yx}" cy="{yy2}" r="166" fill="none" stroke="{PURPLE}" '
+          f'stroke-width="2" opacity="0.5"/>')
+    # 細胞核
+    s.raw(f'<circle cx="{yx - 42}" cy="{yy2 - 48}" r="62" fill="#ded5f3" '
+          f'stroke="{PURPLE}" stroke-width="3"/>')
+    s.raw(f'<circle cx="{yx - 42}" cy="{yy2 - 48}" r="22" fill="{PURPLE}" opacity="0.45"/>')
+    s.text(yx - 42, yy2 - 48 + 5, "核", size=15, weight=700, anchor="middle", color="#ffffff")
+    # 粒線體
+    for mx, my, rot in ((yx + 70, yy2 - 66, -24), (yx + 88, yy2 + 28, 14)):
+        s.raw(f'<g transform="translate({mx},{my}) rotate({rot})">'
+              f'<rect x="-40" y="-19" width="80" height="38" rx="19" fill="#d8ecd9" '
+              f'stroke="{GREEN}" stroke-width="3"/>'
+              + "".join(f'<path d="M{-28 + i * 14},-15 q7,15 0,30" fill="none" '
+                        f'stroke="{GREEN}" stroke-width="2.2"/>' for i in range(5))
+              + '</g>')
+    # 液泡
+    s.raw(f'<circle cx="{yx - 78}" cy="{yy2 + 78}" r="48" fill="#dff1f2" '
+          f'stroke="{TEAL}" stroke-width="3"/>')
+    # 油滴（產油酵母的重點）
+    for ox, oy, orr in ((yx + 22, yy2 + 92, 26), (yx + 62, yy2 + 118, 17), (yx - 12, yy2 + 126, 13)):
+        s.raw(f'<circle cx="{ox}" cy="{oy}" r="{orr}" fill="#f7dfa6" stroke="{ORANGE}" '
+              f'stroke-width="2.6"/>')
+    s.text(yx, yy2 - 206, "酵母菌（真核）", size=21, weight=700, anchor="middle", color=PURPLE)
+    for tx, ty, tt, col in ((yx - 196, yy2 - 118, "核膜包起來的染色體", PURPLE),
+                            (yx + 158, yy2 - 96, "粒線體（有自己的代謝）", GREEN),
+                            (yx - 212, yy2 + 118, "液泡", TEAL),
+                            (yx + 120, yy2 + 150, "油滴 ← 產油酵母的本業", ORANGE)):
+        s.text(tx, ty, tt, size=13.5, color=col, weight=700,
+               anchor="end" if tx < yx else "start")
+
+    s.card(40, 606, 440, ["Prokka／Bakta（細菌基因預測）", "CheckM2（細菌完整度）",
+                          "GTDB-Tk（細菌分類）", "CarveMe／gapseq（細菌建模）"],
+           title="這些工具不能用", icon="circle-x", color=RED, size=14.5,
+           foot="它們假設「基因沒有內含子、一條環狀染色體」")
+    s.card(510, 606, 440, ["BUSCO（真核完整度）", "Funannotate／BRAKER（真核基因預測）",
+                           "eggNOG-mapper（功能註解）", "rhto-GEM（現成的紅酵母模型）"],
+           title="要換成這些", icon="circle-check", color=GREEN, size=14.5,
+           foot="第 15 章的註解流程就是這一套")
+    s.card(980, 606, 420, ["胞器之間要分區隔，不能全部丟同一個池子",
+                           "萜類在細胞質、油脂在細胞質與 ER、TCA 在粒線體"],
+           title="模型也要跟著改", icon="layers", color=PURPLE, size=14.5,
+           foot="加反應時最容易錯的就是區隔")
+    return s
+
+
+def fig10_vessels():
+    d = json.loads((CODE / "protocol.json").read_text("utf-8"))
+    need = d["kla"]["required"] if isinstance(d.get("kla"), dict) and "required" in d["kla"] \
+        else None
+    vs = d["vessels"]
+    s = Svg(1460, 840, "圖 10-4　供氧能力決定你要用哪一種容器")
+    s.text(40, 80, "模型算出來的供氧需求（OTR）要換成 kLa，再對照容器能給多少。"
+                   "容器選錯，條件再準也做不出來。", size=15.5, color=MUTED)
+
+    X0, W = 70, 1320
+    n = len(vs)
+    step = W // n
+    for i, v in enumerate(vs):
+        cx = X0 + step * i + step // 2
+        col = {"可以": GREEN, "不足": RED, "綽綽有餘": BLUE}[v["fit"]]
+        base = 490
+        BASEY = base - 10          # 所有容器的底部對齊同一條線
+
+        def flask(liquid_h):
+            """三角燒瓶：瓶頸 (cx±20) → 瓶底 (cx±80)，液面寬度依高度算，不會溢出瓶身。"""
+            s.raw(f'<path d="M{cx - 20},{base - 184} L{cx - 20},{base - 112} '
+                  f'L{cx - 80},{BASEY} L{cx + 80},{BASEY} L{cx + 20},{base - 112} '
+                  f'L{cx + 20},{base - 184} Z" fill="#ffffff" stroke="#5b6475" '
+                  f'stroke-width="3.5" stroke-linejoin="round"/>')
+            hw_top = 20 + 60 * (102 - liquid_h) / 102
+            s.raw(f'<path d="M{cx - hw_top:.1f},{BASEY - liquid_h} '
+                  f'L{cx + hw_top:.1f},{BASEY - liquid_h} L{cx + 80},{BASEY} '
+                  f'L{cx - 80},{BASEY} Z" fill="#e8907f"/>')
+            return hw_top
+
+        if i == 0:                                    # 試管
+            s.raw(f'<path d="M{cx - 26},{base - 184} L{cx - 26},{BASEY - 26} '
+                  f'A26,26 0 0 0 {cx + 26},{BASEY - 26} L{cx + 26},{base - 184}" '
+                  f'fill="#ffffff" stroke="#5b6475" stroke-width="3.5"/>')
+            s.raw(f'<path d="M{cx - 26},{BASEY - 96} L{cx + 26},{BASEY - 96} '
+                  f'L{cx + 26},{BASEY - 26} A26,26 0 0 1 {cx - 26},{BASEY - 26} Z" '
+                  f'fill="#e8907f"/>')
+        elif i == 1:                                  # 裝液 40%
+            flask(66)
+        elif i == 2:                                  # 裝液 20%
+            flask(38)
+        elif i == 3:                                  # 裝液 10% ＋ 擋板
+            hw = flask(22)
+            for dx in (-0.62, -0.22, 0.22, 0.62):     # 擋板貼著瓶壁
+                x0 = cx + dx * 80
+                s.raw(f'<line x1="{x0:.0f}" y1="{BASEY - 2}" x2="{x0 * 0.72 + cx * 0.28:.0f}" '
+                      f'y2="{BASEY - 46}" stroke="{BROWN}" stroke-width="5" '
+                      f'stroke-linecap="round" opacity="0.85"/>')
+        else:                                         # 攪拌式發酵槽
+            _vessel(s, cx, base - 150, BASEY, 132, base - 96, seed=9)
+        s.chip(cx - 44, base + 36, v["fit"], col, size=13)
+        for j, ln in enumerate(wrap(v["vessel"], 13.5, step - 26)):
+            s.text(cx, base + 94 + j * 22, ln, size=13.5, anchor="middle")
+        s.text(cx, base + 166, f'kLa {v["kla_lo"]}–{v["kla_hi"]}', size=16,
+               weight=700, anchor="middle", color=col)
+        s.text(cx, base + 190, "h⁻¹", size=12, anchor="middle", color=MUTED)
+
+    s.box(40, 704, 1380, 108, "", color=TEAL, fill=tint(TEAL, 0.94))
+    s.icon("gauge", 72, 736, 26, TEAL, 2.1)
+    s.text(116, 758, "怎麼換算", size=18, weight=700)
+    s.text(116, 790, "需要的 kLa ＝ 需要的 OTR ÷ 飽和溶氧。"
+                     "算出來之後照上面挑容器——「不足」的就算條件全對也長不起來。", size=15)
+    return s
+
+def fig13_resources():
+    s = Svg(1480, 960, "圖 13-1　你會用到的資料庫與資源：按「想問什麼」分")
+    s.text(40, 80, "資源不是越多越好。先問「我現在要回答哪一個問題」，再去對應的那一格。",
+           size=15.5, color=MUTED)
+
+    groups = [
+        (40, 140, "這株菌是什麼？", "scan-search", BLUE,
+         [("NCBI Taxonomy", "物種分類與命名"),
+          ("JGI MycoCosm", "真菌基因體，**你的 IFO 0880 在這裡**"),
+          ("菌種保存中心", "BCRC／NBRC／ATCC／DSMZ，查編號與來源")],
+         "先確定菌名與編號，後面才查得到"),
+        (510, 140, "它有哪些基因？", "dna", PURPLE,
+         [("UniProt", "蛋白質功能與結構域"),
+          ("KEGG", "代謝路徑與 EC 編號"),
+          ("InterPro／eggNOG", "結構域與直系同源群")],
+         "拿基因名來查它催化什麼"),
+        (980, 140, "有沒有現成的模型？", "cpu", TEAL,
+         [("BiGG Models", "品質最好的 GEM 收錄庫"),
+          ("rhto-GEM（GitHub）", "**紅酵母就用這個**，不要用 Yeast8"),
+          ("MetaNetX", "不同模型之間的 id 對照")],
+         "有現成的就不要從頭建（第 3、15 章）"),
+        (40, 496, "怎麼培養？", "flask-conical", ORANGE,
+         [("BacDive", "培養條件的結構化資料"),
+          ("MediaDive", "培養基配方"),
+          ("保存中心的菌株頁", "官方建議的培養基與溫度")],
+         "基因體算不出溫度與 pH（第 7 章）"),
+        (510, 496, "別人做到哪了？", "book-open", GREEN,
+         [("PubMed", "同儕審查的文獻"),
+          ("bioRxiv", "預印本，比期刊快半年到一年"),
+          ("Google Scholar", "追引用，找到後續的研究")],
+         "新舊學名都要試（見下方）"),
+        (980, 496, "程式與工具？", "github", BROWN,
+         [("GitHub", "工具與模型的原始碼"),
+          ("Bioconda", "生資工具的安裝來源"),
+          ("COBRApy 文件", "代謝模型的操作")],
+         "用之前先跑第 8 章的五個問題"),
+    ]
+    for x, y, title, ic, col, items, foot in groups:
+        s.box(x, y, 460, 316, "", color=col, fill=tint(col, 0.95))
+        s.icon(ic, x + 26, y + 30, 26, col, 2.1)
+        s.text(x + 64, y + 52, title, size=19, weight=700, color=col)
+        s.line(x + 26, y + 70, x + 434, y + 70, color=col)
+        yy = y + 106
+        for name, what in items:
+            s.text(x + 26, yy, name, size=15, weight=700)
+            yy += 23
+            for ln in wrap(what, 13.5, 408):
+                s.text(x + 26, yy, ln, size=13.5, color=MUTED)
+                yy += 20
+            yy += 15
+        for j, ln in enumerate(wrap(foot, 13.5, 408)):
+            s.text(x + 26, y + 286 + j * 20, ln, size=13.5, weight=700, color=col)
+
+    s.box(40, 836, 1400, 100, "", color=RED, fill=tint(RED, 0.95))
+    s.icon("triangle-alert", 72, 866, 26, RED, 2.1)
+    s.text(116, 888, "兩個查資料時最常犯的錯", size=18, weight=700)
+    s.text(116, 920, "① 用舊學名查不到：*Rhodosporidium toruloides* 與 *Rhodotorula toruloides* "
+                     "是同一種，兩個都要試。　② 把資料庫的預測值當實測值——"
+                     "KEGG 的路徑是推定的，不是你的菌真的有。", size=14.5)
+    return s
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
@@ -1014,7 +1297,10 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig17-3-array": fig17_array, "fig17-5-junction": fig17_junction,
         "fig17-6-pathway": fig17_pathway,
         "fig17-8-states": fig17_states,
-        "fig18-2-strategy": fig18_strategy}
+        "fig18-2-strategy": fig18_strategy,
+        "fig17-9-overlay": fig17_overlay, "fig15-4-cell": fig15_cell,
+        "fig10-4-vessels": fig10_vessels,
+        "fig13-1-resources": fig13_resources}
 
 if __name__ == "__main__":
     want = sys.argv[1:] or list(FIGS)

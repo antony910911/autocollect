@@ -622,11 +622,77 @@ def fig_design_code():
     return s
 
 
+def fig_rag():
+    s = Svg(1480, 880, "圖 9-3　RAG 實際怎麼運作：先查資料，再回答")
+    s.text(40, 80, "第 9 章說研究者 90% 的答案是 RAG。這是它實際的樣子——"
+                   "**沒有任何一步在「訓練」模型**。", size=15.5, color=MUTED)
+
+    # 上排：建索引（只做一次）
+    s.text(40, 150, "① 建索引　做一次就好，之後加文件只要補這一段", size=17, weight=700,
+           color=BLUE)
+    build = [("file-text", "你的文件", "論文 PDF、實驗紀錄、SOP"),
+             ("scissors" if False else "layers", "切塊", "每塊幾百到一千字\n保留出處與頁碼"),
+             ("cpu", "轉成向量", "embedding 模型\n把語意變成數字"),
+             ("database", "存進向量庫", "Chroma、FAISS、pgvector")]
+    for i, (ic, name, what) in enumerate(build):
+        x = 40 + i * 362
+        s.box(x, 186, 320, 160, "", color=BLUE, fill=tint(BLUE, 0.95))
+        s.icon(ic, x + 26, 212, 26, BLUE, 2.1)
+        s.text(x + 64, 234, name, size=18, weight=700, color=BLUE)
+        yy = 274
+        for ln in what.split("\n"):
+            for l2 in wrap(ln, 14, 268):
+                s.text(x + 26, yy, l2, size=14)
+                yy += 23
+        if i < 3:
+            s.arrow([(x + 322, 266), (x + 358, 266)], color=BLUE, width=3)
+
+    # 下排：查詢（每次提問）
+    s.text(40, 432, "② 每次提問　這一段每問一次就跑一次", size=17, weight=700, color=TEAL)
+    ask = [("message-square", "你的問題", "「氮限制什麼時候\n觸發油脂累積？」"),
+           ("cpu", "問題也轉成向量", "用同一個 embedding 模型"),
+           ("scan-search", "找最相近的幾段", "通常取 3–8 段\n這一步叫檢索"),
+           ("bot", "連同問題送給模型", "提示裡附上那幾段原文")]
+    for i, (ic, name, what) in enumerate(ask):
+        x = 40 + i * 362
+        s.box(x, 468, 320, 164, "", color=TEAL, fill=tint(TEAL, 0.95))
+        s.icon(ic, x + 26, 494, 26, TEAL, 2.1)
+        s.text(x + 64, 516, name, size=18, weight=700, color=TEAL)
+        yy = 556
+        for ln in what.split("\n"):
+            for l2 in wrap(ln, 14, 268):
+                s.text(x + 26, yy, l2, size=14)
+                yy += 23
+        if i < 3:
+            s.arrow([(x + 322, 550), (x + 358, 550)], color=TEAL, width=3)
+    # 檢索查的是「向量庫」，不是「轉成向量」那一步
+    s.arrow([(1286, 350), (1286, 414), (924, 414), (924, 462)], color=GREY,
+            width=2.6, dash=True)
+    s.text(1300, 392, "檢索查的就是這個庫", size=13.5, color=MUTED)
+
+    s.box(40, 668, 900, 176, "", color=GREEN, fill=tint(GREEN, 0.94))
+    s.icon("circle-check", 72, 700, 26, GREEN, 2.1)
+    s.text(116, 722, "為什麼研究者特別適合 RAG", size=18, weight=700)
+    for i, ln in enumerate([
+            "・**文獻一直在增加**——加一篇進去就好，微調要重新訓練",
+            "・**你需要知道答案出自哪一篇**——RAG 天生給得出出處，微調不行",
+            "・資料量通常是「幾百篇論文」，正好是 RAG 的甜蜜點"]):
+        s.text(116, 760 + i * 30, ln, size=15)
+
+    s.box(972, 668, 468, 176, "", color=RED, fill=tint(RED, 0.95))
+    s.icon("triangle-alert", 1004, 700, 26, RED, 2.1)
+    s.text(1048, 722, "這一步不能省", size=18, weight=700, color=RED)
+    for i, ln in enumerate(["要求它回答時**標出來自哪一段**。",
+                            "沒有出處的 RAG 回答，和它自己", "掰的沒兩樣——你無從分辨。"]):
+        s.text(1004, 760 + i * 30, ln, size=15)
+    return s
+
 FIGS1 = {"fig0-1-landscape": fig_landscape, "fig1-1-surfaces": fig_surfaces,
          "fig2-1-context": fig_context, "fig3-1-memory": fig_memory,
          "fig4-1-skills": fig_skills, "fig5-1-connect": fig_connect}
 FIGS3 = {"fig11-1-artifact-types": fig_artifact_types,
-         "fig11-3-design-code": fig_design_code}
+         "fig11-3-design-code": fig_design_code,
+         "fig9-3-rag": fig_rag}
 FIGS = {**FIGS1, **FIGS2, **FIGS3}
 
 if __name__ == "__main__":
