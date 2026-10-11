@@ -73,6 +73,22 @@
 - 如果你把「生質能週報」筆記本整本刪掉，之後的頁面不會再出現；要恢復請告訴我改用新的筆記本 id。
 - Folio 網址不是 `https://folio.antony910912.workers.dev` 時，新增 Variable `FOLIO_URL`。
 
+## ChatGPT 週五 Farnesene 研究快報 → Folio
+
+這是與既有「法尼烯（α／β-farnesene）應用新知週報」**不同**的研究快報：
+
+- **產生時間**：每週五 20:00（Asia/Taipei）；由 ChatGPT 定期任務研究工程酵母生產 Farnesene 與可供借鏡的微生物萜類研究。
+- **GitHub 來源**：`reports/farnesene_lab/YYYY-Www.md`；使用台北時間的 ISO 年週編號，同一週只更新同一檔案。
+- **Folio 位置**：「法尼烯週報」筆記本 →「工程酵母研究快報」分區；與原本「每週週報」分區分開、互不覆寫。
+- **觸發方式**：GitHub 主分支的上述 Markdown 檔案被提交後，`.github/workflows/folio.yml` 立即嘗試同步；另每週五 20:45（台北時間）及週一 14:07 備援同步。
+- **內容要求**：Markdown 第一行為 `# 工程酵母 Farnesene 研究快報 YYYY-Www`，包含 `## 一、本週重點結論`，並附原始 DOI 或論文連結；沒有重大新研究時如實記錄，不補舊聞。
+- **前提**：定期任務必須能把 Markdown 成功寫入 GitHub，且 Repository Secret `FOLIO_SYNC_TOKEN` 必須有效。單靠 GitHub Actions 無法取得 ChatGPT 對話裡尚未提交的週報。若定期任務沒有 GitHub 寫入權限，Folio 不會因此自動取得報告。
+
+手動補傳已提交的研究快報：
+```bash
+python -m autocollect folio --topic farnesene_lab --week 2026-W42
+```
+
 ## 本機執行
 
 ```bash
