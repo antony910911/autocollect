@@ -40,4 +40,4 @@ if __name__ == "__main__":
     if "--dry-run" in sys.argv:
         print(json.dumps(records, ensure_ascii=False, indent=1)[:3000])
     else:
-        print(publish(os.environ.get("FOLIO_URL", DEFAULT_URL), os.environ["FOLIO_SYNC_TOKEN"], records))
+        print(publish(os.environ.get("FOLIO_URL") or DEFAULT_URL, os.environ["FOLIO_SYNC_TOKEN"], records))
