@@ -1,0 +1,107 @@
+# 法尼烯（α-farnesene、β-farnesene）應用週報的資料來源設定
+# 修改這個檔案即可增減關鍵字與來源，不需要改程式。
+
+researcher_profile: |
+  單位：工研院綠能與環境研究所（研究機構，負責技術開發與產業技術移轉）。
+  專長與設備：
+  - 法尼烯（farnesene）生產；基因改質酵母菌、分子生物、微生物技術（合成生物學、菌株開發）
+  - 生質燃料、生質燃油
+  - 厭氧醱酵與乾式厭氧醱酵（具乾式厭氧醱酵設備）、廢水處理
+  - PHA／PHB 等生物可分解塑膠的微生物生產
+  - 化學分析
+  目標產業客戶：化妝品業、可分解生物塑膠包材業者、酒廠、沼氣中心、養豬場。
+  可用原料：農業廢棄物、禽畜糞、廚餘、林業資材、藻類，以及微生物、酵母菌、細菌（菌種資源）。
+  題目偏好：能結合既有菌株平台與發酵設備、可與上述客戶做先導驗證或技術移轉的方向；
+  例如把酒廠副產物、禽畜糞、farnesene 衍生物、PHA 等廢棄物轉成高附加價值產品。
+
+# 法尼烯是較小眾的主題，新聞與論文都往回抓久一點，靠歷史紀錄去重，每週只看到新東西。
+news_lookback_days: 14
+papers_lookback_days: 60
+
+max_items_for_analysis: 300
+quotas:
+  industry: 40
+  news: 130
+  paper: 150
+
+google_news:
+  - lang: zh-TW
+    hl: zh-TW
+    gl: TW
+    ceid: "TW:zh-Hant"
+    max_per_query: 20
+    queries:
+      - 法尼烯
+      - 金合歡烯
+      - 角鯊烷 甘蔗
+      - 生物基 角鯊烷
+      - 合成生物 萜烯
+      - 倍半萜 發酵
+      - 合成生物學 化妝品 原料
+  - lang: zh-CN
+    hl: zh-CN
+    gl: CN
+    ceid: "CN:zh-Hans"
+    max_per_query: 20
+    queries:
+      - 法尼烯
+      - 金合欢烯
+      - 角鲨烷 生物发酵
+      - 合成生物 萜类
+      - 法呢烯
+  - lang: en
+    hl: en-US
+    gl: US
+    ceid: "US:en"
+    max_per_query: 20
+    queries:
+      - farnesene
+      - '"beta-farnesene"'
+      - '"alpha-farnesene"'
+      - farnesane
+      - 'squalane sugarcane OR "biobased squalane" OR "bio-squalane"'
+      - '"liquid farnesene rubber" OR "farnesene rubber"'
+      - sesquiterpene fermentation
+      - '"synthetic biology" terpene ingredient'
+      - Amyris farnesene OR squalane
+      - '"aphid alarm pheromone"'
+  - lang: en
+    hl: en-US
+    gl: US
+    ceid: "US:en"
+    max_per_query: 15
+    queries:
+      - site:cosmeticsdesign.com squalane OR farnesene OR terpene
+      - site:synbiobeta.com terpene OR farnesene OR fermentation
+      - site:biofuelsdigest.com farnesene OR farnesane OR terpene
+      - site:labiotech.eu terpene OR squalane OR biomanufacturing
+  - lang: ja
+    hl: ja
+    gl: JP
+    ceid: "JP:ja"
+    max_per_query: 10
+    queries:
+      - ファルネセン
+      - スクワラン 発酵
+
+rss_feeds: []
+
+openalex:
+  mailto: ""
+  max_per_query: 25
+  queries:
+    - farnesene
+    - beta-farnesene production
+    - alpha-farnesene biosynthesis
+    - farnesene synthase
+    - farnesene Yarrowia lipolytica
+    - farnesene Saccharomyces cerevisiae
+    - farnesene Escherichia coli
+    - farnesene methanol OR CO2 OR cyanobacteria
+    - farnesane jet fuel
+    - squalane farnesene hydrogenation
+    - farnesene polymer rubber
+    - E-beta-farnesene aphid
+    - alpha-farnesene apple superficial scald
+    - sesquiterpene metabolic engineering yeast
+    - mevalonate pathway farnesyl pyrophosphate engineering

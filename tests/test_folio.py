@@ -5,7 +5,9 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 
 import pytest
 
-from autocollect import folio
+from autocollect import folio, topics
+
+BIO = topics.BUILTIN["bioenergy"]["folio"]
 
 REPORT = """# 生質能國內外新知週報 2026-W41
 
@@ -51,7 +53,7 @@ def test_rev_format_matches_folio_make_rev():
 
 
 def test_records_shape_and_newest_week_first():
-    recs = folio.build_records("2026-W41", REPORT, now_ms=1760000000000)
+    recs = folio.build_records("2026-W41", REPORT, BIO, now_ms=1760000000000)
     keys = [r["key"] for r in recs]
     assert keys == ["nb:nb_autocollect_bio", "sc:sc_autocollect_weekly", "pg:pg_autocollect_2026W41",
                     "it:pg_autocollect_2026W41:t_autocollect_2026W41"]
@@ -94,13 +96,13 @@ def fake_folio():
 
 def test_publish_creates_once_and_updates_content(fake_folio):
     url, store, auth = fake_folio
-    assert folio.publish(url, "我的 密碼!", folio.build_records("2026-W41", REPORT, 1000))["accepted"] == 4
+    assert folio.publish(url, "我的 密碼!", folio.build_records("2026-W41", REPORT, BIO, 1000))["accepted"] == 4
     assert auth[0] == "Bearer " + folio.encode_token("我的 密碼!")
 
     # 使用者在 Folio 把筆記本改名（rev 較新）
     store["nb:nb_autocollect_bio"] = {**store["nb:nb_autocollect_bio"], "rev": folio.make_rev(5000),
                                       "data": {"name": "改過的名字"}}
-    res = folio.publish(url, "x", folio.build_records("2026-W41", REPORT.replace("產能", "需求"), 9000))
+    res = folio.publish(url, "x", folio.build_records("2026-W41", REPORT.replace("產能", "需求"), BIO, 9000))
     assert res["accepted"] == 1  # 只有內容更新
     assert store["nb:nb_autocollect_bio"]["data"]["name"] == "改過的名字"
     assert "需求" in store["it:pg_autocollect_2026W41:t_autocollect_2026W41"]["data"]["html"]

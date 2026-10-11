@@ -111,10 +111,11 @@ def appendix(items: list[dict]) -> str:
 
 
 def assemble(week: str, date_range: str, analysis: str | None, items: list[dict], stats: dict,
-             status: list[dict], info: dict | None, note: str | None = None) -> tuple[str, dict]:
+             status: list[dict], info: dict | None, note: str | None = None,
+             title: str = "生質能國內外新知週報") -> tuple[str, dict]:
     by_id = {it["sid"]: it for it in items}
     qa = {"cited": 0, "invalid": [], "uncited": []}
-    out = [f"# 生質能國內外新知週報 {week}", "", f"> 資料期間：{date_range}　｜　產生方式："
+    out = [f"# {title} {week}", "", f"> 資料期間：{date_range}　｜　產生方式："
            + (f"自動收集 + {info['model']} 分析" if info else "自動收集（未進行 AI 分析）"), ""]
     if note:
         out += [f"> ⚠️ {note}", ""]

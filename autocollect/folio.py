@@ -19,8 +19,6 @@ import requests
 
 DEFAULT_URL = "https://folio.antony910912.workers.dev"
 DEVICE = "autocollect"
-NOTEBOOK_ID = "nb_autocollect_bio"
-SECTION_ID = "sc_autocollect_weekly"
 # 最舊的版本號：只在紀錄不存在時才會被伺服器接受
 CREATE_ONLY_REV = f"{'1'.rjust(10, '0')}.0000.{DEVICE}"
 
@@ -132,22 +130,26 @@ def week_order(week: str) -> int:
     return -(int(year) * 100 + int(w))  # 越新的週越前面
 
 
-def build_records(week: str, report_md: str, now_ms: int | None = None) -> list[dict]:
+def build_records(week: str, report_md: str, cfg: dict, now_ms: int | None = None) -> list[dict]:
+    """cfg 是主題的 folio 設定：notebook_id/name、section_id/name、page_prefix、item_prefix。"""
     now_ms = now_ms or int(time.time() * 1000)
-    page_id = f"pg_autocollect_{week.replace('-', '')}"
-    title = report_md.splitlines()[0].lstrip("# ").strip() if report_md.strip() else f"生質能週報 {week}"
-    notebook = {"id": NOTEBOOK_ID, "name": "生質能週報", "order": 100, "createdAt": now_ms, "updatedAt": now_ms}
-    section = {"id": SECTION_ID, "notebookId": NOTEBOOK_ID, "name": "每週週報", "color": "#2f9e6e",
-               "order": 1, "createdAt": now_ms, "updatedAt": now_ms}
-    page = {"id": page_id, "sectionId": SECTION_ID, "title": title, "background": "blank",
+    wk = week.replace("-", "")
+    page_id = f"{cfg['page_prefix']}{wk}"
+    item_id = f"{cfg['item_prefix']}{wk}"
+    title = report_md.splitlines()[0].lstrip("# ").strip() if report_md.strip() else f"{cfg['notebook_name']} {week}"
+    notebook = {"id": cfg["notebook_id"], "name": cfg["notebook_name"], "order": cfg.get("notebook_order", 100),
+                "createdAt": now_ms, "updatedAt": now_ms}
+    section = {"id": cfg["section_id"], "notebookId": cfg["notebook_id"], "name": cfg["section_name"],
+               "color": cfg.get("color", "#2f9e6e"), "order": 1, "createdAt": now_ms, "updatedAt": now_ms}
+    page = {"id": page_id, "sectionId": cfg["section_id"], "title": title, "background": "blank",
             "order": week_order(week), "createdAt": now_ms, "updatedAt": now_ms}
-    item = {"id": f"t_autocollect_{week.replace('-', '')}", "type": "text", "x": 64, "y": 156, "w": 880,
+    item = {"id": item_id, "type": "text", "x": 64, "y": 156, "w": 880,
             "html": md_to_html(report_body(report_md))}
     return [
-        {"key": f"nb:{NOTEBOOK_ID}", "rev": CREATE_ONLY_REV, "deleted": 0, "data": notebook},
-        {"key": f"sc:{SECTION_ID}", "rev": CREATE_ONLY_REV, "deleted": 0, "data": section},
+        {"key": f"nb:{cfg['notebook_id']}", "rev": CREATE_ONLY_REV, "deleted": 0, "data": notebook},
+        {"key": f"sc:{cfg['section_id']}", "rev": CREATE_ONLY_REV, "deleted": 0, "data": section},
         {"key": f"pg:{page_id}", "rev": CREATE_ONLY_REV, "deleted": 0, "data": page},
-        {"key": f"it:{page_id}:{item['id']}", "rev": make_rev(now_ms), "deleted": 0, "data": item},
+        {"key": f"it:{page_id}:{item_id}", "rev": make_rev(now_ms), "deleted": 0, "data": item},
     ]
 
 

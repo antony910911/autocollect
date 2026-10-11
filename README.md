@@ -1,4 +1,15 @@
-# autocollect：生質能國內外新知週報
+# autocollect：國內外新知週報
+
+目前有兩個主題，各自一份週報、一本 Folio 筆記本：
+
+| 主題 | 報告 | 關鍵字設定 | 分析指示 | Folio 筆記本 |
+|---|---|---|---|---|
+| 生質能 | [`reports/`](reports/) | [`config/sources.yaml`](config/sources.yaml) | [`prompts/weekly_analysis.md`](prompts/weekly_analysis.md) | 生質能週報 |
+| 法尼烯（α／β-farnesene）應用 | [`reports/farnesene/`](reports/farnesene/) | [`config/farnesene.yaml`](config/farnesene.yaml) | [`prompts/farnesene_analysis.md`](prompts/farnesene_analysis.md) | 法尼烯週報 |
+
+主題清單在 [`config/topics.yaml`](config/topics.yaml)。以下以生質能週報為例說明，法尼烯週報的運作方式相同（指令加上 `--topic farnesene`）。
+
+## 生質能週報
 
 每週自動收集生質能相關的國內外新聞、產業媒體與學術論文，再交給 Claude 寫成一份**每個事實都附來源**的分析報告，內容包括：
 
@@ -48,7 +59,7 @@
 週一 分析提交後  GitHub Actions 自動把報告寫進 Folio 筆記本「生質能週報 › 每週週報」，一週一頁、最新的在最上面
 ```
 
-- GitHub Actions 排程在 [`.github/workflows/weekly-report.yml`](.github/workflows/weekly-report.yml)；想立刻收集一次，到 **Actions → 生質能週報資料收集 → Run workflow**。
+- GitHub Actions 排程在 [`.github/workflows/weekly-report.yml`](.github/workflows/weekly-report.yml)；想立刻收集一次，到 **Actions → 週報資料收集 → Run workflow**（會收集所有主題）。
 - 排程任務的工作說明在 [`ROUTINE.md`](ROUTINE.md)。
 - （選用）在 repo 的 **Settings → Secrets and variables → Actions → Variables** 新增 `OPENALEX_MAILTO`，填你的 email，OpenAlex 會給較寬鬆的速率限制。
 
@@ -66,7 +77,8 @@
 
 ```bash
 pip install -r requirements.txt
-python -m autocollect collect                      # 收集資料、產生分析包
+python -m autocollect collect                      # 收集資料、產生分析包（預設 bioenergy）
+python -m autocollect collect --topic farnesene    # 法尼烯週報
 python -m autocollect build --analysis data/analysis/2026-W41.md   # 驗證引用並組成報告
 FOLIO_SYNC_TOKEN=... python -m autocollect folio  # 上傳最新一期到 Folio
 ```

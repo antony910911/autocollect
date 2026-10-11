@@ -19,12 +19,9 @@ import sys
 from datetime import date, timedelta
 from pathlib import Path
 
-import yaml
-
-from . import analyze, folio, report, sources, store
+from . import analyze, folio, report, sources, store, topics
 
 ROOT = Path(__file__).resolve().parent.parent
-PROMPT = Path("prompts") / "weekly_analysis.md"
 
 
 def week_id(d: date) -> str:
@@ -41,23 +38,19 @@ def previous_report(reports_dir: Path, week: str) -> str | None:
     return text.split("\n## 本週資料概況")[0][:40000]
 
 
-def write_index(reports_dir: Path) -> None:
+def write_index(reports_dir: Path, title: str) -> None:
     rows = [f"- [{p.stem}]({p.name})" for p in sorted(reports_dir.glob("20*-W*.md"), reverse=True)]
-    (reports_dir / "README.md").write_text("# 生質能週報列表\n\n" + "\n".join(rows) + "\n", "utf-8")
+    (reports_dir / "README.md").write_text(f"# {title}列表\n\n" + "\n".join(rows) + "\n", "utf-8")
 
 
-def load_config(args) -> dict:
-    return yaml.safe_load((ROOT / args.config).read_text("utf-8"))
+def get_topic(args) -> topics.Topic:
+    return topics.get_topic(ROOT, getattr(args, "topic", None) or topics.DEFAULT_TOPIC)
 
 
-def raw_path(week: str) -> Path:
-    return ROOT / "data" / "raw" / f"{week}.json"
-
-
-def collect(cfg: dict, today: date) -> dict:
-    """收集、去重、排除先前週報已出現者、挑選並編號，存成 data/raw/<週次>.json。"""
+def collect(topic: topics.Topic, cfg: dict, today: date) -> dict:
+    """收集、去重、排除先前週報已出現者、挑選並編號，存成 <資料夾>/raw/<週次>.json。"""
     week = week_id(today)
-    history = store.History(ROOT / "data" / "history.json")
+    history = store.History(topic.data / "history.json")
     items, status = sources.collect_all(cfg, mailto=os.environ.get("OPENALEX_MAILTO", ""))
     unique = store.dedupe(items)
     new_items = history.filter_new(unique, week)
@@ -72,7 +65,7 @@ def collect(cfg: dict, today: date) -> dict:
         "stats": store.compute_stats(selected),
         "items": selected,
     }
-    path = raw_path(week)
+    path = topic.raw_path(week)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(bundle, ensure_ascii=False, indent=1), "utf-8")
     history.mark(new_items, week)
@@ -80,41 +73,42 @@ def collect(cfg: dict, today: date) -> dict:
     return bundle
 
 
-def load_bundle(week: str) -> dict:
-    path = raw_path(week)
+def load_bundle(topic: topics.Topic, week: str) -> dict:
+    path = topic.raw_path(week)
     if not path.exists():
         raise SystemExit(f"找不到 {path}，請先執行 collect")
     return json.loads(path.read_text("utf-8"))
 
 
-def analysis_inputs(cfg: dict, bundle: dict) -> tuple[str, str]:
+def analysis_inputs(topic: topics.Topic, cfg: dict, bundle: dict) -> tuple[str, str]:
     """回傳 (系統指示, 使用者訊息)，API 模式與分析包共用同一份內容。"""
-    system = (ROOT / PROMPT).read_text("utf-8")
+    system = (topic.root / topic.prompt).read_text("utf-8")
     user = analyze.build_user_message(bundle["items"], bundle["stats"], bundle["week"],
                                       cfg.get("researcher_profile", ""),
-                                      previous_report(ROOT / "reports", bundle["week"]))
+                                      previous_report(topic.reports, bundle["week"]))
     return system, user
 
 
-def write_pack(cfg: dict, bundle: dict) -> Path:
+def write_pack(topic: topics.Topic, cfg: dict, bundle: dict) -> Path:
     """分析包：給 Claude（例如 Claude Code 排程任務）閱讀的完整分析指示與資料。"""
-    system, user = analysis_inputs(cfg, bundle)
-    path = ROOT / "data" / "packs" / f"{bundle['week']}.md"
+    system, user = analysis_inputs(topic, cfg, bundle)
+    path = topic.pack_path(bundle["week"])
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(f"{system}\n\n---\n\n{user}\n", "utf-8")
     return path
 
 
-def build(bundle: dict, analysis_text: str | None, info: dict | None, note: str | None) -> dict:
-    reports_dir = ROOT / "reports"
-    reports_dir.mkdir(exist_ok=True)
+def build(topic: topics.Topic, bundle: dict, analysis_text: str | None, info: dict | None,
+          note: str | None) -> dict:
+    reports_dir = topic.reports
+    reports_dir.mkdir(parents=True, exist_ok=True)
     if not bundle["items"]:
         note = "本週沒有收集到任何新資料，請檢查「品質檢查」中的來源狀態。"
     md, qa = report.assemble(bundle["week"], bundle["date_range"], analysis_text, bundle["items"],
-                             bundle["stats"], bundle["status"], info, note)
+                             bundle["stats"], bundle["status"], info, note, title=topic.title)
     out_path = reports_dir / f"{bundle['week']}.md"
     out_path.write_text(md, "utf-8")
-    write_index(reports_dir)
+    write_index(reports_dir, topic.title)
     print(f"報告已寫入 {out_path}")
     if analysis_text:
         print(f"引用 {qa['cited']} 個來源；無效編號 {len(qa['invalid'])}；未附來源條列 {len(qa['uncited'])}")
@@ -132,32 +126,35 @@ def target_date(args) -> date:
 
 
 def cmd_collect(args) -> int:
-    cfg = load_config(args)
-    bundle = collect(cfg, target_date(args))
-    pack = write_pack(cfg, bundle)
-    print(f"分析包已寫入 {pack}（{len(bundle['items'])} 筆資料）")
+    topic = get_topic(args)
+    cfg = topic.load_config()
+    bundle = collect(topic, cfg, target_date(args))
+    pack = write_pack(topic, cfg, bundle)
+    print(f"[{topic.name}] 分析包已寫入 {pack}（{len(bundle['items'])} 筆資料）")
     return 0 if bundle["items"] else 2
 
 
 def cmd_build(args) -> int:
-    bundle = load_bundle(args.week or week_id(target_date(args)))
+    topic = get_topic(args)
+    week = args.week or week_id(target_date(args))
+    bundle = load_bundle(topic, week)
     if args.analysis:
         text = (ROOT / args.analysis).read_text("utf-8").strip()
-        info = {"model": args.model}
-        qa = build(bundle, text, info, None)
+        qa = build(topic, bundle, text, {"model": args.model}, None)
         return 1 if qa["invalid"] else 0
-    build(bundle, None, None, "尚未產生 AI 分析，以下只有資料整理。")
+    build(topic, bundle, None, None, "尚未產生 AI 分析，以下只有資料整理。")
     return 0
 
 
 def cmd_run(args) -> int:
-    cfg = load_config(args)
+    topic = get_topic(args)
+    cfg = topic.load_config()
     week = week_id(target_date(args))
-    if args.reuse_raw and raw_path(week).exists():
-        bundle = load_bundle(week)
-        print(f"使用已收集的資料 {raw_path(week)}（{len(bundle['items'])} 筆）")
+    if args.reuse_raw and topic.raw_path(week).exists():
+        bundle = load_bundle(topic, week)
+        print(f"使用已收集的資料 {topic.raw_path(week)}（{len(bundle['items'])} 筆）")
     else:
-        bundle = collect(cfg, target_date(args))
+        bundle = collect(topic, cfg, target_date(args))
 
     analysis_text, info, note, exit_code = None, None, None, 0
     has_key = os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")
@@ -168,42 +165,45 @@ def cmd_run(args) -> int:
     elif not has_key:
         note = "未設定 ANTHROPIC_API_KEY，只輸出資料整理，沒有 AI 分析。"
     else:
-        system, user = analysis_inputs(cfg, bundle)
+        system, user = analysis_inputs(topic, cfg, bundle)
         try:
             analysis_text, info = analyze.run_analysis(system, user)
         except analyze.AnalysisError as exc:
             note = f"AI 分析失敗：{exc}。以下只有資料整理。"
             exit_code = 2
-    build(bundle, analysis_text, info, note)
+    build(topic, bundle, analysis_text, info, note)
     return exit_code
 
 
 def cmd_folio(args) -> int:
-    reports = sorted((ROOT / "reports").glob("20*-W*.md"))
-    path = ROOT / "reports" / f"{args.week}.md" if args.week else (reports[-1] if reports else None)
+    topic = get_topic(args)
+    reports = sorted(topic.reports.glob("20*-W*.md"))
+    path = topic.reports / f"{args.week}.md" if args.week else (reports[-1] if reports else None)
     if not path or not path.exists():
-        print("找不到要上傳的報告", file=sys.stderr)
-        return 1
+        print(f"[{topic.name}] 還沒有任何報告，略過")
+        return 0 if not args.week else 1
     text = path.read_text("utf-8")
     if "## 一、" not in text and not args.force:
-        print(f"{path.name} 還沒有 AI 分析，先不上傳（要上傳資料整理版請加 --force）")
+        print(f"[{topic.name}] {path.name} 還沒有 AI 分析，先不上傳（要上傳資料整理版請加 --force）")
         return 0
     token = os.environ.get("FOLIO_SYNC_TOKEN", "")
     if not token:
         print("未設定 FOLIO_SYNC_TOKEN", file=sys.stderr)
         return 1
     url = os.environ.get("FOLIO_URL") or folio.DEFAULT_URL
-    result = folio.publish(url, token, folio.build_records(path.stem, text))
-    print(f"已上傳 {path.stem} 到 Folio（伺服器接受 {result.get('accepted')} 筆紀錄）")
+    result = folio.publish(url, token, folio.build_records(path.stem, text, topic.folio))
+    print(f"[{topic.name}] 已上傳 {path.stem} 到 Folio「{topic.folio['notebook_name']}」"
+          f"（伺服器接受 {result.get('accepted')} 筆紀錄）")
     return 0
 
 
 def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(prog="autocollect", description="生質能國內外新知週報")
+    parser = argparse.ArgumentParser(prog="autocollect", description="國內外新知週報（可多個主題）")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     def common(p):
-        p.add_argument("--config", default="config/sources.yaml")
+        p.add_argument("--topic", default=topics.DEFAULT_TOPIC,
+                       help="週報主題（列在 config/topics.yaml），預設 bioenergy")
         p.add_argument("--date", help="以指定日期（YYYY-MM-DD）當作執行日，預設今天")
 
     p = sub.add_parser("collect", help="收集資料並產生分析包（不需 API 金鑰）")
@@ -224,7 +224,8 @@ def main(argv=None) -> int:
                    help="不重新收集，直接用 data/raw/ 中本週已收集的資料重跑分析")
     p.set_defaults(func=cmd_run)
 
-    p = sub.add_parser("folio", help="把週報寫進 Folio 筆記本「生質能週報」")
+    p = sub.add_parser("folio", help="把週報寫進 Folio 筆記本")
+    p.add_argument("--topic", default=topics.DEFAULT_TOPIC)
     p.add_argument("--week", help="週次，預設最新一期")
     p.add_argument("--force", action="store_true", help="還沒有 AI 分析也上傳")
     p.set_defaults(func=cmd_folio)

@@ -1,4 +1,4 @@
-name: 生質能週報資料收集
+name: 週報資料收集
 
 on:
   schedule:
@@ -26,17 +26,25 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      # 只收集資料（免費）；分析由 Claude Code 每週排程任務讀取 data/packs/ 後完成。
-      # 若改用 Anthropic API 一次完成，把下面的指令換成 `python -m autocollect run`
+      # 只收集資料（免費）；分析由 Claude Code 每週排程任務讀取各主題的 packs/ 後完成。
+      # 若改用 Anthropic API 一次完成，把下面的 collect/build 換成 `python -m autocollect run --topic "$t"`
       # 並在 env 加上 ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - name: 收集資料
         env:
+          # 要收集的主題（定義在 config/topics.yaml）
+          TOPICS: bioenergy farnesene
           OPENALEX_MAILTO: ${{ vars.OPENALEX_MAILTO }}
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
           TZ: Asia/Taipei
         run: |
-          python -m autocollect collect
-          python -m autocollect build   # 先產生「資料整理版」報告，分析完成後會被覆蓋
+          status=0
+          for t in $TOPICS; do
+            echo "::group::$t"
+            # 先產生「資料整理版」報告，分析完成後會被覆蓋；單一主題失敗不影響其他主題
+            { python -m autocollect collect --topic "$t" && python -m autocollect build --topic "$t"; } || status=1
+            echo "::endgroup::"
+          done
+          exit $status
 
       - name: 提交資料
         if: always()

@@ -1,0 +1,32 @@
+# 週報主題清單。每個主題有自己的關鍵字設定、分析指示、資料夾、報告資料夾與 Folio 筆記本。
+# 新增主題：複製一段、改名稱與路徑，並在 .github/workflows/weekly-report.yml 的 TOPICS 加上主題名稱。
+topics:
+  bioenergy:
+    title: 生質能國內外新知週報
+    config: config/sources.yaml
+    prompt: prompts/weekly_analysis.md
+    data_dir: data
+    reports_dir: reports
+    folio:
+      notebook_id: nb_autocollect_bio
+      notebook_name: 生質能週報
+      section_id: sc_autocollect_weekly
+      section_name: 每週週報
+      page_prefix: pg_autocollect_
+      item_prefix: t_autocollect_
+
+  farnesene:
+    title: 法尼烯（α／β-Farnesene）應用新知週報
+    config: config/farnesene.yaml
+    prompt: prompts/farnesene_analysis.md
+    data_dir: data/farnesene
+    reports_dir: reports/farnesene
+    folio:
+      notebook_id: nb_autocollect_farnesene
+      notebook_name: 法尼烯週報
+      notebook_order: 101
+      section_id: sc_autocollect_farnesene_weekly
+      section_name: 每週週報
+      color: "#d98b2b"
+      page_prefix: pg_autocollect_farn_
+      item_prefix: t_autocollect_farn_

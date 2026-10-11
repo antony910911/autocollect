@@ -200,3 +200,51 @@ def test_selection_keeps_paper_quota_and_spreads_across_queries():
     # 論文不夠用時，多的名額給新聞
     out = store.select_for_analysis(news + papers[:2], 20, {"industry": 0, "news": 14, "paper": 6})
     assert len(out) == 20 and sum(it["kind"] == "news" for it in out) == 18
+
+
+def test_second_topic_uses_its_own_folders(tmp_path, monkeypatch):
+    """新主題的資料、報告與歷史紀錄都放在自己的資料夾，不影響生質能週報。"""
+    root = tmp_path
+    (root / "config").mkdir()
+    (root / "prompts").mkdir()
+    (root / "config" / "topics.yaml").write_text(
+        "topics:\n  farnesene:\n    title: 法尼烯週報\n    config: config/f.yaml\n    prompt: prompts/f.md\n"
+        "    data_dir: data/farnesene\n    reports_dir: reports/farnesene\n    folio: {}\n", "utf-8")
+    (root / "config" / "f.yaml").write_text("researcher_profile: 酵母\n", "utf-8")
+    (root / "prompts" / "f.md").write_text("法尼烯指示", "utf-8")
+    monkeypatch.setattr(cli, "ROOT", root)
+    fake = [{"kind": "news", "title": "β-farnesene plant", "url": "https://f/1", "source": "X",
+             "published": "2026-10-08", "lang": "en", "summary": "", "query": "farnesene", "meta": {}}]
+    monkeypatch.setattr(sources, "collect_all", lambda cfg, mailto="": (fake, [{"source": "x", "ok": True, "count": 1}]))
+
+    assert cli.main(["collect", "--topic", "farnesene", "--date", "2026-10-10"]) == 0
+    assert (root / "data" / "farnesene" / "packs" / "2026-W41.md").read_text("utf-8").startswith("法尼烯指示")
+    assert (root / "data" / "farnesene" / "history.json").exists()
+    assert not (root / "data" / "history.json").exists()
+
+    analysis = root / "data" / "farnesene" / "analysis" / "2026-W41.md"
+    analysis.parent.mkdir(parents=True)
+    analysis.write_text("## 一、本週重點摘要\n- 某公司宣布建置 β-法尼烯示範工廠並開始試產 [S1]\n", "utf-8")
+    assert cli.main(["build", "--topic", "farnesene", "--week", "2026-W41",
+                     "--analysis", "data/farnesene/analysis/2026-W41.md"]) == 0
+    md = (root / "reports" / "farnesene" / "2026-W41.md").read_text("utf-8")
+    assert md.startswith("# 法尼烯週報 2026-W41")
+    assert not (root / "reports" / "2026-W41.md").exists()
+
+
+def test_repo_topics_are_valid():
+    """實際的 config/topics.yaml：每個主題的設定檔與分析指示都存在，Folio id 不重複。"""
+    from pathlib import Path
+    from autocollect import topics
+    root = Path(__file__).resolve().parent.parent
+    reg = topics.all_topics(root)
+    assert {"bioenergy", "farnesene"} <= set(reg)
+    ids = set()
+    for name in reg:
+        t = topics.get_topic(root, name)
+        assert (root / t.prompt).exists() and t.load_config()["openalex"]["queries"]
+        for key in ("notebook_id", "section_id", "page_prefix", "item_prefix"):
+            assert t.folio[key] not in ids
+            ids.add(t.folio[key])
+    # 生質能週報既有的 Folio id 不能變，否則會在 Folio 產生重複的筆記本
+    assert reg["bioenergy"]["folio"]["notebook_id"] == "nb_autocollect_bio"
