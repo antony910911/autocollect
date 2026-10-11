@@ -1,0 +1,154 @@
+{
+ "regions": [
+  {
+   "name": "P1",
+   "length": 1000,
+   "gc_pct": 59.9,
+   "motifs": [
+    {
+     "motif": "TATA box",
+     "why": "基礎轉錄起始；強組成型啟動子常見",
+     "observed": 0,
+     "bg_median": 0.0,
+     "bg_p95": 0,
+     "bg_frac_le": 0.977,
+     "bg_frac_ge": 1.0
+    },
+    {
+     "motif": "GATA（AreA／Nit2）",
+     "why": "**氮代謝阻遏的總開關**；氮限制時 AreA 活化這類位點",
+     "observed": 0,
+     "bg_median": 1.0,
+     "bg_p95": 3,
+     "bg_frac_le": 0.476,
+     "bg_frac_ge": 1.0
+    },
+    {
+     "motif": "CCAAT（Hap 複合體）",
+     "why": "呼吸／碳源相關的通用活化元件",
+     "observed": 0,
+     "bg_median": 0.0,
+     "bg_p95": 2,
+     "bg_frac_le": 0.512,
+     "bg_frac_ge": 1.0
+    },
+    {
+     "motif": "STRE（AGGGG）",
+     "why": "逆境與進入靜止期時活化（Msn2/4 類）",
+     "observed": 0,
+     "bg_median": 2.0,
+     "bg_p95": 6,
+     "bg_frac_le": 0.172,
+     "bg_frac_ge": 1.0
+    },
+    {
+     "motif": "CreA／碳代謝阻遏",
+     "why": "葡萄糖存在時抑制",
+     "observed": 6,
+     "bg_median": 5.0,
+     "bg_p95": 10,
+     "bg_frac_le": 0.729,
+     "bg_frac_ge": 0.426
+    }
+   ],
+   "gata_pairs": {
+    "observed": 0,
+    "bg_median": 0.0,
+    "bg_p95": 0,
+    "bg_frac_le": 0.963,
+    "bg_frac_ge": 1.0
+   },
+   "c0": 366,
+   "c1": 1366
+  },
+  {
+   "name": "P2",
+   "length": 816,
+   "gc_pct": 66.7,
+   "motifs": [
+    {
+     "motif": "TATA box",
+     "why": "基礎轉錄起始；強組成型啟動子常見",
+     "observed": 0,
+     "bg_median": 0.0,
+     "bg_p95": 0,
+     "bg_frac_le": 0.982,
+     "bg_frac_ge": 1.0
+    },
+    {
+     "motif": "GATA（AreA／Nit2）",
+     "why": "**氮代謝阻遏的總開關**；氮限制時 AreA 活化這類位點",
+     "observed": 0,
+     "bg_median": 0.0,
+     "bg_p95": 2,
+     "bg_frac_le": 0.544,
+     "bg_frac_ge": 1.0
+    },
+    {
+     "motif": "CCAAT（Hap 複合體）",
+     "why": "呼吸／碳源相關的通用活化元件",
+     "observed": 0,
+     "bg_median": 0.0,
+     "bg_p95": 2,
+     "bg_frac_le": 0.569,
+     "bg_frac_ge": 1.0
+    },
+    {
+     "motif": "STRE（AGGGG）",
+     "why": "逆境與進入靜止期時活化（Msn2/4 類）",
+     "observed": 4,
+     "bg_median": 1.0,
+     "bg_p95": 5,
+     "bg_frac_le": 0.932,
+     "bg_frac_ge": 0.142
+    },
+    {
+     "motif": "CreA／碳代謝阻遏",
+     "why": "葡萄糖存在時抑制",
+     "observed": 3,
+     "bg_median": 4.0,
+     "bg_p95": 8,
+     "bg_frac_le": 0.394,
+     "bg_frac_ge": 0.768
+    }
+   ],
+   "gata_pairs": {
+    "observed": 0,
+    "bg_median": 0.0,
+    "bg_p95": 0,
+    "bg_frac_le": 0.968,
+    "bg_frac_ge": 1.0
+   },
+   "c0": 3374,
+   "c1": 4190
+  }
+ ],
+ "n_background": 2000,
+ "motifs": [
+  {
+   "motif": "TATA box",
+   "pattern": "TATA[AT]A[AT]",
+   "why": "基礎轉錄起始；強組成型啟動子常見"
+  },
+  {
+   "motif": "GATA（AreA／Nit2）",
+   "pattern": "[ACT]GATA[AG]",
+   "why": "**氮代謝阻遏的總開關**；氮限制時 AreA 活化這類位點"
+  },
+  {
+   "motif": "CCAAT（Hap 複合體）",
+   "pattern": "CCAAT",
+   "why": "呼吸／碳源相關的通用活化元件"
+  },
+  {
+   "motif": "STRE（AGGGG）",
+   "pattern": "AGGGG",
+   "why": "逆境與進入靜止期時活化（Msn2/4 類）"
+  },
+  {
+   "motif": "CreA／碳代謝阻遏",
+   "pattern": "[CG][CT]GG[AG]G",
+   "why": "葡萄糖存在時抑制"
+  }
+ ]
+}

@@ -790,7 +790,7 @@ def fig17_pathway():
     d = json.loads((CODE / "farnesene_path.json").read_text("utf-8"))
     f = d["per_farnesene"]
     gy = d["yield"]["glucose"]
-    s = Svg(1480, 900, "圖 17-6　轉進去一個基因，代謝上改變了什麼")
+    s = Svg(1480, 950, "圖 17-6　轉進去一個基因，代謝上改變了什麼")
     s.text(40, 78, "灰底＝紅酵母原本就有的路徑　　虛線框＝轉殖加進去的　　橘色＝搶同一批原料的競爭者",
            size=14.5, color=MUTED)
 
@@ -844,7 +844,7 @@ def fig17_pathway():
             "③ 調降類胡蘿蔔素：釋出 FPP，順便讓 OD600 好量",
             "④ 挑氮限制的時機：限氮催油脂，會把乙醯輔酶A 搶走"]):
         s.text(742, 500 + i * 34, line, size=13.5)
-    s.box(40, 690, 690, 180, "", color=TEAL, fill=tint(TEAL, 0.93))
+    s.box(40, 690, 690, 212, "", color=TEAL, fill=tint(TEAL, 0.93))
     s.text(68, 728, "多出來的負擔（化學計量，可以自己驗算）", size=17, weight=700)
     s.text(68, 764, f'每做出 1 分子 α-farnesene：{f["acetyl_coa"]} 個乙醯輔酶A、'
                     f'{f["nadph"]} NADPH、{f["atp"]} ATP，路上丟掉 {f["co2"]} 個 CO_2_。', size=15)
@@ -853,14 +853,15 @@ def fig17_pathway():
     s.text(68, 836, "注意：油脂每 9 個乙醯輔酶A 要 16 NADPH，萜類只要 6——"
                     "搶輔因子的是油脂，不是你的產物。", size=14, color=MUTED)
 
-    s.box(760, 690, 690, 180, "", color=RED, fill=tint(RED, 0.95))
+    s.box(760, 690, 690, 212, "", color=RED, fill=tint(RED, 0.95))
     s.text(788, 728, "三件會讓你量錯或做白工的事", size=17, weight=700)
     for i, line in enumerate([
             "① α-farnesene 會揮發。不加十二烷等有機相覆蓋，量到的產量嚴重低估。",
             "② 萜類對細胞膜有毒。高產菌株長得特別差時先懷疑這個，不要一直調溫度。",
-            "③ 菌體是紅的。類胡蘿蔔素會干擾 OD600，乾重與 OD 的換算要自己做一條線。"]):
-        s.text(788, 766 + i * 34, line, size=14)
-    s.text(40, 886, "本圖是生化計量與文獻整理，不是模擬結果；要算「調降 ERG9 能多拿多少 FPP」"
+            "③ 菌體是紅的，而且會塞滿油滴：OD600 換算成菌量的係數會隨階段漂移。",
+            "　 稀釋修的是線性，修不了這個係數——每個階段都要自己做乾重校正線。"]):
+        s.text(788, 764 + i * 33, line, size=14)
+    s.text(40, 932, "本圖是生化計量與文獻整理，不是模擬結果；要算「調降 ERG9 能多拿多少 FPP」"
                     "需要跑 rhto-GEM（第 15、16 章）。", size=13, color=MUTED)
     return s
 
