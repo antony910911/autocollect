@@ -1,10 +1,11 @@
 # 這門教材放在 Folio 的哪裡。已建立的筆記本、分區、頁面不會被改名或移動。
+# （筆記本已在 Folio 改名為「Claude圖解教材」，分區改名為「氨氮降解基礎教材」；這裡的名稱只在第一次建立時使用）
 notebook:
   id: nb_autocollect_ammonia
-  name: 氨氮降解教材
+  name: Claude圖解教材
   order: 110
 section:
   id: sc_autocollect_ammonia_basics
-  name: 基礎教材
+  name: 氨氮降解基礎教材
   color: "#2f6fb3"
 page_prefix: amm

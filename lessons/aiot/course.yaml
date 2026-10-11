@@ -1,0 +1,11 @@
+# 放進你在 Folio 自己命名的「Claude圖解教材」筆記本（依名稱尋找），新增一個分區。
+notebook:
+  id: nb_autocollect_ammonia   # 這本筆記本的實際 id（原本由氨氮教材建立，後來改名為 Claude圖解教材）
+  name: Claude圖解教材
+  find_by_name: true
+section:
+  id: sc_autocollect_aiot_biogas
+  name: 沼氣與廢水處理 AIoT
+  color: "#2f9e6e"
+  order: 2
+page_prefix: aiot
