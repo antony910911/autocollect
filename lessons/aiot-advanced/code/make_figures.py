@@ -25,7 +25,7 @@ plt.rcParams.update({"axes.unicode_minus": False, "mathtext.fontset": "dejavusan
                      "axes.spines.top": False, "axes.spines.right": False, "axes.grid": True, "axes.axisbelow": True,
                      "grid.color": "#e3e6ec", "grid.linewidth": 0.8, "axes.edgecolor": "#8a93a3",
                      "axes.titleweight": "bold", "axes.titlesize": 14, "savefig.dpi": 200})
-BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN, INK = ("#2f6fb3", "#d9821e", "#c23b3b", "#2f9e6e", "#7b4bb3", "#8a93a3",
+BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN, INK = ("#2f6fb3", "#d47c18", "#c23b3b", "#2f9e6e", "#7b4bb3", "#8a93a3",
                                                       "#8a6d3b", "#1d2330")
 NOTE = "#5b6475"
 SIM_NOTE = "模擬資料：依 AM2 模型（Bernard et al., 2001）產生的教學用沼氣廠，不代表任何實廠。程式在 lessons/aiot-advanced/code/。"

@@ -34,7 +34,7 @@ plt.rcParams.update({"axes.unicode_minus": False, "mathtext.fontset": "dejavusan
                      "grid.color": "#e3e6ec", "grid.linewidth": 0.8, "axes.edgecolor": "#8a93a3",
                      "axes.titleweight": "bold", "axes.titlesize": 14, "savefig.dpi": 200})
 ETOH_C = "#2f6fb3"
-BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN, INK, TEAL = ("#2f6fb3", "#d9821e", "#c23b3b", "#2f9e6e", "#7b4bb3",
+BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN, INK, TEAL = ("#2f6fb3", "#d47c18", "#c23b3b", "#2f9e6e", "#7b4bb3",
                                                             "#8a93a3", "#8a6d3b", "#1d2330", "#1b8a8f")
 NOTE = "#5b6475"
 GEM_NOTE = "計算結果：COBRApy＋大腸桿菌核心代謝模型（E. coli core, Orth et al., 2010），程式在 lessons/dna-to-culture/code/。"
@@ -683,7 +683,7 @@ def fig_cost():
     x = np.arange(len(keys))
     w = 0.36
     b1 = a1.bar(x - w / 2, [far[k] for k, _ in keys], w, label="α-farnesene（C15）", color="#1b8a8f")
-    b2 = a1.bar(x + w / 2, [ste[k] for k, _ in keys], w, label="硬脂酸（C18，油脂）", color="#d9821e")
+    b2 = a1.bar(x + w / 2, [ste[k] for k, _ in keys], w, label="硬脂酸（C18，油脂）", color="#d47c18")
     for bars in (b1, b2):
         for r in bars:
             a1.text(r.get_x() + r.get_width() / 2, r.get_height() + 0.3, f"{r.get_height():g}",

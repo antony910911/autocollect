@@ -21,7 +21,7 @@ plt.rcParams.update({"axes.unicode_minus": False, "font.size": 12, "axes.spines.
                      "axes.spines.right": False, "axes.grid": True, "axes.axisbelow": True, "grid.color": "#e3e6ec",
                      "axes.edgecolor": "#8a93a3", "axes.titleweight": "bold", "axes.titlesize": 14,
                      "savefig.dpi": 200})
-C = {"資料": "#2f6fb3", "模型": "#7b4bb3", "決策": "#d9821e", "現場": "#2f9e6e"}
+C = {"資料": "#2f6fb3", "模型": "#7b4bb3", "決策": "#d47c18", "現場": "#2f9e6e"}
 
 IDEAS = [
     ("1 主動學習排實驗室採樣", 1.6, 4.3, "資料", (12, -6)),

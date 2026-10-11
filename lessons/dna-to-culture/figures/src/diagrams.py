@@ -13,7 +13,7 @@ from svgkit import INK, MUTED, Svg, render, tint, wrap  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 CODE = OUT.parent / "code"
-BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN, TEAL = ("#2f6fb3", "#d9821e", "#c23b3b", "#2f9e6e", "#7b4bb3",
+BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN, TEAL = ("#2f6fb3", "#d47c18", "#c23b3b", "#2f9e6e", "#7b4bb3",
                                                        "#6b7280", "#8a6d3b", "#1b8a8f")
 
 

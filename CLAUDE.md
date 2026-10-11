@@ -44,9 +44,21 @@ lessons/<課程名>/
   - 對數軸負號變成亂碼（用 `FuncFormatter` 自己格式化）
   - **`svgkit` 不會自動換行**。長句要自己按「實際寬度」斷行（用 `_w()` 量），
     不要按字數切——按字數會把 `R. toruloides` 切成 `R. t` ＋ `oruloides`。
-  - `svgkit` 不支援 Markdown，字串裡的 `**粗體**` 會原樣印出來。
+  - `svgkit` 的 `_rich()` 支援行內 `**粗體**`、`*斜體*` 與 `\_` `\^` 轉義；
+    要印出字面的星號或底線就用轉義。
+  - `s.icon()` 的名稱打錯會丟 `KeyError`，不會靜靜少畫一個圖示。
+    要新圖示就把 Lucide 的 path 加進 `lessons/_tools/icons.py`。
+  - 新章節用到字型子集沒有的字，圖上會變成 fallback 字體。
+    重跑 `python lessons/_tools/make_font.py <node_modules 路徑>`
+    （先 `npm install @fontsource/noto-sans-tc@5.2.5`，裝在 scratchpad 就好）。
 - **版面要檢查**。推送前跑 `python lessons/_tools/check_layout.py`，
   確認 Folio 頁面上的文字框與圖片不會疊在一起。
+- **顏色、字級、間距都在 `lessons/_tools/tokens.py`**，不要在個別的 `diagrams.py` 裡寫色碼。
+  改了 token 要重跑各課的 `figures/src/diagrams.py` 與 `charts.py`。
+  同一份規則也發佈成 Artifact 設計系統：
+  <https://claude.ai/artifact/XSqiVzSvp9eWRLLTvsDU9a>（私人，要分享才給得出去）。
+  對白底的對比：`ink` `muted` `purple` `red` `blue` `brown` `grey` ≥4.5:1 可以當內文；
+  `teal` `green` `orange` 只有 3:1 出頭，**只能當 19px 以上的粗體標題、線條與圖形**。
 
 ### 常用指令
 

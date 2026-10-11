@@ -26,7 +26,7 @@ plt.rcParams.update({"axes.unicode_minus": False, "font.size": 12, "axes.spines.
                      "axes.spines.right": False, "axes.grid": True, "axes.axisbelow": True, "grid.color": "#e3e6ec",
                      "axes.edgecolor": "#8a93a3", "axes.titleweight": "bold", "axes.titlesize": 14,
                      "savefig.dpi": 200})
-C = {"實驗策略": "#2f6fb3", "模型": "#7b4bb3", "培養基": "#d9821e", "平台": "#2f9e6e"}
+C = {"實驗策略": "#2f6fb3", "模型": "#7b4bb3", "培養基": "#d47c18", "平台": "#2f9e6e"}
 
 IDEAS = [
     ("1 模型當先驗的貝氏最適化", 2.6, 4.4, "實驗策略", (12, -6)),

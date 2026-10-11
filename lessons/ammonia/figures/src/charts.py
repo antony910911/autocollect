@@ -26,7 +26,7 @@ plt.rcParams.update({"axes.unicode_minus": False, "mathtext.fontset": "dejavusan
                      "axes.spines.right": False, "axes.grid": True, "axes.axisbelow": True, "grid.color": "#e3e6ec", "grid.linewidth": 0.8,
                      "axes.edgecolor": "#8a93a3", "axes.titleweight": "bold", "axes.titlesize": 15,
                      "figure.dpi": 100, "savefig.dpi": 200})
-NH4, NO2, NO3, N2, ORG, AMX, GREY, INK = ("#2f6fb3", "#d9821e", "#c23b3b", "#2f9e6e", "#8a6d3b", "#7b4bb3",
+NH4, NO2, NO3, N2, ORG, AMX, GREY, INK = ("#2f6fb3", "#d47c18", "#c23b3b", "#2f9e6e", "#8a6d3b", "#7b4bb3",
                                           "#8a93a3", "#1d2330")
 
 

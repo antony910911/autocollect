@@ -41,7 +41,7 @@ def fig_cost():
     x = np.arange(len(ms))
     w = 0.38
     a1.bar(x - w / 2, [m["in_usd_per_mtok"] for m in ms], w, label="輸入", color="#2f6fb3")
-    a1.bar(x + w / 2, [m["out_usd_per_mtok"] for m in ms], w, label="輸出", color="#d9821e")
+    a1.bar(x + w / 2, [m["out_usd_per_mtok"] for m in ms], w, label="輸出", color="#d47c18")
     for i, m in enumerate(ms):
         a1.text(i - w / 2, m["in_usd_per_mtok"] + 0.6, f'{m["in_usd_per_mtok"]:g}',
                 ha="center", fontsize=10.5)
@@ -116,9 +116,9 @@ def fig_tokens():
     a2.barh(y + h / 2, lt, h, label="淺色", color="#2f6fb3")
     a2.barh(y - h / 2, dk, h, label="深色", color="#7b4bb3")
     a2.axvline(4.5, color="#c23b3b", lw=1.8, ls="--")
-    a2.axvline(3.0, color="#d9821e", lw=1.5, ls=":")
+    a2.axvline(3.0, color="#d47c18", lw=1.5, ls=":")
     a2.text(4.7, -0.5, "4.5:1 一般文字", fontsize=10, color="#c23b3b", va="center")
-    a2.text(2.85, -0.5, "3:1 非文字", fontsize=10, color="#d9821e", ha="right", va="center")
+    a2.text(2.85, -0.5, "3:1 非文字", fontsize=10, color="#d47c18", ha="right", va="center")
     a2.set_yticks(y, labels, fontsize=9.5)
     a2.set_ylim(len(pairs) - 0.4, -1.0)
     a2.set_xlabel("對比度（越高越清楚）")

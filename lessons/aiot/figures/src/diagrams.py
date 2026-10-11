@@ -10,7 +10,7 @@ from svgkit import INK, MUTED, Svg, render, tint  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 # 這門教材的語意色：感測、連網、資料、AI、執行、人
-SENSE, NET, DATA, AI, ACT, HUMAN, RISK = "#2f6fb3", "#6b7280", "#7b4bb3", "#d9821e", "#2f9e6e", "#8a6d3b", "#c23b3b"
+SENSE, NET, DATA, AI, ACT, HUMAN, RISK = "#2f6fb3", "#6b7280", "#7b4bb3", "#d47c18", "#2f9e6e", "#8a6d3b", "#c23b3b"
 
 
 def fig0_roadmap():
