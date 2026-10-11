@@ -46,6 +46,11 @@ jobs:
           INPUT_TOPIC: ${{ inputs.topic }}
           INPUT_WEEK: ${{ inputs.week }}
         run: |
+          # tutorial：發布 tutorial/ 的教材章節（只能手動觸發）
+          if [ "$INPUT_TOPIC" = "tutorial" ]; then
+            python tutorial/publish_to_folio.py
+            exit $?
+          fi
           if [ -n "$INPUT_TOPIC" ] && [ -n "$INPUT_WEEK" ]; then
             python -m autocollect folio --topic "$INPUT_TOPIC" --week "$INPUT_WEEK"
             exit $?
