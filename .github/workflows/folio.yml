@@ -8,6 +8,7 @@ on:
       - "data/*/analysis/**"
       # ChatGPT 每週五發表的工程酵母／萜類研究快報
       - "reports/farnesene_lab/*.md"
+      - "reports/proposal_radar/*.md"
   schedule:
     # 保險：每週一 14:07（台北時間）再同步一次最新一期（重複上傳不會產生重複頁面）
     - cron: "7 6 * * 1"
@@ -16,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       topic:
-        description: "主題（bioenergy、farnesene、farnesene_lab），留空為全部主題的最新一期"
+        description: "主題（bioenergy、farnesene、farnesene_lab、proposal_radar），留空為全部主題的最新一期"
         required: false
       week:
         description: "週次（例如 2026-W41），留空為最新一期；需同時指定主題"
@@ -39,7 +40,7 @@ jobs:
         env:
           FOLIO_SYNC_TOKEN: ${{ secrets.FOLIO_SYNC_TOKEN }}
           FOLIO_URL: ${{ vars.FOLIO_URL }}
-          TOPICS: bioenergy farnesene farnesene_lab
+          TOPICS: bioenergy farnesene farnesene_lab proposal_radar
           INPUT_TOPIC: ${{ inputs.topic }}
           INPUT_WEEK: ${{ inputs.week }}
         run: |
