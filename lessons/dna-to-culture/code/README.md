@@ -9,6 +9,7 @@ python experiments.py    # 跑全部計算實驗，結果寫到 results.json（�
 python protocol.py       # 把最適條件換算成操作單，寫到 protocol.json
 python labdata.py        # 產生示範實驗數據（example-data/ 的兩個 CSV）
 python calibrate.py      # 用實驗數據校正模型參數，寫到 calibration.json
+python engineered.py     # 第 16 章：基改菌株的生產包絡線
 python make_figures.py   # 依結果畫圖
 cd ../simulator && python build.py   # 產生互動模擬器 index.html
 ```
@@ -22,6 +23,8 @@ cd ../simulator && python build.py   # 產生互動模擬器 index.html
 | `labdata.py` | 產生示範用的實驗數據（真實參數刻意和預設值不同，用來示範校正） |
 | `calibrate.py` | 第 11 章：讀 CSV、品質檢查、算衍生量、最小平方校正、驗證批次評估、參數可辨識性 |
 | `example-data/` | `batches.csv`（條件，每批一列）與 `samples.csv`（量測，每次取樣一列）——可以直接當你的資料範本 |
+| `engineered.py` | 第 16 章：把異源反應加進模型、算生產包絡線與成長耦合 |
+| `yeast.py` | 第 15 章：載入 Yeast8／rhto-GEM 等酵母菌模型、檢查、設厭氧、剔除基因（需自行下載模型，要在你自己的電腦上跑） |
 | `make_figures.py` | 畫教材的圖 |
 | `map_layout.json` | 中心代謝流量圖的版面（第 4 章圖與模擬器共用） |
 | `tables.json`、`results.json`、`protocol.json`、`calibration.json` | 最近一次的計算結果（教材引用的就是這份） |

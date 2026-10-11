@@ -17,7 +17,7 @@ BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN, TEAL = ("#2f6fb3", "#d9821e", "#c
 
 
 def fig0():
-    s = Svg(1320, 600, "學習地圖：從一段 DNA 序列，到看得見的最適培養條件")
+    s = Svg(1460, 600, "學習地圖：從一段 DNA 序列，到看得見的最適培養條件")
     steps = [
         ("DNA 序列", "定序、組裝\n品質檢查", BROWN, "2"),
         ("功能註解", "這株菌有\n哪些基因、酵素", ORANGE, "2"),
@@ -28,6 +28,7 @@ def fig0():
         ("視覺化介面", "拉動參數\n立刻看到變化", RED, "9"),
         ("操作建議", "換算成實驗室\n真的做得出來的事", "#1b8a8f", "10"),
         ("數據餵回模型", "校正參數\n模型越用越準", "#8a6d3b", "11"),
+        ("換成你的菌", "酵母菌、基改菌株\n要改什麼", "#b8860b", "15–16"),
     ]
     x = 24
     for i, (h, b, c, ch) in enumerate(steps):
@@ -38,15 +39,15 @@ def fig0():
         if i < len(steps) - 1:
             s.arrow([(x + 132, 125), (x + 144, 125)], color=c)
         x += 143
-    s.box(24, 330, 1272, 112, "", color=GREY, fill="#fbfbfd")
+    s.box(24, 330, 1412, 112, "", color=GREY, fill="#fbfbfd")
     s.text(48, 364, "實驗室資料一路回饋（第 5、7、8、11 章）", size=17, weight=700)
     s.text(48, 396, "生長曲線、基質與產物濃度、溶氧、pH、溫度 → 校正吸收速率、找出溫度與 pH 的最適範圍、檢查模型預測對不對。", size=15)
     s.text(48, 424, "模型負責「縮小範圍、解釋原因」；實驗負責「驗證、提供模型算不出來的參數」。兩者交替，越轉越準。", size=15)
-    s.box(24, 470, 408, 100, "第 1 章", color=BROWN, size=15, sub="先回答你的問題：\n能做到什麼、做不到什麼", sub_size=15,
+    s.box(24, 470, 452, 100, "第 1 章", color=BROWN, size=15, sub="先回答你的問題：\n能做到什麼、做不到什麼", sub_size=15,
           fill="#ffffff")
-    s.box(456, 470, 408, 100, "第 12 章", color=GREEN, size=15, sub="怎麼開始：步驟、分工\n你要收集什麼、AI 能幫什麼", sub_size=15,
+    s.box(504, 470, 452, 100, "第 12 章", color=GREEN, size=15, sub="怎麼開始：步驟、分工\n你要收集什麼、AI 能幫什麼", sub_size=15,
           fill="#ffffff")
-    s.box(888, 470, 408, 100, "第 13–14 章", color=PURPLE, size=15, sub="國內外文獻與資源\n更創新的做法", sub_size=15,
+    s.box(984, 470, 452, 100, "第 13–14 章", color=PURPLE, size=15, sub="國內外文獻與資源\n更創新的做法", sub_size=15,
           fill="#ffffff")
     return s
 
@@ -343,9 +344,211 @@ def fig10():
     return s
 
 
+
+# ───────── 第 15–16 章：酵母菌與基改菌株 ─────────
+def fig15_compare():
+    s = Svg(1200, 790, "圖 15-1　前面 14 章，換成酵母菌要改哪些？")
+    rows = [
+        ("完全通用", GREEN, "邏輯和菌種無關，數字換成你的菌就好", [
+            ("4", "FBA"), ("6", "分階段最適化"), ("7", "溫度 pH 與實驗設計"),
+            ("8", "AI 少做實驗"), ("9", "視覺化介面"), ("11", "數據餵回模型"), ("14", "創新做法")]),
+        ("小改", ORANGE, "流程一樣，要換幾個數字或加一段注意事項", [
+            ("1", "先回答你的問題"), ("5", "動態培養"), ("10", "操作建議"),
+            ("12", "怎麼開始"), ("13", "文獻資源")]),
+        ("要換掉", RED, "工具鏈完全不同，照細菌版做會失敗", [
+            ("2", "從序列到功能"), ("3", "建立代謝模型")]),
+    ]
+    y = 86
+    for name, col, why, chaps in rows:
+        h = 112
+        s.box(24, y, 150, h, name, color=col, size=19)
+        s.text(190, y + 30, why, size=15, color=MUTED)
+        x = 190
+        for n, label in chaps:
+            w = max(118, len(label) * 15 + 26)
+            s.box(x, y + 46, w, 52, f"第 {n} 章", color=col, size=13, sub=label, sub_size=14, fill="#ffffff")
+            x += w + 12
+        y += h + 16
+    s.box(24, 456, 1152, 108, "", color=TEAL, fill=tint(TEAL, 0.9))
+    s.text(48, 490, "換句話說：14 章裡有 7 章原封不動、5 章小修，只有 2 章要整個換掉。", size=17, weight=700)
+    s.text(48, 522, "會變的是「怎麼從序列得到模型」；不會變的是「有了模型之後怎麼用」。", size=15)
+    s.text(48, 550, "第 15 章補上要換掉的那兩章，第 16 章補上基改菌株特有的部分。", size=15, color=MUTED)
+    s.box(24, 584, 1152, 160, "", color=GREY, fill="#fbfbfd")
+    s.text(48, 618, "最大的三個差別", size=17, weight=700)
+    diffs = [("真核生物", "有內含子、胞器區隔；\n細菌的基因預測與鑑定工具不適用"),
+             ("多半已有現成模型", "先查有沒有人發表過你這株菌的模型，\n有的話不要從頭建"),
+             ("酵母菌之間也差很多", "釀酒酵母與產油酵母的代謝完全不同，\n不能互相套用（圖 15-3）")]
+    x = 48
+    for h2, b in diffs:
+        s.text(x, 652, h2, size=15, weight=700, color=TEAL)
+        s.text(x, 678, b, size=13.5, color=MUTED)
+        x += 380
+    return s
+
+
+def fig15_annotate():
+    s = Svg(1200, 660, "圖 15-2　酵母菌的註解流程：和細菌版（圖 2-1）哪裡不一樣")
+    s.text(24, 70, "路線 A：已知是 S. cerevisiae 或近緣種 → 用參考基因體比對（快、準、建議優先）", size=17,
+           weight=700, color=GREEN)
+    a = [("定序讀段", "Illumina 或\nNanopore", GREY),
+         ("比對到參考基因體", "bwa / minimap2\nS288C（SGD）", GREEN),
+         ("變異分析", "GATK / bcftools\n看和參考差在哪", GREEN),
+         ("找插入的片段", "比對不到參考的讀段\n＝外來基因或質體", PURPLE),
+         ("直接套用註解", "參考基因體的註解\n（約 6,000 個基因）", GREEN)]
+    x = 24
+    for i, (h, b, c) in enumerate(a):
+        s.box(x, 88, 210, 52, h, color=c, size=15)
+        s.box(x, 146, 210, 70, "", color=c, fill="#ffffff")
+        s.text(x + 105, 181, b, size=13, anchor="middle-v")
+        if i < len(a) - 1:
+            s.arrow([(x + 212, 114), (x + 228, 114)], color=c)
+        x += 228
+    s.text(24, 262, "路線 B：非模式酵母菌、或要完整的新基因體 → 從頭組裝與註解（真核專用工具）", size=17,
+           weight=700, color=ORANGE)
+    b = [("組裝", "Flye／SPAdes\n（長讀較佳，\n才能跨重複序列）", BROWN),
+         ("完整度檢查", "BUSCO\n（saccharomycetes_odb10）\n不是 CheckM2", ORANGE),
+         ("基因預測", "AUGUSTUS／BRAKER\nFunannotate\n（處理內含子）", RED),
+         ("功能註解", "eggNOG-mapper、KEGG\nInterProScan\n（這些真核也能用）", BLUE),
+         ("物種鑑定", "ITS／多基因親緣樹\n不是 GTDB-Tk", PURPLE)]
+    x = 24
+    for i, (h, bb, c) in enumerate(b):
+        s.box(x, 280, 210, 52, h, color=c, size=15)
+        s.box(x, 338, 210, 86, "", color=c, fill="#ffffff")
+        s.text(x + 105, 381, bb, size=13, anchor="middle-v")
+        if i < len(b) - 1:
+            s.arrow([(x + 212, 306), (x + 228, 306)], color=c)
+        x += 228
+    s.box(24, 450, 1152, 90, "", color=RED, fill=tint(RED, 0.93))
+    s.text(48, 484, "照細菌版做會失敗的三個地方", size=17, weight=700, color=RED)
+    s.text(48, 514, "① Prokka／Bakta：資料庫是細菌的，也不處理內含子　② CheckM2：只支援細菌與古菌　"
+                    "③ GTDB-Tk：只收錄細菌與古菌", size=15)
+    s.box(24, 556, 1152, 122, "", color=GREY, fill="#fbfbfd")
+    s.text(48, 590, "基改菌株還要多做一件事：確認「插進去的東西」", size=17, weight=700)
+    s.text(48, 620, "插入位置（整合到哪條染色體？還是在質體上）、拷貝數、啟動子與終止子、選擇標記、", size=15)
+    s.text(48, 648, "以及插入有沒有破壞到原本的基因。這些用短讀很難確定，長讀或定點 PCR 比較可靠。", size=15)
+    return s
+
+
+def fig15_culture():
+    s = Svg(1240, 720, "圖 15-3　酵母菌之間差很多：釀酒酵母的經驗不能直接套到產油酵母")
+    cols = [("釀酒酵母\nS. cerevisiae", BLUE), ("產油酵母\n例：Rhodotorula toruloides", ORANGE)]
+    x0 = 330
+    for i, (h, c) in enumerate(cols):
+        s.box(x0 + i * 452, 76, 440, 62, h, color=c, size=16)
+    rows = [
+        ("主要代謝特徵", "Crabtree 正效應：糖一多，\n就算有氧也大量產乙醇",
+         "Crabtree 陰性：有氧時把糖\n氧化掉，不產乙醇"),
+        ("想要的產物從哪來", "乙醇＝主要發酵產物",
+         "油脂（TAG）與類胡蘿蔔素；\n天然甲羥戊酸（MVA）通量高"),
+        ("觸發累積的條件", "糖過量＋限氧",
+         "**氮限制（高 C/N 比）**：\n氮用完後碳才轉去做油脂"),
+        ("氧氣需求", "可厭氧生長，\n但要補麥角固醇與不飽和脂肪酸",
+         "需氧；做油脂與類胡蘿蔔素\n都要氧氣"),
+        ("可用碳源", "葡萄糖為主，\n木糖要改造才能用",
+         "可直接用木糖、乙酸、甘油，\n適合木質纖維素水解液"),
+        ("量 OD 的陷阱", "菌體是白色／米色",
+         "**菌體是紅色的**（類胡蘿蔔素），\nOD600 會被色素干擾，檢量線一定要自己做"),
+    ]
+    y = 150
+    for label, a, b in rows:
+        s.box(24, y, 290, 76, label, color=GREY, size=15, fill="#f4f6f9")
+        s.box(330, y, 440, 76, "", color=BLUE, fill="#ffffff")
+        s.text(550, y + 38, a.replace("**", ""), size=13.5, anchor="middle-v")
+        s.box(782, y, 440, 76, "", color=ORANGE, fill=tint(ORANGE, 0.94))
+        s.text(1002, y + 38, b.replace("**", ""), size=13.5, anchor="middle-v")
+        y += 82
+    s.text(24, 676, "結論：第 5、10 章的動力學與操作參數要重新量；但第 6 章的「分階段」邏輯反而更適用——"
+           "產油酵母本來就是先長菌、氮用完再累積產物。", size=14.5, color=MUTED)
+    return s
+
+
+def fig16_gene_to_reaction():
+    s = Svg(1200, 640, "圖 16-1　基改菌株：把「插進去的基因」變成模型裡的反應")
+    cols = [
+        ("① 你知道的", BROWN, "插入了哪個基因\n（名稱、來源生物、序列）\n例：Z. mobilis 的 pdc"),
+        ("② 查它催化什麼反應", BLUE, "UniProt／KEGG／BRENDA\n查 EC 編號與反應式\n例：丙酮酸 → 乙醛 + CO₂"),
+        ("③ 對應到模型的代謝物", PURPLE, "找出模型裡的 id\n（pyr_c、acald_c、co2_c）\n要確認區隔（細胞質？粒線體？）"),
+        ("④ 加進模型", GREEN, "新增反應、設界限\n寫上基因對應規則\n（程式見 engineered.py）"),
+        ("⑤ 看它改變什麼", TEAL, "最大產率、生產包絡線\n要不要再剔除競爭路徑\n（圖 16-2）"),
+    ]
+    x = 24
+    for i, (h, c, b) in enumerate(cols):
+        s.box(x, 84, 210, 58, h, color=c, size=15)
+        s.box(x, 148, 210, 104, "", color=c, fill="#ffffff")
+        s.text(x + 105, 200, b, size=13, anchor="middle-v")
+        if i < len(cols) - 1:
+            s.arrow([(x + 212, 113), (x + 228, 113)], color=c)
+        x += 228
+    s.box(24, 286, 1152, 132, "", color=RED, fill=tint(RED, 0.93))
+    s.text(48, 320, "模型「加了反應」不等於「菌真的會做」", size=18, weight=700, color=RED)
+    s.text(48, 352, "FBA 預設這個酵素的能力無限大。真實情況取決於：啟動子強度、拷貝數、密碼子使用、", size=15)
+    s.text(48, 380, "蛋白質有沒有正確摺疊、輔因子夠不夠、產物有沒有毒性。模型算的是「上限」，不是「會發生」。", size=15)
+    s.text(48, 406, "所以第 11 章的校正特別重要：用實測的產率回來修正這個反應的上限。", size=15, color=MUTED)
+    s.box(24, 436, 1152, 186, "", color=GREY, fill="#fbfbfd")
+    s.text(48, 470, "基改菌株的實驗紀錄要多記四欄（第 11 章的條件表）", size=17, weight=700)
+    extra = [("插入位置", "染色體整合或質體"), ("拷貝數", "qPCR 或長讀定序"),
+             ("誘導條件", "誘導劑種類、濃度、加入時間"), ("選擇壓力", "抗生素／營養缺陷，有沒有持續")]
+    x = 48
+    for h, b in extra:
+        s.box(x, 490, 258, 48, h, color=TEAL, size=15)
+        s.text(x + 129, 562, b, size=13.5, anchor="middle", color=MUTED)
+        x += 276
+    s.text(48, 600, "沒有這幾欄，批次之間產量不同時，你分不清是培養條件的問題還是菌株不穩定。", size=15, color=MUTED)
+    return s
+
+
+
+def fig16_fpp():
+    s = Svg(1240, 760, "圖 16-2　你的案例：α-farnesene 在和誰搶原料")
+    # 左側主幹
+    s.box(40, 92, 220, 60, "糖（葡萄糖／木糖）", color=BROWN, size=15)
+    s.arrow([(150, 154), (150, 184)], color=BROWN)
+    s.box(40, 186, 220, 60, "乙醯輔酶 A", color=BROWN, size=17)
+    s.arrow([(262, 216), (318, 216)], color=RED, width=4)
+    s.box(318, 178, 250, 76, "油脂（TAG）", color=RED, size=16,
+          sub="產油酵母最大的碳匯\n氮限制時大量累積", sub_size=12.5)
+    s.text(443, 274, "最大的競爭對手", size=14, color=RED, anchor="middle", weight=700)
+    s.arrow([(150, 248), (150, 288)], color=PURPLE)
+    s.box(40, 290, 220, 66, "甲羥戊酸途徑（MVA）", color=PURPLE, size=15)
+    s.text(150, 378, "紅酵母天生通量就高", size=13.5, color=PURPLE, anchor="middle")
+    s.arrow([(150, 386), (150, 420)], color=PURPLE)
+    s.box(40, 422, 220, 74, "FPP", color=PURPLE, size=22, sub="法呢基焦磷酸（C15）", sub_size=12.5)
+    s.text(150, 516, "三條路搶同一個 FPP", size=14.5, color=INK, anchor="middle", weight=700)
+    # 三條分支
+    outs = [
+        (40, "α-farnesene（目標）", GREEN, "你插入的蘋果 AFS。產物會揮發，\n要用十二烷等有機相覆蓋收集。"),
+        (440, "角鯊烯 → 麥角固醇", ORANGE, "ERG9（squalene synthase）。\n細胞膜必需，只能調降、不能關掉。"),
+        (840, "GGPP → 類胡蘿蔔素", RED, "紅酵母紅色的來源。\n調降可以把 FPP 讓出來。"),
+    ]
+    for x, label, c, note in outs:
+        cx = x + 180
+        s.arrow([(150, 500), (cx, 540), (cx, 572)], color=c, width=3.5 if c == GREEN else 2.2, curve=True)
+        s.box(x, 574, 360, 60, label, color=c, size=16)
+        s.text(cx, 660, note, size=13.5, color=MUTED, anchor="middle")
+    # 右側：模型能回答什麼
+    s.box(620, 92, 580, 300, "", color=TEAL, fill=tint(TEAL, 0.92))
+    s.text(648, 128, "模型能幫你回答的四個問題", size=18, weight=700, color=TEAL)
+    qs = ["① 理論上每克糖最多能產多少 α-farnesene？",
+          "② 油脂路徑要降多少，產物才明顯上升？代價是什麼？",
+          "③ 降 ERG9 還是降類胡蘿蔔素，釋出的 FPP 比較多？",
+          "④ NADPH 夠不夠？（油脂與萜類都要，常是隱藏瓶頸）"]
+    yy = 172
+    for q in qs:
+        s.text(648, yy, q, size=14.5)
+        yy += 38
+    s.text(648, 340, "要用 rhto-GEM 跑（第 15 章），不要用釀酒酵母的模型。", size=14, color=MUTED)
+    s.text(648, 368, "文獻：同樣從 FPP 出發的 α-bisabolene，在這株菌已做到 g/L 等級。", size=14, color=MUTED)
+    s.text(40, 724, "注意：模型算的是「碳與輔因子的上限」。實際產量還受酵素活性、拷貝數、產物毒性與揮發影響——"
+                    "這些要用第 11 章的校正補回來。", size=14, color=MUTED)
+    return s
+
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
-        "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10}
+        "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
+        "fig15-1-compare": fig15_compare, "fig15-2-annotate": fig15_annotate,
+        "fig15-3-yeasts": fig15_culture, "fig16-1-gene-to-reaction": fig16_gene_to_reaction,
+        "fig16-2-fpp": fig16_fpp}
 
 if __name__ == "__main__":
     want = sys.argv[1:] or list(FIGS)
