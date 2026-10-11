@@ -1,0 +1,516 @@
+<title>培養參數模擬器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* 版面：左側是培養條件（像實驗紀錄本的設定欄），右側是結果；曲線、代謝圖、掃描與敏感度由上而下 */
+:root {
+  --bg: #f4f7f5; --panel: #ffffff; --ink: #17221d; --muted: #5b6a63; --line: #d9e2dd; --soft: #eaf0ec;
+  --accent: #1d7356; --accent-ink: #ffffff;
+  --glc: #8a6d3b; --ac: #d27a14; --etoh: #2f6fb3; --bio: #2b9668; --for: #7b4bb3;
+  --ph-lag: #9aa5a0; --ph-aer: #2b9668; --ph-lim: #d27a14; --ph-ac: #7b4bb3; --ph-ana: #2f6fb3; --ph-stat: #c4ccc8;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1613; --panel: #16201c; --ink: #e3ebe6; --muted: #98a9a0; --line: #2a3832; --soft: #1d2924;
+    --accent: #4cc39a; --accent-ink: #0b1310;
+    --glc: #c9a56b; --ac: #f0a24a; --etoh: #6fa9ec; --bio: #4cc39a; --for: #b08ae6;
+    --ph-lag: #6d7a74; --ph-aer: #4cc39a; --ph-lim: #f0a24a; --ph-ac: #b08ae6; --ph-ana: #6fa9ec; --ph-stat: #3a4842;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1613; --panel: #16201c; --ink: #e3ebe6; --muted: #98a9a0; --line: #2a3832; --soft: #1d2924;
+  --accent: #4cc39a; --accent-ink: #0b1310;
+  --glc: #c9a56b; --ac: #f0a24a; --etoh: #6fa9ec; --bio: #4cc39a; --for: #b08ae6;
+  --ph-lag: #6d7a74; --ph-aer: #4cc39a; --ph-lim: #f0a24a; --ph-ac: #b08ae6; --ph-ana: #6fa9ec; --ph-stat: #3a4842;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1280px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 40px; }
+header { display: grid; gap: 4px; margin-bottom: 16px; }
+h1 { font-family: var(--font-display); font-size: 1.6rem; margin: 0; text-wrap: balance; letter-spacing: 0.02em; }
+.lede { margin: 0; color: var(--muted); max-width: 72ch; }
+.layout { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+aside.panel { position: sticky; top: env(safe-area-inset-top, 0px); display: grid; gap: 14px; }
+@media (max-width: 900px) { aside.panel { position: static; } }
+.group { display: grid; gap: 10px; }
+.group-title { font-size: 0.78rem; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+.ctl { display: grid; gap: 2px; }
+.ctl label { display: flex; justify-content: space-between; gap: 8px; font-size: 0.9rem; }
+.ctl output { font-family: var(--font-data); font-size: 0.85rem; color: var(--ink); white-space: nowrap; }
+.ctl small { color: var(--muted); font-size: 0.76rem; }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+input[type=range]:disabled { opacity: 0.4; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; }
+button { font: inherit; font-size: 0.85rem; border: 1px solid var(--line); background: var(--soft); color: var(--ink); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.switch { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--ink); font-weight: 500; letter-spacing: 0; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
+main { display: grid; gap: 16px; min-width: 0; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 640px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 2px; min-width: 0; }
+.kpi .k { font-size: 0.78rem; color: var(--muted); }
+.kpi .v { font-family: var(--font-data); font-size: 1.35rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.kpi .u { font-size: 0.78rem; color: var(--muted); }
+.kpi .d { font-family: var(--font-data); font-size: 0.78rem; }
+.up { color: var(--bio); } .down { color: var(--ac); }
+.kpi.bio { border-top: 3px solid var(--bio); } .kpi.etoh { border-top: 3px solid var(--etoh); } .kpi.ac { border-top: 3px solid var(--ac); } .kpi.glc { border-top: 3px solid var(--glc); }
+h2 { font-size: 1.02rem; margin: 0 0 6px; text-wrap: balance; }
+.hint { color: var(--muted); font-size: 0.85rem; margin: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.82rem; color: var(--muted); margin: 4px 0 6px; }
+.legend span::before { content: ""; display: inline-block; width: 16px; height: 3px; margin-right: 5px; vertical-align: middle; background: var(--c); }
+.legend span.dash::before { background: repeating-linear-gradient(90deg, var(--muted) 0 4px, transparent 4px 7px); }
+canvas { width: 100%; display: block; }
+.scrub { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 0.85rem; margin-top: 6px; }
+.scrub output { font-family: var(--font-data); }
+.two { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 980px) { .two { grid-template-columns: minmax(0, 1fr); } }
+.mapbox { overflow-x: auto; }
+.mapbox svg { width: 100%; min-width: 520px; height: auto; display: block; }
+.now { display: grid; gap: 8px; align-content: start; }
+.pill { display: inline-block; border-radius: 999px; padding: 2px 10px; font-size: 0.85rem; font-weight: 700; color: var(--accent-ink); background: var(--c); }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; font-size: 0.88rem; }
+dt { color: var(--muted); }
+dd { margin: 0; font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.advice { font-size: 0.88rem; background: var(--soft); border-radius: 8px; padding: 8px 10px; margin: 0; }
+.tools { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 980px) { .tools { grid-template-columns: minmax(0, 1fr); } }
+select { font: inherit; font-size: 0.85rem; background: var(--soft); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; }
+.bars { display: grid; gap: 6px; font-size: 0.85rem; }
+.bar { display: grid; grid-template-columns: 9em minmax(0, 1fr) 4.5em; gap: 8px; align-items: center; }
+.bar .track { position: relative; height: 16px; background: var(--soft); border-radius: 3px; }
+.bar .track::after { content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; border-left: 1px solid var(--muted); }
+.bar .neg, .bar .pos { position: absolute; top: 2px; height: 12px; border-radius: 2px; }
+.bar .neg { right: 50%; background: var(--ac); }
+.bar .pos { left: 50%; background: var(--bio); }
+.bar .val { font-family: var(--font-data); text-align: right; font-size: 0.8rem; }
+footer { margin-top: 18px; color: var(--muted); font-size: 0.8rem; max-width: 90ch; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>培養參數模擬器</h1>
+    <p class="lede">拉動左邊的培養條件，右邊立刻重算一整批培養。計算核心是大腸桿菌核心代謝模型的動態通量平衡分析（dFBA）；溫度與 pH 的效果用經驗模型補上，參數是示範值。</p>
+  </header>
+
+  <div class="layout">
+    <aside class="panel" aria-label="培養條件">
+      <div class="group">
+        <div class="group-title">情境範例</div>
+        <div class="presets">
+          <button type="button" data-preset="flask">好氧長菌（搖瓶）</button>
+          <button type="button" data-preset="two">兩階段產乙醇</button>
+          <button type="button" data-preset="poor">供氧不足</button>
+        </div>
+      </div>
+      <hr>
+      <div class="group">
+        <div class="group-title">第一階段：長菌</div>
+        <div class="ctl"><label for="T">溫度 <output id="T_o"></output></label><input id="T" type="range" min="20" max="46" step="0.5"></div>
+        <div class="ctl"><label for="pH">pH <output id="pH_o"></output></label><input id="pH" type="range" min="4.5" max="9.5" step="0.1"></div>
+        <div class="ctl"><label for="otr">供氧能力 <output id="otr_o"></output></label><input id="otr" type="range" min="2" max="100" step="1"><small>搖瓶約 5–30；通氣攪拌槽可到 100 以上（mmol O₂/L/h）</small></div>
+        <div class="ctl"><label for="X0">接種量 <output id="X0_o"></output></label><input id="X0" type="range" min="0.01" max="0.5" step="0.01"></div>
+        <div class="ctl"><label for="lag">遲滯期 <output id="lag_o"></output></label><input id="lag" type="range" min="0" max="6" step="0.25"><small>種菌的狀態：新鮮、對數期的種菌遲滯期短</small></div>
+      </div>
+      <hr>
+      <div class="group">
+        <div class="group-title">培養基與收穫</div>
+        <div class="ctl"><label for="G0">起始葡萄糖 <output id="G0_o"></output></label><input id="G0" type="range" min="10" max="250" step="5"></div>
+        <div class="ctl"><label for="t_end">收穫時間 <output id="t_end_o"></output></label><input id="t_end" type="range" min="6" max="36" step="0.5"></div>
+      </div>
+      <hr>
+      <div class="group">
+        <div class="group-title"><span>第二階段：產物</span><label class="switch"><input id="two" type="checkbox"> 啟用</label></div>
+        <div class="ctl"><label for="t_sw">切換時間（停止通氣）<output id="t_sw_o"></output></label><input id="t_sw" type="range" min="0" max="24" step="0.25"></div>
+        <div class="ctl"><label for="T2">切換後溫度 <output id="T2_o"></output></label><input id="T2" type="range" min="20" max="46" step="0.5"></div>
+        <div class="ctl"><label for="otr2">切換後微量通氣 <output id="otr2_o"></output></label><input id="otr2" type="range" min="0" max="20" step="0.5"></div>
+      </div>
+      <hr>
+      <div class="presets">
+        <button type="button" id="pin" class="primary">設為比較基準</button>
+        <button type="button" id="unpin">清除比較</button>
+      </div>
+    </aside>
+
+    <main>
+      <div class="kpis" aria-live="polite">
+        <div class="kpi bio"><span class="k">收穫時菌量</span><span class="v" id="k_X"></span><span class="u">gDW/L</span><span class="d" id="d_X"></span></div>
+        <div class="kpi etoh"><span class="k">收穫時乙醇</span><span class="v" id="k_E"></span><span class="u" id="u_E">mM</span><span class="d" id="d_E"></span></div>
+        <div class="kpi ac"><span class="k">乙酸最高</span><span class="v" id="k_A"></span><span class="u">mM（副產物）</span><span class="d" id="d_A"></span></div>
+        <div class="kpi glc"><span class="k">葡萄糖吃完</span><span class="v" id="k_G"></span><span class="u" id="u_G">h</span><span class="d" id="d_G"></span></div>
+      </div>
+
+      <section class="panel">
+        <h2>培養過程</h2>
+        <div class="legend">
+          <span style="--c: var(--bio)">菌量（右軸）</span><span style="--c: var(--glc)">葡萄糖</span><span style="--c: var(--ac)">乙酸</span><span style="--c: var(--etoh)">乙醇</span><span class="dash">比較基準</span>
+        </div>
+        <canvas id="chart" height="376" role="img" aria-label="批次培養的菌量與代謝物濃度曲線"></canvas>
+        <div class="scrub"><label for="scrub">看這個時間點</label><input id="scrub" type="range" min="0" max="24" step="0.05"><output id="scrub_o"></output></div>
+      </section>
+
+      <section class="two">
+        <div class="panel">
+          <h2>這個時間點的中心代謝流量</h2>
+          <p class="hint">線越粗，流量越大（mmol/gDW/h）；虛線代表這條路徑沒有在用。</p>
+          <div class="mapbox" id="map"></div>
+        </div>
+        <div class="panel now">
+          <h2>現在發生什麼事</h2>
+          <div><span class="pill" id="now_phase"></span></div>
+          <dl>
+            <dt>比生長速率 μ</dt><dd id="now_mu"></dd>
+            <dt>菌量</dt><dd id="now_X"></dd>
+            <dt>耗氧速率 OUR</dt><dd id="now_our"></dd>
+            <dt>呼吸商 RQ</dt><dd id="now_rq"></dd>
+            <dt>葡萄糖／乙酸</dt><dd id="now_ga"></dd>
+          </dl>
+          <p class="advice" id="now_advice"></p>
+        </div>
+      </section>
+
+      <section class="tools">
+        <div class="panel">
+          <h2>什麼時候切換最好？</h2>
+          <p class="hint">固定其他條件，把切換時間從 0 掃到收穫時間，看收穫時的乙醇。</p>
+          <canvas id="scan" height="230" role="img" aria-label="切換時間掃描"></canvas>
+          <p class="hint" id="scan_note"></p>
+        </div>
+        <div class="panel">
+          <h2>哪個參數最敏感？</h2>
+          <p class="hint">每個參數各往上、往下調一點，看目標改變多少。<label for="target">目標</label>
+            <select id="target"><option value="E_end">收穫時乙醇</option><option value="X_end">收穫時菌量</option></select></p>
+          <div class="bars" id="sens"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    計算方法：E. coli core 模型（Orth et al., 2010）以 COBRApy 解 pFBA，在吸收速率網格上預先算好後內插；dFBA 採 Mahadevan et al. (2002) 的靜態最佳化法；溫度、pH 用 Rosso 等人的基點模型（1993、1995），遲滯期用 Baranyi 與 Roberts (1994)。動力學、溫度與 pH 參數都是示範值，不代表任何實際菌株。這是教學用的模型，換成你的菌，需要用自己的基因體建模並以實驗校正。
+  </footer>
+</div>
+
+<script>
+const TABLES = /*TABLES*/null;
+const LAYOUT = /*LAYOUT*/null;
+</script>
+<script>
+/*SIMJS*/
+</script>
+<script>
+"use strict";
+const PRESETS = {
+  flask: { T: 37, pH: 7, otr: 30, X0: 0.05, lag: 1, G0: 60, t_end: 16, two: false, t_sw: 6, T2: 37, otr2: 0 },
+  two: { T: 37, pH: 7, otr: 30, X0: 0.05, lag: 1, G0: 200, t_end: 12, two: true, t_sw: 5.75, T2: 37, otr2: 0 },
+  poor: { T: 37, pH: 7, otr: 8, X0: 0.05, lag: 1, G0: 60, t_end: 16, two: false, t_sw: 6, T2: 37, otr2: 0 },
+};
+const FMT = {
+  T: (v) => `${v.toFixed(1)} °C`, T2: (v) => `${v.toFixed(1)} °C`, pH: (v) => v.toFixed(1),
+  otr: (v) => `${v.toFixed(0)}`, otr2: (v) => `${v.toFixed(1)}`, X0: (v) => `${v.toFixed(2)} gDW/L`,
+  lag: (v) => `${v.toFixed(2)} h`, G0: (v) => `${v.toFixed(0)} mM（${(v * 0.18016).toFixed(1)} g/L）`,
+  t_end: (v) => `${v.toFixed(1)} h`, t_sw: (v) => `${v.toFixed(2)} h`,
+};
+const IDS = ["T", "pH", "otr", "X0", "lag", "G0", "t_end", "t_sw", "T2", "otr2"];
+const $ = (id) => document.getElementById(id);
+let state = {}, sim = null, base = null, baseSum = null;
+
+function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+function params(st = state) {
+  const p = { T: st.T, pH: st.pH, otr: st.otr, X0: st.X0, lag: st.lag, G0: st.G0, t_end: st.t_end };
+  if (st.two) {
+    p.t_sw = st.t_sw;
+    p.stage2 = { T: st.T2 };
+    if (st.otr2 > 0) p.stage2.otr = st.otr2;
+  }
+  return p;
+}
+
+function loadPreset(name) {
+  state = Object.assign({}, PRESETS[name]);
+  for (const id of IDS) $(id).value = state[id];
+  $("two").checked = state.two;
+  update();
+}
+
+function readControls() {
+  for (const id of IDS) state[id] = parseFloat($(id).value);
+  state.two = $("two").checked;
+  $("t_sw").max = state.t_end;
+  for (const id of ["t_sw", "T2", "otr2"]) $(id).disabled = !state.two;
+  for (const id of IDS) $(id + "_o").textContent = FMT[id](state[id]);
+}
+
+function update() {
+  readControls();
+  sim = simulate(params());
+  const scrub = $("scrub");
+  scrub.max = state.t_end;
+  if (parseFloat(scrub.value) > state.t_end) scrub.value = Math.min(state.t_end, 6);
+  renderKpis();
+  drawChart();
+  renderNow();
+  drawScan();
+  renderSens();
+}
+
+function delta(v, b, digits, unit) {
+  if (b == null) return "";
+  const d = v - b;
+  if (Math.abs(d) < Math.pow(10, -digits)) return "與基準相同";
+  return `<span class="${d > 0 ? "up" : "down"}">${d > 0 ? "▲" : "▼"} ${Math.abs(d).toFixed(digits)}${unit}</span> 相對基準`;
+}
+
+function renderKpis() {
+  const s = summary(sim);
+  $("k_X").textContent = s.X_end.toFixed(2);
+  $("k_E").textContent = s.E_end.toFixed(0);
+  $("u_E").textContent = `mM（${(s.E_end * 0.04607).toFixed(2)} g/L）`;
+  $("k_A").textContent = s.A_max.toFixed(0);
+  $("k_G").textContent = s.t_glc_out == null ? "未吃完" : s.t_glc_out.toFixed(1);
+  $("u_G").textContent = s.t_glc_out == null ? `剩 ${s.glc_left.toFixed(0)} mM` : "h";
+  $("d_X").innerHTML = delta(s.X_end, baseSum && baseSum.X_end, 2, "");
+  $("d_E").innerHTML = delta(s.E_end, baseSum && baseSum.E_end, 0, " mM");
+  $("d_A").innerHTML = delta(s.A_max, baseSum && baseSum.A_max, 0, " mM");
+  $("d_G").innerHTML = "";
+}
+
+const PHASE_VAR = { "遲滯期": "--ph-lag", "好氧指數生長": "--ph-aer", "缺氧・溢流代謝": "--ph-lim", "回頭吃乙酸": "--ph-ac", "厭氧發酵": "--ph-ana", "停滯期": "--ph-stat" };
+
+function setupCanvas(cv) {
+  const dpr = window.devicePixelRatio || 1;
+  if (!cv.dataset.h) cv.dataset.h = cv.getAttribute("height");
+  const w = cv.clientWidth, h = parseInt(cv.dataset.h, 10);
+  cv.style.height = h + "px";
+  cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+  const ctx = cv.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { ctx, w, h };
+}
+
+function niceMax(v) {
+  if (v <= 0) return 1;
+  const p = Math.pow(10, Math.floor(Math.log10(v)));
+  for (const m of [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]) if (m * p >= v) return m * p;
+  return 10 * p;
+}
+
+function drawChart() {
+  const cv = $("chart");
+  const { ctx, w, h } = setupCanvas(cv);
+  const L = 46, R = 46, T = 46, B = 30;
+  const pw = w - L - R, ph = h - T - B;
+  const tEnd = state.t_end;
+  const cMax = niceMax(Math.max(...sim.G, ...sim.A, ...sim.E, ...(base ? [...base.G, ...base.A, ...base.E] : [])) * 1.05);
+  const xMax = niceMax(Math.max(...sim.X, ...(base ? base.X : [])) * 1.08);
+  const xs = (t) => L + (t / tEnd) * pw;
+  const yc = (v) => T + ph - (v / cMax) * ph;
+  const yx = (v) => T + ph - (v / xMax) * ph;
+  const ink = css("--ink"), muted = css("--muted"), line = css("--line");
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = `12px ${css("--font-data")}`;
+  // 階段色帶
+  let start = 0;
+  for (let k = 1; k <= sim.t.length; k++) {
+    if (k === sim.t.length || sim.phase[k] !== sim.phase[start]) {
+      const x0 = xs(sim.t[start]), x1 = xs(sim.t[Math.min(k, sim.t.length - 1)]);
+      ctx.fillStyle = css(PHASE_VAR[sim.phase[start]]);
+      ctx.globalAlpha = 0.85; ctx.fillRect(x0, 6, x1 - x0, 14);
+      ctx.globalAlpha = 0.08; ctx.fillRect(x0, T, x1 - x0, ph);
+      ctx.globalAlpha = 1;
+      if (x1 - x0 > 70) {
+        ctx.fillStyle = css("--accent-ink");
+        ctx.font = `11px ${css("--font-body")}`;
+        ctx.fillText(sim.phase[start], x0 + 4, 17);
+        ctx.font = `12px ${css("--font-data")}`;
+      }
+      start = k;
+    }
+  }
+  // 格線與座標
+  ctx.strokeStyle = line; ctx.lineWidth = 1; ctx.fillStyle = muted;
+  for (let i = 0; i <= 5; i++) {
+    const y = T + ph - (i / 5) * ph;
+    ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(L + pw, y); ctx.stroke();
+    ctx.textAlign = "right"; ctx.fillText((cMax * i / 5).toFixed(0), L - 6, y + 4);
+    ctx.textAlign = "left"; ctx.fillText((xMax * i / 5).toFixed(xMax < 5 ? 1 : 0), L + pw + 6, y + 4);
+  }
+  const step = tEnd > 24 ? 6 : tEnd > 12 ? 4 : 2;
+  ctx.textAlign = "center";
+  for (let t = 0; t <= tEnd + 1e-9; t += step) ctx.fillText(`${t}h`, xs(t), T + ph + 18);
+  ctx.textAlign = "left";
+  ctx.fillText("mM", 4, T - 12);
+  ctx.textAlign = "right"; ctx.fillText("gDW/L", w - 2, T - 12); ctx.textAlign = "left";
+  const series = (d, key, y, color, width, dash) => {
+    ctx.strokeStyle = color; ctx.lineWidth = width; ctx.setLineDash(dash || []);
+    ctx.beginPath();
+    d.t.forEach((t, i) => { if (t > tEnd + 1e-9) return; const X = xs(t), Y = y(d[key][i]); i ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); });
+    ctx.stroke(); ctx.setLineDash([]);
+  };
+  if (base) {
+    for (const [k, c, y] of [["G", "--glc", yc], ["A", "--ac", yc], ["E", "--etoh", yc], ["X", "--bio", yx]]) series(base, k, y, css(c), 1.5, [5, 4]);
+  }
+  series(sim, "G", yc, css("--glc"), 2.4);
+  series(sim, "A", yc, css("--ac"), 2.4);
+  series(sim, "E", yc, css("--etoh"), 2.8);
+  series(sim, "X", yx, css("--bio"), 3.2);
+  if (state.two) {
+    const x = xs(state.t_sw);
+    ctx.strokeStyle = ink; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x, T); ctx.lineTo(x, T + ph); ctx.stroke();
+    ctx.fillStyle = ink; ctx.font = `12px ${css("--font-body")}`; ctx.fillText("停止通氣", x + 4, T + 14);
+  }
+  const ts = parseFloat($("scrub").value);
+  const xsr = xs(ts);
+  ctx.strokeStyle = css("--accent"); ctx.lineWidth = 2; ctx.setLineDash([3, 3]);
+  ctx.beginPath(); ctx.moveTo(xsr, T); ctx.lineTo(xsr, T + ph); ctx.stroke(); ctx.setLineDash([]);
+}
+
+function renderNow() {
+  const ts = parseFloat($("scrub").value);
+  const k = Math.min(sim.t.length - 1, Math.round(ts / sim.params.dt));
+  $("scrub_o").textContent = `${sim.t[k].toFixed(2)} h`;
+  const ph = sim.phase[k];
+  const pill = $("now_phase");
+  pill.textContent = ph; pill.style.setProperty("--c", css(PHASE_VAR[ph]));
+  $("now_mu").textContent = `${sim.mu[k].toFixed(3)} 1/h`;
+  $("now_X").textContent = `${sim.X[k].toFixed(2)} gDW/L`;
+  $("now_our").textContent = `${sim.our[k].toFixed(1)} mmol/L/h`;
+  $("now_rq").textContent = sim.our[k] > 0.3 ? (sim.cer[k] / sim.our[k]).toFixed(2) : "—（不耗氧）";
+  $("now_ga").textContent = `${sim.G[k].toFixed(1)} ／ ${sim.A[k].toFixed(1)} mM`;
+  const ADV = {
+    "遲滯期": "細胞還在適應新環境。縮短遲滯期的方法：用對數期的種菌、種菌培養基和主培養基接近。",
+    "好氧指數生長": "供氧充足、長得最快。要長更多菌，關鍵是撐住這段：供氧跟得上、溫度 pH 在最適範圍。",
+    "缺氧・溢流代謝": "菌太多、供氧跟不上，多出的糖變成乙酸。指標：耗氧速率貼著上限、乙酸上升、呼吸商升高。可以提高供氧、降溫或改成分批補糖。",
+    "回頭吃乙酸": "糖吃完了，改吃先前分泌的乙酸，長得很慢。若目標是菌量，可以在這之前補糖。",
+    "厭氧發酵": "停止通氣後，細胞改走發酵路徑產乙醇、乙酸、甲酸。這個階段要顧的是溫度、pH 與吃糖速度。",
+    "停滯期": "沒有可用的碳源或氧氣，生長停止。這時收穫，或依目標補料。",
+  };
+  $("now_advice").textContent = ADV[ph];
+  drawMap(k);
+}
+
+function drawMap(k) {
+  const sub = sim.sub[k];
+  const flux = sub === "none" ? null : lookupMap(sub, sim.s[k], sim.o2cap[k]);
+  const [W, H] = LAYOUT.size;
+  let s = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="中心碳代謝流量圖">`;
+  s += `<defs><marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--accent)"/></marker></defs>`;
+  const N = LAYOUT.nodes;
+  for (const e of LAYOUT.edges) {
+    let v = 0;
+    if (flux) for (const [r, c] of Object.entries(e.flux)) v += c * (flux[r] || 0);
+    let [a, b] = [N[e.from], N[e.to]];
+    if (v < 0) [a, b] = [b, a];
+    const dx = b[0] - a[0], dy = b[1] - a[1], len = Math.hypot(dx, dy);
+    const ux = dx / len, uy = dy / len;
+    const x1 = a[0] + ux * 22, y1 = a[1] + uy * 16, x2 = b[0] - ux * 26, y2 = b[1] - uy * 19;
+    const av = Math.abs(v);
+    if (av < 0.05) {
+      s += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" style="stroke:var(--muted)" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.6"/>`;
+    } else {
+      const sw = Math.min(14, 1.5 + av * 0.55);
+      s += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" style="stroke:var(--accent)" stroke-width="${sw.toFixed(1)}" stroke-linecap="round" marker-end="url(#ah)" opacity="0.85"/>`;
+      const f = e.at == null ? 0.5 : (v < 0 ? 1 - e.at : e.at);
+      const mx = x1 + (x2 - x1) * f - uy * (sw / 2 + 12), my = y1 + (y2 - y1) * f + ux * (sw / 2 + 12) + 4;
+      s += `<text x="${mx}" y="${my}" text-anchor="middle" font-size="12" style="fill:var(--ink);font-family:var(--font-data)">${av.toFixed(1)}</text>`;
+    }
+  }
+  for (const [id, [x, y, label]] of Object.entries(N)) {
+    const w = Math.max(56, label.length * 13 + 16);
+    s += `<rect x="${x - w / 2}" y="${y - 14}" width="${w}" height="28" rx="6" style="fill:var(--panel);stroke:var(--line)"/>`;
+    s += `<text x="${x}" y="${y + 5}" font-size="13" text-anchor="middle" style="fill:var(--ink);font-family:var(--font-body)">${label}</text>`;
+  }
+  s += `</svg>`;
+  $("map").innerHTML = s;
+}
+
+function drawScan() {
+  const cv = $("scan");
+  const { ctx, w, h } = setupCanvas(cv);
+  const L = 44, R = 12, T = 12, B = 28;
+  const pw = w - L - R, ph = h - T - B;
+  const pts = [];
+  for (let s = 0; s <= state.t_end + 1e-9; s += 0.25) {
+    const p = params(Object.assign({}, state, { two: true, t_sw: s }));
+    pts.push([s, summary(simulate(p)).E_end]);
+  }
+  const best = pts.reduce((a, b) => (b[1] > a[1] ? b : a));
+  const yMax = niceMax(best[1] * 1.1 || 1);
+  const xs = (t) => L + (t / state.t_end) * pw, ys = (v) => T + ph - (v / yMax) * ph;
+  ctx.clearRect(0, 0, w, h);
+  ctx.font = `12px ${css("--font-data")}`;
+  ctx.strokeStyle = css("--line"); ctx.fillStyle = css("--muted");
+  for (let i = 0; i <= 4; i++) {
+    const y = T + ph - (i / 4) * ph;
+    ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(L + pw, y); ctx.stroke();
+    ctx.textAlign = "right"; ctx.fillText((yMax * i / 4).toFixed(0), L - 6, y + 4);
+  }
+  ctx.textAlign = "center";
+  const step = state.t_end > 24 ? 6 : state.t_end > 12 ? 4 : 2;
+  for (let t = 0; t <= state.t_end + 1e-9; t += step) ctx.fillText(`${t}h`, xs(t), T + ph + 18);
+  ctx.strokeStyle = css("--etoh"); ctx.lineWidth = 2.5; ctx.beginPath();
+  pts.forEach(([s, v], i) => (i ? ctx.lineTo(xs(s), ys(v)) : ctx.moveTo(xs(s), ys(v))));
+  ctx.stroke();
+  ctx.fillStyle = css("--etoh"); ctx.beginPath(); ctx.arc(xs(best[0]), ys(best[1]), 5, 0, 7); ctx.fill();
+  if (state.two) {
+    const cur = summary(sim).E_end;
+    ctx.fillStyle = css("--ink"); ctx.beginPath(); ctx.arc(xs(state.t_sw), ys(cur), 4, 0, 7); ctx.fill();
+  }
+  $("scan_note").textContent = `最佳切換約在第 ${best[0].toFixed(2)} h，收穫時乙醇 ${best[1].toFixed(0)} mM（藍點）` +
+    (state.two ? `；你目前設定在第 ${state.t_sw.toFixed(2)} h（黑點）。` : "。目前沒有啟用第二階段。");
+}
+
+function renderSens() {
+  const target = $("target").value;
+  const ref = summary(sim)[target];
+  const items = [
+    ["溫度 ±2 °C", "T", 2], ["pH ±0.5", "pH", 0.5], ["供氧 ±20%", "otr", "20%"], ["接種量 ±20%", "X0", "20%"],
+    ["遲滯期 ±1 h", "lag", 1], ["起始糖 ±20%", "G0", "20%"],
+  ];
+  if (state.two) items.push(["切換時間 ±1 h", "t_sw", 1], ["切換後溫度 ±2 °C", "T2", 2]);
+  const rows = items.map(([label, key, d]) => {
+    const run = (sign) => {
+      const st = Object.assign({}, state);
+      st[key] = typeof d === "string" ? st[key] * (1 + sign * parseFloat(d) / 100) : st[key] + sign * d;
+      if (key === "lag") st[key] = Math.max(0, st[key]);
+      if (key === "t_sw") st[key] = Math.min(Math.max(0, st[key]), st.t_end);
+      return summary(simulate(params(st)))[target] - ref;
+    };
+    return { label, up: run(1), down: run(-1) };
+  });
+  const m = Math.max(1e-9, ...rows.map((r) => Math.max(Math.abs(r.up), Math.abs(r.down))));
+  rows.sort((a, b) => Math.max(Math.abs(b.up), Math.abs(b.down)) - Math.max(Math.abs(a.up), Math.abs(a.down)));
+  const digits = target === "X_end" ? 2 : 0;
+  $("sens").innerHTML = rows.map((r) => {
+    const lo = Math.min(r.up, r.down), hi = Math.max(r.up, r.down);
+    const neg = lo < 0 ? `<span class="neg" style="width:${(-lo / m * 50).toFixed(1)}%"></span>` : "";
+    const pos = hi > 0 ? `<span class="pos" style="width:${(hi / m * 50).toFixed(1)}%"></span>` : "";
+    return `<div class="bar"><span>${r.label}</span><span class="track">${neg}${pos}</span><span class="val">${lo.toFixed(digits)}／+${Math.max(0, hi).toFixed(digits)}</span></div>`;
+  }).join("") + `<p class="hint">橘色：最壞的變化；綠色：最好的變化。目前值 ${ref.toFixed(digits)}。</p>`;
+}
+
+for (const id of IDS) $(id).addEventListener("input", update);
+$("two").addEventListener("change", update);
+$("scrub").addEventListener("input", () => { drawChart(); renderNow(); });
+$("target").addEventListener("change", renderSens);
+document.querySelectorAll("[data-preset]").forEach((b) => b.addEventListener("click", () => loadPreset(b.dataset.preset)));
+$("pin").addEventListener("click", () => { base = sim; baseSum = summary(sim); renderKpis(); drawChart(); });
+$("unpin").addEventListener("click", () => { base = null; baseSum = null; renderKpis(); drawChart(); });
+window.addEventListener("resize", () => { drawChart(); drawScan(); });
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { drawChart(); drawScan(); renderNow(); });
+new MutationObserver(() => { drawChart(); drawScan(); renderNow(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+$("scrub").value = 7;
+loadPreset("two");
+</script>

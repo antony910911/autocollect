@@ -179,7 +179,7 @@ def test_check_refs_extracts_dois_with_parentheses():
 
 def test_all_courses_build_with_unique_pages():
     courses = lessons.all_courses(LESSON_DIR.parent)
-    assert {c.dir.name for c in courses} >= {"ammonia", "aiot", "aiot-advanced"}
+    assert {c.dir.name for c in courses} >= {"ammonia", "aiot", "aiot-advanced", "dna-to-culture"}
     page_ids = []
     for course in courses:
         records, uploads = lessons.build_course(course, None, now_ms=1000)
