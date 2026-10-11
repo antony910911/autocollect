@@ -16,7 +16,7 @@ from pathlib import Path
 import requests
 from requests.utils import quote
 
-DOI = re.compile(r"https://doi\.org/(10\.\S+?)(?=[\s。）)]*$)")
+DOI = re.compile(r"https://doi\.org/(10\.\S+)")
 YEAR = re.compile(r"\((\d{4})\)")
 
 
@@ -48,16 +48,26 @@ def lookup(doi: str, mailto: str) -> dict | None:
     return None
 
 
-def check_line(line: str, mailto: str) -> tuple[bool, str]:
+def extract_doi(line: str) -> str | None:
     m = DOI.search(line)
     if not m:
+        return None
+    doi = m.group(1).rstrip("。，,）")
+    while doi.endswith(")") and doi.count("(") < doi.count(")"):  # 句尾的括號不是 DOI 的一部分
+        doi = doi[:-1]
+    return doi
+
+
+def check_line(line: str, mailto: str) -> tuple[bool, str]:
+    doi = extract_doi(line)
+    if not doi:
         return True, "（無 DOI，略過）"
-    doi = m.group(1)
     meta = lookup(doi, mailto)
     if meta is None:
         return False, f"Crossref 查無此 DOI：{doi}"
     title = " ".join(meta.get("title") or [""])
-    words = set(norm_words(title)) - {"a", "an", "the", "of", "and", "in", "by", "for", "to", "on", "with"}
+    # Crossref 有時把註腳併進標題，只比對前 15 個字
+    words = set(norm_words(title)[:15]) - {"a", "an", "the", "of", "and", "in", "by", "for", "to", "on", "with"}
     line_words = set(norm_words(line))
     hit = len(words & line_words) / max(1, len(words))
     year_cr = None

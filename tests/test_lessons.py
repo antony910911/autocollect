@@ -136,3 +136,18 @@ def test_publish_uploads_images_once(lesson, fake_folio):
     assert all(store[f"as:{a}"]["data"]["type"] == "image/png" for a in assets)
     res = lessons.publish(url, "pw", lesson)
     assert res["images_uploaded"] == 0 and len(puts) == 2
+
+
+def test_check_refs_extracts_dois_with_parentheses():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("check_refs", LESSON_DIR / "tools" / "check_refs.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.extract_doi("x. https://doi.org/10.1061/(ASCE)0733-9372(2001)127:8(673)") == \
+        "10.1061/(ASCE)0733-9372(2001)127:8(673)"
+    assert mod.extract_doi("（見 https://doi.org/10.1/abc）") == "10.1/abc"
+    assert mod.extract_doi("https://doi.org/10.1890/1051-0761(2006)016[2091:MFMDDA]2.0.CO;2") == \
+        "10.1890/1051-0761(2006)016[2091:MFMDDA]2.0.CO;2"
+    assert mod.extract_doi("沒有 DOI") is None
+    refs = mod.references((LESSON_DIR / "06-qpcr-design.md").read_text("utf-8"))
+    assert len(refs) == 20 and all(mod.extract_doi(r) for r in refs)

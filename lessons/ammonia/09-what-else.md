@@ -127,6 +127,6 @@
 3. Metcalf & Eddy, Inc.（Tchobanoglous G, Stensel HD, Tsuchihashi R, Burton F）(2014). *Wastewater Engineering: Treatment and Resource Recovery*, 5th ed. McGraw-Hill Education.
 4. Hedström A (2001). Ion exchange of ammonium in zeolites: a literature review. *Journal of Environmental Engineering*, 127, 673–681. https://doi.org/10.1061/(ASCE)0733-9372(2001)127:8(673)
 5. Le Corre KS, Valsami-Jones E, Hobbs P, Parsons SA (2009). Phosphorus recovery from wastewater by struvite crystallization: a review. *Critical Reviews in Environmental Science and Technology*, 39, 433–477. https://doi.org/10.1080/10643380701640573
-6. Forster P, Storelvmo T, Armour K, et al. (2021). The Earth's energy budget, climate feedbacks, and climate sensitivity. In: *Climate Change 2021: The Physical Science Basis*（IPCC AR6 WG I, Chapter 7）. Cambridge University Press. https://doi.org/10.1017/9781009157896.009
+6. Forster P, Storelvmo T, Armour K, et al. (2023). The Earth's energy budget, climate feedbacks, and climate sensitivity. In: *Climate Change 2021: The Physical Science Basis*（IPCC 第六次評估報告第一工作組第 7 章，2021 年發布，2023 年正式出版）. Cambridge University Press. https://doi.org/10.1017/9781009157896.009
 7. Rittmann BE, McCarty PL (2020). *Environmental Biotechnology: Principles and Applications*, 2nd ed. McGraw-Hill Education.
 8. APHA, AWWA, WEF (2023). *Standard Methods for the Examination of Water and Wastewater*, 24th ed. American Public Health Association.
