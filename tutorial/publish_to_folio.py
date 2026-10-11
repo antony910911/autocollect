@@ -16,25 +16,24 @@ HERE = Path(__file__).parent
 NB = {"id": "nb-claude-tutorial", "name": "Claude圖解教材"}
 # 分區：(id, 名稱, 顏色, 這次之前自動取過的名稱——仍是舊名時才改名，你在 Folio 改過的名稱不動)
 SECTIONS = [
-    ("sc-microbe-dna", "微生物 1｜全貌與基因註解", "#2f7fbf", ["微生物DNA功能分析"]),
-    ("sc-microbe-model", "微生物 2｜代謝模型與動態模擬", "#1f7a5c", []),
-    ("sc-microbe-opt", "微生物 3｜分階段最適化與實驗設計", "#b06a10", []),
-    ("sc-microbe-build", "微生物 4｜分工、介面與行動計畫", "#7b3fa0", []),
+    ("sc-microbe-dna", "微生物DNA功能分析", "#2f7fbf", ["微生物 1｜全貌與基因註解"]),
 ]
+# 先前拆出來的分區：章節搬回上面那一個分區後，若已經沒有任何頁面就刪除
+RETIRED_SECTIONS = ["sc-microbe-model", "sc-microbe-opt", "sc-microbe-build"]
 SC = {"id": SECTIONS[0][0], "name": SECTIONS[0][1]}
 # 章節：(slug, 檔名, 分區 id, 順序, 這次之前自動取過的標題)
 CHAPTERS = [
     ("ch00", "ch00-你的問題一次回答.md", "sc-microbe-dna", 0, []),
     ("ch01", "ch01-總覽與基因註解.md", "sc-microbe-dna", 1,
      ["第 1 章　從一段 DNA 到「這隻菌能做什麼」：系統總覽與基因註解入門"]),
-    ("ch02", "ch02-代謝模型與FBA.md", "sc-microbe-model", 2, []),
-    ("ch03", "ch03-動態模型與dFBA.md", "sc-microbe-model", 3, []),
-    ("ch04", "ch04-分階段參數與指標.md", "sc-microbe-opt", 4, []),
-    ("ch05", "ch05-實驗設計與AI最適化.md", "sc-microbe-opt", 5, []),
-    ("ch06", "ch06-你收集什麼與AI做什麼.md", "sc-microbe-build", 6, []),
-    ("ch07", "ch07-視覺化模擬介面.md", "sc-microbe-build", 7, []),
-    ("ch08", "ch08-國內外做法與行動計畫.md", "sc-microbe-build", 8, []),
-    ("ch09", "ch09-操作手冊與判斷規則.md", "sc-microbe-build", 9, []),
+    ("ch02", "ch02-代謝模型與FBA.md", "sc-microbe-dna", 2, []),
+    ("ch03", "ch03-動態模型與dFBA.md", "sc-microbe-dna", 3, []),
+    ("ch04", "ch04-分階段參數與指標.md", "sc-microbe-dna", 4, []),
+    ("ch05", "ch05-實驗設計與AI最適化.md", "sc-microbe-dna", 5, []),
+    ("ch06", "ch06-你收集什麼與AI做什麼.md", "sc-microbe-dna", 6, []),
+    ("ch07", "ch07-視覺化模擬介面.md", "sc-microbe-dna", 7, []),
+    ("ch08", "ch08-國內外做法與行動計畫.md", "sc-microbe-dna", 8, []),
+    ("ch09", "ch09-操作手冊與判斷規則.md", "sc-microbe-dna", 9, []),
 ]
 
 
@@ -118,6 +117,16 @@ if __name__ == "__main__":
     nb_id, sc_id = plan(existing)
     print(f"放進筆記本 {nb_id}，分區 {[s[0] for s in SECTIONS]}")
     print(publish(url, token, build(int(time.time() * 1000), existing)))
+    after = fetch_all(url, token)
+    for sid in RETIRED_SECTIONS:
+        if f"sc:{sid}" not in after:
+            continue
+        pages = [k for k, d in after.items() if k.startswith("pg:") and d and d.get("sectionId") == sid]
+        if pages:
+            print(f"分區 {sid} 裡還有頁面 {pages}，沒有刪除")
+            continue
+        gone = {"key": f"sc:{sid}", "rev": make_rev(int(time.time() * 1000), 900), "deleted": 1, "data": None}
+        print(f"刪除空的分區 {sid}：", publish(url, token, [gone]))
     if nb_id != NB["id"] and f"nb:{NB['id']}" in existing:
         left = [k for k, d in existing.items() if k.startswith("sc:") and d and d.get("notebookId") == NB["id"]
                 and k != f"sc:{SC['id']}"]
