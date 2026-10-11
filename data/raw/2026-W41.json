@@ -15,12 +15,12 @@
   {
    "source": "Google News [zh-TW] 生質燃料",
    "ok": true,
-   "count": 17
+   "count": 18
   },
   {
    "source": "Google News [zh-TW] 永續航空燃料 SAF",
    "ok": true,
-   "count": 7
+   "count": 6
   },
   {
    "source": "Google News [zh-TW] 沼氣 發電",
@@ -40,7 +40,7 @@
   {
    "source": "Google News [zh-TW] 生質柴油",
    "ok": true,
-   "count": 1
+   "count": 2
   },
   {
    "source": "Google News [zh-TW] 生質酒精 纖維素",
@@ -50,7 +50,7 @@
   {
    "source": "Google News [zh-TW] 農業廢棄物 再利用 能源",
    "ok": true,
-   "count": 14
+   "count": 13
   },
   {
    "source": "Google News [zh-TW] 廚餘 厭氧消化",
@@ -65,7 +65,7 @@
   {
    "source": "Google News [zh-TW] 能源署 生質",
    "ok": true,
-   "count": 12
+   "count": 13
   },
   {
    "source": "Google News [zh-TW] 乾式厭氧醱酵",
@@ -80,7 +80,7 @@
   {
    "source": "Google News [zh-TW] 酒糟 再利用",
    "ok": true,
-   "count": 2
+   "count": 3
   },
   {
    "source": "Google News [zh-TW] 生物可分解塑膠 PHA",
@@ -115,7 +115,7 @@
   {
    "source": "Google News [en] renewable diesel HVO",
    "ok": true,
-   "count": 9
+   "count": 10
   },
   {
    "source": "Google News [en] biomethane OR \"renewable natural gas\"",
@@ -130,32 +130,32 @@
   {
    "source": "Google News [en] biochar carbon removal",
    "ok": true,
-   "count": 12
+   "count": 15
   },
   {
    "source": "Google News [en] BECCS",
    "ok": true,
-   "count": 7
+   "count": 6
   },
   {
    "source": "Google News [en] bio-methanol OR \"biomethanol\"",
    "ok": true,
-   "count": 14
+   "count": 13
   },
   {
    "source": "Google News [en] cellulosic ethanol",
    "ok": true,
-   "count": 10
+   "count": 9
   },
   {
    "source": "Google News [en] pyrolysis bio-oil",
    "ok": true,
-   "count": 5
+   "count": 6
   },
   {
    "source": "Google News [en] hydrothermal liquefaction",
    "ok": true,
-   "count": 5
+   "count": 4
   },
   {
    "source": "Google News [en] biomass gasification hydrogen",
@@ -220,7 +220,7 @@
   {
    "source": "Google News [en] site:biofuelsdigest.com",
    "ok": true,
-   "count": 15
+   "count": 10
   },
   {
    "source": "Google News [en] site:bioenergy-news.com",
@@ -385,8 +385,8 @@
    "paper": 120
   },
   "by_lang": {
-   "zh-TW": 55,
-   "en": 287,
+   "zh-TW": 56,
+   "en": 286,
    "ja": 17,
    "es": 1
   },
@@ -408,6 +408,10 @@
     14
    ],
    [
+    "site:biomassmagazine.com",
+    14
+   ],
+   [
     "biomethane OR \"renewable natural gas\"",
     14
    ],
@@ -416,7 +420,7 @@
     14
    ],
    [
-    "site:biomassmagazine.com",
+    "biochar carbon removal",
     13
    ],
    [
@@ -424,7 +428,7 @@
     13
    ],
    [
-    "biorefinery",
+    "能源署 生質",
     13
    ],
    [
@@ -432,11 +436,7 @@
     12
    ],
    [
-    "biochar carbon removal",
-    12
-   ],
-   [
-    "bio-methanol OR \"biomethanol\"",
+    "biorefinery",
     12
    ],
    [
@@ -563,18 +563,22 @@
    ],
    [
     "Bioplastics NEWS",
-    9
+    8
    ],
    [
-    "Ethanol Producer Magazine",
-    6
+    "Department of Energy (.gov)",
+    8
+   ],
+   [
+    "Quantum Commodity Intelligence",
+    7
    ],
    [
     "環境部新聞專區",
     6
    ],
    [
-    "openPR.com",
+    "Ethanol Producer Magazine",
     6
    ],
    [
@@ -582,12 +586,12 @@
     5
    ],
    [
-    "Quantum Commodity Intelligence",
+    "openPR.com",
     5
    ],
    [
-    "Department of Energy (.gov)",
-    5
+    "Life 生活網",
+    4
    ],
    [
     "經濟日報",
@@ -596,14 +600,52 @@
    [
     "BioEnergy Times",
     3
-   ],
-   [
-    "Life 生活網",
-    3
    ]
   ]
  },
  "items": [
+  {
+   "kind": "news",
+   "title": "金門酒廠驚艷亮相國慶酒會 以70餘年之匠心佳釀 向世界傳遞台灣風土之美",
+   "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE15RW1mcXFzUGgtMXAxMHpSLWk5bzdoVS1KNkgzbU1YVUZTNmUwVll6VEZoenR6SWV1V21KbnNPcVZlWGxaRDJqQld1cw?oc=5",
+   "source": "樂聯網",
+   "published": "2026-10-11",
+   "lang": "zh-TW",
+   "summary": "金門酒廠驚艷亮相國慶酒會 以70餘年之匠心佳釀 向世界傳遞台灣風土之美 樂聯網",
+   "meta": {},
+   "queries": [
+    "酒糟 再利用"
+   ],
+   "sid": "S1"
+  },
+  {
+   "kind": "news",
+   "title": "KAPSARC TO JOIN 25TH WPC ENERGY CONGRESS IN RIYADH AS NATIONAL PARTNER",
+   "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1SekxiLUpwV3AzUFJKX3RTQ2RuY01WM3JjaUVXN0tlLVJyVzRzSXVkV1RtQWpjX2JmWi03eWExTlhMdkl1LVdnNnlGcHIxYzFQLXJaZ0FiQTY4Nk0za216dTVZeFF2Q2FE?oc=5",
+   "source": "www.aap.com.au",
+   "published": "2026-10-11",
+   "lang": "en",
+   "summary": "KAPSARC TO JOIN 25TH WPC ENERGY CONGRESS IN RIYADH AS NATIONAL PARTNER www.aap.com.au",
+   "meta": {},
+   "queries": [
+    "biochar carbon removal"
+   ],
+   "sid": "S2"
+  },
+  {
+   "kind": "news",
+   "title": "Hapag-Lloyd completes first biomethanol bunkering",
+   "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNR0tnTUF1UG9DQ09fU2ZYTzlOS1E0RjhFOS0wc0lua3Zyekt6eTljTmhmLW8tc29aa2FtcVpCVy1ZdFhjTEpuc1ZOSVF4VUlxWkFuRHJEOHhXMDVyOHRycnlyWWstYUV2eEluOTE2OEU2a1loeHpvTVlFSnQ2V1RKQ29PN3EzdC1hZlBzb21Zc0FjVzcyVFU0cHBn?oc=5",
+   "source": "WorldCargo News",
+   "published": "2026-10-11",
+   "lang": "en",
+   "summary": "Hapag-Lloyd completes first biomethanol bunkering WorldCargo News",
+   "meta": {},
+   "queries": [
+    "bio-methanol OR \"biomethanol\""
+   ],
+   "sid": "S3"
+  },
   {
    "kind": "news",
    "title": "高雄港區新聞網／金屬中心攜手中央大學簽署MOU 瞄準氫能、儲能與綠色材料搶攻淨零商機",
@@ -616,7 +658,21 @@
    "queries": [
     "永續航空燃料 SAF"
    ],
-   "sid": "S1"
+   "sid": "S4"
+  },
+  {
+   "kind": "news",
+   "title": "油價飆漲讓能源補貼爆增！印尼擔心財政赤字超標，大砍各單位差旅預算 | 李靖棠 | 新聞",
+   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9CejJROVluLVIxU0IzRDEwSGQ3MDNQM0JXWjVHME56R19yWmw0SmVBUllnWk1LSTA3MnRFYWpoaHRXTWhIeVJBWGRsUUQ0QQ?oc=5",
+   "source": "風傳媒",
+   "published": "2026-10-10",
+   "lang": "zh-TW",
+   "summary": "油價飆漲讓能源補貼爆增！印尼擔心財政赤字超標，大砍各單位差旅預算 | 李靖棠 | 新聞 風傳媒",
+   "meta": {},
+   "queries": [
+    "生質柴油"
+   ],
+   "sid": "S5"
   },
   {
    "kind": "news",
@@ -630,12 +686,12 @@
    "queries": [
     "農業廢棄物 再利用 能源"
    ],
-   "sid": "S2"
+   "sid": "S6"
   },
   {
    "kind": "news",
    "title": "玉璽酒、年份酒齊上桌 金門酒廠國慶酒會秀文化底蘊",
-   "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9RMllENnExYU5fM0NnLWs2RlpGM3RWemhKRXNYYnF3VlR3bUYzTmFiWlROMUw0ZThUR1BKMGI5a2Q0MlJWcFpIQy1R0gFKQVVfeXFMT1EyWUQ2cTFhTl8zQ2ctazZGWkYzdFZ6aEpFc1hicXdWVHdtRjNOYWJaVE4xTDRlOFRHUEowYjlrZDQyUlZwWkhDLVE?oc=5",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5mYVNmY0l1bkN4OEJUUWNpbTRydThnVUQzdm4zSFNDSk9ROTlkamVpT3V2clRYZmFoUFFVTDBhNmdXbUJfdFVUdWdITV9QZFF1MVHSAVJBVV95cUxOZmFTZmNJdW5DeDhCVFFjaW00cnU4Z1VEM3ZuM0hTQ0pPUTk5ZGplaU91dnJUWGZhaFBRVUwwYTZnV21CX3RVVHVnSE1fUGRRdTFR?oc=5",
    "source": "立報傳媒",
    "published": "2026-10-10",
    "lang": "zh-TW",
@@ -644,21 +700,7 @@
    "queries": [
     "酒糟 再利用"
    ],
-   "sid": "S3"
-  },
-  {
-   "kind": "news",
-   "title": "金酒驚艷亮相國慶酒會 向世界傳遞臺灣風土之美",
-   "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNa1k2UURsbUpSYUlLSUZTLW5nSmI5NFlPZW9pVXA2WGdDTlF3VFoyQjB4QWdQTnZBeFZfalZFYkktYVUxUFdDem1oQVF1TXZHLVN0WlBIMWZkM2U2TWc2ZFdBLVpsSHpObnNod0hPZHRONlpwdjF3V1UwcEFyZjQzeHYxcG9HVHhScmhVTG96cw?oc=5",
-   "source": "PChome Online 新聞",
-   "published": "2026-10-10",
-   "lang": "zh-TW",
-   "summary": "金酒驚艷亮相國慶酒會 向世界傳遞臺灣風土之美 PChome Online 新聞",
-   "meta": {},
-   "queries": [
-    "酒糟 再利用"
-   ],
-   "sid": "S4"
+   "sid": "S7"
   },
   {
    "kind": "news",
@@ -672,21 +714,21 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S5"
+   "sid": "S8"
   },
   {
    "kind": "news",
-   "title": "PM assures support for waste-to-fuel technology",
-   "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQQWF0VXdsaFZ3UWJQZGRnbGZzLUs1VFRkeTdJbDF5NFBZWm43b05WMi1yajF4cEZkSEJiR3doR2x0X2FCbGQ2SUdUY3E1ZUlnLWhHYWoxcU4wcEhwQmwxVm9KZmxXZjRvUkFickt3ZHd5SUxfdXFGV3RsNG1qWi1XVVA4ZFNQNW1YQnFNYTBQMXZCWDFSLTFoQlA5UnNZcXPSAZ8BQVVfeXFMUEFhdFV3bGhWd1FiUGRkZ2xmcy1LNVRUZHk3SWwxeTRQWVpuN29OVjItcmoxeHBGZEhCYkd3aEdsdF9hQmxkNklHVGNxNWVJZy1oR2FqMXFOMHBIcEJsMVZvSmZsV2Y0b1JBYnJLd2R3eUlMX3VxRld0bDRtalotV1VQOGRTUDVtWEJxTWEwUDF2QlgxUi0xaEJQOVJzWXFz?oc=5",
-   "source": "Dhaka Tribune",
+   "title": "Organic waste ‘could fuel biogas bonanza’",
+   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNZ1dDNW9xaEJIeXFfLUxkSXpiWkhEcjhXeWRjdFFhWEhtb3VpRHNqWmZ1R21VY2g5Uml2Q3NwODhFYUlRYUZpSUpCaFlZZFdNR1JOeUNlQm81eUQ4VFFPUUg5V2NSRlNWTGUxNXoxUE02bDdzU0J0ZW9LbTZ3ei1PT0hzd25mUzNCMnZSaUc5ekM5Yy13bFhGSGtFLWZHbFV1?oc=5",
+   "source": "Gulf Daily News (Bahrain)",
    "published": "2026-10-10",
    "lang": "en",
-   "summary": "PM assures support for waste-to-fuel technology Dhaka Tribune",
+   "summary": "Organic waste ‘could fuel biogas bonanza’ Gulf Daily News (Bahrain)",
    "meta": {},
    "queries": [
-    "hydrothermal liquefaction"
+    "biogas anaerobic digestion"
    ],
-   "sid": "S6"
+   "sid": "S9"
   },
   {
    "kind": "news",
@@ -700,63 +742,35 @@
    "queries": [
     "hydrothermal liquefaction"
    ],
-   "sid": "S7"
-  },
-  {
-   "kind": "news",
-   "title": "PM assures support for waste-to-fuel project implementation",
-   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE0ycmM4MVNSZGREWU55aFZPNkhqbjUtMlAzU1llR3VyTkRmV1U0eU9WaV9vdnhYQVBDamR1VGlnWmxRVDVrQTFjcWZNeS1PTWZ2dGlJ?oc=5",
-   "source": "Bangladesh Sangbad Sangstha (BSS)",
-   "published": "2026-10-10",
-   "lang": "en",
-   "summary": "PM assures support for waste-to-fuel project implementation Bangladesh Sangbad Sangstha (BSS)",
-   "meta": {},
-   "queries": [
-    "hydrothermal liquefaction"
-   ],
-   "sid": "S8"
-  },
-  {
-   "kind": "news",
-   "title": "PM backs project to turn waste into fuel oil",
-   "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5hMXVCcU9vNEtQVjdBODM3UjBJR21YSEdXZzVQLS16VG9SSW5iMjBTMHhDMTBTcm55UjZMY2FFMWFtWDNNc2ZXc0dn?oc=5",
-   "source": "Daily Observer",
-   "published": "2026-10-10",
-   "lang": "en",
-   "summary": "PM backs project to turn waste into fuel oil Daily Observer",
-   "meta": {},
-   "queries": [
-    "hydrothermal liquefaction"
-   ],
-   "sid": "S9"
-  },
-  {
-   "kind": "news",
-   "title": "PM Assures Support for KUET Project Producing Fuel Oil from Waste",
-   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFAxeFBZWWk2NVVlNmJNZ0F5dFJ1RGNTZlNrODJTM0c5Zngwa3pzLU0yWXV3U1JCb3hDZVFnc2JWaGpsS0VoTWV0aE9iSndFakRRY0pCNjQzeFh1VVU?oc=5",
-   "source": "RTV News",
-   "published": "2026-10-10",
-   "lang": "en",
-   "summary": "PM Assures Support for KUET Project Producing Fuel Oil from Waste RTV News",
-   "meta": {},
-   "queries": [
-    "hydrothermal liquefaction"
-   ],
    "sid": "S10"
   },
   {
    "kind": "news",
-   "title": "SAF: Spotlight On 45Z",
-   "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1JbktLRWREaGNJRkFCV2tzMzUzeVA4a3lhcjdFVUtNdEhFUHhpRHp2N0NSQmxaOEpPdHZHRUxNdTlZbDhRaWxqenlONnhqWG05cEJEbVlOUks2akd0enppcFhoc0pVNkUw?oc=5",
-   "source": "Ethanol Producer Magazine",
+   "title": "Bangladesh eyes fuel oil from human waste, farm residue",
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQbGFpaVZPYmM2cXhFZGZYMUJ3di1MUWVqMV94bjFLMVZBX3UtdUtDWnZqQnpQRHBDZDBxTEFsRkxHaTZJN2RxZUhPak96Z0t4RFgtYU8xZFRlbjAtbjY3UEdfMTlXYVBsellnbGZrd1dEbWxsZ0hJT0IzTVRuTVlJNDFFckV4Rm1yemlGSXNsSl9saTlvUGppYUU0bjJzcDAwZzV5cmVjdVRQU0cyVGpLTTlQLWdmZjFMczVOT29nck5GX1HSAcMBQVVfeXFMUGxhaWlWT2JjNnF4RWRmWDFCd3YtTFFlajFfeG4xSzFWQV91LXVLQ1p2akJ6UERwQ2QwcUxBbEZMR2k2STdkcWVIT2pPemdLeERYLWFPMWRUZW4wLW42N1BHXzE5V2FQbHpZZ2xma3dXRG1sbGdISU9CM01Ubk1ZSTQxRXJFeEZtcnppRklzbEpfbGk5b1BqaWFFNG4yc3AwMGc1eXJlY3VUUFNHMlRqS005UC1nZmYxTHM1Tk9vZ3JORl9R?oc=5",
+   "source": "The Financial Express",
    "published": "2026-10-10",
    "lang": "en",
-   "summary": "SAF: Spotlight On 45Z Ethanol Producer Magazine",
+   "summary": "Bangladesh eyes fuel oil from human waste, farm residue The Financial Express",
    "meta": {},
    "queries": [
-    "alcohol-to-jet"
+    "hydrothermal liquefaction"
    ],
    "sid": "S11"
+  },
+  {
+   "kind": "news",
+   "title": "PM assures support for waste-to-fuel technology",
+   "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQb05ubFpQbk9LUlRzb3hWYzdsRnFVeFpmNkcxOWVUcFNlOC1zNVBVUHdEMWtEMjNlTTdnT0JJeDFoamFXT0k4eTFjZGxLZDBKUnhndDBoQ0dLQmlyc1pBUUJYLWs0WlZBNW51YURtb2JYLVlaaWk5MmpwbGVJWkkwbk1ia2ZpNU1nUW9v0gGLAUFVX3lxTFBvTm5sWlBuT0tSVHNveFZjN2xGcVV4WmY2RzE5ZVRwU2U4LXM1UFVQd0Qxa0QyM2VNN2dPQkl4MWhqYVdPSTh5MWNkbEtkMEpSeGd0MGhDR0tCaXJzWkFRQlgtazRaVkE1bnVhRG1vYlgtWVppaTkyanBsZUlaSTBuTWJrZmk1TWdRb28?oc=5",
+   "source": "The Daily Ittefaq",
+   "published": "2026-10-10",
+   "lang": "en",
+   "summary": "PM assures support for waste-to-fuel technology The Daily Ittefaq",
+   "meta": {},
+   "queries": [
+    "hydrothermal liquefaction"
+   ],
+   "sid": "S12"
   },
   {
    "kind": "news",
@@ -770,7 +784,21 @@
    "queries": [
     "alcohol-to-jet"
    ],
-   "sid": "S12"
+   "sid": "S13"
+  },
+  {
+   "kind": "news",
+   "title": "UP clears AI Mission, SAF policy to promote tech and green fuel | Hindustan Times",
+   "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPbDdUal9HY3p0S0JkZFdSTmwwZ3RtZWdLRy1YN1Y5RUc1TkZXWE9acFlleGhnTEt3UHdhSjUwVXQxZ1RuOE5kbHdIVWttLXo4T2t2UTZ3Q3ZhcU5HOEpaNjRnTFd4OWxqeW80dXFVWVl2NXM3VTAzaW1PRER5OTZCeW9jdGxOWTF0R05HOU5CT1psN29tRk41bDdWNWI1MlVFTXNSSFpva04zRFQ4NnpVNi1vbzJJOUExSFJBOC1vWV9YdHdjcXlmanB0aGNUX0VyQjJlU9IB1AFBVV95cUxPbDdUal9HY3p0S0JkZFdSTmwwZ3RtZWdLRy1YN1Y5RUc1TkZXWE9acFlleGhnTEt3UHdhSjUwVXQxZ1RuOE5kbHdIVWttLXo4T2t2UTZ3Q3ZhcU5HOEpaNjRnTFd4OWxqeW80dXFVWVl2NXM3VTAzaW1PRER5OTZCeW9jdGxOWTF0R05HOU5CT1psN29tRk41bDdWNWI1MlVFTXNSSFpva04zRFQ4NnpVNi1vbzJJOUExSFJBOC1vWV9YdHdjcXlmanB0aGNUX0VyQjJlUw?oc=5",
+   "source": "Hindustan Times",
+   "published": "2026-10-10",
+   "lang": "en",
+   "summary": "UP clears AI Mission, SAF policy to promote tech and green fuel | Hindustan Times Hindustan Times",
+   "meta": {},
+   "queries": [
+    "alcohol-to-jet"
+   ],
+   "sid": "S14"
   },
   {
    "kind": "news",
@@ -784,7 +812,7 @@
    "queries": [
     "site:biomassmagazine.com"
    ],
-   "sid": "S13"
+   "sid": "S15"
   },
   {
    "kind": "news",
@@ -798,7 +826,7 @@
    "queries": [
     "site:biomassmagazine.com"
    ],
-   "sid": "S14"
+   "sid": "S16"
   },
   {
    "kind": "news",
@@ -812,7 +840,7 @@
    "queries": [
     "バイオマス発電"
    ],
-   "sid": "S15"
+   "sid": "S17"
   },
   {
    "kind": "news",
@@ -825,36 +853,6 @@
    "meta": {},
    "queries": [
     "バイオマス発電"
-   ],
-   "sid": "S16"
-  },
-  {
-   "kind": "news",
-   "title": "New Zealand funds wood pellet, torrefied biomass and wood energy aggregation projects",
-   "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOa1BxYXktTDctcDZrdzgya3N1cGpULURVMnZ4eXlrQmxUcFZPNkZDM1FWYnduZ0NGTGViVWFydGFCWE13NHFsMlBDdjhuWlJZLU8tLXd4TzE2bjZTU3lNODhWUGljaUV0MWJpTGE3d2pVQ0NmcjBFTjk0SDg1T1NqdVJwa2lfenhpSXZmUWhleUxXRUtaSTdxSmpnMWRtVzNyeUR3c3Z1S0tGVFNuT2liTkN1SU9BYjV6Vk4xSlM1b0FwZw?oc=5",
-   "source": "https://megaproject.com/",
-   "published": "2026-10-09",
-   "lang": "en",
-   "summary": "New Zealand funds wood pellet, torrefied biomass and wood energy aggregation projects https://megaproject.com/",
-   "meta": {},
-   "queries": [
-    "biomass power plant",
-    "site:biomassmagazine.com"
-   ],
-   "sid": "S17"
-  },
-  {
-   "kind": "news",
-   "title": "Strategic Biofuels Selects Valmet for Louisiana Green Fuels Project",
-   "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPMl9QeVZsTkpDb2d4bGdsUEQ3RXVVUms3YzJMT0xVMWJNdU83NGVLV0FDWWhDRnFpb0ZBb1dhdHdRWUdMamVyb0dfVEZpcUQ1Y1djZDMyeUxOWHBlNW9WdFdwVEo5U1RTZVcwYUowVHpCQVVZMGNxcVVpMG5nTFBmdnlxVVV1cTB4TnppU1pNUHV5eGhJcmhXajhQLTF0dEJTdHBCRXVfVHB0eXhFeUZpa9IBswFBVV95cUxNenV0ZXJZNzRUQWIzNEFkd0JrWjFjNVhnWlpfRk43T2x3UU9PbS03a0QwQzBOWFdUTDBDRlNYQmNmQzlTOWJMWmhFNk1LUTNOaDdmVUpjMnNNZGxMWHl4V3RSZDZyNjNBN1pmZzFGWHRpd3pPcEpBMFVMUWZ6ZlBrd3RqS2lQbmJnUVFObkxtdWV6YmRHeFVfQTFld0dzVVF6RFJsVHBOSkhCbHJzQVdkOHNXOA?oc=5",
-   "source": "ResourceWise",
-   "published": "2026-10-09",
-   "lang": "en",
-   "summary": "Strategic Biofuels Selects Valmet for Louisiana Green Fuels Project ResourceWise",
-   "meta": {},
-   "queries": [
-    "biomass power plant",
-    "biorefinery"
    ],
    "sid": "S18"
   },
@@ -931,6 +929,34 @@
   },
   {
    "kind": "news",
+   "title": "D-ribose may aid marathon performance and recovery, says Bioenergy Life Science",
+   "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQVTlrRDNZN1hJU0NXVFBvbkZIazVLYy1LVHB2ay1wVlpUdnZZZ1FpaV9TaGZQSjRHSkNyOUNjYjlDd3BORW5DUzlPdFEtR0hmVmFzeFJ3VW56MlNIV3l6Wk9KRDBXeHhqTHlXZVA3X0ZuLVV6a0k2N2dRel9vQkZrVlo3WFUwdzNIc1ZaNzlxd2NMdUU1U3NBSXBR?oc=5",
+   "source": "Nutrition Insight",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "D-ribose may aid marathon performance and recovery, says Bioenergy Life Science Nutrition Insight",
+   "meta": {},
+   "queries": [
+    "bioenergy"
+   ],
+   "sid": "S24"
+  },
+  {
+   "kind": "news",
+   "title": "New Zealand funds wood pellet, torrefied biomass and wood energy aggregation projects",
+   "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOa1BxYXktTDctcDZrdzgya3N1cGpULURVMnZ4eXlrQmxUcFZPNkZDM1FWYnduZ0NGTGViVWFydGFCWE13NHFsMlBDdjhuWlJZLU8tLXd4TzE2bjZTU3lNODhWUGljaUV0MWJpTGE3d2pVQ0NmcjBFTjk0SDg1T1NqdVJwa2lfenhpSXZmUWhleUxXRUtaSTdxSmpnMWRtVzNyeUR3c3Z1S0tGVFNuT2liTkN1SU9BYjV6Vk4xSlM1b0FwZw?oc=5",
+   "source": "https://megaproject.com/",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "New Zealand funds wood pellet, torrefied biomass and wood energy aggregation projects https://megaproject.com/",
+   "meta": {},
+   "queries": [
+    "biomass power plant"
+   ],
+   "sid": "S25"
+  },
+  {
+   "kind": "news",
    "title": "Teplárny Brno Opens Modernized Biomass Power Station In Maloměřice",
    "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYWplaUJWdU04Qko3ZmR4SGo4U25GX0tWUnltMW5LVDhYRTVIeXp1R0kwOUpkbHQxd1N4M28zaGp2YkQ0b3hVT3FaeTJRc1hremxuUWV2R3B3S3Q4bVphV1lRYUVyNzB3dm1GVWtTbXRuVkxmNXh0U3h5azBINHFLcEdFdnkwN2RBbkpPMGhINUpPSkRxVkZCN04wbEc0S1gyOENibXB2czc?oc=5",
    "source": "Brno Daily",
@@ -941,7 +967,21 @@
    "queries": [
     "biomass power plant"
    ],
-   "sid": "S24"
+   "sid": "S26"
+  },
+  {
+   "kind": "news",
+   "title": "Scout Clean Energy Announces PPA with Oracle for Texas Wind Energy Farm",
+   "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNRUpmTmw0V1p2cFJHUFVnbmVpRWtSWTNiTG9WNnoyUW9JNHRKSUMzZDA4TkU0YkRNMnk1cHA0bGdlNjB1QnNDdTdvY3hoVzZUTnJjVzNIVUhvRXg1a29jbEJ5N1N4TGdVVzJ4QnQtMHBRaHNKdzJ1S3NtTHJyWjlqa3YtUE1hYUY3R3NWSU1qZTNOQzFyUVp1YlRJME9fTC1COUp1R1dwSnhhV2hVRnZsZA?oc=5",
+   "source": "megaproject.com",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Scout Clean Energy Announces PPA with Oracle for Texas Wind Energy Farm megaproject.com",
+   "meta": {},
+   "queries": [
+    "biomass power plant"
+   ],
+   "sid": "S27"
   },
   {
    "kind": "news",
@@ -955,7 +995,7 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S25"
+   "sid": "S28"
   },
   {
    "kind": "news",
@@ -969,7 +1009,7 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S26"
+   "sid": "S29"
   },
   {
    "kind": "news",
@@ -983,7 +1023,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S27"
+   "sid": "S30"
   },
   {
    "kind": "news",
@@ -997,21 +1037,7 @@
    "queries": [
     "biogas anaerobic digestion"
    ],
-   "sid": "S28"
-  },
-  {
-   "kind": "news",
-   "title": "How a city's food waste heats homes and businesses",
-   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1qc0lQTGhZczRVd1V2d3pRcTB3SHZZS3p6M1FpTmJEcFVna0pOOHE5dS1hTm9kWHZnUEpmd3pTWGZuNGM0NEltTEtSMkpzTkN5VWJDaUthZnFob1dUM1E?oc=5",
-   "source": "BBC",
-   "published": "2026-10-09",
-   "lang": "en",
-   "summary": "How a city's food waste heats homes and businesses BBC",
-   "meta": {},
-   "queries": [
-    "biogas anaerobic digestion"
-   ],
-   "sid": "S29"
+   "sid": "S31"
   },
   {
    "kind": "news",
@@ -1025,7 +1051,7 @@
    "queries": [
     "biochar carbon removal"
    ],
-   "sid": "S30"
+   "sid": "S32"
   },
   {
    "kind": "news",
@@ -1039,21 +1065,7 @@
    "queries": [
     "biochar carbon removal"
    ],
-   "sid": "S31"
-  },
-  {
-   "kind": "news",
-   "title": "Rainbow approves biomass burial module with 200-yr durability",
-   "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQTy12RXhIenpLVWtTNXhRVnlMZHlKU2RlTlVndFhwX0MwN3lkWE9XaHFOMm53SmpNNE12S0ZRSjl6MHFKY0VrUThtQU5RS2JPMjBnU3g4MHY5dzRnczRRcEtWYldYcjVhbzFJckRnUVB4Y2pxS3pJM2U1Q3pVNkdQZWxsN1pRWEVNMzlDQ2Q4ajV3Vm9sWi0yMUxtZFdobVZFN2FvX3NzR1YtVVhYcVd2Qg?oc=5",
-   "source": "Quantum Commodity Intelligence",
-   "published": "2026-10-09",
-   "lang": "en",
-   "summary": "Rainbow approves biomass burial module with 200-yr durability Quantum Commodity Intelligence",
-   "meta": {},
-   "queries": [
-    "biochar carbon removal"
-   ],
-   "sid": "S32"
+   "sid": "S33"
   },
   {
    "kind": "news",
@@ -1067,7 +1079,21 @@
    "queries": [
     "biochar carbon removal"
    ],
-   "sid": "S33"
+   "sid": "S34"
+  },
+  {
+   "kind": "news",
+   "title": "Rainbow approves biomass burial module with 200-yr durability",
+   "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQTy12RXhIenpLVWtTNXhRVnlMZHlKU2RlTlVndFhwX0MwN3lkWE9XaHFOMm53SmpNNE12S0ZRSjl6MHFKY0VrUThtQU5RS2JPMjBnU3g4MHY5dzRnczRRcEtWYldYcjVhbzFJckRnUVB4Y2pxS3pJM2U1Q3pVNkdQZWxsN1pRWEVNMzlDQ2Q4ajV3Vm9sWi0yMUxtZFdobVZFN2FvX3NzR1YtVVhYcVd2Qg?oc=5",
+   "source": "Quantum Commodity Intelligence",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Rainbow approves biomass burial module with 200-yr durability Quantum Commodity Intelligence",
+   "meta": {},
+   "queries": [
+    "biochar carbon removal"
+   ],
+   "sid": "S35"
   },
   {
    "kind": "news",
@@ -1081,7 +1107,7 @@
    "queries": [
     "BECCS"
    ],
-   "sid": "S34"
+   "sid": "S36"
   },
   {
    "kind": "news",
@@ -1095,7 +1121,7 @@
    "queries": [
     "BECCS"
    ],
-   "sid": "S35"
+   "sid": "S37"
   },
   {
    "kind": "news",
@@ -1109,12 +1135,12 @@
    "queries": [
     "cellulosic ethanol"
    ],
-   "sid": "S36"
+   "sid": "S38"
   },
   {
    "kind": "news",
    "title": "KBC (A Yokogawa Company) announces launch of Petro-SIM® 7.7",
-   "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPYmU3SUhXYTl2VTUtZENMVnhFR2JfMUhrV1QzLVU4WWJuS20tcDNsR3dJNEM4STlPVDZMWnJxdjdMQnFVdFJiQ0MtanB0dGJ6TGxnYzJ3OTVjUDd3T1ZXRGcyRy1LOFJsZnU0SmZwa1RLdlFfT0FPZDFSLVJnVVl6SnQ1VE9NTC0zWEZ5VDZwQVViZXJRdHUwLWRUTktHLWs5YS1vQzNFcHlubXZraUJVc3IyWnltZklYY1NldWVR0gG-AUFVX3lxTE9iZTdJSFdhOXZVNS1kQ0xWeEVHYl8xSGtXVDMtVThZYm5LbS1wM2xHd0k0QzhJOU9UNkxacnF2N0xCcVV0UmJDQy1qcHR0YnpMbGdjMnc5NWNQN3dPVldEZzJHLUs4UmxmdTRKZnBrVEt2UV9PQU9kMVItUmdVWXpKdDVUT01MLTNYRnlUNnBBVWJlclF0dTAtZFROS0ctazlhLW9DM0VweW5tdmtpQlVzcjJaeW1mSVhjU2V1ZVE?oc=5",
+   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQVEdqLWlLRlZzR2luTTBRa29aX2w2T0hBOGhjSGs5LXpkbFp4MU9LamdxdHRIMXFmRlQxZmJCLWNVamR1X0taaTdYM1RVQnA0TVlOYWs3WjhlZjZraVhtMDRJdDItUm9KVXRpTW9CdU55UDlnX3FGVUsydzFCdU1OdW5wMDN6S3k1N0hBT0ZsalFVUmVvUDdTa3BCaUZaWl9jZ3hDLWh4YlNoMjEyV3RaT0ZnUGpGOUE50gG-AUFVX3lxTE9iZTdJSFdhOXZVNS1kQ0xWeEVHYl8xSGtXVDMtVThZYm5LbS1wM2xHd0k0QzhJOU9UNkxacnF2N0xCcVV0UmJDQy1qcHR0YnpMbGdjMnc5NWNQN3dPVldEZzJHLUs4UmxmdTRKZnBrVEt2UV9PQU9kMVItUmdVWXpKdDVUT01MLTNYRnlUNnBBVWJlclF0dTAtZFROS0ctazlhLW9DM0VweW5tdmtpQlVzcjJaeW1mSVhjU2V1ZVE?oc=5",
    "source": "Hydrocarbon Engineering",
    "published": "2026-10-09",
    "lang": "en",
@@ -1123,35 +1149,21 @@
    "queries": [
     "pyrolysis bio-oil"
    ],
-   "sid": "S37"
-  },
-  {
-   "kind": "news",
-   "title": "India’s SAF sector could become a new market for US corn",
-   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOSE1fN2NFNnZ3RTdhYTEwcmc0NmlzRHBhTEpKWHNvZ0RETnZnZmNrUmFxb21mdE1lV09fOWZVZTJnV3VjcUJNTkVYeFVzbDA3UWwzNDg1cFhYeDV3akhqVmZ2SkpodHF1bjhpdE1LcjRQZldkS0ZZOXdCTGhaRk5JLUx5SWZzYWtpNmRsM1A2Z1N0SUJBWUE?oc=5",
-   "source": "UkrAgroConsult",
-   "published": "2026-10-09",
-   "lang": "en",
-   "summary": "India’s SAF sector could become a new market for US corn UkrAgroConsult",
-   "meta": {},
-   "queries": [
-    "alcohol-to-jet"
-   ],
-   "sid": "S38"
-  },
-  {
-   "kind": "news",
-   "title": "US pushes maize-based ethanol for India’s higher fuel blends, aviation sector",
-   "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOVnU1bmFQeVFLRmZpZXZfNm1aM2RRSGlfRjBRY2RzZFNMNk9nRXZVUHFoVllUM1ptZkFYNXA0OGtscF9NNVMzUkhLSjdLSFlwRUNKcVZQZG93bHpha3l6N2NLb3lWUmVzMjh2bl9EWG1zMUwzYXNrZTlDczFXVWNsV210cGhib25CZWhLVUVRVGVXQ1hsU3MxdHVnUDNYckdYWGY3THJn?oc=5",
-   "source": "ChiniMandi",
-   "published": "2026-10-09",
-   "lang": "en",
-   "summary": "US pushes maize-based ethanol for India’s higher fuel blends, aviation sector ChiniMandi",
-   "meta": {},
-   "queries": [
-    "alcohol-to-jet"
-   ],
    "sid": "S39"
+  },
+  {
+   "kind": "news",
+   "title": "Idemitsu Kosan produces naphtha from oil derived from used plastics, completing an in-house supply chain from sourcing to refining",
+   "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQMTFZOGhoQWF1NFhybXRFT1lSX05WQl9jSnhyRlFGVnRza1NEOXM1OVd2VFNMWm04TTN3ZmNjbUZvVDBpNVRXdTV5UGdJdnU3dnAwazNXMmxrUUREcmlBWThBUHlHX1V4RldjTzR5YnVDRkZ2bVhyQ0FSdUJUSF9zSmRWLTc0ZWpBNjF5RTlUWlJKTW4tNE4tZEkwbjFxZzM0TTItN1NIdmVkUEFVQzB0QTl4NmpUQ0d3UFc4bVZfcEJ2cjRfS0Fud2EzU29qOVZsSkdzNUhXWmd6QUZ4Ri1JSk0xY05DemdlRHFGWDJRVQ?oc=5",
+   "source": "Circular Economy Hub",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Idemitsu Kosan produces naphtha from oil derived from used plastics, completing an in-house supply chain from sourcing to refining Circular Economy Hub",
+   "meta": {},
+   "queries": [
+    "pyrolysis bio-oil"
+   ],
+   "sid": "S40"
   },
   {
    "kind": "news",
@@ -1165,7 +1177,49 @@
    "queries": [
     "alcohol-to-jet"
    ],
-   "sid": "S40"
+   "sid": "S41"
+  },
+  {
+   "kind": "news",
+   "title": "India’s SAF sector could become a new market for US corn",
+   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOSE1fN2NFNnZ3RTdhYTEwcmc0NmlzRHBhTEpKWHNvZ0RETnZnZmNrUmFxb21mdE1lV09fOWZVZTJnV3VjcUJNTkVYeFVzbDA3UWwzNDg1cFhYeDV3akhqVmZ2SkpodHF1bjhpdE1LcjRQZldkS0ZZOXdCTGhaRk5JLUx5SWZzYWtpNmRsM1A2Z1N0SUJBWUE?oc=5",
+   "source": "UkrAgroConsult",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "India’s SAF sector could become a new market for US corn UkrAgroConsult",
+   "meta": {},
+   "queries": [
+    "alcohol-to-jet"
+   ],
+   "sid": "S42"
+  },
+  {
+   "kind": "news",
+   "title": "US pushes maize-based ethanol for India’s higher fuel blends, aviation sector",
+   "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOVnU1bmFQeVFLRmZpZXZfNm1aM2RRSGlfRjBRY2RzZFNMNk9nRXZVUHFoVllUM1ptZkFYNXA0OGtscF9NNVMzUkhLSjdLSFlwRUNKcVZQZG93bHpha3l6N2NLb3lWUmVzMjh2bl9EWG1zMUwzYXNrZTlDczFXVWNsV210cGhib25CZWhLVUVRVGVXQ1hsU3MxdHVnUDNYckdYWGY3THJn?oc=5",
+   "source": "ChiniMandi",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "US pushes maize-based ethanol for India’s higher fuel blends, aviation sector ChiniMandi",
+   "meta": {},
+   "queries": [
+    "alcohol-to-jet"
+   ],
+   "sid": "S43"
+  },
+  {
+   "kind": "news",
+   "title": "USGBC: Seoul Biofuels, SAF Conference supports ethanol demand growth in South Korea",
+   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNb0tPTThPMVN5aldFZXR2dW91ZHZuOC02YVRsOFNGOWJ2SWJXamJVZzZpV01NcEFnX3RtWTFSUVRyRFpmQTlTSlJ6VlNheW5ESERuenFqcTV2V0tSVzFxLXd3Zjh5c2swcUxOVGtwVy1jRzgtN3duTE5lZnBob0htWHFvNUpnclpQb05Jc2VuR0g4bGlLN1BjUlExZU5nemlqd0JrSTN3NHQ1OHRqMTQzMEtENHEwRVIzOVE?oc=5",
+   "source": "Ethanol Producer Magazine",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "USGBC: Seoul Biofuels, SAF Conference supports ethanol demand growth in South Korea Ethanol Producer Magazine",
+   "meta": {},
+   "queries": [
+    "alcohol-to-jet"
+   ],
+   "sid": "S44"
   },
   {
    "kind": "news",
@@ -1179,7 +1233,7 @@
    "queries": [
     "alcohol-to-jet"
    ],
-   "sid": "S41"
+   "sid": "S45"
   },
   {
    "kind": "news",
@@ -1193,7 +1247,35 @@
    "queries": [
     "biorefinery"
    ],
-   "sid": "S42"
+   "sid": "S46"
+  },
+  {
+   "kind": "news",
+   "title": "Celtic Renewables secures funding for Scottish biorefinery",
+   "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNZ2M2ZzdadEZZZkJDOHA3NUc1OFBMVzFISXVrSHRQNkNqZ0wzQXJ4akhjQmhCdENVSUdqdHJ1RGNRa21SbWx6anhqZk8xZ1JKaTJmejZXU1BUbUpsUWFEV0ZaWWhqRDh4WFh0M3R4Wkt1eUlUM2JqTVg1dE01djVsYlV0czBCR3BoV3BZWmViQ1ZMaC0wMlVYYzlNcw?oc=5",
+   "source": "Ethanol Producer Magazine",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Celtic Renewables secures funding for Scottish biorefinery Ethanol Producer Magazine",
+   "meta": {},
+   "queries": [
+    "biorefinery"
+   ],
+   "sid": "S47"
+  },
+  {
+   "kind": "news",
+   "title": "Strategic Biofuels Selects Valmet for Louisiana Green Fuels Project",
+   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNenV0ZXJZNzRUQWIzNEFkd0JrWjFjNVhnWlpfRk43T2x3UU9PbS03a0QwQzBOWFdUTDBDRlNYQmNmQzlTOWJMWmhFNk1LUTNOaDdmVUpjMnNNZGxMWHl4V3RSZDZyNjNBN1pmZzFGWHRpd3pPcEpBMFVMUWZ6ZlBrd3RqS2lQbmJnUVFObkxtdWV6YmRHeFVfQTFld0dzVVF6RFJsVHBOSkhCbHJzQVdkOHNXONIBswFBVV95cUxNenV0ZXJZNzRUQWIzNEFkd0JrWjFjNVhnWlpfRk43T2x3UU9PbS03a0QwQzBOWFdUTDBDRlNYQmNmQzlTOWJMWmhFNk1LUTNOaDdmVUpjMnNNZGxMWHl4V3RSZDZyNjNBN1pmZzFGWHRpd3pPcEpBMFVMUWZ6ZlBrd3RqS2lQbmJnUVFObkxtdWV6YmRHeFVfQTFld0dzVVF6RFJsVHBOSkhCbHJzQVdkOHNXOA?oc=5",
+   "source": "ResourceWise",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Strategic Biofuels Selects Valmet for Louisiana Green Fuels Project ResourceWise",
+   "meta": {},
+   "queries": [
+    "biorefinery"
+   ],
+   "sid": "S48"
   },
   {
    "kind": "news",
@@ -1207,7 +1289,7 @@
    "queries": [
     "biorefinery"
    ],
-   "sid": "S43"
+   "sid": "S49"
   },
   {
    "kind": "news",
@@ -1221,7 +1303,7 @@
    "queries": [
     "precision fermentation"
    ],
-   "sid": "S44"
+   "sid": "S50"
   },
   {
    "kind": "news",
@@ -1235,7 +1317,7 @@
    "queries": [
     "precision fermentation"
    ],
-   "sid": "S45"
+   "sid": "S51"
   },
   {
    "kind": "news",
@@ -1249,7 +1331,7 @@
    "queries": [
     "synthetic biology yeast biomanufacturing"
    ],
-   "sid": "S46"
+   "sid": "S52"
   },
   {
    "kind": "news",
@@ -1263,7 +1345,7 @@
    "queries": [
     "bio-based cosmetic ingredients squalane"
    ],
-   "sid": "S47"
+   "sid": "S53"
   },
   {
    "kind": "news",
@@ -1277,7 +1359,7 @@
    "queries": [
     "site:biomassmagazine.com"
    ],
-   "sid": "S48"
+   "sid": "S54"
   },
   {
    "kind": "news",
@@ -1291,7 +1373,7 @@
    "queries": [
     "site:biomassmagazine.com"
    ],
-   "sid": "S49"
+   "sid": "S55"
   },
   {
    "kind": "news",
@@ -1305,21 +1387,7 @@
    "queries": [
     "site:biomassmagazine.com"
    ],
-   "sid": "S50"
-  },
-  {
-   "kind": "news",
-   "title": "Biomass Magazine",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9FdVBCVlFraFR0STN5RFVfb1dkSnhBMFFkSWtBdnhWRGlOaXpDMnNGWGF0YWNSTFZOSEFsR0xhV0RVdjNNQmVJVXFEZDVfXzA?oc=5",
-   "source": "Biomass Magazine",
-   "published": "2026-10-09",
-   "lang": "en",
-   "summary": "Biomass Magazine Biomass Magazine",
-   "meta": {},
-   "queries": [
-    "site:biomassmagazine.com"
-   ],
-   "sid": "S51"
+   "sid": "S56"
   },
   {
    "kind": "news",
@@ -1333,7 +1401,7 @@
    "queries": [
     "site:biomassmagazine.com"
    ],
-   "sid": "S52"
+   "sid": "S57"
   },
   {
    "kind": "news",
@@ -1347,7 +1415,7 @@
    "queries": [
     "site:bioenergy-news.com"
    ],
-   "sid": "S53"
+   "sid": "S58"
   },
   {
    "kind": "news",
@@ -1361,7 +1429,7 @@
    "queries": [
     "site:bioenergy-news.com"
    ],
-   "sid": "S54"
+   "sid": "S59"
   },
   {
    "kind": "news",
@@ -1375,7 +1443,7 @@
    "queries": [
     "site:bioenergy-news.com"
    ],
-   "sid": "S55"
+   "sid": "S60"
   },
   {
    "kind": "news",
@@ -1389,7 +1457,7 @@
    "queries": [
     "site:bioplasticsnews.com OR site:european-bioplastics.org"
    ],
-   "sid": "S56"
+   "sid": "S61"
   },
   {
    "kind": "news",
@@ -1403,21 +1471,21 @@
    "queries": [
     "site:bioplasticsnews.com OR site:european-bioplastics.org"
    ],
-   "sid": "S57"
+   "sid": "S62"
   },
   {
    "kind": "news",
-   "title": "Unlocking Success: Essential Strategies for Business Growth",
-   "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNUUV6U3dLQmN5eHNzNEhVRmM2MXI1UjRxeHhLSTdmUUE0VC1iLVlxYWdOM0tiRV90TFJWY3FHNXJmbU9xUFAyNHNfVVhXUGhmN2dyR1ROVDFEVG42V0JsZ1V2UnRIVGVHZ1F3amtpRmtzc2ZfR3FycFBCM0EtVWZtQm55NVJIX0pvd0hXV2hlM1hRVU9KNlpuNmdnSWwtODBSVjRj?oc=5",
+   "title": "Essential Guide to Optimizing Your Website for SEO Success",
+   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQZ2NvbzBtUVNfbTJWYnQ5TEJDMjA5X1luSVFIb3lYMk9BcUZFRXI0dzFnako1SHJ3RVgwQ0pSYzRYVVpzUTZyMkRra0FwN0VzaFpBd3VuTThseEoyRjhRT0twYlczUDN6Rl9KUm1EbXB4anFKd3k0Z2J3blZKOVk4U21mQnAxekFlLUR4X2I3VUNDdXBBdURMMEhwSzZYRU1vYzV1RnJjUHh4eDFZ?oc=5",
    "source": "Bioplastics NEWS",
    "published": "2026-10-09",
    "lang": "en",
-   "summary": "Unlocking Success: Essential Strategies for Business Growth Bioplastics NEWS",
+   "summary": "Essential Guide to Optimizing Your Website for SEO Success Bioplastics NEWS",
    "meta": {},
    "queries": [
     "site:bioplasticsnews.com OR site:european-bioplastics.org"
    ],
-   "sid": "S58"
+   "sid": "S63"
   },
   {
    "kind": "news",
@@ -1431,7 +1499,7 @@
    "queries": [
     "バイオマス発電"
    ],
-   "sid": "S59"
+   "sid": "S64"
   },
   {
    "kind": "news",
@@ -1445,7 +1513,7 @@
    "queries": [
     "持続可能な航空燃料"
    ],
-   "sid": "S60"
+   "sid": "S65"
   },
   {
    "kind": "news",
@@ -1459,7 +1527,7 @@
    "queries": [
     "バイオガス"
    ],
-   "sid": "S61"
+   "sid": "S66"
   },
   {
    "kind": "news",
@@ -1473,7 +1541,7 @@
    "queries": [
     "バイオガス"
    ],
-   "sid": "S62"
+   "sid": "S67"
   },
   {
    "kind": "news",
@@ -1489,7 +1557,23 @@
     "生質燃料",
     "能源署 生質"
    ],
-   "sid": "S63"
+   "sid": "S68"
+  },
+  {
+   "kind": "news",
+   "title": "Sustainable Aviation Fuels",
+   "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBXMXBMeGRqR2xPOWNvb1FmRmM3MkRSQnNNc255dmJTNU44LW5aWEFyREhzLWRkWE5BbTZKeGdJM3Nqd2c4dXk1NHVBVk84ck1zcktXLXVLOEM0WHZZbDllY25IU1hpWko5SEhDeA?oc=5",
+   "source": "Department of Energy (.gov)",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "Sustainable Aviation Fuels Department of Energy (.gov)",
+   "meta": {},
+   "queries": [
+    "bioenergy",
+    "sustainable aviation fuel",
+    "alcohol-to-jet"
+   ],
+   "sid": "S69"
   },
   {
    "kind": "news",
@@ -1504,7 +1588,7 @@
     "生質能源 發電",
     "生質柴油"
    ],
-   "sid": "S64"
+   "sid": "S70"
   },
   {
    "kind": "news",
@@ -1519,7 +1603,7 @@
     "沼氣 發電",
     "養豬場 沼氣"
    ],
-   "sid": "S65"
+   "sid": "S71"
   },
   {
    "kind": "news",
@@ -1534,7 +1618,7 @@
     "bioenergy",
     "biogas anaerobic digestion"
    ],
-   "sid": "S66"
+   "sid": "S72"
   },
   {
    "kind": "news",
@@ -1549,7 +1633,7 @@
     "biomass power plant",
     "site:biomassmagazine.com"
    ],
-   "sid": "S67"
+   "sid": "S73"
   },
   {
    "kind": "news",
@@ -1564,7 +1648,37 @@
     "biochar carbon removal",
     "site:biomassmagazine.com"
    ],
-   "sid": "S68"
+   "sid": "S74"
+  },
+  {
+   "kind": "news",
+   "title": "POET-DSM: Project Liberty",
+   "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBVZS1GU05TVVJkZWJCMVRFWWJTY2dpM2RDQldzczVPTTBVeXJ4UU9jc1pCTUtNYjVtaF9iNlRaNVZaWXFoNjV5ZFRSNFJVdU13THlPTDUtRTl3YmJMRzhOczFDOWhZczBqZ3c?oc=5",
+   "source": "Department of Energy (.gov)",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "POET-DSM: Project Liberty Department of Energy (.gov)",
+   "meta": {},
+   "queries": [
+    "cellulosic ethanol",
+    "biorefinery"
+   ],
+   "sid": "S75"
+  },
+  {
+   "kind": "news",
+   "title": "Thermochemical Conversion Processes",
+   "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1oQmh5QVNjaFRSc1hhVUhqUzlPc3VDOFE0ZndEN0pnWk95cG1mSHl1dGVLR0FOeWF6dVNfNFQzTUVBZ2ZSa3pFVXB1TEh3N1hyRXFmcnBISUVIa2dOQU1NR1BZRzM2WUR1cnVKY2M1VU5tX0lOUEdoMA?oc=5",
+   "source": "Department of Energy (.gov)",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "Thermochemical Conversion Processes Department of Energy (.gov)",
+   "meta": {},
+   "queries": [
+    "pyrolysis bio-oil",
+    "biomass gasification hydrogen"
+   ],
+   "sid": "S76"
   },
   {
    "kind": "news",
@@ -1578,7 +1692,7 @@
    "queries": [
     "生質能"
    ],
-   "sid": "S69"
+   "sid": "S77"
   },
   {
    "kind": "news",
@@ -1592,7 +1706,7 @@
    "queries": [
     "生質能"
    ],
-   "sid": "S70"
+   "sid": "S78"
   },
   {
    "kind": "news",
@@ -1606,7 +1720,7 @@
    "queries": [
     "生質能源 發電"
    ],
-   "sid": "S71"
+   "sid": "S79"
   },
   {
    "kind": "news",
@@ -1620,7 +1734,7 @@
    "queries": [
     "永續航空燃料 SAF"
    ],
-   "sid": "S72"
+   "sid": "S80"
   },
   {
    "kind": "news",
@@ -1634,7 +1748,7 @@
    "queries": [
     "沼氣 發電"
    ],
-   "sid": "S73"
+   "sid": "S81"
   },
   {
    "kind": "news",
@@ -1648,21 +1762,7 @@
    "queries": [
     "農業廢棄物 再利用 能源"
    ],
-   "sid": "S74"
-  },
-  {
-   "kind": "news",
-   "title": "2026年台北紡織展圓滿閉幕 未來商機估6千萬美元",
-   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPZUthbVVuRnIzbmFOWWdjUS1TSWNheU9XX2hIN25BTWM3MU5OWXBQZDBkbnBZbmZuejJOTG9QRktLb1UzbjJvalg1X1FQU0lyTG1OUVNUbnYtMjdRWDIyRHJEMno1bEFNMGotMDNiamNJZU1jZXJ1MjQ0Z1hSdmktLXNR?oc=5",
-   "source": "壹蘋新聞網",
-   "published": "2026-10-08",
-   "lang": "zh-TW",
-   "summary": "2026年台北紡織展圓滿閉幕 未來商機估6千萬美元 壹蘋新聞網",
-   "meta": {},
-   "queries": [
-    "農業廢棄物 再利用 能源"
-   ],
-   "sid": "S75"
+   "sid": "S82"
   },
   {
    "kind": "news",
@@ -1676,7 +1776,35 @@
    "queries": [
     "工研院 生質"
    ],
-   "sid": "S76"
+   "sid": "S83"
+  },
+  {
+   "kind": "news",
+   "title": "Co-Optimization of Fuels & Engines",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5xcVNLTDNiVEhScVM2Ml9xNjJLbGVyM0FTaS1KYmczRUtmNG4wcTZzYU5XdEtfSjhuaDZKS0U3dEZiS2ZDXzQ1S2lOYzRiOFpMbjRDVTVEei1ZYXNLSVd0X1lDSjBMcFVsa3ktS1h6UTM?oc=5",
+   "source": "Department of Energy (.gov)",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "Co-Optimization of Fuels & Engines Department of Energy (.gov)",
+   "meta": {},
+   "queries": [
+    "bioenergy"
+   ],
+   "sid": "S84"
+  },
+  {
+   "kind": "news",
+   "title": "Funding Notice: Department of Energy Announces up to $10 Million for Algal Systems Research and Development to Expand U.S. Bioenergy Feedstock",
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPc3RySGFHR3NlZkFfWXIzUUJ4VWM2SThQMlJxQjdWRlZlYTFLNTlJNlp6YXVlVlYtREpXUXhpdGVCbXNyUng2eXNINTBkX0VKdFRQTm5HSDU2UFoxLVlzVzNYZXE1RGNtRFJTN2NadnhDbEpfOTRidUVvUkRMT2Uyb1FIOC00MWFwYVF2Q1ZqQXZ0UEdMZE1pWVgyY01HaE9Gb1lBQ2hMTEtMNk94YlR4VTdNMVA?oc=5",
+   "source": "Department of Energy (.gov)",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "Funding Notice: Department of Energy Announces up to $10 Million for Algal Systems Research and Development to Expand U.S. Bioenergy Feedstock Department of Energy (.gov)",
+   "meta": {},
+   "queries": [
+    "bioenergy"
+   ],
+   "sid": "S85"
   },
   {
    "kind": "news",
@@ -1690,7 +1818,7 @@
    "queries": [
     "biomass power plant"
    ],
-   "sid": "S77"
+   "sid": "S86"
   },
   {
    "kind": "news",
@@ -1704,7 +1832,7 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S78"
+   "sid": "S87"
   },
   {
    "kind": "news",
@@ -1718,7 +1846,7 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S79"
+   "sid": "S88"
   },
   {
    "kind": "news",
@@ -1732,7 +1860,7 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S80"
+   "sid": "S89"
   },
   {
    "kind": "news",
@@ -1746,7 +1874,7 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S81"
+   "sid": "S90"
   },
   {
    "kind": "news",
@@ -1760,7 +1888,7 @@
    "queries": [
     "renewable diesel HVO"
    ],
-   "sid": "S82"
+   "sid": "S91"
   },
   {
    "kind": "news",
@@ -1774,7 +1902,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S83"
+   "sid": "S92"
   },
   {
    "kind": "news",
@@ -1788,7 +1916,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S84"
+   "sid": "S93"
   },
   {
    "kind": "news",
@@ -1802,7 +1930,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S85"
+   "sid": "S94"
   },
   {
    "kind": "news",
@@ -1816,7 +1944,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S86"
+   "sid": "S95"
   },
   {
    "kind": "news",
@@ -1830,21 +1958,7 @@
    "queries": [
     "biogas anaerobic digestion"
    ],
-   "sid": "S87"
-  },
-  {
-   "kind": "news",
-   "title": "Biomass Co-Digestion: Making Dairy Biogas Profitable",
-   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE55YWxKSDdmeDFQcVV2MllubGNmTVBSdGxJQmJRR3YtYmpHb2JjUkdlZUVGRzhnaDVpU2xyR2NfN0VpOFg2TVRQT0JTb0ltMTA0WGJJZGs0UTBhLXM?oc=5",
-   "source": "Scientific Frontline",
-   "published": "2026-10-08",
-   "lang": "en",
-   "summary": "Biomass Co-Digestion: Making Dairy Biogas Profitable Scientific Frontline",
-   "meta": {},
-   "queries": [
-    "biogas anaerobic digestion"
-   ],
-   "sid": "S88"
+   "sid": "S96"
   },
   {
    "kind": "news",
@@ -1858,7 +1972,7 @@
    "queries": [
     "biogas anaerobic digestion"
    ],
-   "sid": "S89"
+   "sid": "S97"
   },
   {
    "kind": "news",
@@ -1872,7 +1986,7 @@
    "queries": [
     "biogas anaerobic digestion"
    ],
-   "sid": "S90"
+   "sid": "S98"
   },
   {
    "kind": "news",
@@ -1886,7 +2000,7 @@
    "queries": [
     "biogas anaerobic digestion"
    ],
-   "sid": "S91"
+   "sid": "S99"
   },
   {
    "kind": "news",
@@ -1900,7 +2014,7 @@
    "queries": [
     "biogas anaerobic digestion"
    ],
-   "sid": "S92"
+   "sid": "S100"
   },
   {
    "kind": "news",
@@ -1914,7 +2028,7 @@
    "queries": [
     "biochar carbon removal"
    ],
-   "sid": "S93"
+   "sid": "S101"
   },
   {
    "kind": "news",
@@ -1928,21 +2042,7 @@
    "queries": [
     "biochar carbon removal"
    ],
-   "sid": "S94"
-  },
-  {
-   "kind": "news",
-   "title": "Biochar Fertilizer Market to Reach USD 8.9 Billion by 2036,",
-   "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNT1ZhMVlxRUd5aF9aaDRESER3QkgxUE9DMVhvZkFTWFZnWU1QN0VvMVh3RkZEU1BVUDF2SVNJbG1qLXRBRFA4SHowM2l0UGczamRJUkFLMHAzRTJOSUQ5SUhheHBrMThPN3h3SmI4OUtqQmdFY0hvaDhwQTZpV3NNNE8zX0NQSThpakx1WGFHWHRjSzFYRE5oVnFB?oc=5",
-   "source": "openPR.com",
-   "published": "2026-10-08",
-   "lang": "en",
-   "summary": "Biochar Fertilizer Market to Reach USD 8.9 Billion by 2036, openPR.com",
-   "meta": {},
-   "queries": [
-    "biochar carbon removal"
-   ],
-   "sid": "S95"
+   "sid": "S102"
   },
   {
    "kind": "news",
@@ -1956,21 +2056,7 @@
    "queries": [
     "BECCS"
    ],
-   "sid": "S96"
-  },
-  {
-   "kind": "news",
-   "title": "Gevo sells 10,000 carbon removal credits via ClimeFi partnership",
-   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNUmx5VWt2bGhMSk5lWnlEdFZQVEthZHBIXzdSNnJtVlhyNnhWLVNSQVdkaHZuaURMZjJ3dUFVTVlpMGtWdTlSMlNQNXZ3X0NwVHFGSlFtZUhPOTVlZ0ZjaGdVbndBSFJWbUh4Wmo2UjVuQURBSlhqUUtnbFVNNmNHUUljNnljSGZfdXZSMDF1QVM5d0ZOc29wMjdjQVY1NjZ0VmhaVVNlT2dwQmUydWpoN3BMTzZ3NlYtVUNYdFd4dHJ1VkE?oc=5",
-   "source": "StreetInsider",
-   "published": "2026-10-08",
-   "lang": "en",
-   "summary": "Gevo sells 10,000 carbon removal credits via ClimeFi partnership StreetInsider",
-   "meta": {},
-   "queries": [
-    "BECCS"
-   ],
-   "sid": "S97"
+   "sid": "S103"
   },
   {
    "kind": "news",
@@ -1984,7 +2070,7 @@
    "queries": [
     "bio-methanol OR \"biomethanol\""
    ],
-   "sid": "S98"
+   "sid": "S104"
   },
   {
    "kind": "news",
@@ -1998,7 +2084,21 @@
    "queries": [
     "cellulosic ethanol"
    ],
-   "sid": "S99"
+   "sid": "S105"
+  },
+  {
+   "kind": "news",
+   "title": "Funding Selections: MACRO - Mixed Algae Conversion Research Opportunity to Advance Development of Mixed Algae for Biofuels and Bioproducts",
+   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPNUwtYnkyZG0zVzB0SG5iSTZXblZaWGRCVWVBUjZpM2F5N180QW4tS0FJTmtoMzZfUjhpOFNHMm14YkhicF9kZXNOc0tDa0hVekhhSHNwZ3ZGSk94amNKYlIzOGFFS2lsYlBzMUhjLUlSVmJpZXVhVHAzUm1iUlBPcDRyOTJXNTlzam1uMGhtMF9QUExnRENWY1kzS0ZwUjJid1VYMGdBcFJCdmF1TDlIWTU0dGN6bjVHa2gxVkFlbw?oc=5",
+   "source": "Department of Energy (.gov)",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "Funding Selections: MACRO - Mixed Algae Conversion Research Opportunity to Advance Development of Mixed Algae for Biofuels and Bioproducts Department of Energy (.gov)",
+   "meta": {},
+   "queries": [
+    "hydrothermal liquefaction"
+   ],
+   "sid": "S106"
   },
   {
    "kind": "news",
@@ -2012,21 +2112,7 @@
    "queries": [
     "alcohol-to-jet"
    ],
-   "sid": "S100"
-  },
-  {
-   "kind": "news",
-   "title": "Gevo, Inc. Announces Sale and Delivery of 10,000 Carbon Removal Credits Through ClimeFi",
-   "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOSUhCdTZNVkxHX0JTNl96QUFaWHBxVkJvSGhmczJPangzVElsM3AyVnpyRmJMV2p5R0prdHBDLTlUTF90Q0xSV0NKZE1iVTZZZ2lOR0JVampOSVdzS0lLcEZpMzh3R2p1NnFSQ0FvTW1NVFFha1FDUXVFNjMtX1pqdUVKVk82dHFqMmNsRnVmTTBiZnFzNkVJdEdiMWk0bTl0clpMV0M3M09sZ3NnUUN2QzlwOHRSanhDOGtKQzk2WlFyUQ?oc=5",
-   "source": "Quiver Quantitative",
-   "published": "2026-10-08",
-   "lang": "en",
-   "summary": "Gevo, Inc. Announces Sale and Delivery of 10,000 Carbon Removal Credits Through ClimeFi Quiver Quantitative",
-   "meta": {},
-   "queries": [
-    "alcohol-to-jet"
-   ],
-   "sid": "S101"
+   "sid": "S107"
   },
   {
    "kind": "news",
@@ -2040,7 +2126,7 @@
    "queries": [
     "alcohol-to-jet"
    ],
-   "sid": "S102"
+   "sid": "S108"
   },
   {
    "kind": "news",
@@ -2054,7 +2140,7 @@
    "queries": [
     "biorefinery"
    ],
-   "sid": "S103"
+   "sid": "S109"
   },
   {
    "kind": "news",
@@ -2068,7 +2154,7 @@
    "queries": [
     "biorefinery"
    ],
-   "sid": "S104"
+   "sid": "S110"
   },
   {
    "kind": "news",
@@ -2082,7 +2168,7 @@
    "queries": [
     "biorefinery"
    ],
-   "sid": "S105"
+   "sid": "S111"
   },
   {
    "kind": "news",
@@ -2096,7 +2182,7 @@
    "queries": [
     "biorefinery"
    ],
-   "sid": "S106"
+   "sid": "S112"
   },
   {
    "kind": "news",
@@ -2110,7 +2196,7 @@
    "queries": [
     "precision fermentation"
    ],
-   "sid": "S107"
+   "sid": "S113"
   },
   {
    "kind": "news",
@@ -2124,7 +2210,7 @@
    "queries": [
     "precision fermentation"
    ],
-   "sid": "S108"
+   "sid": "S114"
   },
   {
    "kind": "news",
@@ -2138,21 +2224,7 @@
    "queries": [
     "site:biomassmagazine.com"
    ],
-   "sid": "S109"
-  },
-  {
-   "kind": "news",
-   "title": "XCF Global stockholders approve proposed business combination with DevvStream and Southern Energy Renewables",
-   "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNemF1ZlFwMGdUUzdXOGRsMmpTSjJpcjFHNTJlX1lndzFKa1VQRzR6MHczVHYyR2RwUU45MExYQS1vSkl1cXRXRFdTY1NjQXplMnFReUx0NUx0d08xaGtfd0lvR0ZUbkwyRXpRczRocWwwd3RUbTdTZVFHUlhiLUdXaU5adXBQLUkydk1pZWItUmdhNl9BTURuQ3pncTVibmdrNlRCT2pHb3FTQVpOWmo3Q2xFMFd4MDBpUk1lazQ1UTZodDlpTlZSeDZreFFIaFJ4d0REZGZMaEZXNE1ra3c?oc=5",
-   "source": "Biomass Magazine",
-   "published": "2026-10-08",
-   "lang": "en",
-   "summary": "XCF Global stockholders approve proposed business combination with DevvStream and Southern Energy Renewables Biomass Magazine",
-   "meta": {},
-   "queries": [
-    "site:biomassmagazine.com"
-   ],
-   "sid": "S110"
+   "sid": "S115"
   },
   {
    "kind": "news",
@@ -2166,7 +2238,21 @@
    "queries": [
     "site:biomassmagazine.com"
    ],
-   "sid": "S111"
+   "sid": "S116"
+  },
+  {
+   "kind": "news",
+   "title": "A Second Life for Railroad Ties: Evaluating Recovered Wood as Biomass Fuel",
+   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQa1hMUkFFTWh5NVBNdkZ1bEFxaWV2UXVFMVQ5MzhoOGNSbTNaaW84emFuaGdMc0dfeGxDTnktNzhPZE8zaTFhUmQ3ajVCRlpXR3NTLWppUFBuYVo3SkN4Z1ZBdzNpU3lzb2xTbnNDcjU3MzlVTTVaVWF0Z3dnT1hrSC1ydEdURDFfY0NURGlJRngyLVpCbERPUTJzcURLWU03M3Iyb3lDRGtnYUgwaUZR?oc=5",
+   "source": "Biomass Magazine",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "A Second Life for Railroad Ties: Evaluating Recovered Wood as Biomass Fuel Biomass Magazine",
+   "meta": {},
+   "queries": [
+    "site:biomassmagazine.com"
+   ],
+   "sid": "S117"
   },
   {
    "kind": "news",
@@ -2180,7 +2266,7 @@
    "queries": [
     "site:bioenergy-news.com"
    ],
-   "sid": "S112"
+   "sid": "S118"
   },
   {
    "kind": "news",
@@ -2194,7 +2280,7 @@
    "queries": [
     "site:bioenergy-news.com"
    ],
-   "sid": "S113"
+   "sid": "S119"
   },
   {
    "kind": "news",
@@ -2208,21 +2294,7 @@
    "queries": [
     "site:bioenergy-news.com"
    ],
-   "sid": "S114"
-  },
-  {
-   "kind": "news",
-   "title": "Top Strategies for Effective SEO in 2023 and Beyond",
-   "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQMEdVb3BhMWpmb1NPdmpZQ0JvNG1wR3JPTXk3RHlRdDl5RVpGeWVvMFBTclc4UTBVdVBIMXBlNUhJVnNieU5reVg0TFJrV3dwTXlOMVU4WmUycU5YVGZndUZ4SlBEbnRfeUVlME56SHVuSmtTZHpLQkhSYWxwQ1BoMm9KYWdxSnIxNi0wWGIyYktxd0E?oc=5",
-   "source": "Bioplastics NEWS",
-   "published": "2026-10-08",
-   "lang": "en",
-   "summary": "Top Strategies for Effective SEO in 2023 and Beyond Bioplastics NEWS",
-   "meta": {},
-   "queries": [
-    "site:bioplasticsnews.com OR site:european-bioplastics.org"
-   ],
-   "sid": "S115"
+   "sid": "S120"
   },
   {
    "kind": "news",
@@ -2236,7 +2308,7 @@
    "queries": [
     "site:bioplasticsnews.com OR site:european-bioplastics.org"
    ],
-   "sid": "S116"
+   "sid": "S121"
   },
   {
    "kind": "news",
@@ -2250,7 +2322,7 @@
    "queries": [
     "site:bioplasticsnews.com OR site:european-bioplastics.org"
    ],
-   "sid": "S117"
+   "sid": "S122"
   },
   {
    "kind": "news",
@@ -2264,7 +2336,7 @@
    "queries": [
     "site:bioenergyinternational.com"
    ],
-   "sid": "S118"
+   "sid": "S123"
   },
   {
    "kind": "news",
@@ -2278,21 +2350,7 @@
    "queries": [
     "site:bioenergyinternational.com"
    ],
-   "sid": "S119"
-  },
-  {
-   "kind": "news",
-   "title": "ハイテク「イヌ型ロボ」発電所の安全守る 北陸電力が導入実験 粉塵舞う施設を巡視｜経済｜石川のニュース",
-   "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9IMlFBZGJ6MVF0UFZybVd0Q0M2UVNmVU1Lc0hYUUVfbEd5TlFQQk1wRkxlb3MwZjFncThydV9MUzFnV2l2YURKNzlYUlJFbjE3Tm9VaEM3Zw?oc=5",
-   "source": "北國新聞",
-   "published": "2026-10-08",
-   "lang": "ja",
-   "summary": "ハイテク「イヌ型ロボ」発電所の安全守る 北陸電力が導入実験 粉塵舞う施設を巡視｜経済｜石川のニュース 北國新聞",
-   "meta": {},
-   "queries": [
-    "バイオマス発電"
-   ],
-   "sid": "S120"
+   "sid": "S124"
   },
   {
    "kind": "news",
@@ -2306,7 +2364,7 @@
    "queries": [
     "持続可能な航空燃料"
    ],
-   "sid": "S121"
+   "sid": "S125"
   },
   {
    "kind": "news",
@@ -2320,7 +2378,21 @@
    "queries": [
     "持続可能な航空燃料"
    ],
-   "sid": "S122"
+   "sid": "S126"
+  },
+  {
+   "kind": "news",
+   "title": "坂出市と廃食用油の資源化促進に関する連携協定を締結",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBfY3JKRE53Q0JVRDN3aHRXTzdKUlBVQWFnSEZnUUI0RVJXVTZ2VTh3WG45WEJidWM1M3Z2Umt4REJNMFoyWUNlbncyWXFhMTVEa0E?oc=5",
+   "source": "山陽新聞",
+   "published": "2026-10-08",
+   "lang": "ja",
+   "summary": "坂出市と廃食用油の資源化促進に関する連携協定を締結 山陽新聞",
+   "meta": {},
+   "queries": [
+    "持続可能な航空燃料"
+   ],
+   "sid": "S127"
   },
   {
    "kind": "news",
@@ -2334,7 +2406,7 @@
    "queries": [
     "持続可能な航空燃料"
    ],
-   "sid": "S123"
+   "sid": "S128"
   },
   {
    "kind": "news",
@@ -2348,7 +2420,7 @@
    "queries": [
     "持続可能な航空燃料"
    ],
-   "sid": "S124"
+   "sid": "S129"
   },
   {
    "kind": "news",
@@ -2362,7 +2434,7 @@
    "queries": [
     "バイオガス"
    ],
-   "sid": "S125"
+   "sid": "S130"
   },
   {
    "kind": "news",
@@ -2378,7 +2450,7 @@
     "生質能源 發電",
     "沼氣 發電"
    ],
-   "sid": "S126"
+   "sid": "S131"
   },
   {
    "kind": "news",
@@ -2394,7 +2466,7 @@
     "生質能源 發電",
     "沼氣 發電"
    ],
-   "sid": "S127"
+   "sid": "S132"
   },
   {
    "kind": "news",
@@ -2410,7 +2482,7 @@
     "biogas anaerobic digestion",
     "dry anaerobic digestion"
    ],
-   "sid": "S128"
+   "sid": "S133"
   },
   {
    "kind": "news",
@@ -2425,7 +2497,7 @@
     "生質能",
     "生質燃料"
    ],
-   "sid": "S129"
+   "sid": "S134"
   },
   {
    "kind": "news",
@@ -2440,7 +2512,7 @@
     "生質能",
     "能源署 生質"
    ],
-   "sid": "S130"
+   "sid": "S135"
   },
   {
    "kind": "news",
@@ -2455,7 +2527,37 @@
     "bioenergy",
     "site:bioenergy-news.com"
    ],
-   "sid": "S131"
+   "sid": "S136"
+  },
+  {
+   "kind": "news",
+   "title": "BerQ RNG acquires Rialto Bioenergy Facility",
+   "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQV1YtbWdNSkg2WUc2RzVHVWo3X0wybFRYSHU3QzBCbmE4RThYNVZQSzFDS0FpY0k3amZxejF1ZHUtTWhzSlBhSjFYZ3dMRUZ6RTNmVHljSHEteEtJcmdUYldySlEzMmR3djVDN3ItbVFYMVc4U18wcWQycVliYm52aHFNQUhhTjg?oc=5",
+   "source": "Biomass Magazine",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "BerQ RNG acquires Rialto Bioenergy Facility Biomass Magazine",
+   "meta": {},
+   "queries": [
+    "bioenergy",
+    "site:biomassmagazine.com"
+   ],
+   "sid": "S137"
+  },
+  {
+   "kind": "news",
+   "title": "Pacolet Milliken Expands its Biomass Platform with the Acquisition of Georgia Renewable Power",
+   "url": "https://news.google.com/rss/articles/CBMiqgJBVV95cUxOYVhrSFhBMURpSjRGVTB2dHd1LWFDc0VXRjdEZDc3OWxfNllUTlNfZmczTGNiMWhzT0lCQXhLMXkxeDZnLXhCQmRXRWhIYzBfcE5MaUcxaGsxY1V3RHY4N2Zjb3k2aFFqZVNmZFdfOV9KNWd5WW9ZMkRJQk1BYzl6RUJWR0txdzExRmpJV3VlNVh4WnNGdldYRi1VRy1EaTlWalA1VU1SYVhzN1lIemRKX1Rwb1c5R1VJRjk0MkR5bUhnR1dOZU1CVXZxSlZ1MXh5dUdRVC01VWVkSFhUMUo0VlhUMV9ROS1CalE1ZUdKbDNjVExtU2tvQ25WbG9IbWdWak1iVzdNMVFUMlRmNmh6VHJLUHJPMERldzdCdGJhWDZQS2ljR01CX3NB?oc=5",
+   "source": "Laurel Leader-Call",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "Pacolet Milliken Expands its Biomass Platform with the Acquisition of Georgia Renewable Power Laurel Leader-Call",
+   "meta": {},
+   "queries": [
+    "biomass power plant",
+    "site:biomassmagazine.com"
+   ],
+   "sid": "S138"
   },
   {
    "kind": "news",
@@ -2470,7 +2572,7 @@
     "sustainable aviation fuel",
     "alcohol-to-jet"
    ],
-   "sid": "S132"
+   "sid": "S139"
   },
   {
    "kind": "news",
@@ -2485,7 +2587,7 @@
     "sustainable aviation fuel",
     "alcohol-to-jet"
    ],
-   "sid": "S133"
+   "sid": "S140"
   },
   {
    "kind": "news",
@@ -2499,7 +2601,7 @@
    "queries": [
     "生質能"
    ],
-   "sid": "S134"
+   "sid": "S141"
   },
   {
    "kind": "news",
@@ -2513,7 +2615,7 @@
    "queries": [
     "沼氣 發電"
    ],
-   "sid": "S135"
+   "sid": "S142"
   },
   {
    "kind": "news",
@@ -2527,7 +2629,7 @@
    "queries": [
     "農業廢棄物 再利用 能源"
    ],
-   "sid": "S136"
+   "sid": "S143"
   },
   {
    "kind": "news",
@@ -2541,7 +2643,21 @@
    "queries": [
     "能源署 生質"
    ],
-   "sid": "S137"
+   "sid": "S144"
+  },
+  {
+   "kind": "news",
+   "title": "ESG台灣快訊》乖乖57年首罷工！5天抗爭換4項補償│各縣市注意：氣候調適首設高溫專章",
+   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE03YlRYLWF4ZlFXSXFYSEZLR1VmbGZRSFJOelVxeTlnR1FvTlgxRDNPSEo3clNyT25hd2tIZUx0cnJZUlpJcXF3WXdBUFBydw?oc=5",
+   "source": "ESG遠見",
+   "published": "2026-10-07",
+   "lang": "zh-TW",
+   "summary": "ESG台灣快訊》乖乖57年首罷工！5天抗爭換4項補償│各縣市注意：氣候調適首設高溫專章 ESG遠見",
+   "meta": {},
+   "queries": [
+    "能源署 生質"
+   ],
+   "sid": "S145"
   },
   {
    "kind": "news",
@@ -2555,7 +2671,7 @@
    "queries": [
     "生物可分解塑膠 PHA"
    ],
-   "sid": "S138"
+   "sid": "S146"
   },
   {
    "kind": "news",
@@ -2569,7 +2685,7 @@
    "queries": [
     "生物可分解塑膠 PHA"
    ],
-   "sid": "S139"
+   "sid": "S147"
   },
   {
    "kind": "news",
@@ -2583,7 +2699,7 @@
    "queries": [
     "工研院 生質"
    ],
-   "sid": "S140"
+   "sid": "S148"
   },
   {
    "kind": "news",
@@ -2597,21 +2713,21 @@
    "queries": [
     "工研院 生質"
    ],
-   "sid": "S141"
+   "sid": "S149"
   },
   {
    "kind": "news",
-   "title": "全球最大製藥盛會 工研院串聯產業從AI新藥開發到高階CDMO拓展國際商機",
-   "url": "https://news.google.com/rss/articles/CBMi_AJBVV95cUxQYnd6ZW1tdVZPOGVOdVVIUEtvOVJKTi1oTTMwOWtLSEFfTEx2MGZJblYxSFdVZS1FVE55eGdZdEdvRElCX09tZ2J3Y0ZDQU94YUVpTEkwMHVQSk1aTjlsMU1ZQ01HMWowNElVOHdwSEdXYWY2SEFyQmpmZEJSRWVaNWlubEhVRGVVOXZYRDRhX3FSbFBfMzUxOVFaSmJYZ19kalFQM3l2Z3RRc0puU2lKWU5vUU13cWhrQ0t2UW9XVHg0ejQxYXpQUzZhV2pIQ0lsZ1RWVzJZWVlBR3VaS1kwM2tSem1UeDZ5cTRnSlZKRmVDaFRDUHFpNXVQZ1pMS1Z0T2lKWmhxVHVjaFY4TnIyMGJsS0VrNVRsa3FZSXF5ZUlGVW0wQ0JLbnN0TG1VNUNGcGdYNXk5QTVSMDRyNm9aY1JpX1FKU2ZKV1lpdE9nbnZlOFUyLWdTOHREVFdLdFctUVcxbjI4anM1ckt3MHZ2eTBJY3ktc1BXTmpMUg?oc=5",
+   "title": "工研院領軍22家醫藥業前進義大利 展現台灣完整供應鏈實力 拓展國際商機",
+   "url": "https://news.google.com/rss/articles/CBMihANBVV95cUxNUjZzQ2pqT3hxeEpTNXg1R2NQQ0R4RktqZjAySURmVWhrcndYNm9UbmFzakV6dkVkdWNpRkoxV2lmdUxJYkRrNFZuZ2lydkNaM3JoNmdoZ0NtengxeXlzZWlHZjg1dVFfQUJNdW1WNFd5eFJDYml2bndfd2ljSW1NVGhuaWxQcTBPY0w1RVZYb1ZxRUplRG1sa0Zwem50dTduSDB3QVI1RHdMUmJDanNORWowNUE2S3k1N1dZWjJaQjZ4ZExLd3lBd3NXbzFrcDJFOUt6c2VoMXhFUDBuWU5xNWpaeVFNbGJqRnY0YWhKVkd1cGtWRmZjemhqRXlaM2NKeVR5ZDB0SW04M254VUUwWVI4aU9EcmFQTkMzMmczejNSNHdLMG5LOXpXbXlPc2VpTEhfMU9oeHVYUXdjdmdqT19vdlRwYXFYMFZfYlNfR1Q4SWRLWnZjS3pvZDBHdm9VOGdOaC12d1JzemRmandjVWxmVWthSWZUd21nVnRyTmRrSXNI?oc=5",
    "source": "Life 生活網",
    "published": "2026-10-07",
    "lang": "zh-TW",
-   "summary": "全球最大製藥盛會 工研院串聯產業從AI新藥開發到高階CDMO拓展國際商機 Life 生活網",
+   "summary": "工研院領軍22家醫藥業前進義大利 展現台灣完整供應鏈實力 拓展國際商機 Life 生活網",
    "meta": {},
    "queries": [
     "工研院 生質"
    ],
-   "sid": "S142"
+   "sid": "S150"
   },
   {
    "kind": "news",
@@ -2625,21 +2741,7 @@
    "queries": [
     "bioenergy"
    ],
-   "sid": "S143"
-  },
-  {
-   "kind": "news",
-   "title": "BerQ RNG acquires Rialto Bioenergy Facility",
-   "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQV1YtbWdNSkg2WUc2RzVHVWo3X0wybFRYSHU3QzBCbmE4RThYNVZQSzFDS0FpY0k3amZxejF1ZHUtTWhzSlBhSjFYZ3dMRUZ6RTNmVHljSHEteEtJcmdUYldySlEzMmR3djVDN3ItbVFYMVc4U18wcWQycVliYm52aHFNQUhhTjg?oc=5",
-   "source": "Biomass Magazine",
-   "published": "2026-10-07",
-   "lang": "en",
-   "summary": "BerQ RNG acquires Rialto Bioenergy Facility Biomass Magazine",
-   "meta": {},
-   "queries": [
-    "bioenergy"
-   ],
-   "sid": "S144"
+   "sid": "S151"
   },
   {
    "kind": "news",
@@ -2653,7 +2755,7 @@
    "queries": [
     "bioenergy"
    ],
-   "sid": "S145"
+   "sid": "S152"
   },
   {
    "kind": "news",
@@ -2667,21 +2769,7 @@
    "queries": [
     "biomass power plant"
    ],
-   "sid": "S146"
-  },
-  {
-   "kind": "news",
-   "title": "Pacolet Milliken Expands its Biomass Platform with the Acquisition of Georgia Renewable Power",
-   "url": "https://news.google.com/rss/articles/CBMiqgJBVV95cUxOYVhrSFhBMURpSjRGVTB2dHd1LWFDc0VXRjdEZDc3OWxfNllUTlNfZmczTGNiMWhzT0lCQXhLMXkxeDZnLXhCQmRXRWhIYzBfcE5MaUcxaGsxY1V3RHY4N2Zjb3k2aFFqZVNmZFdfOV9KNWd5WW9ZMkRJQk1BYzl6RUJWR0txdzExRmpJV3VlNVh4WnNGdldYRi1VRy1EaTlWalA1VU1SYVhzN1lIemRKX1Rwb1c5R1VJRjk0MkR5bUhnR1dOZU1CVXZxSlZ1MXh5dUdRVC01VWVkSFhUMUo0VlhUMV9ROS1CalE1ZUdKbDNjVExtU2tvQ25WbG9IbWdWak1iVzdNMVFUMlRmNmh6VHJLUHJPMERldzdCdGJhWDZQS2ljR01CX3NB?oc=5",
-   "source": "Laurel Leader-Call",
-   "published": "2026-10-07",
-   "lang": "en",
-   "summary": "Pacolet Milliken Expands its Biomass Platform with the Acquisition of Georgia Renewable Power Laurel Leader-Call",
-   "meta": {},
-   "queries": [
-    "biomass power plant"
-   ],
-   "sid": "S147"
+   "sid": "S153"
   },
   {
    "kind": "news",
@@ -2695,7 +2783,7 @@
    "queries": [
     "biomass power plant"
    ],
-   "sid": "S148"
+   "sid": "S154"
   },
   {
    "kind": "news",
@@ -2709,7 +2797,21 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S149"
+   "sid": "S155"
+  },
+  {
+   "kind": "news",
+   "title": "Japan selects Mazda to conduct R&D to advance the RD sector",
+   "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNams5Wjc0bUVWQTByVTg0MTFGWFlyR0R3T2JkSWJvS2JvVmNZeDFpZUxad1Z4bV9oVG9IaXVueWFYaExUdFN4VENxZ0xyaFU2VGlJLU5DT05fTHJiWExZSzJGSDZxaGZzU2lkSVpLNmVRMTBqOWtPbEtJdWZuc29lcG9yWUhJU2pOdHVoV2JGZzktTHczUzRlejIyWmc4UF91NVN5VE43elh1X3VaT3hYZg?oc=5",
+   "source": "Quantum Commodity Intelligence",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "Japan selects Mazda to conduct R&D to advance the RD sector Quantum Commodity Intelligence",
+   "meta": {},
+   "queries": [
+    "renewable diesel HVO"
+   ],
+   "sid": "S156"
   },
   {
    "kind": "news",
@@ -2723,7 +2825,21 @@
    "queries": [
     "renewable diesel HVO"
    ],
-   "sid": "S150"
+   "sid": "S157"
+  },
+  {
+   "kind": "news",
+   "title": "European certificates: Dutch market retreats",
+   "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPdk9hVnZTV1BWcG5mR2ZaZy1NLUVPUjZGS3UtZG9TUmpqOVl6cVJXZmNBbFUyWmZzX01uZHNNYnYtWTMyUVJhZGY3aEJPbXNYcUFYck96cUdnRGtUckpwV3o0Q3hBX2ZhR3JPeXpYN2toZDBLVEtDZWx0ZUVKTUR5Rkx3UWIycjE0NzlMT2dGNHcxUXhwMDRKZndUUQ?oc=5",
+   "source": "Quantum Commodity Intelligence",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "European certificates: Dutch market retreats Quantum Commodity Intelligence",
+   "meta": {},
+   "queries": [
+    "renewable diesel HVO"
+   ],
+   "sid": "S158"
   },
   {
    "kind": "news",
@@ -2737,7 +2853,7 @@
    "queries": [
     "renewable diesel HVO"
    ],
-   "sid": "S151"
+   "sid": "S159"
   },
   {
    "kind": "news",
@@ -2751,7 +2867,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S152"
+   "sid": "S160"
   },
   {
    "kind": "news",
@@ -2765,7 +2881,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S153"
+   "sid": "S161"
   },
   {
    "kind": "news",
@@ -2779,7 +2895,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S154"
+   "sid": "S162"
   },
   {
    "kind": "news",
@@ -2793,7 +2909,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S155"
+   "sid": "S163"
   },
   {
    "kind": "news",
@@ -2807,7 +2923,21 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S156"
+   "sid": "S164"
+  },
+  {
+   "kind": "news",
+   "title": "Bolivia launches Supreme Decree 5735 to turn...",
+   "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNa2VIMmZmSE9kdWdqSHg2YW15RnJjNm1wQVlzZjdMT1pJTEpQX1BfR05iSWJQb0owaGllNTZYeXZsbjV6cnRzYWpjSlBwVTFUUXBqeGJVTjRNR2VFTUR0dmRpZlNEMG1LNjJWOVJfaXh0dUdKSDdTNXVIbDRlWTNnU0VyZldibllpYnBwSEcwb3dLTTVjOWZHODZwU1l3cmRDcDRKd1dtMGwyVUZSUnRYVHl5TFE5RTJRY1BDQ1ZxSEZlX1Vxb1RoLUVVWHZ6X0psUmFXd1V0b0dQMjZCMnJ6R1VKbGNrc3RFNk9yNUpR?oc=5",
+   "source": "BNamericas",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "Bolivia launches Supreme Decree 5735 to turn... BNamericas",
+   "meta": {},
+   "queries": [
+    "biogas anaerobic digestion"
+   ],
+   "sid": "S165"
   },
   {
    "kind": "news",
@@ -2821,7 +2951,7 @@
    "queries": [
     "biochar carbon removal"
    ],
-   "sid": "S157"
+   "sid": "S166"
   },
   {
    "kind": "news",
@@ -2835,7 +2965,7 @@
    "queries": [
     "BECCS"
    ],
-   "sid": "S158"
+   "sid": "S167"
   },
   {
    "kind": "news",
@@ -2849,7 +2979,7 @@
    "queries": [
     "bio-methanol OR \"biomethanol\""
    ],
-   "sid": "S159"
+   "sid": "S168"
   },
   {
    "kind": "news",
@@ -2863,7 +2993,7 @@
    "queries": [
     "bio-methanol OR \"biomethanol\""
    ],
-   "sid": "S160"
+   "sid": "S169"
   },
   {
    "kind": "news",
@@ -2877,7 +3007,7 @@
    "queries": [
     "cellulosic ethanol"
    ],
-   "sid": "S161"
+   "sid": "S170"
   },
   {
    "kind": "news",
@@ -2891,7 +3021,7 @@
    "queries": [
     "cellulosic ethanol"
    ],
-   "sid": "S162"
+   "sid": "S171"
   },
   {
    "kind": "news",
@@ -2905,7 +3035,7 @@
    "queries": [
     "biorefinery"
    ],
-   "sid": "S163"
+   "sid": "S172"
   },
   {
    "kind": "news",
@@ -2919,21 +3049,7 @@
    "queries": [
     "biorefinery"
    ],
-   "sid": "S164"
-  },
-  {
-   "kind": "news",
-   "title": "From Marine Biomass to Marine Fuels: India’s Emerging Opportunity",
-   "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOYXp6a3ZodDVzQVotaVNXYXIwUW5zWFQ0ejNuN2NvYnQzaDZjb011bTZoeTZlVFNreXI2N3pxd1VBeGhxU091VzJZX0NLY3dvRWJsLW5JUXZaTl9IZWQyODBXd19ycVlZRmd2eEt1YXl1NXRtUzRsdFdieExMT3ZIdTFYSUlEd1lFRFJWQ3hpemg0VDdZU3FQbThCS0FxVzlFa3Y1bi1R?oc=5",
-   "source": "orfonline.org",
-   "published": "2026-10-07",
-   "lang": "en",
-   "summary": "From Marine Biomass to Marine Fuels: India’s Emerging Opportunity orfonline.org",
-   "meta": {},
-   "queries": [
-    "biorefinery"
-   ],
-   "sid": "S165"
+   "sid": "S173"
   },
   {
    "kind": "news",
@@ -2947,7 +3063,7 @@
    "queries": [
     "polyhydroxyalkanoates PHA"
    ],
-   "sid": "S166"
+   "sid": "S174"
   },
   {
    "kind": "news",
@@ -2961,7 +3077,7 @@
    "queries": [
     "precision fermentation"
    ],
-   "sid": "S167"
+   "sid": "S175"
   },
   {
    "kind": "news",
@@ -2975,7 +3091,7 @@
    "queries": [
     "precision fermentation"
    ],
-   "sid": "S168"
+   "sid": "S176"
   },
   {
    "kind": "news",
@@ -2989,7 +3105,7 @@
    "queries": [
     "precision fermentation"
    ],
-   "sid": "S169"
+   "sid": "S177"
   },
   {
    "kind": "news",
@@ -3003,7 +3119,7 @@
    "queries": [
     "precision fermentation"
    ],
-   "sid": "S170"
+   "sid": "S178"
   },
   {
    "kind": "news",
@@ -3017,7 +3133,7 @@
    "queries": [
     "precision fermentation"
    ],
-   "sid": "S171"
+   "sid": "S179"
   },
   {
    "kind": "news",
@@ -3031,7 +3147,21 @@
    "queries": [
     "bio-based cosmetic ingredients squalane"
    ],
-   "sid": "S172"
+   "sid": "S180"
+  },
+  {
+   "kind": "news",
+   "title": "Rollins releases statement on Trump dyed-diesel executive order signing",
+   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQTzV2a3VyNmh0SXdFcFZFVG53VTEyYWU3czhMT1Vud3BieTZLeUZ6S2lLNlRRRjQxM0x1VmtORTY0TFUxSUR6RWVGQXBQLWNQNV9nb1hIOHpNemlodHRadWd3S2g3d3VsallRZTZvenJlTmVqR29SMjR3NUtWV3dIWGJVcUdPN0hNRTdvN2NmeFRwR1g0c2dFOGt2T0FHZldRV2hTTWpGeEVodUZ4?oc=5",
+   "source": "Biomass Magazine",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "Rollins releases statement on Trump dyed-diesel executive order signing Biomass Magazine",
+   "meta": {},
+   "queries": [
+    "site:biomassmagazine.com"
+   ],
+   "sid": "S181"
   },
   {
    "kind": "news",
@@ -3045,7 +3175,7 @@
    "queries": [
     "site:bioplasticsnews.com OR site:european-bioplastics.org"
    ],
-   "sid": "S173"
+   "sid": "S182"
   },
   {
    "kind": "news",
@@ -3059,7 +3189,7 @@
    "queries": [
     "site:bioplasticsnews.com OR site:european-bioplastics.org"
    ],
-   "sid": "S174"
+   "sid": "S183"
   },
   {
    "kind": "news",
@@ -3073,7 +3203,7 @@
    "queries": [
     "site:bioplasticsnews.com OR site:european-bioplastics.org"
    ],
-   "sid": "S175"
+   "sid": "S184"
   },
   {
    "kind": "news",
@@ -3087,7 +3217,7 @@
    "queries": [
     "バイオマス発電"
    ],
-   "sid": "S176"
+   "sid": "S185"
   },
   {
    "kind": "news",
@@ -3101,7 +3231,7 @@
    "queries": [
     "持続可能な航空燃料"
    ],
-   "sid": "S177"
+   "sid": "S186"
   },
   {
    "kind": "news",
@@ -3115,7 +3245,7 @@
    "queries": [
     "持続可能な航空燃料"
    ],
-   "sid": "S178"
+   "sid": "S187"
   },
   {
    "kind": "news",
@@ -3129,7 +3259,7 @@
    "queries": [
     "バイオガス"
    ],
-   "sid": "S179"
+   "sid": "S188"
   },
   {
    "kind": "news",
@@ -3143,7 +3273,7 @@
    "queries": [
     "バイオガス"
    ],
-   "sid": "S180"
+   "sid": "S189"
   },
   {
    "kind": "news",
@@ -3159,7 +3289,7 @@
     "農業廢棄物 再利用 能源",
     "工研院 生質"
    ],
-   "sid": "S181"
+   "sid": "S190"
   },
   {
    "kind": "news",
@@ -3174,7 +3304,7 @@
     "bioenergy",
     "site:bioenergy-news.com"
    ],
-   "sid": "S182"
+   "sid": "S191"
   },
   {
    "kind": "news",
@@ -3189,7 +3319,7 @@
     "biomass power plant",
     "site:bioenergy-news.com"
    ],
-   "sid": "S183"
+   "sid": "S192"
   },
   {
    "kind": "news",
@@ -3203,7 +3333,7 @@
    "queries": [
     "生質燃料"
    ],
-   "sid": "S184"
+   "sid": "S193"
   },
   {
    "kind": "news",
@@ -3217,7 +3347,7 @@
    "queries": [
     "永續航空燃料 SAF"
    ],
-   "sid": "S185"
+   "sid": "S194"
   },
   {
    "kind": "news",
@@ -3231,7 +3361,7 @@
    "queries": [
     "生物炭 碳匯"
    ],
-   "sid": "S186"
+   "sid": "S195"
   },
   {
    "kind": "news",
@@ -3245,7 +3375,7 @@
    "queries": [
     "生物炭 碳匯"
    ],
-   "sid": "S187"
+   "sid": "S196"
   },
   {
    "kind": "news",
@@ -3259,7 +3389,7 @@
    "queries": [
     "農業廢棄物 再利用 能源"
    ],
-   "sid": "S188"
+   "sid": "S197"
   },
   {
    "kind": "news",
@@ -3273,7 +3403,7 @@
    "queries": [
     "農業廢棄物 再利用 能源"
    ],
-   "sid": "S189"
+   "sid": "S198"
   },
   {
    "kind": "news",
@@ -3287,7 +3417,7 @@
    "queries": [
     "能源署 生質"
    ],
-   "sid": "S190"
+   "sid": "S199"
   },
   {
    "kind": "news",
@@ -3301,7 +3431,7 @@
    "queries": [
     "能源署 生質"
    ],
-   "sid": "S191"
+   "sid": "S200"
   },
   {
    "kind": "news",
@@ -3315,7 +3445,7 @@
    "queries": [
     "能源署 生質"
    ],
-   "sid": "S192"
+   "sid": "S201"
   },
   {
    "kind": "news",
@@ -3329,7 +3459,7 @@
    "queries": [
     "合成生物學 酵母菌"
    ],
-   "sid": "S193"
+   "sid": "S202"
   },
   {
    "kind": "news",
@@ -3343,7 +3473,7 @@
    "queries": [
     "biomass power plant"
    ],
-   "sid": "S194"
+   "sid": "S203"
   },
   {
    "kind": "news",
@@ -3357,7 +3487,7 @@
    "queries": [
     "biomass power plant"
    ],
-   "sid": "S195"
+   "sid": "S204"
   },
   {
    "kind": "news",
@@ -3371,7 +3501,7 @@
    "queries": [
     "biomass power plant"
    ],
-   "sid": "S196"
+   "sid": "S205"
   },
   {
    "kind": "news",
@@ -3385,7 +3515,7 @@
    "queries": [
     "biomass power plant"
    ],
-   "sid": "S197"
+   "sid": "S206"
   },
   {
    "kind": "news",
@@ -3399,7 +3529,7 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S198"
+   "sid": "S207"
   },
   {
    "kind": "news",
@@ -3413,7 +3543,7 @@
    "queries": [
     "sustainable aviation fuel"
    ],
-   "sid": "S199"
+   "sid": "S208"
   },
   {
    "kind": "news",
@@ -3427,21 +3557,7 @@
    "queries": [
     "renewable diesel HVO"
    ],
-   "sid": "S200"
-  },
-  {
-   "kind": "news",
-   "title": "Europe backs HVO as a transition fuel – should Ireland cut HVO tax ?",
-   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPVUxmcjFUMlVyVjdZSEhSVThhcU1LTDA3RjZQbVZrOV9KZFZpNFBrTW1BRmRUVzY5WjN5OHhCeThVMWt3WmR0Qi1LNnZSUHY1X1dCLTlNVTA5M2VTZWJ3TnlidkR4ZVNQR3dxUE1IZnBnVE1yWUQ1UTdRNnBiQ25yOGVPZ1RLcjJ6Nmo5eEN3Y0VpY0N0MVZj?oc=5",
-   "source": "HGV Ireland",
-   "published": "2026-10-06",
-   "lang": "en",
-   "summary": "Europe backs HVO as a transition fuel – should Ireland cut HVO tax ? HGV Ireland",
-   "meta": {},
-   "queries": [
-    "renewable diesel HVO"
-   ],
-   "sid": "S201"
+   "sid": "S209"
   },
   {
    "kind": "news",
@@ -3455,7 +3571,7 @@
    "queries": [
     "renewable diesel HVO"
    ],
-   "sid": "S202"
+   "sid": "S210"
   },
   {
    "kind": "news",
@@ -3469,7 +3585,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S203"
+   "sid": "S211"
   },
   {
    "kind": "news",
@@ -3483,7 +3599,7 @@
    "queries": [
     "biomethane OR \"renewable natural gas\""
    ],
-   "sid": "S204"
+   "sid": "S212"
   },
   {
    "kind": "news",
@@ -3497,21 +3613,7 @@
    "queries": [
     "biogas anaerobic digestion"
    ],
-   "sid": "S205"
-  },
-  {
-   "kind": "news",
-   "title": "BP's Remediation Management Services Company Selects Myno Carbon for Landfarming Remediation Trial",
-   "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOQ0VNVDR2M2p5R1EwLVZaQUY1X0xqOW5oT3V5RDNzdGtZQzBWSDFwT2tEZ3IzM1dQclBsemFyUWhlcF9kSE5MUE1jelhsZklzUjhRRmszYnZxdHUwc29mcHZQdmwxYTFfM2VCS0otUl9sVkdWc1A0NUJSM3NnMDZLc1lPVzhESUVHU04tZlY2cUk3ZXNFM05EOWI1Z3NIdTFVZnc?oc=5",
-   "source": "Yahoo Finance",
-   "published": "2026-10-06",
-   "lang": "en",
-   "summary": "BP's Remediation Management Services Company Selects Myno Carbon for Landfarming Remediation Trial Yahoo Finance",
-   "meta": {},
-   "queries": [
-    "biochar carbon removal"
-   ],
-   "sid": "S206"
+   "sid": "S213"
   },
   {
    "kind": "news",
@@ -3525,7 +3627,7 @@
    "queries": [
     "biochar carbon removal"
    ],
-   "sid": "S207"
+   "sid": "S214"
   },
   {
    "kind": "news",
@@ -3539,7 +3641,35 @@
    "queries": [
     "biochar carbon removal"
    ],
-   "sid": "S208"
+   "sid": "S215"
+  },
+  {
+   "kind": "news",
+   "title": "The International ESG Association (IESGA, co-chairman Ok Yong-sik and Lee Jae-hyuk) and Korea Univer..",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBTRG1nU2l6RFlfLWc3RTc3a3RiT0VyTnZaS0Q5MnltdktqaXRreWRGOHRlZ1RKbkV1YldhdWVaSGc0bTFIOG1KdXo0bVJhNzI5YUE?oc=5",
+   "source": "매일경제",
+   "published": "2026-10-06",
+   "lang": "en",
+   "summary": "The International ESG Association (IESGA, co-chairman Ok Yong-sik and Lee Jae-hyuk) and Korea Univer.. 매일경제",
+   "meta": {},
+   "queries": [
+    "biochar carbon removal"
+   ],
+   "sid": "S216"
+  },
+  {
+   "kind": "news",
+   "title": "Residual Opens Carbon Removal Buyer Portal With 25 Major Buyers Signed Up",
+   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPQ3ZSR25jMTZWdVVWLThYQ2dnaEY2ajhPM0xfa003ZVZuY3BjUHV1aDd2bzFpdlRJZUVEa09aQ0I3YnZYOWlieEU4eFoyUzNfR01HNEdjTmIzckVKX3ZmeENfeUNnbExkU3ZQUHBLWWJvcEFUMm1Bdi1xUDNnT2FVQ3d3d0lnOW5tdWlNQXNqZmdnSFJKd0pYVllZNFA4c25j?oc=5",
+   "source": "Carbon Herald",
+   "published": "2026-10-06",
+   "lang": "en",
+   "summary": "Residual Opens Carbon Removal Buyer Portal With 25 Major Buyers Signed Up Carbon Herald",
+   "meta": {},
+   "queries": [
+    "biochar carbon removal"
+   ],
+   "sid": "S217"
   },
   {
    "kind": "news",
@@ -3553,7 +3683,7 @@
    "queries": [
     "BECCS"
    ],
-   "sid": "S209"
+   "sid": "S218"
   },
   {
    "kind": "news",
@@ -3567,7 +3697,7 @@
    "queries": [
     "bio-methanol OR \"biomethanol\""
    ],
-   "sid": "S210"
+   "sid": "S219"
   },
   {
    "kind": "news",
@@ -3581,21 +3711,7 @@
    "queries": [
     "bio-methanol OR \"biomethanol\""
    ],
-   "sid": "S211"
-  },
-  {
-   "kind": "news",
-   "title": "Hapag-Lloyd's dual-fuel vessel bunkered with bio-methanol in Busan",
-   "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQTkZBSGFRWlptbS1RWkZpSnQ1bmpGbnU4NjN0eTdraXBaczRhUVdEZGZYdFJmTkZ6MDQ0YUVzYXBuMnJZLXZZT3J6WUlMVVNId0VDSkFOQlBRaVhCZ2RSZ05MdllrX1hWVERqRVloTkdIR3poMlpEdV9DelFoemwxeVFPM3dWTjNDak5fUDhXdFVzbEE0NW83OVhvaURENlZiNUFj?oc=5",
-   "source": "https://www.engine.online/",
-   "published": "2026-10-06",
-   "lang": "en",
-   "summary": "Hapag-Lloyd's dual-fuel vessel bunkered with bio-methanol in Busan https://www.engine.online/",
-   "meta": {},
-   "queries": [
-    "bio-methanol OR \"biomethanol\""
-   ],
-   "sid": "S212"
+   "sid": "S220"
   },
   {
    "kind": "news",
@@ -3609,7 +3725,7 @@
    "queries": [
     "bio-methanol OR \"biomethanol\""
    ],
-   "sid": "S213"
+   "sid": "S221"
   },
   {
    "kind": "news",
@@ -3623,7 +3739,7 @@
    "queries": [
     "bio-methanol OR \"biomethanol\""
    ],
-   "sid": "S214"
+   "sid": "S222"
   },
   {
    "kind": "news",
@@ -3637,7 +3753,7 @@
    "queries": [
     "bio-methanol OR \"biomethanol\""
    ],
-   "sid": "S215"
+   "sid": "S223"
   },
   {
    "kind": "news",
@@ -3651,77 +3767,7 @@
    "queries": [
     "bio-methanol OR \"biomethanol\""
    ],
-   "sid": "S216"
-  },
-  {
-   "kind": "news",
-   "title": "Lhyfe signs protocol with Perpetual Next to study approximately 12,000 tonnes of hydrogen per year",
-   "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQTUpzUEVGa3RjWUowTWpIaU1Cb3NNRzR5a2p2ZEZnMDJPZXhUQjZDblpFaGc3YllQMU5qWnFuOU4ycWNmUmV0eVFEQXV2MXFVWngyVjA3bkszUnc5MGlwTWUtV096TDBWZkNfS1M3aHZRcHF0eVRGXzNCUmo2SExmN2s0UDNLMWQ5TmJMSDI3cEhGdkJSRi1yT3ZKWWN3REtDY29rT0pqYk14THRVNTh1M1ItYks1OXJlQ0xPaFRaaWxDWVI2NHpCWi1XMEh6bGlJVWNQaElPZllWeTF3SG5mWXJJWWVhSnI2ZnkxZ3NR?oc=5",
-   "source": "Ideal Investisseur",
-   "published": "2026-10-06",
-   "lang": "en",
-   "summary": "Lhyfe signs protocol with Perpetual Next to study approximately 12,000 tonnes of hydrogen per year Ideal Investisseur",
-   "meta": {},
-   "queries": [
-    "bio-methanol OR \"biomethanol\""
-   ],
-   "sid": "S217"
-  },
-  {
-   "kind": "news",
-   "title": "Glander promotes Rune G. Kongstein to lead European commercial activities",
-   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQSXJ1TGdPSUFZOUp2djdZcUhZR2hSQ3pha3l6MzEyNW1lWVRrbFlNMXZNVlBleHlUalVWUEpWVElaTGJWNl9HaW1pa0JDaEpEY3Nyc05iV0dmWmRRT0FickFUemN3X3NoSFF2WFAxSW4zR1UwOUlnZ0tvVTlwNzZDcXFSekVQZlk3blczY1pXb0RWYnFwbVJkM0ZWYXhDMHR0dEJ6SlgtclRfWHNU?oc=5",
-   "source": "Manifold Times",
-   "published": "2026-10-06",
-   "lang": "en",
-   "summary": "Glander promotes Rune G. Kongstein to lead European commercial activities Manifold Times",
-   "meta": {},
-   "queries": [
-    "bio-methanol OR \"biomethanol\""
-   ],
-   "sid": "S218"
-  },
-  {
-   "kind": "news",
-   "title": "Forest Fuels Taking Flight: ARC-Bio Pilot Refinery Shows Forest Products Pathway To SAF",
-   "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNdEtJLTFVY0dwc0h4S3E0NVI0VUk1ZkhoTlNyRHlvaVNwSUhTU1dtbzFwXzRlNmh6cGVZZXFpODVickhaZE1IbWFReEJtTXZxcGpkNGhueENoaGlFd1RjMzNvamNsaDB4S3RGM0ZJSU1uQUhnNlFLZlRfOTJ1SXJNTC1CWXMxVFpiQW9mOFRUMVhTUllkU0NfVTU1VlBScEUtN3B4WEhsdURicTRWV09FR1lyY0NYVS1uVWVwa25sR0NxeWd4?oc=5",
-   "source": "Canadian Biomass Magazine",
-   "published": "2026-10-06",
-   "lang": "en",
-   "summary": "Forest Fuels Taking Flight: ARC-Bio Pilot Refinery Shows Forest Products Pathway To SAF Canadian Biomass Magazine",
-   "meta": {},
-   "queries": [
-    "pyrolysis bio-oil"
-   ],
-   "sid": "S219"
-  },
-  {
-   "kind": "news",
-   "title": "NorSAF And Nova Pangaea To Develop Latvian Waste Biomass-to-SAF Supply Chain",
-   "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNNlI2ZGRkM2FLY2g0NUpXR2w3STdjdVlCS0dvLWFCR3Zma1dQNklyT3BlZmlhMXExSTM5TWZfMExHUnRjczRwN0Z0SGp5RDlSOHhUSDlteFZacmdqbk8zM1Z6eEE5YWRkWDUtZUdwWFNZOW5DYl9SeEU2WkZLM3J3UENqWngwWjAzUWhxZV9zcFNsMDhnUUJ3cE9VQzg3aFp1dEdTYg?oc=5",
-   "source": "Carbon Herald",
-   "published": "2026-10-06",
-   "lang": "en",
-   "summary": "NorSAF And Nova Pangaea To Develop Latvian Waste Biomass-to-SAF Supply Chain Carbon Herald",
-   "meta": {},
-   "queries": [
-    "alcohol-to-jet"
-   ],
-   "sid": "S220"
-  },
-  {
-   "kind": "news",
-   "title": "Celtic Renewables secures funding for Scottish biorefinery",
-   "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNZ2M2ZzdadEZZZkJDOHA3NUc1OFBMVzFISXVrSHRQNkNqZ0wzQXJ4akhjQmhCdENVSUdqdHJ1RGNRa21SbWx6anhqZk8xZ1JKaTJmejZXU1BUbUpsUWFEV0ZaWWhqRDh4WFh0M3R4Wkt1eUlUM2JqTVg1dE01djVsYlV0czBCR3BoV3BZWmViQ1ZMaC0wMlVYYzlNcw?oc=5",
-   "source": "Ethanol Producer Magazine",
-   "published": "2026-10-06",
-   "lang": "en",
-   "summary": "Celtic Renewables secures funding for Scottish biorefinery Ethanol Producer Magazine",
-   "meta": {},
-   "queries": [
-    "biorefinery"
-   ],
-   "sid": "S221"
+   "sid": "S224"
   },
   {
    "kind": "news",
@@ -3737,7 +3783,7 @@
     "生質燃料",
     "能源署 生質"
    ],
-   "sid": "S222"
+   "sid": "S225"
   },
   {
    "kind": "news",
@@ -3753,7 +3799,23 @@
     "生質燃料",
     "能源署 生質"
    ],
-   "sid": "S223"
+   "sid": "S226"
+  },
+  {
+   "kind": "news",
+   "title": "高雄港啟動生質燃油加注 台灣海運邁向2050淨零再跨一步",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9MLTd3NFRla0QtNXdON0xSRXRXUXdSSFE5emh5TkxydkxzUXlSbjlubUlJMWhLejRTYnIwcWwxV0tYZ0xvb3lZYmdJUHpfYzREbGc?oc=5",
+   "source": "蕃新聞",
+   "published": "2026-10-05",
+   "lang": "zh-TW",
+   "summary": "高雄港啟動生質燃油加注 台灣海運邁向2050淨零再跨一步 蕃新聞",
+   "meta": {},
+   "queries": [
+    "生質能",
+    "生質燃料",
+    "能源署 生質"
+   ],
+   "sid": "S227"
   },
   {
    "kind": "news",
@@ -3769,7 +3831,7 @@
     "biogas anaerobic digestion",
     "site:bioenergy-news.com"
    ],
-   "sid": "S224"
+   "sid": "S228"
   },
   {
    "kind": "news",
@@ -3784,7 +3846,7 @@
     "生質能",
     "生質燃料"
    ],
-   "sid": "S225"
+   "sid": "S229"
   },
   {
    "kind": "news",
@@ -3799,7 +3861,7 @@
     "生質能",
     "生質燃料"
    ],
-   "sid": "S226"
+   "sid": "S230"
   },
   {
    "kind": "news",
@@ -3814,22 +3876,7 @@
     "生質能",
     "生質燃料"
    ],
-   "sid": "S227"
-  },
-  {
-   "kind": "news",
-   "title": "高雄港區新聞網 / 國內首次！高雄港啟動船舶生質燃油加注 3航商已加注1200公噸",
-   "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBxZWszU2NvM2lrbFJPajNtZW43a3c5T1pULVdBV1VOYUpSLXNGVm0xY0ZEYnFBM3E4ZGVYSmwyMkF0WVVlbWc?oc=5",
-   "source": "台灣新聞雲報",
-   "published": "2026-10-05",
-   "lang": "zh-TW",
-   "summary": "高雄港區新聞網 / 國內首次！高雄港啟動船舶生質燃油加注 3航商已加注1200公噸 台灣新聞雲報",
-   "meta": {},
-   "queries": [
-    "生質能",
-    "生質燃料"
-   ],
-   "sid": "S228"
+   "sid": "S231"
   },
   {
    "kind": "news",
@@ -3844,7 +3891,7 @@
     "生質能",
     "生質燃料"
    ],
-   "sid": "S229"
+   "sid": "S232"
   },
   {
    "kind": "news",
@@ -3859,7 +3906,7 @@
     "生質能",
     "生質燃料"
    ],
-   "sid": "S230"
+   "sid": "S233"
   },
   {
    "kind": "news",
@@ -3874,22 +3921,7 @@
     "生質燃料",
     "能源署 生質"
    ],
-   "sid": "S231"
-  },
-  {
-   "kind": "news",
-   "title": "高雄港啟動生質燃油加注 台灣海運邁向2050淨零再跨一步",
-   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9MLTd3NFRla0QtNXdON0xSRXRXUXdSSFE5emh5TkxydkxzUXlSbjlubUlJMWhLejRTYnIwcWwxV0tYZ0xvb3lZYmdJUHpfYzREbGc?oc=5",
-   "source": "蕃新聞",
-   "published": "2026-10-05",
-   "lang": "zh-TW",
-   "summary": "高雄港啟動生質燃油加注 台灣海運邁向2050淨零再跨一步 蕃新聞",
-   "meta": {},
-   "queries": [
-    "生質燃料",
-    "能源署 生質"
-   ],
-   "sid": "S232"
+   "sid": "S234"
   },
   {
    "kind": "news",
@@ -3904,7 +3936,22 @@
     "生質燃料",
     "能源署 生質"
    ],
-   "sid": "S233"
+   "sid": "S235"
+  },
+  {
+   "kind": "news",
+   "title": "高雄港啟動生質燃油加注服務 台灣中油董事長方振仁 減少20%溫室氣體排放",
+   "url": "https://news.google.com/rss/articles/CBMihANBVV95cUxOVVFqVC1RQ09jZ2tUWnJaUlplT2k2M0JHRDNoZWs2RWlZaUFIYmxKWUNfSGZsNmNfQmZraHk5ZnhyVWw1OGN4NGh4ZHZzbWE1Rk5DVEZJeU15UjlkRmxvdHFubldBWHBIcXNHNzZuZXRma2JJb0hqX1hFcGMzRklzamhrVXM1TUg3S0V3SzNCOUxrajFvVWo5X1F3RG1QdHpfUExreVdzSXFYYmVTTmoxYUx4QjlSVzlOMEJFcFRIbTdkVVJ0cW9Cc2tLU3hUaGttUllkNmFKR2VUX0VKYUdxYmdCaEd4UExBSDN4NC0xa1N5V0xOUEIwYWszUlNpckttWWd3bmdMOWVQbVFjZXlBZmRuVmZaNXUzbGw1VkQwQmtIWGV5WjJtWjIwZEdQb2R1bV8wS0ZDbkp0SFEzdTQyR0x5dm9sT29oOWdGUGRSbm1JelJMdlp3NnpCVnJwTGY1Rkl0LTlnRmdrZDJFeUN6ai1VN1FtT1BUbXJaSzFMSUNUdW45?oc=5",
+   "source": "Life 生活網",
+   "published": "2026-10-05",
+   "lang": "zh-TW",
+   "summary": "高雄港啟動生質燃油加注服務 台灣中油董事長方振仁 減少20%溫室氣體排放 Life 生活網",
+   "meta": {},
+   "queries": [
+    "生質燃料",
+    "能源署 生質"
+   ],
+   "sid": "S236"
   },
   {
    "kind": "news",
@@ -3919,37 +3966,7 @@
     "農業廢棄物 再利用 能源",
     "工研院 生質"
    ],
-   "sid": "S234"
-  },
-  {
-   "kind": "news",
-   "title": "Funding Notice: U.S. Department of Energy Announces $12 Million to Advance Biorefinery Technologies for Biofuels and Biochemicals",
-   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPdnNMX3dCYVh4WWg1Z2R0LVR2cEhVVmlBUkdsNm9fX3dlbE95cF8xTDZTeWJ0U3FGaUd6VVpFZ0VRTTd6ay1QeFFlNGVoS1c5VFFwc0x3V2YxbGZ4WFJoN2xTeDNiZUphbU0tdndUeG56NUo4bkhQeml4WkVseWJSdkIzbDZlemNVTlROd05vU0hfMVdCOHJUOHVVZmxXZVJfbWdjTVhaQ01RYlJTdkdr?oc=5",
-   "source": "Department of Energy (.gov)",
-   "published": "2026-10-05",
-   "lang": "en",
-   "summary": "Funding Notice: U.S. Department of Energy Announces $12 Million to Advance Biorefinery Technologies for Biofuels and Biochemicals Department of Energy (.gov)",
-   "meta": {},
-   "queries": [
-    "bioenergy",
-    "biorefinery"
-   ],
-   "sid": "S235"
-  },
-  {
-   "kind": "news",
-   "title": "Deploying Purpose-Grown Energy Crops for Sustainable Aviation Fuel Workshop Speaker Bios",
-   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORE15OUpsRzdwVHowQzNhRHR3NTJEZzVqTkhaWFFZUV9UeEdWQXdHZVQwRWpIZTRnS1VMaE82VTRabm5NSjZXWXVLcHNzMFd5WllJRHJoR3BQOTJ6b0dmd0ZlN0ZKR09TUjhqRVloeVltRVZPekZjYTEwU1ZUVjZ2WWZZZEI2eEs3MmZzaFVseHU2eUsxcGxNWnhWZnVVS0o3TlpnRG51SWVWRlZfcDVvcnI4cjZXbDFPN0E?oc=5",
-   "source": "Department of Energy (.gov)",
-   "published": "2026-10-05",
-   "lang": "en",
-   "summary": "Deploying Purpose-Grown Energy Crops for Sustainable Aviation Fuel Workshop Speaker Bios Department of Energy (.gov)",
-   "meta": {},
-   "queries": [
-    "bioenergy",
-    "sustainable aviation fuel"
-   ],
-   "sid": "S236"
+   "sid": "S237"
   },
   {
    "kind": "news",
@@ -3964,7 +3981,7 @@
     "cellulosic ethanol",
     "biorefinery"
    ],
-   "sid": "S237"
+   "sid": "S238"
   },
   {
    "kind": "news",
@@ -3978,21 +3995,6 @@
    "queries": [
     "cellulosic ethanol",
     "synthetic biology yeast biomanufacturing"
-   ],
-   "sid": "S238"
-  },
-  {
-   "kind": "news",
-   "title": "Thermochemical Conversion Processes",
-   "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1oQmh5QVNjaFRSc1hhVUhqUzlPc3VDOFE0ZndEN0pnWk95cG1mSHl1dGVLR0FOeWF6dVNfNFQzTUVBZ2ZSa3pFVXB1TEh3N1hyRXFmcnBISUVIa2dOQU1NR1BZRzM2WUR1cnVKY2M1VU5tX0lOUEdoMA?oc=5",
-   "source": "Department of Energy (.gov)",
-   "published": "2026-10-05",
-   "lang": "en",
-   "summary": "Thermochemical Conversion Processes Department of Energy (.gov)",
-   "meta": {},
-   "queries": [
-    "pyrolysis bio-oil",
-    "biomass gasification hydrogen"
    ],
    "sid": "S239"
   },
