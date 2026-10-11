@@ -34,6 +34,7 @@ CHAPTERS = [
     ("ch06", "ch06-你收集什麼與AI做什麼.md", "sc-microbe-build", 6, []),
     ("ch07", "ch07-視覺化模擬介面.md", "sc-microbe-build", 7, []),
     ("ch08", "ch08-國內外做法與行動計畫.md", "sc-microbe-build", 8, []),
+    ("ch09", "ch09-操作手冊與判斷規則.md", "sc-microbe-build", 9, []),
 ]
 
 

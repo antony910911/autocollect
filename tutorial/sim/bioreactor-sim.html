@@ -63,12 +63,29 @@ svg text{fill:var(--ink);font-family:var(--f-body)}
 .flowlbl{font-size:12px}
 .small{font-size:.82rem;color:var(--muted)}
 #best{font-size:.85rem}
+.advice{border-color:var(--accent)}
+.advhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+.advgrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;margin-top:6px}
+@media (max-width:860px){.advgrid{grid-template-columns:minmax(0,1fr)}}
+.advice h3{font-size:.92rem;margin:12px 0 6px}
+.steps{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.steps li{display:grid;grid-template-columns:4.6em minmax(0,1fr);gap:10px;align-items:baseline;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.steps .when{font-family:var(--f-mono);font-size:.82rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.steps b{font-weight:700}
+.diag{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:.88rem}
+.diag li{display:grid;grid-template-columns:1.4em minmax(0,1fr);gap:4px}
+.lv{font-weight:700}.lv.ok{color:var(--x)}.lv.warn{color:var(--s)}.lv.bad{color:var(--a)}
+table.doe{border-collapse:collapse;font-size:.82rem;width:100%}
+.doewrap{overflow-x:auto}
+table.doe th,table.doe td{border:1px solid var(--line);padding:4px 6px;text-align:center;font-variant-numeric:tabular-nums}
+table.doe th{background:var(--chip)}
+
 </style>
 
 <div class="wrap">
 <header>
   <h1>分階段培養模擬器</h1>
-  <p>拉動左邊的條件，右邊的生長曲線、指標、代謝流向與「哪個參數最重要」會立刻跟著變。第一階段長菌、第二階段生產，切換時間也能調。</p>
+  <p>拉動左邊的條件，右邊的生長曲線、指標、代謝流向與「哪個參數最重要」會立刻跟著變；最下方的「操作建議」把結果翻成實驗操作卡、問題診斷、實驗中的判斷規則與下一輪實驗表。</p>
   <p class="note">這是教學用的示意模型（類大腸桿菌的預設值、Monod 生長＋溫度／pH 心形曲線＋溢流代謝＋Luedeking–Piret 產物式），數字不是你的菌。等你有自己的生長曲線，把參數換成實測值，它就變成你的菌的模擬器。</p>
 </header>
 
@@ -139,6 +156,27 @@ svg text{fill:var(--ink);font-family:var(--f-body)}
   </div>
 </div>
 </div>
+<section class="card advice" id="advice" aria-labelledby="advH">
+  <div class="advhead">
+    <h2 id="advH">操作建議 <small>依目前的條件與模擬結果自動產生，改任何參數都會重算</small></h2>
+    <div class="btns"><button id="copyAdv" type="button">複製操作卡</button></div>
+  </div>
+  <div class="advgrid">
+    <div class="advcol">
+      <h3>① 實驗操作卡（照時間做）</h3>
+      <ol id="protocol" class="steps"></ol>
+    </div>
+    <div class="advcol">
+      <h3>② 診斷：現在這組條件的問題與對策</h3>
+      <ul id="diag" class="diag"></ul>
+      <h3>③ 實驗中怎麼判斷（實測 vs 預測）</h3>
+      <ul id="rules" class="diag"></ul>
+      <h3>④ 下一輪實驗建議</h3>
+      <div id="nextexp"></div>
+    </div>
+  </div>
+  <p class="small" id="advnote">換算假設：OD600 1.0 ≈ 0.4 g/L 乾重（請用你的校正曲線取代）；kLa 與搖瓶條件的對應是粗略經驗值，請以實測溶氧確認。所有時間與數值都來自示意模型，用來決定「要量什麼、何時注意」，實際設定以你的實測為準。</p>
+</section>
 </div>
 
 <script>
@@ -244,12 +282,82 @@ function sens(v,ptype){
   $("sens").innerHTML=res.map(([k,du,dd])=>{const eff=du-dd;const len=Math.max(Math.abs(du),Math.abs(dd))/m*50;
     const col=eff>=0?css("--x"):css("--a");
     return `<div class="row"><span>${LABEL[k]}</span><div class="bar"><i style="left:${eff>=0?50:50-len}%;width:${len}%;background:${col}"></i><i style="left:50%;width:1px;background:${css("--muted")}"></i></div><span class="v">${eff>=0?"+":"−"}${fmt(Math.max(Math.abs(du),Math.abs(dd)))}</span></div>`;}).join("");
+  return res;
 }
+
+
+const ODF=0.4; // OD600 1.0 ≈ 0.4 g/L 乾重（假設）
+function at(r,t){return r.series.reduce((a,b)=>Math.abs(b.t-t)<Math.abs(a.t-t)?b:a);}
+function firstT(r,f,from=0){const p=r.series.find(p=>p.t>=from&&f(p));return p?p.t:null;}
+function scan(v,ptype,k,vals){return vals.map(x=>{const r=simulate({...v,[k]:x},ptype,false);return {x,r,o:objective(r)};});}
+function range(a,b,s){const o=[];for(let x=a;x<=b+1e-9;x+=s)o.push(Math.round(x*100)/100);return o;}
+function advise(v,r,ptype,sensRes){
+  const goalP=$("goal").value==="P", h=x=>fmt(x,1)+" h", od=x=>fmt(x/ODF,1);
+  const tLow=firstT(r,p=>p.DO<20&&p.t>0), tS=firstT(r,p=>p.S<0.5&&p.t>0.5);
+  const sw=at(r,v.ts), end=r.series[r.series.length-1];
+  const Pmax=Math.max(...r.series.map(p=>p.P)); const tP95=firstT(r,p=>p.P>=0.95*Pmax);
+  const last6=end.P-at(r,42).P;
+  // 掃描切換時間與補料速度，找建議值
+  const tsScan=scan(v,ptype,"ts",range(4,40,1)); const tsBest=tsScan.reduce((a,b)=>b.o>a.o?b:a);
+  const fScan=scan(v,ptype,"F",range(0,4,0.25)); const fSafe=fScan.filter(s=>s.r.Amax<3); 
+  const fBest=(fSafe.length?fSafe:fScan).reduce((a,b)=>b.o>a.o?b:a);
+  const o0=objective(r);
+  const steps=[];
+  steps.push(["前一天","<b>種菌</b>：活化菌種，種菌培養到指數期中後期（OD 約為最高 OD 的一半）再接種。"]);
+  steps.push(["0 h",`<b>接種與起始</b>：葡萄糖 ${v.S0} g/L；接種到菌體 ${v.X0} g/L（約 OD ${od(v.X0)}）；溫度 ${v.T1} °C；pH ${v.pH1}；通氣攪拌達 kLa ${v.kla} 1/h 的水準（${v.kla<100?'約等於一般搖瓶、裝液偏多或轉速偏低':v.kla<=250?'搖瓶約需擋板瓶、裝液量 10–20%、轉速 200–250 rpm':'超過一般搖瓶能力，需發酵槽'}）。取第一個樣。`]);
+  steps.push([`0–${h(v.ts)}`,`<b>長菌期取樣</b>：每 ${v.ts>12?2:1} 小時量 OD、殘糖、pH${tLow!==null?`；第 ${h(Math.max(0,tLow-2))} 起加密，預測約 ${h(tLow)} 溶氧會低於 20%`:""}。`]);
+  if(tS!==null&&tS<v.ts)steps.push([h(tS),`<b>糖預計吃完</b>：溶氧會突然上升、pH 停止下降。若比預測早很多，代表菌比預期長得快或起始糖不足。`]);
+  steps.push([h(v.ts),`<b>切換到生產期</b>：以「OD 達 ${od(sw.X)}（菌體約 ${fmt(sw.X,1)} g/L）」為切換條件，比死守時間可靠。改設溫度 ${v.T2} °C、pH ${v.pH2}${v.F>0?`，開始補葡萄糖 ${v.F} g/L/h（例：500 g/L 糖液，每 1 L 培養液每小時加 ${fmt(v.F*2,1)} mL）`:"，不補料"}。切換前後各取一個樣。`]);
+  steps.push([`${h(v.ts)}–48 h`,`<b>生產期取樣</b>：每 3–4 小時量 OD、產物、殘糖、醋酸（或 pH 漂移）。每次算 qP＝產物增加量 ÷ 平均菌量 ÷ 時間。`]);
+  if(last6>0.02*Pmax&&end.P>=Pmax*0.99) steps.push(["48 h",`<b>收穫或延長</b>：最後 6 小時產物仍增加 ${fmt(last6,2)} g/L，可考慮延長培養並持續補料；先以 48 h 收穫為基準。`]);
+  else steps.push([h(tP95),`<b>收穫</b>：產物約在此時達最高值的 95%（${fmt(Pmax,2)} g/L），之後增加有限，可提早收穫節省時間。`]);
+  $("protocol").innerHTML=steps.map(([w,t])=>`<li><span class="when">${w}</span><span>${t}</span></li>`).join("");
+  // 診斷
+  const D=[];const add=(lv,t)=>D.push(`<li><span class="lv ${lv}">${lv==="ok"?"✓":lv==="warn"?"!":"✕"}</span><span>${t}</span></li>`);
+  if(r.Amax>4)add("bad",`醋酸最高 ${fmt(r.Amax,1)} g/L，已達傷菌程度。對策：補料降到 ${fBest.x} g/L/h 以下、提高通氣攪拌，或長菌期溫度降 2–3 °C 讓菌吃糖慢一點。`);
+  else if(r.Amax>2)add("warn",`醋酸最高 ${fmt(r.Amax,1)} g/L，偏高。對策：降低起始糖或補料速度，或提高通氣。`);
+  else add("ok",`醋酸最高 ${fmt(r.Amax,1)} g/L，在安全範圍。`);
+  const o2h=r.series.filter(p=>p.DO<5&&p.t>0).length*0.5;
+  if(o2h>6)add("bad",`溶氧接近 0 的時間約 ${fmt(o2h,0)} 小時，菌長期缺氧。對策：搖瓶減少裝液量（≤ 瓶容量 10–20%）、提高轉速、用擋板瓶；發酵槽提高攪拌與通氣，或降低補料速度。`);
+  else if(o2h>0)add("warn",`溶氧接近 0 約 ${fmt(o2h,0)} 小時。注意這段時間是否出現醋酸上升。`);
+  else add("ok","整個過程溶氧都夠。");
+  if(Math.abs(tsBest.x-v.ts)>=2&&tsBest.o>o0*1.03)add("warn",`切換時間改成約 ${tsBest.x} h，${goalP?"產物":"菌量"}預測可從 ${fmt(o0)} 提高到 ${fmt(tsBest.o)} g/L。`);
+  else add("ok",`切換時間 ${v.ts} h 接近最佳（掃描 2–40 h 的結果）。`);
+  if(Math.abs(fBest.x-v.F)>=0.25&&fBest.o>o0*1.03)add("warn",`在醋酸不超過 3 g/L 的前提下，補料速度約 ${fBest.x} g/L/h 時${goalP?"產物":"菌量"}最高（${fmt(fBest.o)} g/L）。`);
+  else if(fSafe.length&&fBest.x===v.F)add("ok",`補料速度 ${v.F} g/L/h 是醋酸安全範圍內的最佳值。`);
+  if(end.S>2)add("warn",`結束時還剩 ${fmt(end.S,1)} g/L 葡萄糖沒吃完，等於浪費原料。可降低補料或提早停止補料。`);
+  if(ptype!=="growth"&&Math.abs(v.T2-v.T1)<1)add("warn","兩階段溫度相同。非生長相關的產物通常在較低溫度產得較好，可試第二階段降 4–7 °C。");
+  $("diag").innerHTML=D.join("");
+  // 判斷規則
+  const R=[];const rule=t=>R.push(`<li><span class="lv">→</span><span>${t}</span></li>`);
+  const x6=at(r,Math.min(6,v.ts));
+  rule(`第 ${h(x6.t)} 實測 OD 若低於 ${od(x6.X*0.7)}（預測 ${od(x6.X)} 的 7 成）：菌長得比預期慢。先檢查種菌狀態與溫度，再把切換延後到 OD 達 ${od(sw.X)}。`);
+  if(tLow!==null)rule(`溶氧若比 ${h(tLow)} 早 2 小時以上掉到 20% 以下：供氧比預估差，提高轉速或減少裝液量；有補料時先減半補料。`);
+  rule(`生產期 pH 若持續下降超過 0.3：常代表有機酸（如醋酸）累積，量醋酸並降低補料。`);
+  rule(`生產期連續兩次 qP 下降超過 30%：菌活性下降或缺營養，可補氮源或微量元素；仍下降就收穫。`);
+  rule(`任一實測值和預測差超過 30%：把這批數據交給 AI 重新擬合參數，模擬器才會越來越像你的菌。`);
+  $("rules").innerHTML=R.join("");
+  // 下一輪 DoE：敏感度前三名，三水準
+  const top=sensRes.slice(0,3).map(([k])=>k);
+  const lv=k=>{const el=$(k),span=(+el.max-+el.min)*0.1,st=+el.step,c=v[k];
+    const dec=(String(el.step).split('.')[1]||'').length;const q=x=>+Math.min(+el.max,Math.max(+el.min,Math.round(x/st)*st)).toFixed(dec);return [q(c-span),q(c),q(c+span)];};
+  const levels=top.map(k=>[k,lv(k)]);
+  $("nextexp").innerHTML=`<p class="small" style="margin:0 0 6px">影響最大的三個參數各測三個水準。用 Box–Behnken 設計約 15 組（含 3 組中心點）即可畫出反應曲面；只能做少量時，先做下表 9 組（每組 2 重複）。</p>
+  <div class="doewrap"><table class="doe"><thead><tr><th>參數</th><th>低</th><th>中（目前）</th><th>高</th></tr></thead><tbody>${
+    levels.map(([k,l])=>`<tr><td>${LABEL[k]}</td>${l.map(x=>`<td>${x}${UNIT[k]}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  window.__advText=["分階段培養操作卡（示意模型產生）",...steps.map(([w,t])=>`${w}｜${t.replace(/<[^>]+>/g,"")}`),"",
+    "診斷：",...[...$("diag").querySelectorAll("li span:last-child")].map(e=>"- "+e.textContent),"",
+    "判斷規則：",...[...$("rules").querySelectorAll("li span:last-child")].map(e=>"- "+e.textContent),"",
+    "下一輪實驗：",...levels.map(([k,l])=>`- ${LABEL[k]}：${l.join(" / ")}${UNIT[k]}`),"",$("advnote").textContent].join("\n");
+}
+$("copyAdv").onclick=async()=>{const b=$("copyAdv");try{await navigator.clipboard.writeText(window.__advText||"");b.textContent="已複製";}
+  catch(e){const s=getSelection(),rg=document.createRange();rg.selectNodeContents($("advice"));s.removeAllRanges();s.addRange(rg);b.textContent="已選取，請按複製";}
+  setTimeout(()=>b.textContent="複製操作卡",1800);};
 
 function update(){
   const v=vals();P.forEach(k=>$(k+"o").textContent=(+v[k]).toString()+UNIT[k]);
   $("tc").max=48;cur=simulate(v,$("ptype").value,true);
-  kpis(cur);draw(cur,v);flow(cur);sens(v,$("ptype").value);
+  kpis(cur);draw(cur,v);flow(cur);const sr=sens(v,$("ptype").value);advise(v,cur,$("ptype").value,sr);
 }
 let raf=0;function schedule(){cancelAnimationFrame(raf);raf=requestAnimationFrame(update);}
 [...P,"goal","ptype","tc"].forEach(k=>$(k).addEventListener("input",schedule));
