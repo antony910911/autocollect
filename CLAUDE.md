@@ -31,7 +31,7 @@ lessons/<課程名>/
 | `lessons/ammonia/` | 氨氮降解 | 氨氮降解基礎教材 |
 | `lessons/aiot/` | 沼氣與廢水處理 AIoT 入門 | 沼氣與廢水處理 AIoT |
 | `lessons/aiot-advanced/` | 沼氣 AIoT 進階建模 | 沼氣 AIoT 進階：建模實作 |
-| `lessons/dna-to-culture/` | 從 DNA 到最適培養（16 章） | 從 DNA 到最適培養：建模與視覺化 |
+| `lessons/dna-to-culture/` | 從 DNA 到最適培養（17 章） | 從 DNA 到最適培養：建模與視覺化 |
 
 ### 寫教材的規矩（重要）
 

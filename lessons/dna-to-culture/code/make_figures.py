@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from pathlib import Path
 
 import matplotlib
@@ -619,8 +620,49 @@ def fig_identifiability():
     save(fig, "fd11-3-identifiability", LAB_NOTE + " 真實值只有示範資料才知道；真實實驗沒有答案可以對。")
 
 
+CASE_NOTE = ("真實資料：使用者送驗的紅酵母野生株與基改株全基因體組裝，加上從 Benchling 匯出的構築序列。"
+             "計算程式在 lessons/dna-to-culture/code/case_rt.py（結果存成 case_rt.json）。")
+
+
+def fig_copies():
+    """構築的每一個座標，在染色體的串聯陣列裡整合了幾份。"""
+    d = json.loads((HERE / "case_rt.json").read_text("utf-8"))
+    runs = d["wt_trace"]["coverage"]
+    L = d["provenance"]["construct_bp"]
+    xs, ys = [], []
+    for r in runs:
+        xs += [r["c0"], r["c1"]]
+        ys += [r["copies"], r["copies"]]
+    fig, ax = plt.subplots(figsize=(11.5, 4.6))
+    ax.fill_between(xs, ys, step=None, color="#1b8a8f", alpha=0.18)
+    ax.plot(xs, ys, color="#1b8a8f", lw=2.2)
+    ax.axvspan(125, 5622, color="#1b8a8f", alpha=0.07)
+    ax.axvline(125, color="#c23b3b", lw=1.6, ls="--")
+    ax.axvline(5622, color="#c23b3b", lw=1.6, ls="--")
+    ax.text(125, 13.4, "LB", color="#c23b3b", ha="center", fontsize=11, weight="bold")
+    ax.text(5622, 13.4, "RB", color="#c23b3b", ha="center", fontsize=11, weight="bold")
+    ax.text(2870, 12.3, "T-DNA：11–12 份", ha="center", fontsize=13, weight="bold", color="#1b8a8f")
+    ax.text(8600, 12.3, "載體骨架：2–3 份", ha="center", fontsize=13, weight="bold", color="#5b6475")
+    for e in d["elements"]:
+        if e["kind"] == "gene" and e["c1"] - e["c0"] > 500:
+            short = re.sub(r"\s*\d+\s*aa$", "", e["name"]).replace("α-farnesene 合成酶", "AFS")
+            ax.annotate(short, ((e["c0"] + e["c1"]) / 2, 0.42), ha="center", fontsize=10.5,
+                        color="#1d2330")
+            ax.axvspan(e["c0"], e["c1"], ymin=0, ymax=0.055, color="#1d2330", alpha=0.25)
+    ax.set_xlim(0, L)
+    ax.set_ylim(0, 14)
+    ax.set_yticks(range(0, 13, 2))
+    ax.set_xlabel("構築上的座標（bp）")
+    ax.set_ylabel("在染色體陣列裡出現幾份")
+    ax.set_title("圖 17-5　整合的不是整個質體：T-DNA 進去 11–12 份，載體骨架只有 2–3 份")
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{int(v):,}"))
+    fig.tight_layout()
+    save(fig, "fd17-5-copies", CASE_NOTE)
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
     for fn in (fig_derive, fig_calibrate, fig_identifiability, fig_protocol, fig_switch_rule, fig_o2_scan, fig_phase_plane, fig_carbon, fig_knockouts, fig_batch, fig_gompertz, fig_otr,
-               fig_strategies, fig_switch_scan, fig_sensitivity, fig_env, fig_bo, fig_interaction):
+               fig_strategies, fig_switch_scan, fig_sensitivity, fig_env, fig_bo, fig_interaction, fig_copies):
         fn()

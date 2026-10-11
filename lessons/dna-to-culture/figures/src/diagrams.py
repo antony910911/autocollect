@@ -543,12 +543,257 @@ def fig16_fpp():
     return s
 
 
+# ───────── 第 17 章：實際案例（紅酵母 α-farnesene 基改株的定序比對）─────────
+def _case():
+    return json.loads((CODE / "case_rt.json").read_text("utf-8"))
+
+
+def fig17_overview():
+    d = _case()
+    km, a = d["kmer"], d["assembly"]
+    arr = d["array"]
+    carrier, host = arr["carrier"], ("mut" if arr["carrier"] == "wt" else "wt")
+    names = {"wt": d["provenance"]["wt_file"], "mut": d["provenance"]["mut_file"]}
+    n_afs = {t: len(d[t + "_afs_copies"]) for t in ("wt", "mut")}
+    s = Svg(1280, 790, "圖 17-1　兩份組裝比對的結論：轉殖基因陣列只在其中一份裡")
+
+    for tag, x in ((carrier, 40), (host, 720)):
+        st = a[tag]
+        col = TEAL if tag == carrier else GREY
+        s.box(x, 86, 520, 104, names[tag], color=col, size=20,
+              sub=f'{st["contigs"]} contigs　{st["total_bp"]:,} bp　N50 {st["n50"]:,}\n'
+                  f'GC {st["gc_pct"]:.2f}%　未知鹼基 N＝{st["n_bases"]}', sub_size=14)
+    s.box(580, 86, 120, 104, f'{km["shared_frac_of_mut"] * 100:.3f}%', color=PURPLE, size=20,
+          sub=f'{km["k"]}-mer\n共有', sub_size=13)
+    s.text(640, 216, "→ 兩份是同一株菌，差別只在那一個插入", size=15, color=MUTED, anchor="middle")
+
+    rows = [("α-farnesene 合成酶 CDS", f'{n_afs[carrier]} 個拷貝', f'{n_afs[host]} 個'),
+            ("該 CDS 的 31-mer 存在比例", "100.00%", "0.00%"),
+            ("農桿菌 T-DNA border", "2 處", "0 處"),
+            ("插入陣列", f'{arr["contig"]} 約 {arr["span"] / 1000:.0f} kb', "無")]
+    y = 248
+    for name, lv, rv in rows:
+        s.line(40, y, 1240, y, color="#e3e6ec")
+        s.text(640, y + 32, name, size=15, color=MUTED, anchor="middle")
+        s.text(420, y + 34, lv, size=19, weight=700, color=TEAL, anchor="end")
+        s.text(860, y + 34, rv, size=19, weight=700, color=GREY)
+        y += 52
+    s.line(40, y, 1240, y, color="#e3e6ec")
+
+    s.box(40, y + 24, 1200, 230, "", color=RED, fill=tint(RED, 0.94))
+    s.text(68, y + 62, "標示為「野生株」的那一份帶有完整的轉殖基因陣列，標示為「基改株」的完全沒有。",
+           size=18, weight=700)
+    s.text(68, y + 98, "兩種可能，要從實驗紀錄判斷：", size=15)
+    s.box(68, y + 112, 560, 72, "① 兩管樣品或檔名交換了", color=ORANGE, size=15,
+          sub="最常見。送驗、回傳、改檔名任一步都可能發生", sub_size=13, fill="#ffffff")
+    s.box(652, y + 112, 560, 72, "② 這一株把構築丟掉了", color=ORANGE, size=15,
+          sub="串聯重複會同源重組；沒施加選擇壓力就容易丟", sub_size=13, fill="#ffffff")
+    s.text(68, y + 214, "怎麼分辨：對兩株各做一次 AFS 的 PCR 或 qPCR——引子用比對出來的 CDS 序列設計即可。"
+                        "這是整個分析裡最該先做的一步。", size=15, weight=700)
+    return s
+
+
+def _track(s, x0, w, c0, c1, elems, y, label, colmap, flip=False):
+    """把構築的一段畫成水平軌道；小於 14 px 的元件改用引線標在軌道外側。"""
+    sc = w / (c1 - c0)
+    s.parts.append(f'<rect x="{x0}" y="{y}" width="{w}" height="46" rx="4" fill="#f3f4f7" stroke="#c7ccd6"/>')
+    s.text(x0, y - 120, label, size=15, weight=700)
+    small = []
+    for e in elems:
+        if e["c1"] <= c0 or e["c0"] >= c1:
+            continue
+        ex = x0 + (e["c0"] - c0) * sc
+        ew = (e["c1"] - e["c0"]) * sc
+        col = colmap[e["kind"]]
+        s.parts.append(f'<rect x="{ex:.1f}" y="{y}" width="{max(ew, 3):.1f}" height="46" rx="3" '
+                       f'fill="{tint(col, 0.62)}" stroke="{col}" stroke-width="2"/>')
+        tag = "?" if e["evidence"] == "unknown" else ("≈" if e["evidence"] == "inferred" else "")
+        if ew >= _w(e["name"] + tag, 14) + 16:
+            s.text(ex + ew / 2, y + 29, e["name"] + tag, size=14, weight=700, anchor="middle")
+            s.text(ex + ew / 2, y + 94, f'{e["c0"]:,}–{e["c1"]:,}', size=12, color=MUTED, anchor="middle")
+        else:
+            small.append((ex + ew / 2, e["name"] + tag, f'{e["c0"]:,}', col))
+    small.sort()
+    for i, (cx, nm, pos, col) in enumerate(small):
+        ty = y - 40 - (i % 3) * 30
+        s.line(cx, y - 2, cx, ty + 6, color=col, width=1.4)
+        s.text(cx, ty, f"{nm}　{pos}", size=12.5, color=col, anchor="middle", weight=700)
+    # 座標尺
+    step = 1000
+    t = ((c0 // step) + 1) * step
+    while t < c1:
+        tx = x0 + (t - c0) * sc
+        s.line(tx, y + 46, tx, y + 56, color=MUTED, width=1.2)
+        s.text(tx, y + 72, f"{t // 1000}k", size=11.5, color=MUTED, anchor="middle")
+        t += step
+
+
+def fig17_construct():
+    d = _case()
+    el = d["elements"]
+    L = d["provenance"]["construct_bp"]
+    colmap = {"border": RED, "promoter": ORANGE, "gene": TEAL, "terminator": PURPLE,
+              "vector": GREY, "ori": BROWN}
+    s = Svg(1420, 790, f'圖 17-2　你設計的構築（{L:,} bp，環狀）上面有什麼')
+    s.text(60, 76, "兩條軌道的比例尺不同（上 5,700 bp／下 6,050 bp 各佔滿 1,300 px）；"
+                   "構築是環狀，下軌右端接回上軌左端。", size=13.5, color=MUTED)
+    _track(s, 60, 1300, 0, 5700, el, 270, "T-DNA：LB → RB，5,447 bp　會被送進染色體的就是這一段", colmap)
+    _track(s, 60, 1300, 5597, L, el, 530, "載體骨架：6,050 bp　本來應該留在農桿菌裡", colmap)
+    lg = [("邊界 border", RED), ("啟動子", ORANGE), ("基因", TEAL), ("終止子", PURPLE),
+          ("複製起點", BROWN), ("載體殘跡", GREY)]
+    x = 60
+    for nm, col in lg:
+        s.parts.append(f'<rect x="{x}" y="646" width="22" height="16" rx="3" fill="{tint(col, 0.62)}" '
+                       f'stroke="{col}" stroke-width="2"/>')
+        s.text(x + 30, 660, nm, size=13.5)
+        x += 30 + _w(nm, 13.5) + 26
+    s.text(60, 704, "標記說明：名稱後面沒有符號＝逐字比對上已知序列（border 共識、nos terminator／promoter、"
+                    "多選殖位、pUC 複製起點）；", size=13.5, color=MUTED)
+    s.text(60, 730, "「≈」＝依保守模體推定（KanR、ParA 的 Walker A、GNAT 乙醯轉移酶）；"
+                    "「?」＝身分未知，需要 BLAST 才能確認。", size=13.5, color=MUTED)
+    s.text(60, 766, "兩個啟動子在宿主基因體裡找不到 → 不是這株紅酵母的原生啟動子。"
+                    "它是組成型還是受氮限制調控，會直接決定第 6 章的分階段策略怎麼設計。",
+           size=14.5, weight=700, color=RED)
+    return s
+
+
+def _w(s, size):
+    return sum(size if ord(ch) > 0x2E80 else size * 0.58 for ch in s)
+
+
+def fig17_array():
+    d = _case()
+    arr = d["array"]
+    segs = d[arr["carrier"] + "_trace"]["segments"]
+    copies = d[arr["carrier"] + "_afs_copies"]
+    g0, g1 = arr["g0"], arr["g1"]
+    X0, W = 150, 1180
+    sc = W / (g1 - g0)
+    s = Svg(1460, 760, f'圖 17-3　轉殖基因在染色體上的實際排列：{arr["span"]:,} bp 的串聯陣列')
+    y = 300
+    s.box(28, y - 4, 112, 54, "宿主", color=BROWN, size=15, sub="染色體", sub_size=12)
+    s.box(1340, y - 4, 92, 54, "宿主", color=BROWN, size=15, sub="染色體", sub_size=12)
+    s.line(140, y + 23, X0, y + 23, color=BROWN, width=3)
+    s.line(X0 + W, y + 23, 1340, y + 23, color=BROWN, width=3)
+    broken = {c["pos"] for c in copies if not c["intact"]}
+    for sg in segs:
+        lo, hi = sorted((sg["c0"], sg["c1"]))
+        kind = "tdna" if hi <= 5700 else ("mix" if lo < 5700 else "back")
+        trunc = any(sg["g0"] <= p <= sg["g1"] for p in broken)
+        col = RED if trunc else (TEAL if kind == "tdna" else (PURPLE if kind == "mix" else GREY))
+        x = X0 + (sg["g0"] - g0) * sc
+        w = max((sg["g1"] - sg["g0"]) * sc, 3.5)
+        s.parts.append(f'<rect x="{x:.1f}" y="{y}" width="{w:.1f}" height="46" rx="3" '
+                       f'fill="{tint(col, 0.6)}" stroke="{col}" stroke-width="1.8"/>')
+    for i, c in enumerate(sorted(copies, key=lambda c: c["pos"]), 1):
+        cx = X0 + (c["pos"] - g0) * sc
+        col = RED if not c["intact"] else TEAL
+        s.parts.append(f'<path d="M{cx:.1f},{y - 8} l-7,-13 l14,0 z" fill="{col}"/>')
+        s.text(cx, y - 30, str(i), size=13, weight=700, color=col, anchor="middle")
+    s.text(X0, y - 58, "▲ 每個 AFS 拷貝的起點（12 個，全部在負股、方向一致）", size=14, weight=700)
+    for g, lab in ((g0, f"{g0:,}"), (g1, f"{g1:,}")):
+        gx = X0 + (g - g0) * sc
+        s.line(gx, y + 46, gx, y + 68, color=MUTED, width=1.2)
+        s.text(gx, y + 88, lab, size=13, color=MUTED, anchor="middle")
+    s.text(X0 + W / 2, y + 88, f'{arr["contig"]}　共 {arr["span"]:,} bp', size=14, weight=700, anchor="middle")
+
+    j = arr.get("junction") or {}
+    if j.get("left") and j.get("right"):
+        lj, rj = j["left"], j["right"]
+        gapbp = abs(rj["start"] - lj["end"])
+        s.box(150, 486, 1180, 96, "", color=BROWN, fill=tint(BROWN, 0.93))
+        s.text(176, 522, "插入點：在沒有插入的那一株，陣列的左右側翼是直接相鄰的", size=17, weight=700)
+        s.text(176, 556, f'左側翼落在 {lj["contig"]} {lj["start"]:,}–{lj["end"]:,}，'
+                         f'右側翼落在 {rj["contig"]} {rj["start"]:,}–{rj["end"]:,}'
+                         f'——中間只隔 {gapbp:,} bp。單一插入位點，沒有染色體重排。', size=14.5)
+        for side, gx in (("left", X0), ("right", X0 + W)):
+            s.arrow([(gx, y + 104), (gx, 486)], color=BROWN, width=1.6, dash=True)
+
+    lg = [("完整的 T-DNA", TEAL), ("T-DNA ＋ 骨架", PURPLE), ("載體骨架", GREY), ("截短的 T-DNA", RED)]
+    x = 150
+    for nm, col in lg:
+        s.parts.append(f'<rect x="{x}" y="196" width="22" height="16" rx="3" fill="{tint(col, 0.6)}" '
+                       f'stroke="{col}" stroke-width="2"/>')
+        s.text(x + 30, 210, nm, size=14)
+        x += 30 + _w(nm, 14) + 28
+    s.text(150, 162, f'{len(segs)} 段片段，合計 {arr["mapped_bp"]:,} bp '
+                     f'（陣列的 {arr["mapped_bp"] / arr["span"] * 100:.1f}%）全部能逐段對回構築——'
+                     f'沒有來源不明的 DNA，也沒有宿主序列被夾進中間。', size=14.5)
+    s.text(150, 620, "寬度按比例畫，但小於 3.5 px 的片段放大到 3.5 px 才看得見（最小的是 84 bp）。",
+           size=13, color=MUTED)
+    s.text(150, 656, "為什麼是串聯陣列：農桿菌轉形時 T-DNA 一條接一條進去同一個斷點，"
+                     "首尾相接形成重複；最後一條常常只進去一半（拷貝 ③）。", size=14.5)
+    s.text(150, 690, "要注意：串聯重複之間會同源重組，拷貝數會隨傳代下降。"
+                     "維持選擇壓力，並每隔幾代用 qPCR 確認。", size=14.5, weight=700, color=RED)
+    s.text(150, 726, "拷貝數 12 是組裝給的下限（高度相同的重複可能被壓縮）。"
+                     "要定量得把原始讀段比回單一拷貝算深度。", size=13.5, color=MUTED)
+    return s
+
+
+def fig17_junction():
+    d = _case()
+    carrier = d["array"]["carrier"]
+    bad = [c for c in d[carrier + "_afs_copies"] if not c["intact"]]
+    s = Svg(1280, 760, "圖 17-4　12 個拷貝裡壞掉的那一個：不是突變，是陣列的接合點")
+    if not bad:
+        s.text(40, 120, "這一次的資料裡每個拷貝都是完整的。", size=16)
+        return s
+    c = bad[0]
+    fd = c["first_diff"]
+    s.text(40, 96, f'拷貝 ③（{c["contig"]} {c["pos"]:,}）前 {fd:,} bp 與設計完全一致，'
+                   f'之後就不是 AFS 了。', size=16)
+    y = 150
+    s.box(40, y, 420, 64, "載體骨架", color=GREY, size=16, sub="構築 8,956–9,374", sub_size=13)
+    s.box(460, y, 760, 64, "T-DNA 片段", color=RED, size=16,
+          sub="構築 2,928 → 222：只有啟動子 P1 ＋ 殘缺的 AFS", sub_size=13)
+    s.arrow([(460, y + 108), (460, y + 72)], color=RED, width=2.2)
+    s.text(460, y + 132, "接合點", size=15, weight=700, color=RED, anchor="middle")
+
+    y = 330
+    s.box(40, y, 1200, 112, "", color=GREY, fill="#fbfbfd")
+    s.text(64, y + 34, "接合點兩側的實際序列（AFS CDS 內座標 " + f'{fd:,}' + " bp 處）", size=15, weight=700)
+    s.text(64, y + 68, "構築（正確）", size=13.5, color=MUTED)
+    s.text(230, y + 68, "…TCACCACCAACCAGGTCCCG", size=14)
+    s.text(530, y + 68, "TTCCTCTCGTCGTTCATGAACAACGCC…", size=14, color=TEAL, weight=700)
+    s.text(64, y + 96, "拷貝 ③", size=13.5, color=MUTED)
+    s.text(230, y + 96, "…TCACCACCAACCAGGTCCCG", size=14)
+    s.text(530, y + 96, "GTTAGATGGGAAACCGCCATCAGTACC…", size=14, color=RED, weight=700)
+    s.line(524, y + 52, 524, y + 104, color=RED, width=2)
+
+    y = 486
+    s.text(40, y, "對蛋白質的影響", size=16, weight=700)
+    full, got, stop = 576, c["protein_aa"], c["stop_codon"]
+    X0, W = 40, 1100
+    s.parts.append(f'<rect x="{X0}" y="{y + 20}" width="{W}" height="40" rx="5" fill="{tint(TEAL, 0.72)}" '
+                   f'stroke="{TEAL}" stroke-width="2"/>')
+    cut = W * (stop - 11) / full
+    s.parts.append(f'<rect x="{X0 + cut:.1f}" y="{y + 20}" width="{W * 11 / full:.1f}" height="40" '
+                   f'fill="{tint(RED, 0.5)}" stroke="{RED}" stroke-width="2"/>')
+    s.parts.append(f'<rect x="{X0 + W * stop / full:.1f}" y="{y + 20}" width="{W * (full - stop) / full:.1f}" '
+                   f'height="40" fill="#ffffff" stroke="{GREY}" stroke-width="2" stroke-dasharray="6 5"/>')
+    s.text(X0 + cut / 2, y + 46, f"正常的 AFS：1–{stop - 11} aa", size=14.5, weight=700, anchor="middle")
+    s.text(X0 + W, y + 88, f"紅色＝接合處的 11 個外來胺基酸　　虛線＝缺掉的 C 端 {full - stop + 1} 個胺基酸", size=13.5, color=MUTED, anchor="end")
+    s.line(X0 + W * stop / full, y + 20, X0 + W * stop / full, y - 6, color=RED, width=2)
+    s.text(X0 + W * stop / full, y - 14, f"第 {stop} 個密碼子提前終止", size=14, weight=700,
+           color=RED, anchor="middle")
+    s.text(X0, y + 128, f'接合處讀出 11 個外來胺基酸就撞到終止密碼子 → {got} aa（正常 {full} aa）。'
+                        f'缺掉的 C 端含萜類合成酶的 C 端結構域，這個拷貝不可能有活性。', size=14.5)
+    s.text(X0, y + 162, "這不影響另外 11 個拷貝——它們與設計逐鹼基零差異。"
+                        "ATMT 的串聯整合常常就是這樣收尾的。", size=14.5, weight=700)
+    s.text(X0, y + 200, "教訓：取拷貝序列時一定要記錄探針命中的是正股還是負股。"
+                        "我們第一輪忘了，拿正股直接截取，結果每個拷貝都「有 313–383 bp 突變」——全是假的。",
+           size=13.5, color=MUTED)
+    return s
+
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
         "fig15-1-compare": fig15_compare, "fig15-2-annotate": fig15_annotate,
         "fig15-3-yeasts": fig15_culture, "fig16-1-gene-to-reaction": fig16_gene_to_reaction,
-        "fig16-2-fpp": fig16_fpp}
+        "fig16-2-fpp": fig16_fpp,
+        "fig17-1-overview": fig17_overview, "fig17-2-construct": fig17_construct,
+        "fig17-3-array": fig17_array, "fig17-4-junction": fig17_junction}
 
 if __name__ == "__main__":
     want = sys.argv[1:] or list(FIGS)

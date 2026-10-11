@@ -1,0 +1,568 @@
+{
+ "provenance": {
+  "construct_name": "A13_construct_from_Benchling",
+  "construct_bp": 11647,
+  "construct_gc_pct": 58.8,
+  "wt_file": "c320151c-Rt_WT.fasta",
+  "mut_file": "6da0d647-A13_4.fasta",
+  "anchor_k": 25,
+  "kmer_k": 31
+ },
+ "elements": [
+  {
+   "c0": 125,
+   "c1": 150,
+   "name": "LB",
+   "kind": "border",
+   "evidence": "confirmed"
+  },
+  {
+   "c0": 164,
+   "c1": 182,
+   "name": "pUC／M13 殘跡",
+   "kind": "vector",
+   "evidence": "confirmed"
+  },
+  {
+   "c0": 150,
+   "c1": 1366,
+   "name": "啟動子 P1",
+   "kind": "promoter",
+   "evidence": "unknown"
+  },
+  {
+   "c0": 1366,
+   "c1": 3097,
+   "name": "α-farnesene 合成酶 576 aa",
+   "kind": "gene",
+   "evidence": "confirmed"
+  },
+  {
+   "c0": 3097,
+   "c1": 3180,
+   "name": "nos terminator",
+   "kind": "terminator",
+   "evidence": "confirmed"
+  },
+  {
+   "c0": 3215,
+   "c1": 3350,
+   "name": "nos promoter",
+   "kind": "promoter",
+   "evidence": "confirmed"
+  },
+  {
+   "c0": 3353,
+   "c1": 3374,
+   "name": "多選殖位 MCS",
+   "kind": "vector",
+   "evidence": "confirmed"
+  },
+  {
+   "c0": 3374,
+   "c1": 4190,
+   "name": "啟動子 P2",
+   "kind": "promoter",
+   "evidence": "unknown"
+  },
+  {
+   "c0": 4190,
+   "c1": 4766,
+   "name": "篩選標記 GNAT",
+   "kind": "gene",
+   "evidence": "inferred"
+  },
+  {
+   "c0": 4766,
+   "c1": 5570,
+   "name": "終止子",
+   "kind": "terminator",
+   "evidence": "unknown"
+  },
+  {
+   "c0": 5597,
+   "c1": 5622,
+   "name": "RB",
+   "kind": "border",
+   "evidence": "confirmed"
+  },
+  {
+   "c0": 5902,
+   "c1": 6718,
+   "name": "KanR 271 aa",
+   "kind": "gene",
+   "evidence": "inferred"
+  },
+  {
+   "c0": 6812,
+   "c1": 6960,
+   "name": "pUC／pBR ori",
+   "kind": "ori",
+   "evidence": "confirmed"
+  },
+  {
+   "c0": 8330,
+   "c1": 9437,
+   "name": "骨架 ORF 368 aa",
+   "kind": "gene",
+   "evidence": "unknown"
+  },
+  {
+   "c0": 9831,
+   "c1": 10461,
+   "name": "ParA 209 aa",
+   "kind": "gene",
+   "evidence": "inferred"
+  },
+  {
+   "c0": 10759,
+   "c1": 11446,
+   "name": "重組酶 228 aa",
+   "kind": "gene",
+   "evidence": "inferred"
+  }
+ ],
+ "afs_cds": [
+  1366,
+  3097
+ ],
+ "assembly": {
+  "wt": {
+   "contigs": 37,
+   "total_bp": 21585995,
+   "n50": 1255393,
+   "longest": 1798965,
+   "gc_pct": 61.3,
+   "n_bases": 0
+  },
+  "mut": {
+   "contigs": 33,
+   "total_bp": 21290051,
+   "n50": 1259054,
+   "longest": 2064648,
+   "gc_pct": 61.47,
+   "n_bases": 0
+  }
+ },
+ "kmer": {
+  "k": 31,
+  "wt_unique_kmers": 20258673,
+  "mut_unique_kmers": 20220010,
+  "shared": 20186782,
+  "only_in_wt": 71891,
+  "only_in_mut": 33228,
+  "shared_frac_of_mut": 0.99836
+ },
+ "wt_trace": {
+  "segments": [
+   {
+    "contig": "Contig3",
+    "g0": 943094,
+    "g1": 948566,
+    "c0": 5582,
+    "c1": 135,
+    "strand": -1,
+    "len": 5472
+   },
+   {
+    "contig": "Contig3",
+    "g0": 948563,
+    "g1": 948974,
+    "c0": 9785,
+    "c1": 9399,
+    "strand": -1,
+    "len": 411
+   },
+   {
+    "contig": "Contig3",
+    "g0": 948975,
+    "g1": 958290,
+    "c0": 9374,
+    "c1": 84,
+    "strand": -1,
+    "len": 9315
+   },
+   {
+    "contig": "Contig3",
+    "g0": 958291,
+    "g1": 958375,
+    "c0": 59,
+    "c1": 0,
+    "strand": -1,
+    "len": 84
+   },
+   {
+    "contig": "Contig3",
+    "g0": 958519,
+    "g1": 960769,
+    "c0": 11624,
+    "c1": 9399,
+    "strand": -1,
+    "len": 2250
+   },
+   {
+    "contig": "Contig3",
+    "g0": 960770,
+    "g1": 961213,
+    "c0": 9374,
+    "c1": 8956,
+    "strand": -1,
+    "len": 443
+   },
+   {
+    "contig": "Contig3",
+    "g0": 961211,
+    "g1": 963942,
+    "c0": 2928,
+    "c1": 222,
+    "strand": -1,
+    "len": 2731
+   },
+   {
+    "contig": "Contig3",
+    "g0": 963942,
+    "g1": 969327,
+    "c0": 5582,
+    "c1": 222,
+    "strand": -1,
+    "len": 5385
+   },
+   {
+    "contig": "Contig3",
+    "g0": 969327,
+    "g1": 974799,
+    "c0": 5582,
+    "c1": 135,
+    "strand": -1,
+    "len": 5472
+   },
+   {
+    "contig": "Contig3",
+    "g0": 974798,
+    "g1": 980195,
+    "c0": 5495,
+    "c1": 123,
+    "strand": -1,
+    "len": 5397
+   },
+   {
+    "contig": "Contig3",
+    "g0": 980183,
+    "g1": 985706,
+    "c0": 5582,
+    "c1": 84,
+    "strand": -1,
+    "len": 5523
+   },
+   {
+    "contig": "Contig3",
+    "g0": 985707,
+    "g1": 985791,
+    "c0": 59,
+    "c1": 0,
+    "strand": -1,
+    "len": 84
+   },
+   {
+    "contig": "Contig3",
+    "g0": 985898,
+    "g1": 988148,
+    "c0": 11624,
+    "c1": 9399,
+    "strand": -1,
+    "len": 2250
+   },
+   {
+    "contig": "Contig3",
+    "g0": 988149,
+    "g1": 997326,
+    "c0": 9374,
+    "c1": 222,
+    "strand": -1,
+    "len": 9177
+   },
+   {
+    "contig": "Contig3",
+    "g0": 997326,
+    "g1": 1002798,
+    "c0": 5582,
+    "c1": 135,
+    "strand": -1,
+    "len": 5472
+   },
+   {
+    "contig": "Contig3",
+    "g0": 1002797,
+    "g1": 1008194,
+    "c0": 5495,
+    "c1": 123,
+    "strand": -1,
+    "len": 5397
+   },
+   {
+    "contig": "Contig3",
+    "g0": 1008182,
+    "g1": 1013567,
+    "c0": 5582,
+    "c1": 222,
+    "strand": -1,
+    "len": 5385
+   },
+   {
+    "contig": "Contig3",
+    "g0": 1013567,
+    "g1": 1019039,
+    "c0": 5582,
+    "c1": 135,
+    "strand": -1,
+    "len": 5472
+   },
+   {
+    "contig": "Contig3",
+    "g0": 1019038,
+    "g1": 1019311,
+    "c0": 5495,
+    "c1": 5247,
+    "strand": -1,
+    "len": 273
+   }
+  ],
+  "coverage": [
+   {
+    "c0": 0,
+    "c1": 59,
+    "copies": 2
+   },
+   {
+    "c0": 59,
+    "c1": 84,
+    "copies": 0
+   },
+   {
+    "c0": 84,
+    "c1": 123,
+    "copies": 2
+   },
+   {
+    "c0": 123,
+    "c1": 135,
+    "copies": 4
+   },
+   {
+    "c0": 135,
+    "c1": 222,
+    "copies": 8
+   },
+   {
+    "c0": 222,
+    "c1": 2928,
+    "copies": 12
+   },
+   {
+    "c0": 2928,
+    "c1": 5247,
+    "copies": 11
+   },
+   {
+    "c0": 5247,
+    "c1": 5495,
+    "copies": 12
+   },
+   {
+    "c0": 5495,
+    "c1": 5582,
+    "copies": 9
+   },
+   {
+    "c0": 5582,
+    "c1": 8956,
+    "copies": 2
+   },
+   {
+    "c0": 8956,
+    "c1": 9374,
+    "copies": 3
+   },
+   {
+    "c0": 9374,
+    "c1": 9399,
+    "copies": 0
+   },
+   {
+    "c0": 9399,
+    "c1": 9785,
+    "copies": 3
+   },
+   {
+    "c0": 9785,
+    "c1": 11624,
+    "copies": 2
+   },
+   {
+    "c0": 11624,
+    "c1": 11647,
+    "copies": 0
+   }
+  ]
+ },
+ "wt_afs_copies": [
+  {
+   "contig": "Contig3",
+   "pos": 947275,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 956948,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 962738,
+   "strand": -1,
+   "diff_bp": 102,
+   "first_diff": 1587,
+   "protein_aa": 540,
+   "stop_codon": 541,
+   "intact": false
+  },
+  {
+   "contig": "Contig3",
+   "pos": 968123,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 973508,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 978892,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 984364,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 996122,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 1001507,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 1006891,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 1012363,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  },
+  {
+   "contig": "Contig3",
+   "pos": 1017748,
+   "strand": -1,
+   "diff_bp": 0,
+   "first_diff": null,
+   "protein_aa": 576,
+   "stop_codon": 577,
+   "intact": true
+  }
+ ],
+ "mut_trace": {
+  "segments": [],
+  "coverage": [
+   {
+    "c0": 0,
+    "c1": 11647,
+    "copies": 0
+   }
+  ]
+ },
+ "mut_afs_copies": [],
+ "array": {
+  "carrier": "wt",
+  "contig": "Contig3",
+  "g0": 943094,
+  "g1": 1019311,
+  "span": 76217,
+  "mapped_bp": 75993,
+  "junction": {
+   "query_contig": "Contig3",
+   "left": {
+    "contig": "Contig4",
+    "start": 940770,
+    "end": 942770,
+    "strand": 1,
+    "mlen": 2000
+   },
+   "right": {
+    "contig": "Contig4",
+    "start": 942830,
+    "end": 944829,
+    "strand": 1,
+    "mlen": 1999
+   },
+   "gap_bp": 60,
+   "same_contig": true
+  }
+ }
+}
