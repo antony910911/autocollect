@@ -17,6 +17,7 @@ logging.getLogger("matplotlib.font_manager").setLevel(logging.ERROR)
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / "figures"
 R = json.loads((HERE / "results.json").read_text("utf-8"))
+PR = json.loads((HERE / "protocol.json").read_text("utf-8")) if (HERE / "protocol.json").exists() else None
 for f in ("WenQuanYi Zen Hei", "Noto Sans CJK TC", "PingFang TC", "Microsoft JhengHei"):
     if any(f == x.name for x in font_manager.fontManager.ttflist):
         plt.rcParams["font.family"] = [f, "DejaVu Sans"]
@@ -25,6 +26,7 @@ plt.rcParams.update({"axes.unicode_minus": False, "mathtext.fontset": "dejavusan
                      "axes.spines.top": False, "axes.spines.right": False, "axes.grid": True, "axes.axisbelow": True,
                      "grid.color": "#e3e6ec", "grid.linewidth": 0.8, "axes.edgecolor": "#8a93a3",
                      "axes.titleweight": "bold", "axes.titlesize": 14, "savefig.dpi": 200})
+ETOH_C = "#2f6fb3"
 BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN, INK, TEAL = ("#2f6fb3", "#d9821e", "#c23b3b", "#2f9e6e", "#7b4bb3",
                                                             "#8a93a3", "#8a6d3b", "#1d2330", "#1b8a8f")
 NOTE = "#5b6475"
@@ -402,8 +404,87 @@ def fig_interaction():
     save(fig, "fd8-2-interaction", DFBA_NOTE)
 
 
+# ───────── 第 10 章：操作建議 ─────────
+def fig_protocol():
+    b, tr, sp = PR["band"], PR["trajectory"], PR["sampling"]
+    sw, hv = PR["switch"], PR["harvest"]
+    t = np.array(b["t"])
+    fig, (a1, a2) = plt.subplots(2, 1, figsize=(12, 8.4), sharex=True,
+                                 gridspec_kw={"height_ratios": [1, 1], "hspace": 0.18})
+    # 上：OD 的期望軌跡與容許範圍
+    a1.fill_between(t, b["X"]["p10"], b["X"]["p90"], color=GREEN, alpha=0.18,
+                    label="容許範圍（p10–p90，400 次模擬）")
+    a1.plot(t, b["X"]["p50"], color=GREEN, lw=2.8, label="期望值（中位數）")
+    for s_ in sp:
+        for x in s_["times"]:
+            a1.plot([x], [np.interp(x, t, b["X"]["p50"])], marker="v", color=INK, ms=6, zorder=5)
+    a1.plot([], [], marker="v", color=INK, ls="none", label="取樣點")
+    a1.axvline(sw["t_sw"], color=BLUE, lw=1.8)
+    a1.axhline(sw["od"], color=BLUE, ls=":", lw=1.5)
+    a1.text(sw["t_sw"] + 0.12, sw["od"] * 1.5, f"切換門檻\nOD600 {sw['od']:.1f}\n（約第 {sw['t_sw']:.2f} h）",
+            color=BLUE, fontsize=11, weight="bold")
+    a1.set_yscale("log")
+    a1.set_yticks([0.1, 0.2, 0.5, 1, 2, 5, 10, 20])
+    a1.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:g}"))
+    a1.yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
+    a1.set_ylabel("OD600（對數軸）")
+    a1.set_title("期望軌跡與容許範圍：量到的值掉出綠色區間，就要查原因")
+    a1.legend(frameon=False, loc="lower right", fontsize=10.5)
+    # 下：產物與糖
+    a2.fill_between(t, b["E"]["p10"], b["E"]["p90"], color=ETOH_C, alpha=0.18)
+    a2.plot(t, b["E"]["p50"], color=ETOH_C, lw=2.8, label="乙醇（目標產物）")
+    a2.fill_between(t, b["G"]["p10"], b["G"]["p90"], color=BROWN, alpha=0.15)
+    a2.plot(t, b["G"]["p50"], color=BROWN, lw=2.4, label="葡萄糖")
+    a2.plot(t, b["A"]["p50"], color=ORANGE, lw=2.0, ls="--", label="乙酸（副產物）")
+    a2.axvline(sw["t_sw"], color=BLUE, lw=1.8)
+    a2.scatter([hv["t_end"]], [hv["etoh_mM"]], color=ETOH_C, s=90, zorder=5, edgecolor="white")
+    a2.annotate(f"收穫：乙醇 {hv['etoh_gL']:.1f} g/L", (hv["t_end"], hv["etoh_mM"]),
+                xytext=(-150, 18), textcoords="offset points", fontsize=11, color=ETOH_C, weight="bold")
+    a2.set_ylabel("濃度（mM）")
+    a2.set_xlabel("培養時間（h）")
+    a2.set_title("糖與產物：收穫時的預期值與容許範圍")
+    a2.legend(frameon=False, loc="upper left", fontsize=10.5)
+    a2.set_xlim(0, hv["t_end"])
+    # 階段色帶
+    for ax in (a1, a2):
+        for s_ in sp:
+            ax.axvspan(s_["start"], s_["end"], color=PHASE_COL.get(s_["phase"], GREY), alpha=0.08, lw=0)
+    for s_ in sp:
+        if s_["end"] - s_["start"] > 1.0:
+            a1.text((s_["start"] + s_["end"]) / 2, a1.get_ylim()[1] * 0.75, s_["phase"],
+                    ha="center", fontsize=10.5, color=INK, weight="bold")
+    fig.suptitle("圖 10-1　操作單的核心：期望軌跡、取樣點、切換門檻與容許範圍", fontsize=15, weight="bold", y=0.97)
+    save(fig, "fd10-1-protocol", DFBA_NOTE + " 容許範圍來自接種量、遲滯期、吸收速率、供氧與溫度的變異。")
+
+
+def fig_switch_rule():
+    r = PR["switch_rule"]
+    rows = r["rows"]
+    xs = [x["od_at_check"] for x in rows]
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 4.8))
+    a1.plot(xs, [x["best_t_sw"] for x in rows], marker="o", color=BLUE, lw=2.5, ms=9)
+    a1.axvline(r["base_od"], color=GREY, ls=":")
+    a1.text(r["base_od"] - 0.03, max(x["best_t_sw"] for x in rows) - 0.1,
+            f"照計畫長的話是 OD {r['base_od']:.2f} ", fontsize=10.5, color=NOTE, ha="right")
+    for x in rows:
+        a1.annotate(f"{x['best_t_sw']:.2f} h", (x["od_at_check"], x["best_t_sw"]),
+                    xytext=(6, 6), textcoords="offset points", fontsize=10)
+    a1.set_xlabel(f"第 {r['check_h']:.0f} 小時實際量到的 OD600")
+    a1.set_ylabel("建議的切換時間（h）")
+    a1.set_title("長得慢就晚一點切換")
+    a2.bar([f"{x['od_at_check']:.2f}" for x in rows], [x["loss"] for x in rows],
+           color=[GREEN if x["loss"] < 10 else ORANGE if x["loss"] < 40 else RED for x in rows])
+    for i, x in enumerate(rows):
+        a2.text(i, x["loss"] + 1.2, f"{x['loss']:.0f}", ha="center", fontsize=10.5)
+    a2.set_xlabel(f"第 {r['check_h']:.0f} 小時實際量到的 OD600")
+    a2.set_ylabel("照原訂時間切換會少掉的乙醇（mM）")
+    a2.set_title("不調整的代價：長得慢時最嚴重")
+    fig.suptitle("圖 10-2　中途查核與調整：看一次 OD，就能決定要不要改切換時間", fontsize=14, weight="bold", y=1.03)
+    save(fig, "fd10-2-switch-rule", DFBA_NOTE)
+
+
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
-    for fn in (fig_o2_scan, fig_phase_plane, fig_carbon, fig_knockouts, fig_batch, fig_gompertz, fig_otr,
+    for fn in (fig_protocol, fig_switch_rule, fig_o2_scan, fig_phase_plane, fig_carbon, fig_knockouts, fig_batch, fig_gompertz, fig_otr,
                fig_strategies, fig_switch_scan, fig_sensitivity, fig_env, fig_bo, fig_interaction):
         fn()

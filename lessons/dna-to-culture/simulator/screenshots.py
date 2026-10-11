@@ -40,9 +40,11 @@ def main():
         pg.click("[data-preset=two]")
         pg.wait_for_timeout(300)
         pg.locator("section.tools").screenshot(path=str(OUT / "fd9-4-simulator-tools.png"))
+        # 5 操作建議面板（第 10 章）
+        pg.locator("#protocol-panel").screenshot(path=str(OUT / "fd10-3-simulator-protocol.png"))
         b.close()
     page_file.unlink()
-    print("寫入 fd9-1 ~ fd9-4")
+    print("寫入 fd9-1 ~ fd9-4、fd10-3")
 
 
 if __name__ == "__main__":

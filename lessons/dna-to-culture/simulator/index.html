@@ -94,6 +94,21 @@ select { font: inherit; font-size: 0.85rem; background: var(--soft); color: var(
 .bar .neg { right: 50%; background: var(--ac); }
 .bar .pos { left: 50%; background: var(--bio); }
 .bar .val { font-family: var(--font-data); text-align: right; font-size: 0.8rem; }
+.proto { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
+.step { border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; background: var(--soft); min-width: 0; }
+.step h3 { font-size: 0.88rem; margin: 0 0 6px; display: flex; align-items: center; gap: 7px; }
+.step h3 .n { background: var(--accent); color: var(--accent-ink); border-radius: 50%; width: 1.45em; height: 1.45em;
+  display: inline-grid; place-items: center; font-size: 0.82rem; flex: none; }
+.step p { margin: 0 0 5px; font-size: 0.87rem; }
+.step .num { font-family: var(--font-data); font-weight: 600; font-variant-numeric: tabular-nums; }
+.step ul { margin: 0; padding-left: 1.15em; font-size: 0.86rem; }
+.step li { margin-bottom: 3px; }
+.step table { width: 100%; border-collapse: collapse; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.step th, .step td { text-align: right; padding: 2px 4px; border-bottom: 1px solid var(--line); }
+.step th:first-child, .step td:first-child { text-align: left; }
+.step td.ok { color: var(--bio); } .step td.warn { color: var(--ac); }
+.warnbox { background: color-mix(in srgb, var(--ac) 14%, transparent); border-left: 3px solid var(--ac);
+  padding: 6px 9px; border-radius: 0 6px 6px 0; font-size: 0.85rem; margin-top: 6px; }
 footer { margin-top: 18px; color: var(--muted); font-size: 0.8rem; max-width: 90ch; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -101,7 +116,7 @@ footer { margin-top: 18px; color: var(--muted); font-size: 0.8rem; max-width: 90
 <div class="wrap">
   <header>
     <h1>培養參數模擬器</h1>
-    <p class="lede">拉動左邊的培養條件，右邊立刻重算一整批培養。計算核心是大腸桿菌核心代謝模型的動態通量平衡分析（dFBA）；溫度與 pH 的效果用經驗模型補上，參數是示範值。</p>
+    <p class="lede">拉動左邊的培養條件，右邊立刻重算一整批培養，並把最適條件換算成實際的操作建議。計算核心是大腸桿菌核心代謝模型的動態通量平衡分析（dFBA）；溫度與 pH 的效果用經驗模型補上，參數是示範值。</p>
   </header>
 
   <div class="layout">
@@ -178,6 +193,12 @@ footer { margin-top: 18px; color: var(--muted); font-size: 0.8rem; max-width: 90
           </dl>
           <p class="advice" id="now_advice"></p>
         </div>
+      </section>
+
+      <section class="panel" id="protocol-panel">
+        <h2>操作建議</h2>
+        <p class="hint">把上面的條件換算成實驗室實際要做的事。數字會跟著你調的參數一起變；<strong>這是起點，不是定論</strong>，第一批做完要用實測值修正。</p>
+        <div class="proto" id="proto"></div>
       </section>
 
       <section class="tools">
@@ -386,6 +407,7 @@ function update() {
   renderNow();
   drawScan();
   renderSens();
+  renderProtocol();
 }
 
 function delta(v, b, digits, unit) {
@@ -621,6 +643,94 @@ function renderSens() {
     const pos = hi > 0 ? `<span class="pos" style="width:${(hi / m * 50).toFixed(1)}%"></span>` : "";
     return `<div class="bar"><span>${r.label}</span><span class="track">${neg}${pos}</span><span class="val">${lo.toFixed(digits)}／+${Math.max(0, hi).toFixed(digits)}</span></div>`;
   }).join("") + `<p class="hint">橘色：最壞的變化；綠色：最好的變化。目前值 ${ref.toFixed(digits)}。</p>`;
+}
+
+const OD_TO_GDW = 0.35, O2_SAT = 0.20, MW_GLC = 180.16, MW_ETOH = 46.07;
+const VESSELS = [["試管／深孔盤（靜置或慢搖）", 5, 20], ["搖瓶，裝液 40%、150 rpm", 20, 60],
+  ["搖瓶，裝液 20%、200 rpm", 60, 120], ["搖瓶，裝液 10%、250 rpm 或加擋板", 120, 250],
+  ["攪拌式發酵槽（通氣＋攪拌）", 200, 1000]];
+const toOD = (x) => x / OD_TO_GDW;
+
+function phaseSpans(sim) {
+  const out = [];
+  let start = 0;
+  for (let k = 1; k <= sim.phase.length; k++) {
+    if (k === sim.phase.length || sim.phase[k] !== sim.phase[start]) {
+      out.push({phase: sim.phase[start], start: sim.t[start], end: sim.t[Math.min(k, sim.t.length - 1)]});
+      start = k;
+    }
+  }
+  return out.filter((s) => s.end - s.start >= 0.3);
+}
+
+function renderProtocol() {
+  const s = summary(sim);
+  const workV = 100, seedOD = 2.0, checkH = Math.max(1, Math.round(state.two ? state.t_sw * 0.7 : state.t_end * 0.35));
+  const kla = state.otr / O2_SAT;
+  const seedML = workV * toOD(state.X0) / seedOD;
+  const vessel = VESSELS.find((v) => kla >= v[1] && kla <= v[2]);
+  const spans = phaseSpans(sim);
+  // 切換門檻
+  let swBlock = "";
+  if (state.two) {
+    const k = Math.min(sim.t.length - 1, Math.round(state.t_sw / sim.params.dt));
+    const rows = [];
+    for (const f of [0.6, 0.8, 1.0, 1.25, 1.5]) {
+      const st = Object.assign({}, state, {X0: state.X0 * f});
+      const simf = simulate(params(st));
+      const kc = Math.min(simf.t.length - 1, Math.round(checkH / simf.params.dt));
+      let bestT = 0, bestY = -1;
+      for (let x = 0; x <= state.t_end + 1e-9; x += 0.25) {
+        const y = summary(simulate(params(Object.assign({}, st, {t_sw: x})))).E_end;
+        if (y > bestY) { bestY = y; bestT = x; }
+      }
+      const fixed = summary(simulate(params(Object.assign({}, st, {t_sw: state.t_sw})))).E_end;
+      rows.push({od: toOD(simf.X[kc]), best: bestT, loss: bestY - fixed});
+    }
+    swBlock = `<div class="step"><h3><span class="n">4</span>切換第二階段</h3>
+      <p>預計第 <span class="num">${state.t_sw.toFixed(2)}</span> h，但<strong>以 OD600 達到 <span class="num">${toOD(sim.X[k]).toFixed(1)}</span> 為準</strong>（此時預計剩糖 ${(sim.G[k] * MW_GLC / 1000).toFixed(1)} g/L）。停止通氣、密封或通氮氣。</p>
+      <p>第 <span class="num">${checkH}</span> h 查核 OD，照表調整：</p>
+      <table><thead><tr><th>量到 OD600</th><th>改在第幾 h 切</th><th>不改會少</th></tr></thead><tbody>
+      ${rows.map((r) => `<tr><td>${r.od.toFixed(2)}</td><td>${r.best.toFixed(2)} h</td>
+        <td class="${r.loss < 10 ? "ok" : "warn"}">${r.loss.toFixed(0)} mM</td></tr>`).join("")}
+      </tbody></table></div>`;
+  } else {
+    swBlock = `<div class="step"><h3><span class="n">4</span>切換第二階段</h3>
+      <p>目前沒有啟用第二階段，全程維持同樣條件。若目標是發酵產物，打開左側「第二階段」看看差多少。</p></div>`;
+  }
+  const warn = [];
+  if (!vessel) warn.push(kla > 1000 ? `需要的 kLa 約 ${kla.toFixed(0)} 1/h，超過一般發酵槽；請降低供氧需求或改分批補糖。`
+    : `需要的 kLa 約 ${kla.toFixed(0)} 1/h，比列表中最低的容器還低，靜置培養即可。`);
+  if (s.glc_left > state.G0 * 0.1) warn.push(`收穫時還剩 ${(s.glc_left * MW_GLC / 1000).toFixed(1)} g/L 糖沒吃完：延後收穫、提高接種量，或降低起始糖。`);
+  if (s.A_max > 60) warn.push(`乙酸最高到 ${s.A_max.toFixed(0)} mM，可能抑制生長：提高供氧或降溫，或改分批補糖。`);
+  if (toOD(s.X_end) > 1) warn.push(`收穫時 OD600 約 ${toOD(s.X_end).toFixed(1)}，超過分光光度計的線性範圍（約 0.8），量測時要稀釋後再乘回來。`);
+
+  $("proto").innerHTML = `
+    <div class="step"><h3><span class="n">1</span>培養基與容器</h3>
+      <p>葡萄糖 <span class="num">${(state.G0 * MW_GLC / 1000).toFixed(1)}</span> g/L（${state.G0.toFixed(0)} mM），工作體積 ${workV} mL。</p>
+      <p>溫度 <span class="num">${state.T.toFixed(1)}</span> °C，pH 控制在 <span class="num">${state.pH.toFixed(1)}</span>。</p>
+      <p>供氧 ${state.otr.toFixed(0)} mmol O₂/L/h → 需要 kLa 約 <span class="num">${kla.toFixed(0)}</span> 1/h。</p>
+      <p>${vessel ? "建議容器：<strong>" + vessel[0] + "</strong>（kLa 約 " + vessel[1] + "–" + vessel[2] + " 1/h）" : "—"}</p></div>
+    <div class="step"><h3><span class="n">2</span>接種</h3>
+      <p>種菌取對數期、OD600 約 ${seedOD.toFixed(1)}。</p>
+      <p>接 <span class="num">${seedML.toFixed(1)}</span> mL（佔 ${(seedML / workV * 100).toFixed(1)}%）→ 起始 OD600 <span class="num">${toOD(state.X0).toFixed(2)}</span>。</p>
+      <p>遲滯期預估 ${state.lag.toFixed(2)} h；種菌越新鮮越短。</p></div>
+    <div class="step"><h3><span class="n">3</span>取樣時程</h3><ul>
+      ${spans.map((sp) => {
+        const dense = sp.phase === "好氧指數生長" || sp.phase === "缺氧・溢流代謝" || (state.two && sp.start <= state.t_sw && state.t_sw <= sp.end);
+        return `<li>${sp.start.toFixed(1)}–${sp.end.toFixed(1)} h　${sp.phase}：每 ${dense ? 1 : 2} h，${dense ? "OD＋HPLC" : "OD 為主"}</li>`;
+      }).join("")}</ul></div>
+    ${swBlock}
+    <div class="step"><h3><span class="n">5</span>收穫與預期值</h3>
+      <p>第 <span class="num">${state.t_end.toFixed(1)}</span> h 收穫。</p>
+      <ul><li>OD600 約 <span class="num">${toOD(s.X_end).toFixed(1)}</span>（${s.X_end.toFixed(2)} gDW/L）</li>
+      <li>乙醇 <span class="num">${(s.E_end * MW_ETOH / 1000).toFixed(2)}</span> g/L（${s.E_end.toFixed(0)} mM）</li>
+      <li>乙酸最高 ${s.A_max.toFixed(0)} mM</li>
+      <li>剩糖 ${(s.glc_left * MW_GLC / 1000).toFixed(1)} g/L</li></ul></div>
+    <div class="step"><h3><span class="n">6</span>要注意的地方</h3>
+      ${warn.length ? warn.map((w) => `<div class="warnbox">${w}</div>`).join("")
+        : "<p>以目前的設定，模型沒有偵測到明顯問題。仍要記錄每批的實際條件與量測值。</p>"}
+      <p style="margin-top:8px;color:var(--muted);font-size:0.8rem">OD600 與乾重的換算用 1 OD = ${OD_TO_GDW} gDW/L，kLa 由 OTR ÷ 飽和溶氧 ${O2_SAT} mmol/L 估算；兩者都要用自己的儀器重新量。</p></div>`;
 }
 
 for (const id of IDS) $(id).addEventListener("input", update);
