@@ -1,0 +1,45 @@
+name: 教材同步到 Folio
+
+on:
+  push:
+    paths:
+      - "lessons/**"
+      - "autocollect/lessons.py"
+      - ".github/workflows/lessons.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: lessons-folio
+  cancel-in-progress: false
+
+jobs:
+  check-refs:
+    name: 核對參考文獻 DOI
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: 到 Crossref 核對每一筆 DOI
+        env:
+          OPENALEX_MAILTO: ${{ vars.OPENALEX_MAILTO }}
+        run: python lessons/ammonia/tools/check_refs.py lessons/ammonia
+
+  publish:
+    name: 上傳到 Folio
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: 上傳教材
+        env:
+          FOLIO_SYNC_TOKEN: ${{ secrets.FOLIO_SYNC_TOKEN }}
+          FOLIO_URL: ${{ vars.FOLIO_URL }}
+        run: python -m autocollect lessons

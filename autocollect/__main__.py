@@ -8,6 +8,8 @@
     python -m autocollect run
 - 把報告寫進 Folio 筆記本（需要環境變數 FOLIO_SYNC_TOKEN）：
     python -m autocollect folio
+- 把教材（lessons/ammonia）寫進 Folio 筆記本「氨氮降解教材」：
+    python -m autocollect lessons
 """
 
 from __future__ import annotations
@@ -21,7 +23,7 @@ from pathlib import Path
 
 import yaml
 
-from . import analyze, folio, report, sources, store
+from . import analyze, folio, lessons, report, sources, store
 
 ROOT = Path(__file__).resolve().parent.parent
 PROMPT = Path("prompts") / "weekly_analysis.md"
@@ -198,6 +200,26 @@ def cmd_folio(args) -> int:
     return 0
 
 
+def cmd_lessons(args) -> int:
+    lesson_dir = ROOT / args.dir
+    if args.dry_run:
+        records, uploads = lessons.build_all(lesson_dir)
+        pages = [r["data"]["title"] for r in records if r["key"].startswith("pg:")]
+        print(f"{len(pages)} 頁、{len(uploads)} 張圖、{len(records)} 筆紀錄（未上傳）")
+        for t in pages:
+            print("  -", t)
+        return 0
+    token = os.environ.get("FOLIO_SYNC_TOKEN", "")
+    if not token:
+        print("未設定 FOLIO_SYNC_TOKEN", file=sys.stderr)
+        return 1
+    url = os.environ.get("FOLIO_URL") or folio.DEFAULT_URL
+    result = lessons.publish(url, token, lesson_dir)
+    print(f"已上傳教材 {result['pages']} 頁到 Folio（新圖片 {result['images_uploaded']} 張，"
+          f"伺服器接受 {result.get('accepted')} 筆紀錄）")
+    return 0
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog="autocollect", description="生質能國內外新知週報")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -228,6 +250,11 @@ def main(argv=None) -> int:
     p.add_argument("--week", help="週次，預設最新一期")
     p.add_argument("--force", action="store_true", help="還沒有 AI 分析也上傳")
     p.set_defaults(func=cmd_folio)
+
+    p = sub.add_parser("lessons", help="把教材寫進 Folio 筆記本「氨氮降解教材」，一章一頁")
+    p.add_argument("--dir", default="lessons/ammonia", help="教材資料夾")
+    p.add_argument("--dry-run", action="store_true", help="只組出頁面、不上傳")
+    p.set_defaults(func=cmd_lessons)
 
     args = parser.parse_args(argv)
     return args.func(args)
