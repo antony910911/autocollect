@@ -7,6 +7,8 @@ pip install -r requirements.txt
 python dfba.py           # 產生 pFBA 查表 tables.json（約 10 秒）
 python experiments.py    # 跑全部計算實驗，結果寫到 results.json（約 2 分鐘）
 python protocol.py       # 把最適條件換算成操作單，寫到 protocol.json
+python labdata.py        # 產生示範實驗數據（example-data/ 的兩個 CSV）
+python calibrate.py      # 用實驗數據校正模型參數，寫到 calibration.json
 python make_figures.py   # 依結果畫圖
 cd ../simulator && python build.py   # 產生互動模擬器 index.html
 ```
@@ -17,9 +19,12 @@ cd ../simulator && python build.py   # 產生互動模擬器 index.html
 | `dfba.py` | 動態通量平衡分析（每步解線性規劃或查表）、溫度與 pH 基點模型、遲滯期 |
 | `experiments.py` | 1 FBA（供氧、碳源、相平面、基因剔除、流量圖）2 批次培養與生長曲線擬合 3 兩階段與敏感度 4 溫度 × pH 5 一次改一個因子／隨機／貝氏最適化 |
 | `protocol.py` | 第 10 章：供氧換算 kLa 與容器、接種量、取樣時程、OD 切換門檻與查核對照表、蒙地卡羅容許範圍、異常處置表 |
+| `labdata.py` | 產生示範用的實驗數據（真實參數刻意和預設值不同，用來示範校正） |
+| `calibrate.py` | 第 11 章：讀 CSV、品質檢查、算衍生量、最小平方校正、驗證批次評估、參數可辨識性 |
+| `example-data/` | `batches.csv`（條件，每批一列）與 `samples.csv`（量測，每次取樣一列）——可以直接當你的資料範本 |
 | `make_figures.py` | 畫教材的圖 |
 | `map_layout.json` | 中心代謝流量圖的版面（第 4 章圖與模擬器共用） |
-| `tables.json`、`results.json`、`protocol.json` | 最近一次的計算結果（教材引用的就是這份） |
+| `tables.json`、`results.json`、`protocol.json`、`calibration.json` | 最近一次的計算結果（教材引用的就是這份） |
 
 ## 換成你的菌
 
@@ -27,4 +32,5 @@ cd ../simulator && python build.py   # 產生互動模擬器 index.html
 2. 修改 `gem.py` 裡的 `BIOMASS`、`EXCHANGE`、`MAP_RXNS` 成你的模型的反應名稱。
 3. 用你的實驗數據修改 `dfba.Params` 的吸收速率、耗氧上限、溫度與 pH 基點值。
 4. 修改 `protocol.py` 最上方的換算常數：`OD_TO_GDW`（你的檢量線）、`VESSELS`（你實測的 kLa）。
-5. 依序執行上面五個指令。
+5. 把你的實驗數據整理成 `example-data/` 那兩個 CSV 的格式，用 `calibrate.py` 校正參數（第 11 章）。
+6. 依序執行上面幾個指令。

@@ -17,7 +17,7 @@ BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN, TEAL = ("#2f6fb3", "#d9821e", "#c
 
 
 def fig0():
-    s = Svg(1200, 600, "學習地圖：從一段 DNA 序列，到看得見的最適培養條件")
+    s = Svg(1320, 600, "學習地圖：從一段 DNA 序列，到看得見的最適培養條件")
     steps = [
         ("DNA 序列", "定序、組裝\n品質檢查", BROWN, "2"),
         ("功能註解", "這株菌有\n哪些基因、酵素", ORANGE, "2"),
@@ -27,25 +27,26 @@ def fig0():
         ("最適化", "分階段調參數\n貝氏最適化", GREEN, "6–8"),
         ("視覺化介面", "拉動參數\n立刻看到變化", RED, "9"),
         ("操作建議", "換算成實驗室\n真的做得出來的事", "#1b8a8f", "10"),
+        ("數據餵回模型", "校正參數\n模型越用越準", "#8a6d3b", "11"),
     ]
     x = 24
     for i, (h, b, c, ch) in enumerate(steps):
-        s.box(x, 90, 130, 70, h, color=c, size=15)
+        s.box(x, 90, 130, 70, h, color=c, size=14.5)
         s.box(x, 170, 130, 86, "", color=c, fill="#ffffff")
         s.text(x + 65, 213, b, size=13, anchor="middle-v")
         s.pill(x + 65, 284, f"第 {ch} 章", c, size=12.5)
         if i < len(steps) - 1:
-            s.arrow([(x + 132, 125), (x + 146, 125)], color=c)
-        x += 146
-    s.box(24, 330, 1152, 112, "", color=GREY, fill="#fbfbfd")
+            s.arrow([(x + 132, 125), (x + 144, 125)], color=c)
+        x += 143
+    s.box(24, 330, 1272, 112, "", color=GREY, fill="#fbfbfd")
     s.text(48, 364, "實驗室資料一路回饋（第 5、7、8、11 章）", size=17, weight=700)
     s.text(48, 396, "生長曲線、基質與產物濃度、溶氧、pH、溫度 → 校正吸收速率、找出溫度與 pH 的最適範圍、檢查模型預測對不對。", size=15)
     s.text(48, 424, "模型負責「縮小範圍、解釋原因」；實驗負責「驗證、提供模型算不出來的參數」。兩者交替，越轉越準。", size=15)
-    s.box(24, 470, 370, 100, "第 1 章", color=BROWN, size=15, sub="先回答你的問題：\n能做到什麼、做不到什麼", sub_size=15,
+    s.box(24, 470, 408, 100, "第 1 章", color=BROWN, size=15, sub="先回答你的問題：\n能做到什麼、做不到什麼", sub_size=15,
           fill="#ffffff")
-    s.box(415, 470, 370, 100, "第 11 章", color=GREEN, size=15, sub="怎麼開始：步驟、分工\n你要收集什麼、AI 能幫什麼", sub_size=15,
+    s.box(456, 470, 408, 100, "第 12 章", color=GREEN, size=15, sub="怎麼開始：步驟、分工\n你要收集什麼、AI 能幫什麼", sub_size=15,
           fill="#ffffff")
-    s.box(806, 470, 370, 100, "第 12–13 章", color=PURPLE, size=15, sub="國內外文獻與資源\n更創新的做法", sub_size=15,
+    s.box(888, 470, 408, 100, "第 13–14 章", color=PURPLE, size=15, sub="國內外文獻與資源\n更創新的做法", sub_size=15,
           fill="#ffffff")
     return s
 
@@ -233,7 +234,7 @@ def fig6():
         (24, 320, "5 各階段最適化", "階段一：最大菌量／速率\n階段二：產物速率與產率\n用 RSM 或貝氏最適化", GREEN),
         (318, 320, "6 整體一起微調", "切換時間與各階段參數\n有交互作用（第 8 章）\n最後要一起最佳化", BLUE),
         (612, 320, "7 驗證與放大", "重複 3 批以上\n搖瓶 → 小型發酵槽\n供氧條件會變", RED),
-        (906, 320, "8 回饋模型", "把新資料加回模型\n下一輪更準\n（第 8、13 章）", GREY),
+        (906, 320, "8 回饋模型", "把新資料加回模型\n下一輪更準\n（第 8、14 章）", GREY),
     ]
     for x, y, h, b, c in boxes:
         s.box(x, y, 270, 52, h, color=c, size=16)
@@ -292,7 +293,7 @@ def fig8():
 
 
 def fig10():
-    s = Svg(1200, 700, "圖 11-1　起步路線圖：你要做的事 vs AI／工具能幫的事")
+    s = Svg(1200, 700, "圖 12-1　起步路線圖：你要做的事 vs AI／工具能幫的事")
     phases = [
         ("第 1 個月", "定義與資料", BROWN),
         ("第 2–3 個月", "定序與註解", ORANGE),
@@ -344,7 +345,7 @@ def fig10():
 
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
-        "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig11-1-roadmap": fig10}
+        "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10}
 
 if __name__ == "__main__":
     want = sys.argv[1:] or list(FIGS)

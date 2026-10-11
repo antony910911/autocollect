@@ -67,7 +67,7 @@
 - [`lessons/ammonia/`](lessons/ammonia/)：氨氮降解入門，9 章加導讀、20 張圖與各章參考文獻。
 - [`lessons/aiot/`](lessons/aiot/)：沼氣與廢水處理的 AIoT 入門，8 章加導讀、13 張圖，含國內外案例與創新思路。
 - [`lessons/aiot-advanced/`](lessons/aiot-advanced/)：沼氣廠 AIoT 進階建模實作，10 章加導讀、15 張圖；附可執行的模擬廠與五個建模練習程式（`code/`）。
-- [`lessons/dna-to-culture/`](lessons/dna-to-culture/)：從微生物 DNA 到最適培養條件，13 章加導讀、31 張圖；附 COBRApy 代謝模型計算（`code/`）與可離線開啟的互動培養模擬器（`simulator/index.html`）。
+- [`lessons/dna-to-culture/`](lessons/dna-to-culture/)：從微生物 DNA 到最適培養條件，14 章加導讀、34 張圖；附 COBRApy 代謝模型計算（`code/`）與可離線開啟的互動培養模擬器（`simulator/index.html`）。
 - 三者都放在 Folio 筆記本「Claude圖解教材」，各自一個分區。
 - 每門教材的資料夾有一個 `course.yaml`，設定放在 Folio 的哪本筆記本、哪個分區；設定 `find_by_name: true` 時，會先找 Folio 裡同名的筆記本（例如你自己建的「claude圖解教材」），找到就放進去。
 - 推送到任何分支、只要改到 `lessons/` 就會由 [`.github/workflows/lessons.yml`](.github/workflows/lessons.yml) 執行兩件事：到 Crossref 核對每一筆 DOI（標題與年份要對得上），以及依 `course.yaml` 寫進 Folio，一章一頁、文字與圖交錯排列。

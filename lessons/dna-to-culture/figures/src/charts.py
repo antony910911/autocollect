@@ -1,4 +1,4 @@
-"""第 13 章創新思路的評估圖（本教材主觀評估，不是量測結果）。執行：python lessons/dna-to-culture/figures/src/charts.py"""
+"""第 14 章創新思路的評估圖（本教材主觀評估，不是量測結果）。執行：python lessons/dna-to-culture/figures/src/charts.py"""
 
 from __future__ import annotations
 
@@ -48,8 +48,8 @@ ax.set_xlim(1, 5)
 ax.set_ylim(3.0, 5)
 ax.set_xlabel("實施難度（設備、資料、跨領域人才）→")
 ax.set_ylabel("預期價值（省實驗、提高產量、可發表性）→")
-ax.set_title("圖 13-1　創新思路的價值與難度（本教材主觀評估）")
+ax.set_title("圖 14-1　創新思路的價值與難度（本教材主觀評估）")
 fig.text(0.01, -0.03, "相對位置依第 4–9 章模擬實驗的發現與文獻推論，用來排序；實際要依你的菌株、設備與團隊重新評估。", fontsize=10,
          color="#5b6475")
-fig.savefig(OUT / "fig13-1-ideas.png", bbox_inches="tight", facecolor="white")
-print("寫入 fig13-1-ideas")
+fig.savefig(OUT / "fig14-1-ideas.png", bbox_inches="tight", facecolor="white")
+print("寫入 fig14-1-ideas")

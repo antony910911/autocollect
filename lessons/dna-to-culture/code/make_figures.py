@@ -18,6 +18,7 @@ HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / "figures"
 R = json.loads((HERE / "results.json").read_text("utf-8"))
 PR = json.loads((HERE / "protocol.json").read_text("utf-8")) if (HERE / "protocol.json").exists() else None
+CAL = json.loads((HERE / "calibration.json").read_text("utf-8")) if (HERE / "calibration.json").exists() else None
 for f in ("WenQuanYi Zen Hei", "Noto Sans CJK TC", "PingFang TC", "Microsoft JhengHei"):
     if any(f == x.name for x in font_manager.fontManager.ttflist):
         plt.rcParams["font.family"] = [f, "DejaVu Sans"]
@@ -483,8 +484,143 @@ def fig_switch_rule():
     save(fig, "fd10-2-switch-rule", DFBA_NOTE)
 
 
+# ───────── 第 11 章：把數據餵回模型 ─────────
+LAB_NOTE = ("示範資料：用一組「和教材預設值不同」的參數模擬出來的六批實驗，加上一般實驗室水準的量測誤差。"
+            "程式在 lessons/dna-to-culture/code/（labdata.py 產生、calibrate.py 校正）。")
+
+
+def fig_derive():
+    der, curves = CAL["derived"], CAL["curves"]
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 5))
+    # 左：一批的 OD 與 μmax、遲滯期怎麼讀出來
+    bid = "B01"
+    obs = curves[bid]["obs"]
+    d = der[bid]
+    t = np.array([x for x, y in zip(obs["t"], obs["od600"]) if y])
+    y = np.array([y for y in obs["od600"] if y])
+    a1.scatter(t, y, color=INK, s=42, zorder=4, label="量到的 OD600")
+    w0, w1 = d["mu_window"]
+    sel = (t >= w0) & (t <= w1)
+    k, c = np.polyfit(t[sel], np.log(y[sel]), 1)
+    tt = np.linspace(0, w1 + 1.5, 50)
+    a1.plot(tt, np.exp(k * tt + c), color=RED, lw=2.2,
+            label=f"指數期直線迴歸：μmax = {k:.3f}/h")
+    a1.axvspan(w0, w1, color=GREEN, alpha=0.12)
+    a1.text((w0 + w1) / 2, y.max() * 0.95, "自動挑出的\n指數期視窗", ha="center", va="top", fontsize=10.5,
+            color=GREEN, weight="bold")
+    a1.axhline(y[0], color=GREY, ls=":")
+    a1.axvline(d["lag_h"], color=BLUE, ls="--", lw=1.8)
+    a1.annotate(f"遲滯期 {d['lag_h']:.2f} h\n（切線外推回起始 OD）", (d["lag_h"], y[0]),
+                xytext=(18, -34), textcoords="offset points", fontsize=10.5, color=BLUE,
+                arrowprops=dict(arrowstyle="->", color=BLUE))
+    a1.set_yscale("log")
+    a1.set_yticks([0.1, 0.3, 1, 3, 10, 30])
+    a1.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:g}"))
+    a1.yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
+    a1.set_xlabel("時間（h）")
+    a1.set_ylabel("OD600（對數軸）")
+    a1.set_title(f"從一批的原始 OD 讀出生長參數（{bid}）")
+    a1.legend(loc="lower right", fontsize=10, framealpha=0.95, facecolor="white", edgecolor="none")
+    # 右：六批的 μmax 對溫度
+    Ts = sorted({v["T"] for v in der.values()})
+    bump = {}
+    for bid2, v in sorted(der.items(), key=lambda kv: (kv[1]["T"], -kv[1]["mu_max"])):
+        col = GREEN if v["otr_set"] >= 20 else ORANGE
+        i = bump.get(v["T"], 0)
+        bump[v["T"]] = i + 1
+        a2.scatter([v["T"]], [v["mu_max"]], color=col, s=120, zorder=4, edgecolor="white")
+        a2.annotate(bid2, (v["T"], v["mu_max"]), xytext=(11, 12 - i * 13), textcoords="offset points",
+                    fontsize=10, arrowprops=dict(arrowstyle="-", color=GREY, lw=0.8, shrinkA=2, shrinkB=2))
+    a2.scatter([], [], color=GREEN, s=100, label="供氧 30")
+    a2.scatter([], [], color=ORANGE, s=100, label="供氧 10")
+    a2.set_xlabel("培養溫度（°C）")
+    a2.set_ylabel("實測 μmax（1/h）")
+    a2.set_title("六批彙整：溫度確實有影響，但只有三個溫度")
+    a2.legend(frameon=False, loc="lower right")
+    a2.set_ylim(0, 0.78)
+    a2.text(30, 0.13, "只有 30、37、42 三個溫度，\n擬合溫度曲線剛好夠用；\n要更準就要再加溫度點。",
+            fontsize=10.5, color=NOTE)
+    fig.suptitle("圖 11-1　第一步：不必用模型，先從原始數據算出衍生量", fontsize=15, weight="bold", y=1.02)
+    save(fig, "fd11-1-derive", LAB_NOTE)
+
+
+def fig_calibrate():
+    curves, pb = CAL["curves"], CAL["per_batch"]
+    show = ["B01", "B06", "B02", "B04"]
+    fig, axes = plt.subplots(2, 2, figsize=(13.5, 8.6))
+    for ax, bid in zip(axes.ravel(), show):
+        c, role = curves[bid], pb[bid]["role"]
+        t, obs = np.array(c["t"]), c["obs"]
+        ot = np.array(obs["t"])
+        ax.plot(t, c["before"]["od600"], color=GREY, lw=1.8, ls="--", label="校正前（預設參數）")
+        ax.plot(t, c["after"]["od600"], color=GREEN, lw=2.6, label="校正後")
+        m = [i for i, v in enumerate(obs["od600"]) if v]
+        ax.scatter(ot[m], [obs["od600"][i] for i in m], color=INK, s=34, zorder=5, label="實測 OD600")
+        a2 = ax.twinx()
+        a2.plot(t, c["before"]["ethanol_g_L"], color=GREY, lw=1.4, ls=":")
+        a2.plot(t, c["after"]["ethanol_g_L"], color=ETOH_C, lw=2.2)
+        m2 = [i for i, v in enumerate(obs["ethanol_g_L"]) if v]
+        a2.scatter(ot[m2], [obs["ethanol_g_L"][i] for i in m2], color=ETOH_C, s=30, marker="s", zorder=5)
+        a2.set_ylabel("乙醇（g/L）", color=ETOH_C, fontsize=10)
+        a2.grid(False)
+        a2.spines["right"].set_visible(True)
+        if c["switch_h"]:
+            ax.axvline(c["switch_h"], color=INK, lw=1.2)
+        col = GREEN if role == "訓練" else PURPLE
+        ax.set_title(f"{bid}（{role}）　{c['T']:.0f} °C、供氧 {c['otr']:.0f}　"
+                     f"OD 誤差 {pb[bid]['before']['od600']:.0f}% → {pb[bid]['after']['od600']:.0f}%",
+                     color=col, fontsize=12.5)
+        ax.set_xlabel("時間（h）")
+        ax.set_ylabel("OD600")
+        if bid == show[0]:
+            h1, l1 = ax.get_legend_handles_labels()
+            ax.legend(h1 + [plt.Line2D([], [], color=ETOH_C, lw=2.2, marker="s", ls="-")],
+                      l1 + ["乙醇（右軸）"], frameon=False, fontsize=9.5, loc="upper left")
+    fig.suptitle("圖 11-2　校正前後：上排是參與校正的批次，下排是沒參與的驗證批次", fontsize=15, weight="bold", y=0.985)
+    fig.tight_layout()
+    save(fig, "fd11-2-calibration", LAB_NOTE + " B04 在 42 °C，超出訓練批次的溫度範圍。")
+
+
+def fig_identifiability():
+    sens, theta, truth = CAL["sensitivity"], CAL["theta"], CAL["truth"]
+    default = CAL["default"]
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(13.5, 5.2), gridspec_kw={"width_ratios": [1.1, 1]})
+    labels = [s["label"] for s in sens][::-1]
+    vals = [s["worst_ratio"] for s in sens][::-1]
+    cols = [GREEN if s["identifiable"] else RED for s in sens][::-1]
+    a1.barh(labels, vals, color=cols)
+    a1.set_xscale("log")
+    a1.axvline(1.5, color=INK, ls="--", lw=1.5)
+    a1.text(1.7, len(vals) - 1.4, "門檻：參數偏離 ±30% 時\n擬合至少要變差 1.5 倍", fontsize=10, color=NOTE)
+    for i, v in enumerate(vals):
+        a1.text(v * 1.15, i, f"×{v:,.0f}" if v >= 10 else f"×{v:.1f}", va="center", fontsize=10)
+    a1.set_xlabel("把參數拉離最佳值 ±30%，擬合誤差變成幾倍（對數軸）")
+    a1.set_title("哪些參數真的被數據決定？")
+    a1.set_xlim(0.8, max(vals) * 4)
+    # 右：參數回收
+    names = [s["name"] for s in sens]
+    show = [n for n in names if truth.get(n) is not None]
+    x = np.arange(len(show))
+    rel_d = [default[n] / truth[n] for n in show]
+    rel_a = [theta[n] / truth[n] for n in show]
+    a2.axhline(1, color=INK, lw=1.5)
+    a2.bar(x - 0.2, rel_d, width=0.38, color=GREY, label="校正前 ÷ 真實值")
+    a2.bar(x + 0.2, rel_a, width=0.38, color=GREEN, label="校正後 ÷ 真實值")
+    for i, n in enumerate(show):
+        if not next(s for s in sens if s["name"] == n)["identifiable"]:
+            a2.text(i + 0.2, rel_a[i] + 0.3, "數據\n不足", ha="center", fontsize=9.5, color=RED, weight="bold")
+    a2.set_xticks(x, [n.replace("_", "\n") for n in show], fontsize=9.5)
+    a2.set_ylabel("估計值 ÷ 真實值（1.0 = 完全正確）")
+    a2.set_title("參數回收：可辨識的都回到 1.0 附近")
+    a2.legend(frameon=False, loc="upper left", fontsize=10)
+    a2.set_ylim(0, max(max(rel_d), max(rel_a)) * 1.25)
+    fig.suptitle("圖 11-3　不是每個參數都能從數據決定", fontsize=15, weight="bold", y=1.0)
+    fig.tight_layout()
+    save(fig, "fd11-3-identifiability", LAB_NOTE + " 真實值只有示範資料才知道；真實實驗沒有答案可以對。")
+
+
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
-    for fn in (fig_protocol, fig_switch_rule, fig_o2_scan, fig_phase_plane, fig_carbon, fig_knockouts, fig_batch, fig_gompertz, fig_otr,
+    for fn in (fig_derive, fig_calibrate, fig_identifiability, fig_protocol, fig_switch_rule, fig_o2_scan, fig_phase_plane, fig_carbon, fig_knockouts, fig_batch, fig_gompertz, fig_otr,
                fig_strategies, fig_switch_scan, fig_sensitivity, fig_env, fig_bo, fig_interaction):
         fn()
