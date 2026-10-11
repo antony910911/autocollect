@@ -32,6 +32,7 @@ lessons/<課程名>/
 | `lessons/aiot/` | 沼氣與廢水處理 AIoT 入門 | 沼氣與廢水處理 AIoT |
 | `lessons/aiot-advanced/` | 沼氣 AIoT 進階建模 | 沼氣 AIoT 進階：建模實作 |
 | `lessons/dna-to-culture/` | 從 DNA 到最適培養（18 章） | 從 DNA 到最適培養：建模與視覺化 |
+| `lessons/using-claude/` | 把 Claude 用好（10 章，給研究者的實戰手冊） | 把 Claude 用好：給研究者的實戰手冊 |
 
 ### 寫教材的規矩（重要）
 

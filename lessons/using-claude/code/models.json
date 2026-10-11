@@ -1,0 +1,88 @@
+{
+ "as_of": "2026-10",
+ "models": [
+  {
+   "name": "Haiku 5.5",
+   "id": "claude-haiku-5-5",
+   "in_usd_per_mtok": 0.1,
+   "out_usd_per_mtok": 0.5,
+   "note": "最便宜最快，適合分類、擷取這種簡單又大量的工作",
+   "example_no_cache_usd": 0.088,
+   "example_cached_usd": 0.021,
+   "cache_saving_pct": 76.6
+  },
+  {
+   "name": "Sonnet 5.5",
+   "id": "claude-sonnet-5-5",
+   "in_usd_per_mtok": 2.0,
+   "out_usd_per_mtok": 10.0,
+   "note": "日常寫程式與代理工作的主力",
+   "example_no_cache_usd": 1.76,
+   "example_cached_usd": 0.412,
+   "cache_saving_pct": 76.6
+  },
+  {
+   "name": "Opus 5.5",
+   "id": "claude-opus-5-5",
+   "in_usd_per_mtok": 4.0,
+   "out_usd_per_mtok": 20.0,
+   "note": "最強的日常款，難題與長流程用這個",
+   "example_no_cache_usd": 3.52,
+   "example_cached_usd": 0.824,
+   "cache_saving_pct": 76.6
+  },
+  {
+   "name": "Fable 5.1",
+   "id": "claude-fable-5-1",
+   "in_usd_per_mtok": 10.0,
+   "out_usd_per_mtok": 50.0,
+   "note": "最吃力的推理與長時間自主工作",
+   "example_no_cache_usd": 8.8,
+   "example_cached_usd": 2.06,
+   "cache_saving_pct": 76.6
+  }
+ ],
+ "ladder": [
+  {
+   "step": "① 把資料放進提示裡",
+   "en": "prompting / context",
+   "data": "幾頁到幾十頁",
+   "cost": "幾乎免費（只有 token 費）",
+   "time": "幾分鐘",
+   "keeps_up": "改資料＝改檔案，立刻生效",
+   "use": "資料量小、常變動、你只有幾份文件"
+  },
+  {
+   "step": "② 外掛檢索（RAG）",
+   "en": "retrieval-augmented generation",
+   "data": "幾百到幾十萬頁",
+   "cost": "低（向量資料庫＋每次查詢的 token）",
+   "time": "幾天",
+   "keeps_up": "資料更新只要重建索引",
+   "use": "**研究者 90% 的情況**：文獻庫、實驗紀錄、SOP"
+  },
+  {
+   "step": "③ 微調（fine-tune）",
+   "en": "fine-tuning",
+   "data": "數千筆高品質問答對",
+   "cost": "中（訓練＋之後每次推論都比較貴）",
+   "time": "數週（大半花在整理資料）",
+   "keeps_up": "資料更新要重新訓練",
+   "use": "要固定的輸出格式或語氣，或領域詞彙太偏"
+  },
+  {
+   "step": "④ 從頭訓練",
+   "en": "pre-training",
+   "data": "數十億到數兆 token",
+   "cost": "數百萬美元起跳",
+   "time": "數月～數年",
+   "keeps_up": "要重來",
+   "use": "幾乎不適用於單一實驗室"
+  }
+ ],
+ "example": {
+  "doc_tokens": 40000,
+  "questions": 20,
+  "answer_tokens": 800
+ }
+}
