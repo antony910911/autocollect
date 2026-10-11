@@ -49,3 +49,19 @@ topics:
       color: "#5476a3"
       page_prefix: pg_autocollect_farn_lab_
       item_prefix: t_autocollect_farn_lab_
+
+  proposal_radar:
+    title: 工研院能源與環境研發案源雷達
+    config: config/sources.yaml
+    prompt: prompts/weekly_analysis.md
+    data_dir: data/proposal_radar
+    reports_dir: reports/proposal_radar
+    folio:
+      notebook_id: nb_autocollect_proposal_radar
+      notebook_name: 研發案源雷達
+      notebook_order: 102
+      section_id: sc_autocollect_proposal_radar
+      section_name: 研發案源追蹤
+      color: "#527d89"
+      page_prefix: pg_autocollect_proposal_
+      item_prefix: t_autocollect_proposal_
