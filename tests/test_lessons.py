@@ -29,6 +29,9 @@ def lesson(tmp_path):
     (tmp_path / "figures").mkdir()
     (tmp_path / "figures" / "a.png").write_bytes(tiny_png(400, 200, 1))
     (tmp_path / "figures" / "b.png").write_bytes(tiny_png(300, 300, 2))
+    (tmp_path / "course.yaml").write_text(
+        "notebook: {id: nb_t, name: claude圖解教材, find_by_name: true}\n"
+        "section: {id: sc_t, name: 測試分區}\npage_prefix: amm\n", "utf-8")
     (tmp_path / "README.md").write_text("# 導讀\n\n見 [第 1 章](01-x.md)。\n", "utf-8")
     (tmp_path / "01-x.md").write_text(
         "# 第 1 章　測試\n\n## 1.1 小節\n\n*Nitrospira* 與 **重點** [1]\n\n"
@@ -56,7 +59,7 @@ def test_html_is_folio_safe_and_keeps_italics(lesson):
 def test_layout_stacks_without_overlap_and_cleans_old_items(lesson):
     records, uploads = lessons.build_all(lesson, now_ms=1000)
     keys = [r["key"] for r in records]
-    assert keys[:2] == ["nb:nb_autocollect_ammonia", "sc:sc_autocollect_ammonia_basics"]
+    assert keys[:2] == ["nb:nb_t", "sc:sc_t"]
     pages = [r["data"] for r in records if r["key"].startswith("pg:")]
     assert [p["title"] for p in pages] == ["導讀：導讀", "第 1 章　測試"]
     items = [r["data"] for r in records if r["key"].startswith("it:pg_autocollect_amm_01:") and not r["deleted"]]
@@ -113,6 +116,9 @@ def fake_folio():
                 accepted += 1
             self._send({"accepted": accepted})
 
+        def do_GET(self):
+            self._send({"records": list(store.values()), "seq": len(store), "more": False})
+
         def do_PUT(self):
             aid = self.path.rsplit("/", 1)[1]
             assets[aid] = self.rfile.read(int(self.headers["content-length"]))
@@ -130,17 +136,35 @@ def fake_folio():
 
 def test_publish_uploads_images_once(lesson, fake_folio):
     url, store, assets, puts = fake_folio
-    res = lessons.publish(url, "pw", lesson)
+    course = lessons.Course.load(lesson)
+    [res] = lessons.publish(url, "pw", [course])
     assert res["images_uploaded"] == 2 and res["pages"] == 2
     assert all(ct == "image/png" for _, ct in puts)
     assert all(store[f"as:{a}"]["data"]["type"] == "image/png" for a in assets)
-    res = lessons.publish(url, "pw", lesson)
+    [res] = lessons.publish(url, "pw", [course])
     assert res["images_uploaded"] == 0 and len(puts) == 2
+
+
+def test_publish_finds_existing_notebook_by_name(lesson, fake_folio):
+    url, store, assets, puts = fake_folio
+    mine = {"id": "nb_user123", "name": " Claude圖解教材 ", "order": 5}
+    store["nb:nb_user123"] = {"key": "nb:nb_user123", "rev": folio.make_rev(5000), "deleted": 0, "data": mine}
+    [res] = lessons.publish(url, "pw", [lessons.Course.load(lesson)])
+    assert res["notebook_id"] == "nb_user123" and "nb:nb_t" not in store
+    assert store["sc:sc_t"]["data"]["notebookId"] == "nb_user123"
+    assert store["pg:pg_autocollect_amm_01"]["data"]["sectionId"] == "sc_t"
+    # 使用者已有同名分區時，也直接用它
+    store.pop("sc:sc_t")
+    store["sc:sc_mine"] = {"key": "sc:sc_mine", "rev": folio.make_rev(6000), "deleted": 0,
+                           "data": {"id": "sc_mine", "notebookId": "nb_user123", "name": "測試分區"}}
+    nb, sc, create_nb, create_sc = lessons.resolve_targets(lessons.Course.load(lesson), list(store.values()))
+    assert (nb, sc, create_nb, create_sc) == ("nb_user123", "sc_mine", False, False)
+    assert "筆記本「 Claude圖解教材 」" in lessons.describe(list(store.values()))
 
 
 def test_check_refs_extracts_dois_with_parentheses():
     import importlib.util
-    spec = importlib.util.spec_from_file_location("check_refs", LESSON_DIR / "tools" / "check_refs.py")
+    spec = importlib.util.spec_from_file_location("check_refs", LESSON_DIR.parent / "_tools" / "check_refs.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     assert mod.extract_doi("x. https://doi.org/10.1061/(ASCE)0733-9372(2001)127:8(673)") == \

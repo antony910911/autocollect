@@ -5,7 +5,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "_tools"))
 from svgkit import C, INK, MUTED, Svg, render, tint  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent

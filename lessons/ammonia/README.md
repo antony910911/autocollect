@@ -25,6 +25,6 @@
 
 ## 關於資料來源
 
-- 每章的事實都附文獻編號，對應該章最後的「參考文獻」。有 DOI 的文獻由 GitHub Actions 自動到 Crossref 核對標題與 DOI 是否一致（[`check_refs.py`](tools/check_refs.py)）。
+- 每章的事實都附文獻編號，對應該章最後的「參考文獻」。有 DOI 的文獻由 GitHub Actions 自動到 Crossref 核對標題與 DOI 是否一致（[`check_refs.py`](../_tools/check_refs.py)）。
 - 圖中標示「示意」的是模擬數據，只用來說明判讀方式。其他圖的數值依文獻公式計算，程式在 [`figures/src/`](figures/src/)。
 - 台灣官方方法（NIEA）會改版，正式申報前請到國家環境研究院（原環境檢驗所）網站確認最新版次。

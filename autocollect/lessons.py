@@ -15,13 +15,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import requests
+import yaml
 
 from . import folio
 
-NOTEBOOK_ID = "nb_autocollect_ammonia"
-NOTEBOOK_NAME = "氨氮降解教材"
-SECTION_ID = "sc_autocollect_ammonia_basics"
-SECTION_NAME = "基礎教材"
 PAGE_X, PAGE_W = 64, 880
 TOP_Y = 156
 GAP = 28
@@ -31,6 +28,36 @@ SPARE_TOMBSTONES = 16
 _IMAGE = re.compile(r"^!\[([^\]]*)\]\(([^)\s]+)\)\s*$")
 _REL_LINK = re.compile(r"\[([^\]]+)\]\((?!https?://)[^)]+\)")
 _ITALIC = re.compile(r"(?<![\w*<])\*([^*\s<][^*<]*?)\*(?![\w*])")
+
+
+@dataclass
+class Course:
+    """一門教材：放在哪本筆記本、哪個分區，頁面 id 用什麼前綴。設定寫在教材資料夾的 course.yaml。"""
+
+    dir: Path
+    notebook_id: str
+    notebook_name: str
+    section_id: str
+    section_name: str
+    page_prefix: str
+    find_notebook_by_name: bool = False  # True：Folio 裡已有同名筆記本就放進去，沒有才建立
+    section_color: str = "#2f6fb3"
+    notebook_order: int = 110
+    section_order: int = 1
+
+    @classmethod
+    def load(cls, lesson_dir: Path) -> "Course":
+        cfg = yaml.safe_load((lesson_dir / "course.yaml").read_text("utf-8"))
+        nb, sc = cfg["notebook"], cfg["section"]
+        return cls(dir=lesson_dir, notebook_id=nb["id"], notebook_name=nb["name"], section_id=sc["id"],
+                   section_name=sc["name"], page_prefix=cfg["page_prefix"],
+                   find_notebook_by_name=bool(nb.get("find_by_name", False)),
+                   section_color=sc.get("color", "#2f6fb3"), notebook_order=int(nb.get("order", 110)),
+                   section_order=int(sc.get("order", 1)))
+
+
+def all_courses(root: Path) -> list[Course]:
+    return [Course.load(p.parent) for p in sorted(root.glob("*/course.yaml"))]
 
 
 @dataclass
@@ -124,18 +151,19 @@ def asset_id(data: bytes) -> str:
     return "as_lesson_" + hashlib.sha256(data).hexdigest()[:32]
 
 
-def build_chapter(chapter_no: int, md_path: Path, now_ms: int, rev_counter: list[int]) -> tuple[list[dict], dict]:
+def build_chapter(course: Course, section_id: str, chapter_no: int, md_path: Path, now_ms: int,
+                  rev_counter: list[int]) -> tuple[list[dict], dict]:
     """回傳（紀錄, 需要上傳的圖片 {asset_id: bytes}）。"""
     title, blocks = parse(md_path.read_text("utf-8"), md_path.parent)
     title = title or md_path.stem
-    page_id = f"pg_autocollect_amm_{chapter_no:02d}"
-    tag = page_id.removeprefix("pg_autocollect_")
+    tag = f"{course.page_prefix}_{chapter_no:02d}"
+    page_id = f"pg_autocollect_{tag}"
 
     def rev():
         rev_counter[0] += 1
         return folio.make_rev(now_ms, rev_counter[0])
 
-    page = {"id": page_id, "sectionId": SECTION_ID, "title": title, "background": "blank",
+    page = {"id": page_id, "sectionId": section_id, "title": title, "background": "blank",
             "order": chapter_no, "createdAt": now_ms, "updatedAt": now_ms}
     records = [{"key": f"pg:{page_id}", "rev": folio.CREATE_ONLY_REV, "deleted": 0, "data": page}]
     uploads: dict[str, bytes] = {}
@@ -169,21 +197,54 @@ def chapter_files(lesson_dir: Path) -> list[Path]:
     return ([readme] if readme.exists() else []) + files
 
 
-def build_all(lesson_dir: Path, now_ms: int | None = None) -> tuple[list[dict], dict]:
+def _same(a: str, b: str) -> bool:
+    return a.strip().casefold() == b.strip().casefold()
+
+
+def resolve_targets(course: Course, existing: list[dict] | None) -> tuple[str, str, bool, bool]:
+    """決定實際要用的（筆記本 id, 分區 id, 要不要建筆記本, 要不要建分區）。
+
+    existing 是從 Folio 拉下來的全部紀錄；None 表示不查（離線預覽）。
+    """
+    live = [r for r in (existing or []) if not r.get("deleted") and isinstance(r.get("data"), dict)]
+    nb_id, create_nb = course.notebook_id, True
+    if any(r["key"] == f"nb:{course.notebook_id}" for r in live):
+        create_nb = False
+    elif course.find_notebook_by_name:
+        named = [r["data"] for r in live if r["key"].startswith("nb:") and _same(r["data"].get("name", ""),
+                                                                                 course.notebook_name)]
+        if named:
+            nb_id, create_nb = named[0]["id"], False
+    sc_id, create_sc = course.section_id, True
+    if any(r["key"] == f"sc:{course.section_id}" for r in live):
+        create_sc = False
+    else:
+        named = [r["data"] for r in live if r["key"].startswith("sc:") and r["data"].get("notebookId") == nb_id
+                 and _same(r["data"].get("name", ""), course.section_name)]
+        if named:
+            sc_id, create_sc = named[0]["id"], False
+    return nb_id, sc_id, create_nb, create_sc
+
+
+def build_course(course: Course, existing: list[dict] | None = None, now_ms: int | None = None,
+                 counter: list[int] | None = None) -> tuple[list[dict], dict]:
     now_ms = now_ms or int(time.time() * 1000)
-    notebook = {"id": NOTEBOOK_ID, "name": NOTEBOOK_NAME, "order": 110, "createdAt": now_ms, "updatedAt": now_ms}
-    section = {"id": SECTION_ID, "notebookId": NOTEBOOK_ID, "name": SECTION_NAME, "color": "#2f6fb3",
-               "order": 1, "createdAt": now_ms, "updatedAt": now_ms}
-    records = [
-        {"key": f"nb:{NOTEBOOK_ID}", "rev": folio.CREATE_ONLY_REV, "deleted": 0, "data": notebook},
-        {"key": f"sc:{SECTION_ID}", "rev": folio.CREATE_ONLY_REV, "deleted": 0, "data": section},
-    ]
+    counter = counter if counter is not None else [0]
+    nb_id, sc_id, create_nb, create_sc = resolve_targets(course, existing)
+    records = []
+    if create_nb:
+        notebook = {"id": nb_id, "name": course.notebook_name, "order": course.notebook_order,
+                    "createdAt": now_ms, "updatedAt": now_ms}
+        records.append({"key": f"nb:{nb_id}", "rev": folio.CREATE_ONLY_REV, "deleted": 0, "data": notebook})
+    if create_sc:
+        section = {"id": sc_id, "notebookId": nb_id, "name": course.section_name, "color": course.section_color,
+                   "order": course.section_order, "createdAt": now_ms, "updatedAt": now_ms}
+        records.append({"key": f"sc:{sc_id}", "rev": folio.CREATE_ONLY_REV, "deleted": 0, "data": section})
     uploads: dict[str, bytes] = {}
-    counter = [0]
-    for path in chapter_files(lesson_dir):
+    for path in chapter_files(course.dir):
         m = re.match(r"(\d+)-", path.name)
         no = int(m.group(1)) if m else 0
-        recs, ups = build_chapter(no, path, now_ms, counter)
+        recs, ups = build_chapter(course, sc_id, no, path, now_ms, counter)
         if path.name == "README.md":
             recs[0]["data"]["title"] = "導讀：" + recs[0]["data"]["title"]
         records += recs
@@ -191,11 +252,51 @@ def build_all(lesson_dir: Path, now_ms: int | None = None) -> tuple[list[dict], 
     return records, uploads
 
 
+def build_all(lesson_dir: Path, now_ms: int | None = None) -> tuple[list[dict], dict]:
+    """單一教材資料夾（離線，不查 Folio）。"""
+    return build_course(Course.load(lesson_dir), None, now_ms)
+
+
+def _headers(token: str) -> dict:
+    return {"Authorization": f"Bearer {folio.encode_token(token)}", "X-Folio-Device": folio.DEVICE}
+
+
+def fetch_records(base_url: str, token: str) -> list[dict]:
+    """把 Folio 伺服器上的全部紀錄拉下來（分頁）。"""
+    out, since = [], 0
+    while True:
+        r = requests.get(base_url.rstrip("/") + "/api/changes", params={"since": since}, headers=_headers(token),
+                         timeout=60)
+        if r.status_code == 401:
+            raise RuntimeError("Folio 同步密碼不對（401）")
+        r.raise_for_status()
+        body = r.json()
+        out += body.get("records", [])
+        if not body.get("more") or body.get("seq", since) == since:
+            return out
+        since = body["seq"]
+
+
+def describe(records: list[dict]) -> str:
+    """列出筆記本與分區（給人看，用來確認放在哪裡）。"""
+    live = [r for r in records if not r.get("deleted") and isinstance(r.get("data"), dict)]
+    nbs = [r["data"] for r in live if r["key"].startswith("nb:")]
+    scs = [r["data"] for r in live if r["key"].startswith("sc:")]
+    pages = [r["data"] for r in live if r["key"].startswith("pg:")]
+    lines = []
+    for nb in sorted(nbs, key=lambda n: n.get("order", 0)):
+        lines.append(f"筆記本「{nb.get('name')}」（{nb['id']}）")
+        for sc in sorted((s for s in scs if s.get("notebookId") == nb["id"]), key=lambda s: s.get("order", 0)):
+            n = sum(1 for p in pages if p.get("sectionId") == sc["id"])
+            lines.append(f"  └ 分區「{sc.get('name')}」（{sc['id']}，{n} 頁）")
+    return "\n".join(lines)
+
+
 def upload_assets(base_url: str, token: str, uploads: dict[str, bytes]) -> int:
     """先問伺服器缺哪些，只上傳缺的。回傳上傳張數。"""
     if not uploads:
         return 0
-    headers = {"Authorization": f"Bearer {folio.encode_token(token)}", "X-Folio-Device": folio.DEVICE}
+    headers = _headers(token)
     base = base_url.rstrip("/") + "/api/assets"
     resp = requests.post(base + "/check", json={"ids": list(uploads)}, headers=headers, timeout=60)
     resp.raise_for_status()
@@ -207,10 +308,16 @@ def upload_assets(base_url: str, token: str, uploads: dict[str, bytes]) -> int:
     return len(missing)
 
 
-def publish(base_url: str, token: str, lesson_dir: Path) -> dict:
-    records, uploads = build_all(lesson_dir)
-    sent = upload_assets(base_url, token, uploads)  # 圖片先上傳，頁面出現時才不會是空白
-    result = folio.publish(base_url, token, records)
-    result["images_uploaded"] = sent
-    result["pages"] = sum(1 for r in records if r["key"].startswith("pg:"))
-    return result
+def publish(base_url: str, token: str, courses: list[Course]) -> list[dict]:
+    existing = fetch_records(base_url, token)
+    results = []
+    counter = [0]
+    for course in courses:
+        records, uploads = build_course(course, existing, counter=counter)
+        sent = upload_assets(base_url, token, uploads)  # 圖片先上傳，頁面出現時才不會是空白
+        result = folio.publish(base_url, token, records)
+        nb_id, sc_id, _, _ = resolve_targets(course, existing)
+        result.update(course=course.dir.name, images_uploaded=sent, notebook_id=nb_id, section_id=sc_id,
+                      pages=sum(1 for r in records if r["key"].startswith("pg:")))
+        results.append(result)
+    return results

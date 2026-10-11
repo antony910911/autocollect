@@ -62,14 +62,15 @@
 - 如果你把「生質能週報」筆記本整本刪掉，之後的頁面不會再出現；要恢復請告訴我改用新的筆記本 id。
 - Folio 網址不是 `https://folio.antony910912.workers.dev` 時，新增 Variable `FOLIO_URL`。
 
-## 教材：氨氮降解入門
+## 教材（lessons/）
 
-[`lessons/ammonia/`](lessons/ammonia/) 是給新接手氨氮降解專案者的教材，共 9 章加導讀，含 20 張圖與各章參考文獻。
+- [`lessons/ammonia/`](lessons/ammonia/)：氨氮降解入門，9 章加導讀、20 張圖與各章參考文獻。
 
-- 推送到任何分支、只要改到 `lessons/` 就會由 [`.github/workflows/lessons.yml`](.github/workflows/lessons.yml) 執行兩件事：到 Crossref 核對每一筆 DOI（標題與年份要對得上），以及寫進 Folio 筆記本「氨氮降解教材 › 基礎教材」，一章一頁、文字與圖交錯排列。
+- 每門教材的資料夾有一個 `course.yaml`，設定放在 Folio 的哪本筆記本、哪個分區；設定 `find_by_name: true` 時，會先找 Folio 裡同名的筆記本（例如你自己建的「claude圖解教材」），找到就放進去。
+- 推送到任何分支、只要改到 `lessons/` 就會由 [`.github/workflows/lessons.yml`](.github/workflows/lessons.yml) 執行兩件事：到 Crossref 核對每一筆 DOI（標題與年份要對得上），以及依 `course.yaml` 寫進 Folio，一章一頁、文字與圖交錯排列。
 - 圖片以內容雜湊為 id，沒改過的圖不會重傳。重新發布會重排頁面上由程式產生的文字框與圖片；你自己加的手寫與文字框不受影響。
-- 圖由 `lessons/ammonia/figures/src/` 的程式產生（`charts.py` 用 matplotlib、`diagrams.py` 用 SVG 再以 Chromium 轉 PNG）。
-- 本機預覽要上傳的頁面：`python -m autocollect lessons --dry-run`；上傳：`FOLIO_SYNC_TOKEN=... python -m autocollect lessons`。
+- 共用工具在 `lessons/_tools/`（`svgkit.py` 畫示意圖、`check_refs.py` 核對 DOI）。圖由各教材 `figures/src/` 的程式產生（`charts.py` 用 matplotlib、`diagrams.py` 用 SVG 再以 Chromium 轉 PNG）。
+- 本機預覽要上傳的頁面：`python -m autocollect lessons --dry-run`；查看 Folio 上有哪些筆記本：`FOLIO_SYNC_TOKEN=... python -m autocollect lessons --list`；上傳：`FOLIO_SYNC_TOKEN=... python -m autocollect lessons`。
 
 ## 本機執行
 

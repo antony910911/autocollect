@@ -8,8 +8,8 @@
     python -m autocollect run
 - 把報告寫進 Folio 筆記本（需要環境變數 FOLIO_SYNC_TOKEN）：
     python -m autocollect folio
-- 把教材（lessons/ammonia）寫進 Folio 筆記本「氨氮降解教材」：
-    python -m autocollect lessons
+- 把教材（lessons/*/）寫進 Folio，位置見各教材的 course.yaml：
+    python -m autocollect lessons [--list] [--dry-run]
 """
 
 from __future__ import annotations
@@ -201,22 +201,28 @@ def cmd_folio(args) -> int:
 
 
 def cmd_lessons(args) -> int:
-    lesson_dir = ROOT / args.dir
+    root = ROOT / "lessons"
+    courses = [lessons.Course.load(ROOT / d) for d in args.dir] if args.dir else lessons.all_courses(root)
     if args.dry_run:
-        records, uploads = lessons.build_all(lesson_dir)
-        pages = [r["data"]["title"] for r in records if r["key"].startswith("pg:")]
-        print(f"{len(pages)} 頁、{len(uploads)} 張圖、{len(records)} 筆紀錄（未上傳）")
-        for t in pages:
-            print("  -", t)
+        for course in courses:
+            records, uploads = lessons.build_course(course)
+            pages = [r["data"]["title"] for r in records if r["key"].startswith("pg:")]
+            print(f"{course.dir.name}：{len(pages)} 頁、{len(uploads)} 張圖（未上傳，預定放在"
+                  f"「{course.notebook_name} › {course.section_name}」）")
+            for t in pages:
+                print("  -", t)
         return 0
     token = os.environ.get("FOLIO_SYNC_TOKEN", "")
     if not token:
         print("未設定 FOLIO_SYNC_TOKEN", file=sys.stderr)
         return 1
     url = os.environ.get("FOLIO_URL") or folio.DEFAULT_URL
-    result = lessons.publish(url, token, lesson_dir)
-    print(f"已上傳教材 {result['pages']} 頁到 Folio（新圖片 {result['images_uploaded']} 張，"
-          f"伺服器接受 {result.get('accepted')} 筆紀錄）")
+    if args.list:
+        print(lessons.describe(lessons.fetch_records(url, token)))
+        return 0
+    for r in lessons.publish(url, token, courses):
+        print(f"已上傳 {r['course']}：{r['pages']} 頁 → 筆記本 {r['notebook_id']} / 分區 {r['section_id']}"
+              f"（新圖片 {r['images_uploaded']} 張，伺服器接受 {r.get('accepted')} 筆紀錄）")
     return 0
 
 
@@ -251,9 +257,10 @@ def main(argv=None) -> int:
     p.add_argument("--force", action="store_true", help="還沒有 AI 分析也上傳")
     p.set_defaults(func=cmd_folio)
 
-    p = sub.add_parser("lessons", help="把教材寫進 Folio 筆記本「氨氮降解教材」，一章一頁")
-    p.add_argument("--dir", default="lessons/ammonia", help="教材資料夾")
+    p = sub.add_parser("lessons", help="把 lessons/ 底下的教材寫進 Folio，一章一頁（位置見各教材的 course.yaml）")
+    p.add_argument("--dir", action="append", help="只處理指定教材資料夾（可重複），預設全部")
     p.add_argument("--dry-run", action="store_true", help="只組出頁面、不上傳")
+    p.add_argument("--list", action="store_true", help="列出 Folio 上的筆記本與分區，不上傳")
     p.set_defaults(func=cmd_lessons)
 
     args = parser.parse_args(argv)

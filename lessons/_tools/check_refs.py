@@ -1,6 +1,6 @@
 """核對教材參考文獻：每個 DOI 到 Crossref 查詢，確認存在、標題與年份和文中寫的一致。
 
-用法：python lessons/ammonia/tools/check_refs.py [教材資料夾]
+用法：python lessons/_tools/check_refs.py 教材資料夾 [教材資料夾 ...]（省略則核對所有有 course.yaml 的教材）
 有任何一筆查不到或對不上時以代碼 1 結束，GitHub Actions 會標示失敗。
 """
 
@@ -86,18 +86,19 @@ def check_line(line: str, mailto: str) -> tuple[bool, str]:
 
 
 def main(argv: list[str]) -> int:
-    folder = Path(argv[1]) if len(argv) > 1 else Path(__file__).resolve().parent.parent
+    root = Path(__file__).resolve().parents[1]
+    folders = [Path(a) for a in argv[1:]] or sorted(p.parent for p in root.glob("*/course.yaml"))
     mailto = os.environ.get("OPENALEX_MAILTO", "")
     bad = 0
     total = 0
-    for md in sorted(folder.glob("*.md")):
+    for md in sorted(f for folder in folders for f in folder.glob("*.md")):
         for line in references(md.read_text("utf-8")):
             ok, note = check_line(line, mailto)
             if "略過" in note:
                 continue
             total += 1
             mark = "OK " if ok else "NG "
-            print(f"{mark} {md.name}: {line[:70]}…\n     {note}")
+            print(f"{mark} {md.parent.name}/{md.name}: {line[:70]}…\n     {note}")
             bad += not ok
             time.sleep(0.2)
     print(f"\n共核對 {total} 筆 DOI，{bad} 筆有問題")

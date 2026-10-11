@@ -26,7 +26,7 @@ jobs:
       - name: 到 Crossref 核對每一筆 DOI
         env:
           OPENALEX_MAILTO: ${{ vars.OPENALEX_MAILTO }}
-        run: python lessons/ammonia/tools/check_refs.py lessons/ammonia
+        run: python lessons/_tools/check_refs.py
 
   publish:
     name: 上傳到 Folio
@@ -38,6 +38,11 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+      - name: 列出 Folio 上的筆記本與分區
+        env:
+          FOLIO_SYNC_TOKEN: ${{ secrets.FOLIO_SYNC_TOKEN }}
+          FOLIO_URL: ${{ vars.FOLIO_URL }}
+        run: python -m autocollect lessons --list
       - name: 上傳教材
         env:
           FOLIO_SYNC_TOKEN: ${{ secrets.FOLIO_SYNC_TOKEN }}
