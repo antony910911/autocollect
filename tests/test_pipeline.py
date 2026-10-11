@@ -243,8 +243,34 @@ def test_repo_topics_are_valid():
     for name in reg:
         t = topics.get_topic(root, name)
         assert (root / t.prompt).exists() and t.load_config()["openalex"]["queries"]
-        for key in ("notebook_id", "section_id", "page_prefix", "item_prefix"):
+        # 不同主題可以共用筆記本，但分區與頁面不能重複，否則會互相覆蓋
+        for key in ("section_id", "page_prefix", "item_prefix"):
             assert t.folio[key] not in ids
             ids.add(t.folio[key])
     # 生質能週報既有的 Folio id 不能變，否則會在 Folio 產生重複的筆記本
     assert reg["bioenergy"]["folio"]["notebook_id"] == "nb_autocollect_bio"
+
+
+def test_recollect_does_not_overwrite_analyzed_week(tmp_path, monkeypatch):
+    """同一週已有分析時，重跑 collect 與 build 不能改掉來源編號或把報告蓋回資料整理版。"""
+    root = tmp_path
+    (root / "config").mkdir()
+    (root / "prompts").mkdir()
+    (root / "config" / "sources.yaml").write_text("researcher_profile: x\n", "utf-8")
+    (root / "prompts" / "weekly_analysis.md").write_text("指示", "utf-8")
+    monkeypatch.setattr(cli, "ROOT", root)
+    first = [{"kind": "news", "title": "A 消息", "url": "https://a/1", "source": "X", "published": "2026-10-08",
+              "lang": "zh-TW", "summary": "", "query": "q", "meta": {}}]
+    monkeypatch.setattr(sources, "collect_all", lambda cfg, mailto="": (first, [{"source": "x", "ok": True, "count": 1}]))
+    assert cli.main(["collect", "--date", "2026-10-10"]) == 0
+    (root / "data" / "analysis").mkdir()
+    (root / "data" / "analysis" / "2026-W41.md").write_text("## 一、本週重點摘要\n- A 消息顯示某廠開始商轉運作中 [S1]\n", "utf-8")
+    assert cli.main(["build", "--date", "2026-10-10"]) == 0
+    raw_before = (root / "data" / "raw" / "2026-W41.json").read_text("utf-8")
+
+    second = [{**first[0], "title": "B 消息", "url": "https://b/1"}] + first
+    monkeypatch.setattr(sources, "collect_all", lambda cfg, mailto="": (second, [{"source": "x", "ok": True, "count": 2}]))
+    assert cli.main(["collect", "--date", "2026-10-10"]) == 0
+    assert cli.main(["build", "--date", "2026-10-10"]) == 0
+    assert (root / "data" / "raw" / "2026-W41.json").read_text("utf-8") == raw_before
+    assert "## 一、本週重點摘要" in (root / "reports" / "2026-W41.md").read_text("utf-8")

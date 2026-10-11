@@ -127,6 +127,11 @@ def target_date(args) -> date:
 
 def cmd_collect(args) -> int:
     topic = get_topic(args)
+    week = week_id(target_date(args))
+    if topic.analysis_path(week).exists() and not args.force:
+        # 已有分析的週次不能重新收集：重新收集會改變來源編號，讓既有分析的引用全部對錯
+        print(f"[{topic.name}] {week} 已有分析（{topic.analysis_path(week).relative_to(ROOT)}），不重新收集")
+        return 0
     cfg = topic.load_config()
     bundle = collect(topic, cfg, target_date(args))
     pack = write_pack(topic, cfg, bundle)
@@ -138,8 +143,10 @@ def cmd_build(args) -> int:
     topic = get_topic(args)
     week = args.week or week_id(target_date(args))
     bundle = load_bundle(topic, week)
-    if args.analysis:
-        text = (ROOT / args.analysis).read_text("utf-8").strip()
+    analysis = ROOT / args.analysis if args.analysis else topic.analysis_path(week)
+    if args.analysis or analysis.exists():
+        # 沒指定 --analysis 但這週已有分析時也用它，避免把完整報告蓋回資料整理版
+        text = analysis.read_text("utf-8").strip()
         qa = build(topic, bundle, text, {"model": args.model}, None)
         return 1 if qa["invalid"] else 0
     build(topic, bundle, None, None, "尚未產生 AI 分析，以下只有資料整理。")
@@ -208,6 +215,7 @@ def main(argv=None) -> int:
 
     p = sub.add_parser("collect", help="收集資料並產生分析包（不需 API 金鑰）")
     common(p)
+    p.add_argument("--force", action="store_true", help="即使這週已有分析也重新收集（會讓既有分析的引用失效）")
     p.set_defaults(func=cmd_collect)
 
     p = sub.add_parser("build", help="把分析文字與本週資料組成報告，並驗證引用")
