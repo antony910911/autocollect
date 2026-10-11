@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "topic": "farnesene_lab",
+  "week": "2026-W41",
+  "run_date": "2026-10-11",
+  "timezone": "Asia/Taipei",
+  "collection_mode": "Reviewed repository 2026-W41 harvested 135 items (14 news + 121 papers; 43/43 queries succeeded) then independently checked primary journal pages and searched recent literature",
+  "weekly_window": "2026-10-05..2026-10-11",
+  "first_issue_backfill_window": "2026-09-11..2026-10-04",
+  "note": "The collection has no substantial newly published fermentation original study from the strict weekly window; backfill papers are clearly labeled. This is a real trial, not fabricated experiment data.",
+  "sources": [
+    {
+      "id": "P1",
+      "type": "peer_reviewed",
+      "published": "2026-09-17",
+      "first_issue_backfill": true,
+      "title": "A sustainable and tunable methanol-driven sesquiterpene-biomanufacturing platform using engineered Komagataella phaffii",
+      "journal": "Process Biochemistry",
+      "doi": "10.1016/j.procbio.2026.09.010",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1359511326002424",
+      "key_data": {
+        "beta_farnesene_g_per_L": 5.85,
+        "alpha_bisabolol_g_per_L": 8.87,
+        "carbon_source": "methanol only",
+        "alpha_bisabolol_bioreactor_L": 5
+      },
+      "limitations": "Abstract-level quantitative details; process settings not disclosed in accessible source; cross-strain extrapolation is not justified"
+    },
+    {
+      "id": "P2",
+      "type": "peer_reviewed",
+      "published": "2026-10-01",
+      "first_issue_backfill": true,
+      "title": "SaCas9-Mediated CrtYB Disruption Coupled with Heterologous α-Bisabolol Production in Rhodotorula mucilaginosa JY1105",
+      "journal": "Microorganisms",
+      "doi": "10.3390/microorganisms14102205",
+      "url": "https://www.mdpi.com/2076-2607/14/10/2205",
+      "key_data": {
+        "wildtype_TPS1_mg_per_L": "37.52 ± 3.09",
+        "edited_TPS1_mg_per_L": "41.45 ± 2.08",
+        "replicates": 3,
+        "fermentation_medium": "YTD50 50 g/L glucose, initial pH 6, 30 °C, 200 rpm",
+        "extraction": "broth:hexane 1:1; 25 °C, 200 rpm, 2 h; centrifugation"
+      },
+      "limitations": "highest clone selected from random integrations; comparison is not causal; unlike farnesene and different host"
+    },
+    {
+      "id": "P3",
+      "type": "peer_reviewed",
+      "published": "2026-09-29",
+      "first_issue_backfill": true,
+      "title": "Targeted mutagenesis of a thermophilic mevalonate kinase for efficient catalysis at lower temperatures",
+      "journal": "Protein Engineering Design and Selection",
+      "doi": "10.1093/protein/gzag027",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42808591/",
+      "key_data": {
+        "temperature_c": 22,
+        "top_variant": "I10S",
+        "kcat_relative": 5
+      },
+      "limitations": "cell-free enzyme experiment; not demonstrated to increase farnesene in yeast"
+    },
+    {
+      "id": "B1",
+      "type": "older_method_reference",
+      "published": "2025-10-01",
+      "title": "Combinatorial engineering of enzyme and pathway for efficient β-farnesene bioproduction in Yarrowia lipolytica",
+      "journal": "Synthetic and Systems Biotechnology",
+      "doi": "10.1016/j.synbio.2025.10.016",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12657309/",
+      "key_data": {
+        "beta_farnesene_g_per_L": 45.96,
+        "fed_batch_glucose_setpoint_g_per_L": 5,
+        "pH": 5,
+        "DO_percent": 30,
+        "overlay": "10% IPM",
+        "bioreactor_L": 5
+      },
+      "limitations": "different host and engineered strain; method reference only"
+    },
+    {
+      "id": "B2",
+      "type": "older_method_reference",
+      "published": "2022-10",
+      "title": "β-Farnesene Production from Low-Cost Glucose in Lignocellulosic Hydrolysate by Engineered Yarrowia lipolytica",
+      "journal": "Fermentation",
+      "doi": "10.3390/fermentation8100532",
+      "url": "https://www.mdpi.com/2311-5637/8/10/532",
+      "key_data": {
+        "beta_farnesene_g_per_L": "7.38 ± 0.24",
+        "bioreactor_L": 2,
+        "hours": 144
+      },
+      "limitations": "lignocellulosic hydrolysate and engineered Yarrowia; not directly comparable to pineapple peel extract"
+    },
+    {
+      "id": "B3",
+      "type": "older_method_reference",
+      "published": "2026-02",
+      "title": "Screening of high-yielding β-farnesene Saccharomyces cerevisiae strains and quantification of fermentation processes",
+      "journal": "Biochemical Engineering Journal",
+      "doi": "10.1016/j.bej.2025.110006",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1369703X25003808",
+      "key_data": {
+        "r_squared_up_to": 0.996,
+        "screening_speedup": 128,
+        "bioreactor_L": 30,
+        "beta_farnesene_g_per_L_approx": 33
+      },
+      "limitations": "fluorescent assay method requires validation with dodecane and fermentation-matrix effects"
+    }
+  ],
+  "screening": {
+    "scanned_from_existing_collection": 135,
+    "selected_recent_peer_reviewed_backfill": 3,
+    "new_meeting_core_lab_threshold_within_week": 0,
+    "preprints_selected": 0,
+    "background_methods": 3,
+    "excluded_examples": [
+      "unrelated botanical volatile profiling",
+      "market press releases",
+      "reviews without new experimental data"
+    ]
+  },
+  "dedupe_key": "DOI when available else canonical URL"
+}
