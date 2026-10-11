@@ -10,6 +10,13 @@ python protocol.py       # 把最適條件換算成操作單，寫到 protocol.j
 python labdata.py        # 產生示範實驗數據（example-data/ 的兩個 CSV）
 python calibrate.py      # 用實驗數據校正模型參數，寫到 calibration.json
 python engineered.py     # 第 16 章：基改菌株的生產包絡線
+
+# 有自己的定序資料時（第 2、15、16 章）
+python genome_tools.py stats    WT.fasta MUT.fasta
+python genome_tools.py compare  WT.fasta MUT.fasta --out novel.fasta
+python genome_tools.py orfs     novel.fasta --prot novel_proteins.faa
+python genome_tools.py cassette WT.fasta MUT.fasta novel.fasta
+python genome_tools.py plan     --genome MUT.fasta --out annotate.sh
 python make_figures.py   # 依結果畫圖
 cd ../simulator && python build.py   # 產生互動模擬器 index.html
 ```
@@ -23,6 +30,7 @@ cd ../simulator && python build.py   # 產生互動模擬器 index.html
 | `labdata.py` | 產生示範用的實驗數據（真實參數刻意和預設值不同，用來示範校正） |
 | `calibrate.py` | 第 11 章：讀 CSV、品質檢查、算衍生量、最小平方校正、驗證批次評估、參數可辨識性 |
 | `example-data/` | `batches.csv`（條件，每批一列）與 `samples.csv`（量測，每次取樣一列）——可以直接當你的資料範本 |
+| `genome_tools.py` | 第 2、15、16 章：組裝統計、野生株 vs 基改株的 k-mer 比對、找 ORF 與模體、定位插入點、產生完整註解流程的指令稿 |
 | `engineered.py` | 第 16 章：把異源反應加進模型、算生產包絡線與成長耦合 |
 | `yeast.py` | 第 15 章：載入 Yeast8／rhto-GEM 等酵母菌模型、檢查、設厭氧、剔除基因（需自行下載模型，要在你自己的電腦上跑） |
 | `make_figures.py` | 畫教材的圖 |
