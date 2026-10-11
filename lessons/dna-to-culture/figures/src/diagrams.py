@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -934,6 +935,75 @@ def fig17_states():
     return s
 
 
+def _wrap(txt, size, maxw):
+    """依實際寬度斷行；ASCII 單字不切開，行首不留標點。"""
+    tokens = re.findall(r"[A-Za-z0-9²³·\.\-–—/%‰+×=（）()]+|\s+|.", txt)
+    lines, cur = [], ""
+    for tok in tokens:
+        if tok.isspace() and not cur:
+            continue
+        if _w(cur + tok, size) > maxw and cur:
+            lines.append(cur.rstrip())
+            cur = "" if tok.isspace() else tok
+        else:
+            cur += tok
+    if cur.strip():
+        lines.append(cur.rstrip())
+    return lines
+
+
+def fig18_strategy():
+    d = json.loads((CODE / "literature_terpenes.json").read_text("utf-8"))
+    steps = d["steps"]
+    s = Svg(1480, 860, "圖 18-2　八年三步：別人是怎麼從 680 mg/L 走到 20 g/L 的")
+    s.text(40, 78, "三篇論文、同一株菌、同一個前驅物（FPP）。每一步解決的是不同的瓶頸。",
+           size=14.5, color=MUTED)
+
+    cols = [GREY, BLUE, TEAL]
+    X, W, GAP = 40, 440, 24
+    for i, (st, col) in enumerate(zip(steps, cols)):
+        x = X + i * (W + GAP)
+        s.box(x, 150, W, 400, "", color=col, fill=tint(col, 0.93))
+        s.text(x + 24, 196, f'{st["year"]}', size=26, weight=700, color=col)
+        s.text(x + 24, 232, st["title"], size=20, weight=700)
+        s.line(x + 24, 250, x + W - 24, 250, color=col)
+        yy = 286
+        for line in st["what"]:
+            bold = line.startswith("**")
+            txt = line.replace("**", "")
+            for ln in _wrap(txt, 13.5, W - 48):
+                s.text(x + 24, yy, ln, size=13.5, weight=700 if bold else 400,
+                       color=RED if bold else INK)
+                yy += 25
+            yy += 12
+        s.text(x + 24, 500, "這一步做到", size=13, color=MUTED)
+        s.text(x + W - 24, 506, f'{st["best"] / 1000:.1f} g/L', size=26, weight=700,
+               color=col, anchor="end")
+        s.text(x + 24, 534, d["sources"][st["key"]]["cite"], size=11.5, color=MUTED)
+        if i < 2:
+            s.arrow([(x + W + 2, 350), (x + W + GAP - 2, 350)], color=MUTED, width=3)
+
+    # 你在這裡
+    x2 = X + 1 * (W + GAP)
+    s.arrow([(x2 + W / 2, 132), (x2 + W / 2, 148)], color=RED, width=3)
+    s.text(x2 + W / 2, 124, "你已經做到這一步了（11 個功能性拷貝）", size=16, weight=700,
+           color=RED, anchor="middle")
+
+    s.box(40, 586, 1400, 150, "", color=GREEN, fill=tint(GREEN, 0.93))
+    s.text(68, 626, "對你的意義", size=18, weight=700)
+    s.text(68, 662, "拷貝數這一關你已經過了——而且是用和 2017 那篇一樣的農桿菌隨機嵌入做到的。"
+                    "接下來該做的是 2025 那一步：", size=15)
+    s.text(68, 696, "補強 MVA 路徑（尤其 HMG1）＋ 削弱往油脂的通量。"
+                    "那一步在文獻上帶來 6–7 倍的提升，是目前所有手段裡最大的一個。", size=15, weight=700)
+    s.text(40, 772, "注意：這三篇做的是 α-bisabolene（C15 倍半萜，和 α-farnesene 同樣從 FPP 出發、同樣揮發），"
+                    "不是 α-farnesene 本身。", size=13.5, color=MUTED)
+    s.text(40, 800, "合成酶不同，產物毒性與揮發性也不會完全一樣，所以這些數字是「可以期待的量級」，"
+                    "不是你一定做得到的數字。", size=13.5, color=MUTED)
+    s.text(40, 832, "本圖的數字全部來自論文摘要或轉述（這個環境連不上期刊網站），"
+                    "引用前請自己核對全文。", size=13.5, color=RED)
+    return s
+
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
@@ -943,7 +1013,8 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig17-1-overview": fig17_overview, "fig17-2-construct": fig17_construct,
         "fig17-3-array": fig17_array, "fig17-5-junction": fig17_junction,
         "fig17-6-pathway": fig17_pathway,
-        "fig17-8-states": fig17_states}
+        "fig17-8-states": fig17_states,
+        "fig18-2-strategy": fig18_strategy}
 
 if __name__ == "__main__":
     want = sys.argv[1:] or list(FIGS)

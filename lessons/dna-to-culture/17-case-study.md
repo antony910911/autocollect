@@ -211,7 +211,7 @@ FPP 原本有三個去向，現在多了第四個：
 
 ### 可以動的四個地方
 
-1. **把 HMG1 拉高**。HMG-CoA 還原酶是 MVA 的限速步驟，文獻上提高倍半萜產量最常用的手段之一 [3]。
+1. **把 HMG1 拉高**。HMG-CoA 還原酶是 MVA 的限速步驟；在這株菌把整條 MVA 路徑補上去，是目前產量紀錄的主要手段之一 [6]（第 18 章）。
 2. **調降 ERG9**。FPP 最大的去向，但不能關掉——用弱啟動子或可調控啟動子。
 3. **調降類胡蘿蔔素**。釋出 FPP，順便讓 OD600 變好量。
 4. **挑氮限制的時機**。限氮催油脂，會把乙醯輔酶A 搶走。這一點和啟動子的身分綁在一起（見 17.4）：**如果 AFS 的啟動子是組成型，限氮階段 AFS 還在表現，但原料被油脂搶走**，那這個階段對產物就是純粹的浪費。
@@ -286,7 +286,11 @@ OD600 量的主要是**散射**不是吸收。類胡蘿蔔素（β-胡蘿蔔素�
 
 把三條放在一起看，**farnesene 是被兩邊夾擊的那一個**：上游的乙醯輔酶A 被油脂搶，下游的 FPP 被色素分流。而兩邊競爭都最小的狀態是「氮充足、活躍生長、遮光、無逆境」——也就是菌量還不高的時候。
 
-**這代表經典的「先長菌、再限氮切換產物」兩階段策略，對 farnesene 很可能是錯的。** 限氮催的是油脂，不是你的產物。文獻上在這株菌做倍半萜（α-bisabolene，和 α-farnesene 一樣從 FPP 出發）走的路線是：**不刻意限氮，用饋料批次維持高細胞密度與持續的碳流，加十二烷覆蓋把產物一直拉走** [1, 3]。
+**這代表經典的「先長菌、再限氮切換產物」兩階段策略，對 farnesene 很可能是錯的。** 限氮催的是油脂，不是你的產物。
+
+文獻上在這株菌做 α-bisabolene（和 α-farnesene 一樣從 FPP 出發）實際走的是：**高糖饋料批次 ＋ 十二烷覆蓋層** [3, 5]；而最新把產量推到 19–20 g/L 的研究，用的手段是**基因層次削弱油脂通量**（相對對照提高 6–7 倍）加上補強整條 MVA 路徑 [6]，不是去調 C/N。第 18 章整理了這四篇。
+
+**要誠實說明的是**：到目前為止**沒有任何一篇論文直接掃過 C/N 對 bisabolene 產量的影響**。「限氮對 farnesene 不利」是從「限氮催油脂」加上「削弱油脂能提高 6–7 倍產量」推出來的，不是量出來的。這也是下面那份實驗設計要做 3 個 C/N 的原因。
 
 這和第 6 章不衝突——第 6 章教的是**方法**，但切換的目標變數要換：對 farnesene 來說，要找的切換點可能是「什麼時候開始饋料、什麼時候加有機相」，而不是「什麼時候限氮」。
 
@@ -362,7 +366,7 @@ OD600 量的主要是**散射**不是吸收。類胡蘿蔔素（β-胡蘿蔔素�
 
 | 發現 | 影響到哪一章 | 要怎麼做 |
 |---|---|---|
-| 11 個功能性拷貝 | 第 16 章 | 拷貝數已經不是瓶頸了。文獻上同樣從 FPP 出發的 α-bisabolene 從 261 mg/L 做到 2.2 g/L，增加拷貝數是主要手段之一 [3]——這一步你已經做完。接下來要看的是 **FPP 供應**與**競爭路徑**（油脂搶乙醯輔酶 A、ERG9 與類胡蘿蔔素搶 FPP） |
+| 11 個功能性拷貝 | 第 16、18 章 | 拷貝數已經不是瓶頸了。同樣從 FPP 出發的 α-bisabolene，在這株菌的產量和合成酶卡匣拷貝數呈現 R²＝0.93 的相關 [3]——這一步你已經做完。接下來要看的是 **FPP 供應**與**競爭路徑**（油脂搶乙醯輔酶 A、ERG9 與類胡蘿蔔素搶 FPP） |
 | 啟動子身分不明 | 第 6、10 章 | **先查清楚再設計分階段培養。** 組成型與受調控的啟動子，第二階段要不要限氮的答案完全相反 |
 | 串聯重複、12 份 | 第 10、11 章 | 串聯重複會同源重組丟失拷貝。**維持選擇壓力**（如果標記確認是 nourseothricin 抗性就要加 nourseothricin），並在條件表記下**傳代次數**，每隔幾代用 qPCR 確認拷貝數 |
 | 另一份組裝完全沒有構築 | 第 11 章 | 很可能就是上一項的後果。這是「菌株會變」最直接的證據，不要假設菌株在整個實驗期間都一樣 |
@@ -426,4 +430,6 @@ python code/promoter_scan.py --construct construct.fasta --genome MUT.fasta
 2. Michielse CB, Hooykaas PJJ, van den Hondel CAMJJ, Ram AFJ (2005). *Agrobacterium*-mediated transformation as a tool for functional genomics in fungi. *Current Genetics*, 48, 1–17.（農桿菌轉形在真菌的整合模式，包含串聯多拷貝與骨架共整合）
 3. Kirby J, Geiselman GM, Yaegashi J, et al. (2021). Further engineering of *R. toruloides* for the production of terpenes from lignocellulosic biomass. *Biotechnology for Biofuels*, 14, 101. https://doi.org/10.1186/s13068-021-01950-w
 4. Coradetti ST, Pinel D, Geiselman GM, et al. (2018). Functional genomics of lipid metabolism in the oleaginous yeast *Rhodosporidium toruloides*. *eLife*, 7, e32110. https://doi.org/10.7554/eLife.32110
-5. Li H (2018). Minimap2: pairwise alignment for nucleotide sequences. *Bioinformatics*, 34, 3094–3100. https://doi.org/10.1093/bioinformatics/bty191
+5. Yaegashi J, Kirby J, Ito M, et al. (2017). *Rhodosporidium toruloides*: a new platform organism for conversion of lignocellulose into terpene biofuels and bioplastics. *Biotechnology for Biofuels*, 10, 241. https://doi.org/10.1186/s13068-017-0927-5
+6. Adamczyk et al. (2025). The oleaginous yeast *Rhodosporidium toruloides* engineered for biomass hydrolysate-derived (E)-α-bisabolene production. *Metabolic Engineering*, 90, 92–105. https://doi.org/10.1016/j.ymben.2025.02.014
+7. Li H (2018). Minimap2: pairwise alignment for nucleotide sequences. *Bioinformatics*, 34, 3094–3100. https://doi.org/10.1093/bioinformatics/bty191

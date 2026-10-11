@@ -712,8 +712,56 @@ def fig_cost():
     plt.close(fig)
 
 
+LIT_NOTE = ("文獻數據，不是本教材的計算結果。每一筆的出處與驗證程度記在 "
+            "lessons/dna-to-culture/code/literature_terpenes.py；"
+            "這個環境連不上期刊網站，所有數字都來自摘要或轉述，引用前請自己核對全文。")
+
+
+def fig_literature():
+    """紅酵母做萜類的產量：八年之間 α-bisabolene 從 261 mg/L 到 20.8 g/L。"""
+    d = json.loads((HERE / "literature_terpenes.json").read_text("utf-8"))
+    rows = d["titers"]
+    bis = [r for r in rows if r["product"] == "α-bisabolene"]
+    other = [r for r in rows if r["product"] != "α-bisabolene"]
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 5.2),
+                                 gridspec_kw={"width_ratios": [1.45, 1]})
+
+    cols = {2017: "#8a93a3", 2021: "#2f6fb3", 2025: "#1b8a8f"}
+    y = np.arange(len(bis))
+    a1.barh(y, [r["titer_mg_L"] for r in bis],
+            color=[cols[r["year"]] for r in bis], height=0.68)
+    for i, r in enumerate(bis):
+        v = r["titer_mg_L"]
+        a1.text(v * 1.12, i, f'{v:,.0f}', va="center", fontsize=11, weight="bold")
+    a1.set_yticks(y, [f'{r["year"]}　{r["condition"]}' for r in bis], fontsize=9.5)
+    a1.invert_yaxis()
+    a1.set_xscale("log")
+    a1.set_xlim(100, 90000)
+    a1.set_xlabel("α-farnesene 的近親 α-bisabolene 產量（mg/L，對數軸）")
+    a1.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:,.0f}"))
+    a1.xaxis.set_minor_formatter(plt.NullFormatter())
+    sp = d["bisabolene_span"]
+    a1.set_title(f'同一株菌、同樣從 FPP 出發：{sp["years"][0]}–{sp["years"][1]} 年間 '
+                 f'{sp["fold"]:g} 倍')
+
+    labels = [f'{r["product"]}\n{r["year"]}' for r in other]
+    a2.bar(range(len(other)), [r["titer_mg_L"] for r in other], color="#7b4bb3", width=0.6)
+    for i, r in enumerate(other):
+        a2.text(i, r["titer_mg_L"] * 1.02, f'{r["titer_mg_L"]:,.0f}', ha="center",
+                fontsize=11, weight="bold")
+    a2.set_xticks(range(len(other)), labels, fontsize=10)
+    a2.set_ylabel("產量（mg/L）")
+    a2.set_ylim(0, max(r["titer_mg_L"] for r in other) * 1.25)
+    a2.set_title("同一株菌做過的其他萜類")
+
+    fig.suptitle("圖 18-1　紅酵母做萜類，別人做到哪裡了", fontsize=15, weight="bold", y=1.0)
+    fig.tight_layout()
+    save(fig, "fd18-1-literature", LIT_NOTE)
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
     for fn in (fig_derive, fig_calibrate, fig_identifiability, fig_protocol, fig_switch_rule, fig_o2_scan, fig_phase_plane, fig_carbon, fig_knockouts, fig_batch, fig_gompertz, fig_otr,
-               fig_strategies, fig_switch_scan, fig_sensitivity, fig_env, fig_bo, fig_interaction, fig_copies, fig_cost):
+               fig_strategies, fig_switch_scan, fig_sensitivity, fig_env, fig_bo, fig_interaction, fig_copies, fig_cost, fig_literature):
         fn()

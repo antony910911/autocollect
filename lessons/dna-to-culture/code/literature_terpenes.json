@@ -1,0 +1,170 @@
+{
+ "sources": {
+  "yaegashi2017": {
+   "cite": "Yaegashi et al. (2017) Biotechnol Biofuels 10:241",
+   "doi": "10.1186/s13068-017-0927-5"
+  },
+  "kirby2021": {
+   "cite": "Kirby et al. (2021) Biotechnol Biofuels 14:101",
+   "doi": "10.1186/s13068-021-01950-w"
+  },
+  "geiselman2020": {
+   "cite": "Geiselman et al. (2020) Microb Cell Fact 19:24",
+   "doi": "10.1186/s12934-020-1293-8"
+  },
+  "liu2021": {
+   "cite": "Liu et al. (2021) Biotechnol Biofuels 14",
+   "doi": "10.1186/s13068-021-02094-7"
+  },
+  "adamczyk2025": {
+   "cite": "Adamczyk et al. (2025) Metab Eng 90:92–105",
+   "doi": "10.1016/j.ymben.2025.02.014"
+  }
+ },
+ "titers": [
+  {
+   "product": "α-bisabolene",
+   "titer_mg_L": 261,
+   "year": 2017,
+   "condition": "搖瓶／離子液體前處理玉米稈水解液",
+   "source": "yaegashi2017",
+   "cite": "Yaegashi et al. (2017) Biotechnol Biofuels 10:241",
+   "doi": "10.1186/s13068-017-0927-5",
+   "verified": "abstract"
+  },
+  {
+   "product": "α-bisabolene",
+   "titer_mg_L": 521,
+   "year": 2017,
+   "condition": "高糖饋料批次發酵槽／純葡萄糖對照",
+   "source": "yaegashi2017",
+   "cite": "Yaegashi et al. (2017) Biotechnol Biofuels 10:241",
+   "doi": "10.1186/s13068-017-0927-5",
+   "verified": "secondary"
+  },
+  {
+   "product": "α-bisabolene",
+   "titer_mg_L": 680,
+   "year": 2017,
+   "condition": "高糖饋料批次發酵槽／鹼法前處理玉米稈水解液",
+   "source": "yaegashi2017",
+   "cite": "Yaegashi et al. (2017) Biotechnol Biofuels 10:241",
+   "doi": "10.1186/s13068-017-0927-5",
+   "verified": "abstract"
+  },
+  {
+   "product": "α-bisabolene",
+   "titer_mg_L": 2200,
+   "year": 2021,
+   "condition": "2 L 發酵槽／木質纖維素水解液",
+   "source": "kirby2021",
+   "cite": "Kirby et al. (2021) Biotechnol Biofuels 14:101",
+   "doi": "10.1186/s13068-021-01950-w",
+   "verified": "abstract"
+  },
+  {
+   "product": "α-bisabolene",
+   "titer_mg_L": 2600,
+   "year": 2021,
+   "condition": "玉米稈水解液（結論段的最高值）",
+   "source": "kirby2021",
+   "cite": "Kirby et al. (2021) Biotechnol Biofuels 14:101",
+   "doi": "10.1186/s13068-021-01950-w",
+   "verified": "abstract"
+  },
+  {
+   "product": "α-bisabolene",
+   "titer_mg_L": 19300,
+   "year": 2025,
+   "condition": "2 L 發酵槽／葡萄糖最小培養基",
+   "source": "adamczyk2025",
+   "cite": "Adamczyk et al. (2025) Metab Eng 90:92–105",
+   "doi": "10.1016/j.ymben.2025.02.014",
+   "verified": "abstract"
+  },
+  {
+   "product": "α-bisabolene",
+   "titer_mg_L": 20800,
+   "year": 2025,
+   "condition": "微量盤／玉米稈水解液，總糖 300 g/L",
+   "source": "adamczyk2025",
+   "cite": "Adamczyk et al. (2025) Metab Eng 90:92–105",
+   "doi": "10.1016/j.ymben.2025.02.014",
+   "verified": "abstract"
+  },
+  {
+   "product": "1,8-cineole",
+   "titer_mg_L": 1400,
+   "year": 2021,
+   "condition": "玉米稈水解液",
+   "source": "kirby2021",
+   "cite": "Kirby et al. (2021) Biotechnol Biofuels 14:101",
+   "doi": "10.1186/s13068-021-01950-w",
+   "verified": "abstract"
+  },
+  {
+   "product": "ent-kaurene",
+   "titer_mg_L": 1440,
+   "year": 2020,
+   "condition": "木質纖維素水解液",
+   "source": "geiselman2020",
+   "cite": "Geiselman et al. (2020) Microb Cell Fact 19:24",
+   "doi": "10.1186/s12934-020-1293-8",
+   "verified": "abstract"
+  },
+  {
+   "product": "limonene",
+   "titer_mg_L": 393.5,
+   "year": 2021,
+   "condition": "工程菌株（另有資料寫 383.5，兩個來源不一致）",
+   "source": "liu2021",
+   "cite": "Liu et al. (2021) Biotechnol Biofuels 14",
+   "doi": "10.1186/s13068-021-02094-7",
+   "verified": "secondary"
+  }
+ ],
+ "steps": [
+  {
+   "year": 2017,
+   "key": "yaegashi2017",
+   "title": "建立平台",
+   "what": [
+    "把 bisabolene 合成酶放進 R. toruloides",
+    "證明它能直接長在玉米稈水解液上",
+    "700 mL 批次 ＋ 150 mL 十二烷覆蓋層（約 21% v/v），內標 1 g/L pentadecane 用來校正揮發"
+   ],
+   "best": 680
+  },
+  {
+   "year": 2021,
+   "key": "kirby2021",
+   "title": "拷貝數",
+   "what": [
+    "合成酶卡匣拷貝數與產量相關 R²＝0.93（20 株）",
+    "第一個卡匣用原生 GAPDH 啟動子，再加第二個用 ANT 啟動子",
+    "水解液 ＋ 最少的營養補充就能到 g/L 等級"
+   ],
+   "best": 2600
+  },
+  {
+   "year": 2025,
+   "key": "adamczyk2025",
+   "title": "補 MVA ＋ 削弱油脂",
+   "what": [
+    "把釀酒酵母完整的 MVA 路徑疊到多拷貝合成酶母株上",
+    "**削弱往油脂的通量 → 產量提高 6–7 倍**",
+    "2 L 葡萄糖最小培養基 19.3 g/L，生產力 0.11 g/L/h"
+   ],
+   "best": 20800
+  }
+ ],
+ "bisabolene_span": {
+  "low": 261,
+  "high": 20800,
+  "fold": 79.7,
+  "years": [
+   2017,
+   2025
+  ]
+ }
+}
