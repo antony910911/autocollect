@@ -66,8 +66,9 @@ def check_line(line: str, mailto: str) -> tuple[bool, str]:
     if meta is None:
         return False, f"Crossref 查無此 DOI：{doi}"
     title = " ".join(meta.get("title") or [""])
-    # Crossref 有時把註腳併進標題，只比對前 15 個字
-    words = set(norm_words(title)[:15]) - {"a", "an", "the", "of", "and", "in", "by", "for", "to", "on", "with"}
+    # Crossref 有時把註腳併進標題：比對前 15 個字，或標題開頭 6 個字全部吻合也算通過
+    title_words = norm_words(title)
+    words = set(title_words[:15]) - {"a", "an", "the", "of", "and", "in", "by", "for", "to", "on", "with"}
     line_words = set(norm_words(line))
     hit = len(words & line_words) / max(1, len(words))
     year_cr = None
@@ -78,7 +79,8 @@ def check_line(line: str, mailto: str) -> tuple[bool, str]:
             break
     y = YEAR.search(line)
     year_ok = not y or not year_cr or abs(int(y.group(1)) - int(year_cr)) <= 1  # 線上先行與正式出版常差一年
-    ok = hit >= 0.75 and year_ok
+    prefix_ok = len(title_words) >= 6 and all(w in line_words for w in title_words[:6])
+    ok = (hit >= 0.75 or prefix_ok) and year_ok
     note = f"標題吻合 {hit:.0%}，Crossref 年份 {year_cr}｜{title[:90]}"
     return ok, note
 
