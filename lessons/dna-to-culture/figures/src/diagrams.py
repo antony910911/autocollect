@@ -734,7 +734,7 @@ def fig17_junction():
     d = _case()
     carrier = d["array"]["carrier"]
     bad = [c for c in d[carrier + "_afs_copies"] if not c["intact"]]
-    s = Svg(1280, 760, "圖 17-4　12 個拷貝裡壞掉的那一個：不是突變，是陣列的接合點")
+    s = Svg(1280, 760, "圖 17-5　12 個拷貝裡壞掉的那一個：不是突變，是陣列的接合點")
     if not bad:
         s.text(40, 120, "這一次的資料裡每個拷貝都是完整的。", size=16)
         return s
@@ -786,6 +786,85 @@ def fig17_junction():
     return s
 
 
+def fig17_pathway():
+    d = json.loads((CODE / "farnesene_path.json").read_text("utf-8"))
+    f = d["per_farnesene"]
+    gy = d["yield"]["glucose"]
+    s = Svg(1480, 900, "圖 17-6　轉進去一個基因，代謝上改變了什麼")
+    s.text(40, 78, "灰底＝紅酵母原本就有的路徑　　虛線框＝轉殖加進去的　　橘色＝搶同一批原料的競爭者",
+           size=14.5, color=MUTED)
+
+    s.box(40, 150, 190, 80, "葡萄糖／木糖", color=GREY, size=16,
+          sub="紅酵母可直接用木糖\n與乙酸", sub_size=12)
+    s.box(300, 150, 200, 80, "細胞質乙醯輔酶A", color=GREY, size=16,
+          sub="所有下游的共同起點", sub_size=12)
+    s.arrow([(230, 190), (300, 190)], color=GREY, label="糖解", label_dy=-10, size=12.5)
+
+    # 油脂分支（競爭者）
+    s.box(300, 330, 200, 72, "丙二醯輔酶A", color=ORANGE, size=15)
+    s.box(300, 450, 200, 72, "脂肪酸", color=ORANGE, size=15)
+    s.box(300, 570, 200, 72, "三酸甘油酯（油脂）", color=ORANGE, size=15,
+          sub="產油酵母的本業", sub_size=12)
+    s.arrow([(400, 230), (400, 330)], color=ORANGE, width=3)
+    s.arrow([(400, 402), (400, 450)], color=ORANGE, width=3)
+    s.arrow([(400, 522), (400, 570)], color=ORANGE, width=3)
+    s.text(520, 372, "氮限制（高 C/N）會把通量\n往這裡推——這是紅酵母的\n預設行為，不是故障",
+           size=13.5, color=ORANGE, weight=700)
+    s.text(520, 476, "每 1 分子硬脂酸：\n9 乙醯輔酶A、16 NADPH", size=13, color=MUTED)
+
+    # MVA → FPP
+    s.box(560, 150, 210, 80, "MVA 路徑", color=PURPLE, size=16, sub="6 步，HMG1 是限速步驟", sub_size=12)
+    s.box(830, 150, 150, 80, "IPP／DMAPP", color=PURPLE, size=15, sub="C5 單元", sub_size=12)
+    s.box(1040, 150, 130, 80, "FPP", color=RED, size=20, sub="C15，分岔點", sub_size=12)
+    s.arrow([(500, 190), (560, 190)], color=PURPLE, width=3)
+    s.arrow([(770, 190), (830, 190)], color=PURPLE, width=3)
+    s.arrow([(980, 190), (1040, 190)], color=PURPLE, width=3, label="×3", label_dy=-10, size=13)
+    ipp = d["per_ipp"]
+    s.text(560, 266, f'每 1 個 C5 單元要 {ipp["acetyl_coa"]} 乙醯輔酶A、{ipp["nadph"]} NADPH、'
+                     f'{ipp["atp"]} ATP，並丟掉 1 個 CO_2_', size=13, color=MUTED)
+
+    # FPP 的去向
+    outs = [(60, "α-farnesene", TEAL, f'★ 轉殖加進去的（{d["copies_functional"]} 個功能性拷貝）', True),
+            (180, "角鯊烯 → 麥角固醇", ORANGE, "ERG9；細胞膜必需，只能調降不能剔除", False),
+            (300, "GGPP → 類胡蘿蔔素", ORANGE, "紅酵母之所以是紅的；會干擾 OD600", False),
+            (420, "蛋白質法呢基化", GREY, "量少，但必需", False)]
+    for y0, name, col, note, new in outs:
+        s.box(1240, y0, 210, 76, name, color=col, size=15, fill="#ffffff" if not new else tint(col, 0.5))
+        s.arrow([(1170, 190), (1240, y0 + 38)], color=col, width=3 if new else 2)
+        s.text(1240, y0 + 100, note, size=12.5, color=col if new else MUTED, weight=700 if new else 400)
+    s.parts.append('<rect x="1232" y="52" width="226" height="92" rx="12" fill="none" '
+                   f'stroke="{TEAL}" stroke-width="3" stroke-dasharray="7 5"/>')
+
+    s.box(716, 396, 506, 246, "", color=GREY, fill="#fbfbfd")
+    s.text(742, 434, "想提高產量，可以動的四個地方", size=16.5, weight=700)
+    s.text(742, 462, "（都要先用模型算，不要一次動兩個）", size=13, color=MUTED)
+    for i, line in enumerate([
+            "① 把 HMG1 拉高：MVA 的限速步驟，文獻上對倍半萜最有效",
+            "② 調降 ERG9：FPP 最大的去向，但細胞膜必需，只能弱化",
+            "③ 調降類胡蘿蔔素：釋出 FPP，順便讓 OD600 好量",
+            "④ 挑氮限制的時機：限氮催油脂，會把乙醯輔酶A 搶走"]):
+        s.text(742, 500 + i * 34, line, size=13.5)
+    s.box(40, 690, 690, 180, "", color=TEAL, fill=tint(TEAL, 0.93))
+    s.text(68, 728, "多出來的負擔（化學計量，可以自己驗算）", size=17, weight=700)
+    s.text(68, 764, f'每做出 1 分子 α-farnesene：{f["acetyl_coa"]} 個乙醯輔酶A、'
+                    f'{f["nadph"]} NADPH、{f["atp"]} ATP，路上丟掉 {f["co2"]} 個 CO_2_。', size=15)
+    s.text(68, 796, f'碳的理論上限：{gy["sugar_mol"]} 莫耳糖換 1 莫耳產物 → 碳產率 '
+                    f'{gy["carbon_yield"] * 100:.1f}%，質量 {gy["mass_yield_g_per_g"]:.3f} g/g 糖。', size=15)
+    s.text(68, 836, "注意：油脂每 9 個乙醯輔酶A 要 16 NADPH，萜類只要 6——"
+                    "搶輔因子的是油脂，不是你的產物。", size=14, color=MUTED)
+
+    s.box(760, 690, 690, 180, "", color=RED, fill=tint(RED, 0.95))
+    s.text(788, 728, "三件會讓你量錯或做白工的事", size=17, weight=700)
+    for i, line in enumerate([
+            "① α-farnesene 會揮發。不加十二烷等有機相覆蓋，量到的產量嚴重低估。",
+            "② 萜類對細胞膜有毒。高產菌株長得特別差時先懷疑這個，不要一直調溫度。",
+            "③ 菌體是紅的。類胡蘿蔔素會干擾 OD600，乾重與 OD 的換算要自己做一條線。"]):
+        s.text(788, 766 + i * 34, line, size=14)
+    s.text(40, 886, "本圖是生化計量與文獻整理，不是模擬結果；要算「調降 ERG9 能多拿多少 FPP」"
+                    "需要跑 rhto-GEM（第 15、16 章）。", size=13, color=MUTED)
+    return s
+
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
@@ -793,7 +872,8 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig15-3-yeasts": fig15_culture, "fig16-1-gene-to-reaction": fig16_gene_to_reaction,
         "fig16-2-fpp": fig16_fpp,
         "fig17-1-overview": fig17_overview, "fig17-2-construct": fig17_construct,
-        "fig17-3-array": fig17_array, "fig17-4-junction": fig17_junction}
+        "fig17-3-array": fig17_array, "fig17-5-junction": fig17_junction,
+        "fig17-6-pathway": fig17_pathway}
 
 if __name__ == "__main__":
     want = sys.argv[1:] or list(FIGS)

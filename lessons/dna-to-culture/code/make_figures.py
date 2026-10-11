@@ -654,15 +654,66 @@ def fig_copies():
     ax.set_yticks(range(0, 13, 2))
     ax.set_xlabel("構築上的座標（bp）")
     ax.set_ylabel("在染色體陣列裡出現幾份")
-    ax.set_title("圖 17-5　整合的不是整個質體：T-DNA 進去 11–12 份，載體骨架只有 2–3 份")
+    ax.set_title("圖 17-4　整合的不是整個質體：T-DNA 進去 11–12 份，載體骨架只有 2–3 份")
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{int(v):,}"))
     fig.tight_layout()
-    save(fig, "fd17-5-copies", CASE_NOTE)
+    save(fig, "fd17-4-copies", CASE_NOTE)
+    plt.close(fig)
+
+
+PATH_NOTE = ("化學計量加總（MVA 路徑與脂肪酸合成的課本反應式），不是模擬結果，可以自己驗算。"
+             "程式在 lessons/dna-to-culture/code/farnesene_path.py。")
+
+
+def fig_cost():
+    """產物和油脂各要付多少原料與輔因子，以及碳在路上掉到哪去。"""
+    d = json.loads((HERE / "farnesene_path.json").read_text("utf-8"))
+    f, cmp_ = d["per_farnesene"], d["compare"]
+    far = cmp_["α-farnesene（1 mol）"]
+    ste = cmp_["硬脂酸（1 mol）"]
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12.6, 4.8),
+                                 gridspec_kw={"width_ratios": [1, 1.15]})
+
+    keys = [("acetyl_coa", "乙醯輔酶A"), ("nadph", "NADPH"), ("atp", "ATP")]
+    x = np.arange(len(keys))
+    w = 0.36
+    b1 = a1.bar(x - w / 2, [far[k] for k, _ in keys], w, label="α-farnesene（C15）", color="#1b8a8f")
+    b2 = a1.bar(x + w / 2, [ste[k] for k, _ in keys], w, label="硬脂酸（C18，油脂）", color="#d9821e")
+    for bars in (b1, b2):
+        for r in bars:
+            a1.text(r.get_x() + r.get_width() / 2, r.get_height() + 0.3, f"{r.get_height():g}",
+                    ha="center", fontsize=11, weight="bold")
+    a1.set_xticks(x, [n for _, n in keys])
+    a1.set_ylabel("每 1 莫耳產物需要的量")
+    a1.set_ylim(0, 19)
+    a1.legend(frameon=False, fontsize=11, loc="upper left")
+    a1.set_title("兩條路線搶的是同一批乙醯輔酶A\n但油脂多吃 2.7 倍的 NADPH")
+
+    stages = ["糖\n（27 個碳）", "乙醯輔酶A\n9 × C2", "FPP／α-farnesene\nC15"]
+    carbon = [27, 18, 15]
+    bars = a2.bar(range(3), carbon, color=["#8a93a3", "#7b4bb3", "#1b8a8f"], width=0.6)
+    for i, (r, c) in enumerate(zip(bars, carbon)):
+        a2.text(r.get_x() + r.get_width() / 2, c + 0.5, f"{c} C", ha="center",
+                fontsize=12, weight="bold")
+    for i, (lost, why) in enumerate([(9, "丙酮酸脫羧\n丟 9 個 CO₂"), (3, "MVA 脫羧\n丟 3 個 CO₂")]):
+        a2.annotate("", xy=(i + 0.72, carbon[i + 1] + 1.2), xytext=(i + 0.28, carbon[i] + 1.2),
+                    arrowprops=dict(arrowstyle="->", color="#c23b3b", lw=2))
+        a2.text(i + 0.5, carbon[i] + 3.0, why, ha="center", fontsize=10.5, color="#c23b3b")
+    a2.set_xticks(range(3), stages, fontsize=10.5)
+    a2.set_ylabel("碳原子數")
+    a2.set_ylim(0, 34)
+    gy = d["yield"]["glucose"]
+    a2.set_title(f"碳的理論上限：{gy['carbon_yield'] * 100:.1f}%"
+                 f"（{gy['mass_yield_g_per_g']:.3f} g 產物／g 糖）")
+    fig.suptitle("圖 17-7　多做一個產物要付出什麼：原料、輔因子與碳的去向",
+                 fontsize=15, weight="bold", y=1.02)
+    fig.tight_layout()
+    save(fig, "fd17-7-cost", PATH_NOTE + " 碳上限沒有檢查 ATP 與 NADPH 夠不夠，實際產率一定更低。")
     plt.close(fig)
 
 
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
     for fn in (fig_derive, fig_calibrate, fig_identifiability, fig_protocol, fig_switch_rule, fig_o2_scan, fig_phase_plane, fig_carbon, fig_knockouts, fig_batch, fig_gompertz, fig_otr,
-               fig_strategies, fig_switch_scan, fig_sensitivity, fig_env, fig_bo, fig_interaction, fig_copies):
+               fig_strategies, fig_switch_scan, fig_sensitivity, fig_env, fig_bo, fig_interaction, fig_copies, fig_cost):
         fn()
