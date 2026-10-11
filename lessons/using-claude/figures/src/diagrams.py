@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "_tools"))
-from svgkit import INK, MUTED, Svg, render, tint  # noqa: E402
+from svgkit import INK, MUTED, Svg, render, tint, wrap  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 CODE = OUT.parent / "code"
@@ -44,35 +44,53 @@ def _para(s, x, y, txt, size=14, maxw=400, lh=25, color=INK, weight=400):
 
 
 def fig_landscape():
-    s = Svg(1460, 860, "圖 0-1　先看懂全景：你其實在用三樣東西")
-    s.text(40, 78, "很多人把這三層混在一起講，結果什麼都講不清楚。分開看就簡單了。", size=15, color=MUTED)
+    s = Svg(1500, 880, "圖 0-1　先看懂全景：你其實在用三樣東西")
+    s.text(40, 80, "很多人把這三層混在一起講，結果什麼都講不清楚。分開看就簡單了。",
+           size=15.5, color=MUTED)
+
     layers = [
-        ("③ 工具與外掛", PURPLE, 150, "它「伸得到哪裡」",
-         ["讀寫檔案、執行指令", "連到 GitHub、Gmail、行事曆", "上網搜尋", "你自己接的服務（MCP）"],
+        ("③ 工具與外掛", "layers", PURPLE, "它伸得到哪裡",
+         [("file-text", "讀寫檔案"), ("terminal", "執行指令"), ("github", "GitHub"),
+          ("globe", "上網搜尋"), ("puzzle", "自己接的服務 MCP")],
          "決定它能碰到什麼東西"),
-        ("② 介面（harness）", BLUE, 380, "它「怎麼工作」",
-         ["claude.ai 聊天視窗", "Claude Code（終端機／App）", "雲端 session（就是現在這個）",
-          "API：你自己寫程式呼叫"],
+        ("② 介面 harness", "workflow", BLUE, "它怎麼工作",
+         [("message-square", "claude.ai 聊天"), ("terminal", "Claude Code"),
+          ("server", "雲端 session"), ("file-code", "API")],
          "決定它能不能自己動手、能不能跑很久"),
-        ("① 模型", TEAL, 610, "它「有多聰明」",
-         ["Haiku 5.5　快又便宜", "Sonnet 5.5　日常主力", "Opus 5.5　難題用這個",
-          "Fable 5.1　最吃力的推理"],
+        ("① 模型", "cpu", TEAL, "它有多聰明",
+         [("zap", "Haiku 5.5　快又便宜"), ("bot", "Sonnet 5.5　日常主力"),
+          ("sparkles", "Opus 5.5　難題用這個"), ("target", "Fable 5.1　最吃力的推理")],
          "決定判斷力的上限"),
     ]
-    for name, col, y, what, items, why in layers:
-        s.box(40, y, 420, 190, name, color=col, size=22, sub=what, sub_size=15)
-        s.box(490, y, 520, 190, "", color=col, fill="#ffffff")
-        yy = y + 46
-        for it in items:
-            s.text(514, yy, "・" + it, size=15)
-            yy += 36
-        s.box(1040, y, 380, 190, "", color=col, fill=tint(col, 0.93))
-        _para(s, 1064, y + 70, why, size=16, maxw=332, weight=700)
-    for y in (340, 570):
-        s.arrow([(250, y), (250, y + 38)], color=GREY, width=2.5, both=True)
-    s.box(40, 820, 1380, 0)
-    s.text(40, 840, "換模型不會讓它突然碰得到你的檔案；換介面也不會讓它變聰明。"
-                    "卡住的時候先問：是哪一層的問題？", size=16, weight=700, color=RED)
+    y = 128
+    for name, ic, col, what, items, why in layers:
+        h = 196
+        s.box(40, y, 352, h, "", color=col, fill=tint(col, 0.92))
+        s.icon(ic, 68, y + 34, 34, col, 2.0)
+        s.text(112, y + 60, name, size=23, weight=700, color=col)
+        s.text(68, y + 96, what, size=15, color=MUTED)
+        s.chip(68, y + 120, why.split("、")[0], col, size=13)
+
+        s.box(412, y, 620, h, "", color=col, fill="#ffffff")
+        for i, (iic, label) in enumerate(items):
+            cx, cy = 440 + (i % 2) * 300, y + 42 + (i // 2) * 44
+            s.icon(iic, cx, cy - 15, 20, col, 2.0)
+            s.text(cx + 30, cy, label, size=15)
+
+        s.box(1052, y, 408, h, "", color=col, fill=tint(col, 0.96))
+        yy = y + h / 2 - (len(wrap(why, 17, 352)) - 1) * 13
+        for ln in wrap(why, 17, 352):
+            s.text(1080, yy, ln, size=17, weight=700, color=col)
+            yy += 26
+        y += h + 22
+
+    for yy in (330, 548):
+        s.arrow([(216, yy - 4), (216, yy + 22)], color=GREY, width=2.5, both=True)
+
+    s.box(40, 786, 1420, 76, "", color=RED, fill=tint(RED, 0.95))
+    s.icon("triangle-alert", 72, 810, 26, RED, 2.1)
+    s.text(116, 834, "換模型不會讓它突然碰得到你的檔案；換介面也不會讓它變聰明。"
+                     "卡住的時候先問：是哪一層的問題？", size=17, weight=700, color=RED)
     return s
 
 

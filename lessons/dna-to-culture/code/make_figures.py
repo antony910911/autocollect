@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import sys
 import re
 from pathlib import Path
 
@@ -15,12 +16,16 @@ import numpy as np  # noqa: E402
 from matplotlib import font_manager  # noqa: E402
 
 logging.getLogger("matplotlib.font_manager").setLevel(logging.ERROR)
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "_tools"))
+from mplstyle import apply as _apply_house_style  # noqa: E402
+_apply_house_style()   # 先裝好 Noto Sans TC 並設定共同樣式；下面的 rcParams 可再覆蓋
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / "figures"
 R = json.loads((HERE / "results.json").read_text("utf-8"))
 PR = json.loads((HERE / "protocol.json").read_text("utf-8")) if (HERE / "protocol.json").exists() else None
 CAL = json.loads((HERE / "calibration.json").read_text("utf-8")) if (HERE / "calibration.json").exists() else None
-for f in ("WenQuanYi Zen Hei", "Noto Sans CJK TC", "PingFang TC", "Microsoft JhengHei"):
+for f in ("Noto Sans TC", "WenQuanYi Zen Hei", "Noto Sans CJK TC",
+          "PingFang TC", "Microsoft JhengHei"):
     if any(f == x.name for x in font_manager.fontManager.ttflist):
         plt.rcParams["font.family"] = [f, "DejaVu Sans"]
         break

@@ -6,7 +6,35 @@ import html
 import os
 from pathlib import Path
 
-FONT = "'WenQuanYi Zen Hei','Noto Sans CJK TC','PingFang TC','Microsoft JhengHei',sans-serif"
+FONT = ("'Noto Sans TC','WenQuanYi Zen Hei','Noto Sans CJK TC',"
+        "'PingFang TC','Microsoft JhengHei',sans-serif")
+FONT_DIR = Path(__file__).resolve().parent / "fonts"
+
+
+def ensure_fonts() -> bool:
+    """把 repo 裡的 Noto Sans TC 裝進使用者字型目錄，讓 Chromium 與 matplotlib 都看得到。
+
+    做過一次就會跳過。字型檔是用 make_font.py 裁過的子集，授權見 fonts/OFL.txt。
+    回傳 True 代表字型可用。
+    """
+    import shutil
+    import subprocess
+    srcs = sorted(FONT_DIR.glob("NotoSansTC-*.subset.ttf"))
+    if not srcs:
+        return False
+    dst_dir = Path.home() / ".local/share/fonts"
+    dst_dir.mkdir(parents=True, exist_ok=True)
+    changed = False
+    for s in srcs:
+        d = dst_dir / s.name
+        if not d.exists() or d.stat().st_size != s.stat().st_size:
+            shutil.copy(s, d)
+            changed = True
+    if changed:
+        subprocess.run(["fc-cache", "-f", str(dst_dir)], capture_output=True)
+    return True
+
+
 INK = "#1d2330"
 MUTED = "#5b6475"
 # 氮的各種形態固定用同一組顏色，章節之間看得出對應
@@ -105,6 +133,77 @@ class Svg:
         d = ' stroke-dasharray="5 5"' if dash else ""
         self.parts.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{width}"{d}/>')
 
+    # ── 圖示與元件 ──
+    def icon(self, name, x, y, size=22, color=None, width=2.0):
+        """畫一個 Lucide 線條圖示，(x, y) 是左上角。顏色跟 stroke 走。"""
+        from icons import ICONS
+        body = ICONS.get(name)
+        if body is None:
+            raise KeyError(f"icons.py 裡沒有 {name!r}——拼錯了，或要用 make_icons 補進去。"
+                           f"現有的看 ICONS.keys()")
+        k = size / 24
+        self.parts.append(
+            f'<g transform="translate({x},{y}) scale({k:.4f})" fill="none" '
+            f'stroke="{color or INK}" stroke-width="{width}" stroke-linecap="round" '
+            f'stroke-linejoin="round">{body}</g>')
+        return True
+
+    def card(self, x, y, w, items, title="", sub="", color=None, icon=None,
+             foot="", size=15, pad=24, lh=26, title_size=19, fill=None, min_h=0):
+        """一張會自己算高度的卡片：圖示＋標題＋小字＋分隔線＋條列＋底註。
+
+        回傳實際高度，所以下一塊可以接著排——**不用再手算座標**，
+        這是以前每張圖都要重畫兩三次的主因。
+        """
+        color = color or C["grey"]
+        inner = w - pad * 2
+        head = 0
+        if title:
+            head = 30 if not sub else 56
+        lines = []
+        for it in items:
+            lines.extend(wrap(it, size, inner - (0 if not it.startswith("・") else 0)))
+        body_h = len(lines) * lh
+        foot_lines = wrap(foot, size - 1, inner) if foot else []
+        h = max(min_h, pad + head + (18 if title else 0) + body_h
+                + (len(foot_lines) * (lh - 2) + 14 if foot else 0) + pad - 8)
+        self.box(x, y, w, h, "", color=color, fill=fill if fill is not None else tint(color, 0.95))
+        cy = y + pad + 20
+        tx = x + pad
+        if icon and title:
+            self.icon(icon, tx, cy - 17, 22, color, 2.1)
+            tx += 32
+        if title:
+            self.text(tx, cy, title, size=title_size, weight=700, color=color)
+            if sub:
+                self.text(x + pad, cy + 24, sub, size=13.5, color=MUTED)
+            ly = y + pad + head
+            self.line(x + pad, ly, x + w - pad, ly, color=color)
+            cy = ly + 30
+        else:
+            cy = y + pad + 18
+        for ln in lines:
+            self.text(x + pad, cy, ln, size=size)
+            cy += lh
+        if foot_lines:
+            cy += 12
+            for ln in foot_lines:
+                self.text(x + pad, cy, ln, size=size - 1, weight=700, color=color)
+                cy += lh - 2
+        return h
+
+    def chip(self, x, y, s, color, size=13, icon=None):
+        """小標籤。回傳寬度，方便一個接一個排。"""
+        iw = 17 if icon else 0
+        w = _text_w(s, size) + 22 + iw
+        self.parts.append(f'<rect x="{x}" y="{y}" width="{w:.1f}" height="{size * 1.85:.1f}" '
+                          f'rx="{size * 0.92:.1f}" fill="{tint(color, 0.88)}" stroke="{color}" '
+                          f'stroke-width="1.4"/>')
+        if icon:
+            self.icon(icon, x + 9, y + size * 0.45, size * 0.95, color, 2.2)
+        self.text(x + 11 + iw, y + size * 1.28, s, size=size, color=color, weight=700)
+        return w + 8
+
     def raw(self, s: str):
         self.parts.append(s)
 
@@ -153,9 +252,30 @@ def _text_w(s: str, size: float) -> float:
     return sum(size if ord(ch) > 0x2E80 else size * 0.58 for ch in plain)
 
 
+
+def wrap(txt: str, size: float, maxw: float) -> list[str]:
+    """依實際寬度斷行；ASCII 單字不切開，行首不留標點。"""
+    import re as _re
+    tokens = _re.findall(r"[A-Za-z0-9²³·\.\-–—/%‰+×=（）()]+|\s+|.", str(txt))
+    lines, cur = [], ""
+    for tok in tokens:
+        if tok.isspace() and not cur:
+            continue
+        if _text_w(cur + tok, size) > maxw and cur:
+            lines.append(cur.rstrip())
+            cur = "" if tok.isspace() else tok
+        else:
+            cur += tok
+    if cur.strip():
+        lines.append(cur.rstrip())
+    return lines
+
+
 def render(svgs: dict[str, Svg], out_dir: Path, scale: float = 2.0) -> None:
     """把 SVG 存檔並轉成 PNG（白底、2 倍解析度）。"""
     from playwright.sync_api import sync_playwright
+
+    ensure_fonts()
 
     exe = os.environ.get("CHROMIUM", "/opt/pw-browsers/chromium")
     out_dir.mkdir(parents=True, exist_ok=True)
