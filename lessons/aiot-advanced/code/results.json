@@ -1,0 +1,147 @@
+{
+ "forecast": {
+  "簡單基準（明天＝今天）": {
+   "test_mae": 117.918,
+   "test_mae_normal_days": 80.04,
+   "test_mape_normal_days": 11.076
+  },
+  "線性迴歸": {
+   "test_mae": 86.238,
+   "test_mae_normal_days": 56.129,
+   "test_mape_normal_days": 7.317
+  },
+  "隨機森林": {
+   "test_mae": 63.952,
+   "test_mae_normal_days": 27.503,
+   "test_mape_normal_days": 3.585
+  },
+  "梯度提升樹": {
+   "test_mae": 304.169,
+   "test_mae_normal_days": 283.157,
+   "test_mape_normal_days": 36.627
+  },
+  "梯度提升樹（排除事件日訓練）": {
+   "test_mae": 152.471,
+   "test_mae_normal_days": 33.122,
+   "test_mape_normal_days": 4.15
+  }
+ },
+ "forecast_split": {
+  "隨機森林": {
+   "隨機打散 MAE": 33.462,
+   "依時間切分 MAE": 63.952
+  },
+  "梯度提升樹": {
+   "隨機打散 MAE": 76.13,
+   "依時間切分 MAE": 304.169
+  }
+ },
+ "forecast_linear_std_coef": {
+  "今天產氣": 261.6,
+  "昨天產氣": -91.1,
+  "前天產氣": 22.5,
+  "7 日平均產氣": -15.9,
+  "明天計畫 COD 負荷": 158.5,
+  "今天 COD 負荷": -2.8,
+  "昨天 COD 負荷": -23.0,
+  "前天 COD 負荷": 15.7,
+  "今天 pH": -8.9,
+  "今天 CH₄%": -2.9,
+  "明天是週日": 33.8
+ },
+ "soft_sensor": {
+  "每週 1 次｜線性迴歸": {
+   "n_labels": 48,
+   "test_mae_normal": 33.265,
+   "event_peak_pred": 3444.071,
+   "event_peak_true": 3440.03
+  },
+  "每週 1 次｜梯度提升樹": {
+   "n_labels": 48,
+   "test_mae_normal": 104.541,
+   "event_peak_pred": 769.527,
+   "event_peak_true": 3440.03
+  },
+  "每週 2 次｜線性迴歸": {
+   "n_labels": 95,
+   "test_mae_normal": 38.892,
+   "event_peak_pred": 13913.422,
+   "event_peak_true": 3440.03
+  },
+  "每週 2 次｜梯度提升樹": {
+   "n_labels": 95,
+   "test_mae_normal": 63.898,
+   "event_peak_pred": 866.647,
+   "event_peak_true": 3440.03
+  },
+  "每天 1 次（理想）｜線性迴歸": {
+   "n_labels": 330,
+   "test_mae_normal": 23.931,
+   "event_peak_pred": 7792.548,
+   "event_peak_true": 3440.03
+  },
+  "每天 1 次（理想）｜梯度提升樹": {
+   "n_labels": 330,
+   "test_mae_normal": 31.32,
+   "event_peak_pred": 1564.078,
+   "event_peak_true": 3440.03
+  }
+ },
+ "ekf": {
+  "EKF（進料每週兩次 COD）MAE": 118.871,
+  "EKF（每批進料快篩）MAE": 98.582,
+  "只跑模型、不用量測修正 MAE": 223.35
+ },
+ "warning": {
+  "真實 VFA 超過 1500 的時間（小時）": 9142,
+  "pH < 7.0": {
+   "alarm_hour": 9137,
+   "lead_hours": 5,
+   "false_alarm_days": 1
+  },
+  "CH₄% 比 7 日中位數低 5 點": {
+   "alarm_hour": 9121,
+   "lead_hours": 21,
+   "false_alarm_days": 0
+  },
+  "軟感測（線性）VFA > 1000": {
+   "alarm_hour": 9131,
+   "lead_hours": 11,
+   "false_alarm_days": 0
+  },
+  "軟感測（梯度提升樹）VFA > 1000": {
+   "alarm_hour": null,
+   "lead_hours": null,
+   "false_alarm_days": 0
+  },
+  "EKF 估計 VFA > 1000（進料每週兩次 COD）": {
+   "alarm_hour": 9148,
+   "lead_hours": -6,
+   "false_alarm_days": 0
+  },
+  "EKF 估計 VFA > 1000（每批進料快篩）": {
+   "alarm_hour": 9140,
+   "lead_hours": 2,
+   "false_alarm_days": 0
+  },
+  "實驗室 VFA（每週兩次）": {
+   "alarm_hour": 9153,
+   "lead_hours": -11,
+   "false_alarm_days": 0
+  }
+ },
+ "drift": {
+  "漂移開始": 220,
+  "CUSUM 警報日": 225
+ },
+ "recommend": {
+  "actual_ch4_total": 40898.531,
+  "cf_ch4_total": 35135.611,
+  "actual_vfa_max": 3440.03,
+  "cf_vfa_max": 1198.729,
+  "actual_ph_min": 6.756,
+  "cf_ph_min": 7.031,
+  "feed_actual_m3": 7937.386,
+  "feed_cf_m3": 6977.386
+ }
+}
