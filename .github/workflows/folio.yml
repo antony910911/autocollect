@@ -29,6 +29,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # 可辨識本次 push 修改的週報，不會誤上傳未來週次的測試頁
 
       - uses: actions/setup-python@v5
         with:
@@ -49,6 +51,24 @@ jobs:
             exit $?
           fi
           status=0
+          # 同步本次 push 所修改的週次：不能只挑最大週次（可能已有下週測試頁）
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            changed_lab="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep -E '^reports/farnesene_lab/[0-9]{4}-W[0-9]{2}\\.md
+            python -m autocollect folio --topic "$t" || status=1
+          done
+          exit $status
+ || true)"
+            if [ -n "$changed_lab" ]; then
+              while IFS= read -r file; do
+                [ -n "$file" ] || continue
+                week="$(basename "$file" .md)"
+                echo "本次更新週次：$week"
+                python -m autocollect folio --topic farnesene_lab --week "$week" || status=1
+              done <<< "$changed_lab"
+              # 其它主題仍執行原本同步；本主題不再選「最新一期」重複上傳。
+              TOPICS="bioenergy farnesene proposal_radar"
+            fi
+          fi
           for t in ${INPUT_TOPIC:-$TOPICS}; do
             python -m autocollect folio --topic "$t" || status=1
           done
