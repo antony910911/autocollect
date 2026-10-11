@@ -6,6 +6,7 @@
   compare   野生株 vs 基改株：用 k-mer 找出「只有其中一邊有」的序列
   orfs      在序列中找 ORF、轉譯成蛋白質、標出保守模體、判斷像不像外來 DNA
   cassette  從 compare 的結果推斷插入位置、拷貝數與側翼序列
+  construct 把「你設計的構築」對回基因體：每個座標整合了幾份、接合點在哪、骨架帶進去多少
   plan      產生「在你自己電腦上跑完整功能註解」的指令稿
 
 **為什麼註解分成兩段？**
@@ -19,6 +20,7 @@
   python genome_tools.py compare  WT.fasta MUT.fasta [--k 31] [--min 200] [--out novel.fasta]
   python genome_tools.py orfs     novel.fasta [--minaa 80]
   python genome_tools.py cassette WT.fasta MUT.fasta novel.fasta [--flank 2000]
+  python genome_tools.py construct construct.fasta MUT.fasta [--k 25]
   python genome_tools.py plan     --genome MUT.fasta --species "Rhodotorula toruloides" --out annotate.sh
 """
 
@@ -381,6 +383,130 @@ def cmd_plan(args):
     print("  • 定序公司的分析套餐，或國網中心的運算資源")
 
 
+# ───────────────────── 構築 vs 基因體 ─────────────────────
+# 已知元件的 signature：逐字比對得到的才算確定，其餘只能靠模體推定。
+ELEMENTS = [
+    ("T-DNA border（nopaline／octopine 型共識）", "TG[AG]CAGGATATAT", True),
+    ("nos terminator", "GATCGTTCAAACATTTGGCAATAAAG", False),
+    ("nos promoter", "GCATGACGTTATTTATGAGATGGG", False),
+    ("CaMV 35S promoter", "CCACTGACGTAAGGGATGACG", False),
+    ("pUC／pBR322 複製起點", "TTGAGATCCTTTTTTTCTGCGCGTAATCTG", False),
+    ("pUC／M13 殘跡", "GGAAACGACAATCTGATC", False),
+    ("多選殖位（BamHI-SmaI-KpnI-SacI）", "GGATCCCCGGGTACCGAGCTC", False),
+]
+
+
+def _anchor_index(con: str, k: int) -> dict:
+    """構築上「只出現一次」的 k-mer → (位置, 方向)。環狀，所以要繞回去。"""
+    L = len(con)
+    idx: dict[str, list] = {}
+    doubled = con + con[:k]
+    for i in range(L):
+        km = doubled[i:i + k]
+        idx.setdefault(km, []).append((i, 1))
+        idx.setdefault(rc(km), []).append((i, -1))
+    return {km: v[0] for km, v in idx.items() if len(v) == 1}
+
+
+def cmd_construct(args):
+    """把「你設計的構築」逐鹼基對回基因體，算出每個座標整合了幾份、接合點在哪裡。
+
+    串聯多拷貝整合（農桿菌轉形很常見）會讓一般比對軟體在重複單元之間跳動，
+    所以這裡改用「構築上唯一出現的 k-mer」當錨點，一個鹼基一個鹼基地追蹤。
+    """
+    con_recs = read_fasta(args.construct)
+    if len(con_recs) != 1:
+        sys.exit(f"構築檔應該只有一條序列，實際有 {len(con_recs)} 條")
+    cname, con = con_recs[0]
+    con = con.upper()
+    L = len(con)
+    print(f"構築 {cname}：{L:,} bp，GC {gc_pct(con):.1f}%（視為環狀）")
+    print(f"建立 {args.k}-mer 唯一錨點…", flush=True)
+    idx = _anchor_index(con, args.k)
+    print(f"  {len(idx) // 2:,} 個唯一錨點（佔構築長度 {len(idx) / 2 / L:.1%}）")
+
+    cov = np.zeros(L, dtype=int)
+    segs = []
+    for ctg, seq in read_fasta(args.genome):
+        seq = seq.upper()
+        cur = None
+        for g in range(len(seq) - args.k + 1):
+            hit = idx.get(seq[g:g + args.k])
+            if hit is None:
+                continue
+            c, s = hit
+            if (cur and s == cur["s"] and g - cur["g1"] <= args.gap
+                    and (c - cur["c1"]) * s == g - cur["g1"]):
+                cur["g1"], cur["c1"] = g, c
+                cur["n"] += 1
+            else:
+                if cur and cur["n"] >= args.minanchor:
+                    segs.append(cur)
+                cur = {"ctg": ctg, "g0": g, "g1": g, "c0": c, "c1": c, "s": s, "n": 1}
+        if cur and cur["n"] >= args.minanchor:
+            segs.append(cur)
+
+    if not segs:
+        print("\n基因體裡找不到構築的任何片段 → 這一株沒有整合進去（或檔案拿錯了）。")
+        return
+
+    print(f"\n=== 整合片段：{len(segs)} 段 ===\n")
+    print(f"{'基因體位置':<34}{'長度':>9}{'構築座標':>20}  方向")
+    for sg in segs:
+        lo, hi = sorted((sg["c0"], sg["c1"]))
+        cov[lo:hi + args.k] += 1
+        gl = sg["g1"] - sg["g0"] + args.k
+        print(f'  {sg["ctg"]}:{sg["g0"]:,}-{sg["g1"] + args.k:,}'.ljust(34)
+              + f'{gl:>9,}' + f'{sg["c0"]:,}→{sg["c1"]:,}'.rjust(20)
+              + f'  {"+" if sg["s"] > 0 else "-"}')
+    span = max(s["g1"] for s in segs) + args.k - min(s["g0"] for s in segs)
+    print(f"\n片段長度合計 {sum(s['g1'] - s['g0'] + args.k for s in segs):,} bp")
+    print(f"（若全部落在同一條 contig，陣列跨距約 {span:,} bp）")
+
+    print("\n=== 構築各座標整合了幾份 ===\n")
+    runs = []
+    st = 0
+    for i in range(1, L + 1):
+        if i == L or cov[i] != cov[st]:
+            runs.append((st, i, int(cov[st])))
+            st = i
+    print(f"{'構築區間':<22}{'長度':>9}  份數  元件")
+    for a, b, c in runs:
+        names = [nm for nm, pat, _ in ELEMENTS for m in _find_all(con, pat, _)
+                 if a <= m < b]
+        print(f"  {a:,}-{b:,}".ljust(22) + f"{b - a:>9,}" + f"  x{c}"
+              + ("  " + "、".join(dict.fromkeys(names)) if names else ""))
+    tdna = [r for r in runs if r[2] >= max(x[2] for x in runs) * 0.8]
+    if tdna:
+        print(f"\n份數最高的區間（{max(x[2] for x in runs)} 份）通常就是 T-DNA；"
+              "\n份數明顯較低的區間是「連帶被帶進去的載體骨架」——"
+              "\n骨架整合在農桿菌轉形很常見，報告時要寫出來。")
+
+    print("\n=== 構築上的已知元件 ===\n")
+    for nm, pat, is_re in ELEMENTS:
+        pos = _find_all(con, pat, is_re)
+        if pos:
+            print(f"  {nm}：構築座標 " + "、".join(f"{p:,}" for p in sorted(pos)))
+    print("\n沒列出來的元件不代表不存在，只代表這份清單沒有它的 signature。"
+          "\n啟動子與終止子的身分請把序列貼到 NCBI BLASTn 確認——"
+          "\n特別是：**啟動子如果不在宿主基因體裡，就不是原生啟動子**，"
+          "\n它是組成型還是受調控，會直接決定分階段培養要怎麼設計。")
+
+
+def _find_all(seq: str, pat: str, is_re: bool) -> list[int]:
+    """在正負股上找 pat，回傳構築座標（負股換算回正股起點）。"""
+    import re as _re
+    out = []
+    L = len(seq)
+    if is_re:
+        out += [m.start() for m in _re.finditer(pat, seq)]
+        out += [L - m.end() for m in _re.finditer(pat, rc(seq))]
+    else:
+        out += [m.start() for m in _re.finditer(_re.escape(pat), seq)]
+        out += [L - m.end() for m in _re.finditer(_re.escape(pat), rc(seq))]
+    return out
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -410,6 +536,14 @@ def main(argv=None):
     p.add_argument("novel")
     p.add_argument("--flank", type=int, default=2000)
     p.set_defaults(func=cmd_cassette)
+
+    p = sub.add_parser("construct", help="把設計的構築對回基因體：拷貝數、接合點、骨架")
+    p.add_argument("construct", help="你設計的構築序列（單一條 FASTA，視為環狀）")
+    p.add_argument("genome", help="要檢查的基因體組裝")
+    p.add_argument("--k", type=int, default=25)
+    p.add_argument("--gap", type=int, default=60, help="錨點之間容許的最大間隔")
+    p.add_argument("--minanchor", type=int, default=20, help="一段至少要有幾個錨點")
+    p.set_defaults(func=cmd_construct)
 
     p = sub.add_parser("plan", help="產生完整註解流程的指令稿")
     p.add_argument("--genome", required=True)
