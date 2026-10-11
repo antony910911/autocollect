@@ -51,13 +51,9 @@ jobs:
             exit $?
           fi
           status=0
-          # 同步本次 push 所修改的週次：不能只挑最大週次（可能已有下週測試頁）
+          # 當次 push 若包含研究快報，就同步精確週次，避免下週測試頁被選為「最新」
           if [ "$GITHUB_EVENT_NAME" = "push" ]; then
-            changed_lab="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep -E '^reports/farnesene_lab/[0-9]{4}-W[0-9]{2}\\.md
-            python -m autocollect folio --topic "$t" || status=1
-          done
-          exit $status
- || true)"
+            changed_lab="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep -E '^reports/farnesene_lab/[0-9]{4}-W[0-9]{2}\.md$' || true)"
             if [ -n "$changed_lab" ]; then
               while IFS= read -r file; do
                 [ -n "$file" ] || continue
@@ -65,7 +61,6 @@ jobs:
                 echo "本次更新週次：$week"
                 python -m autocollect folio --topic farnesene_lab --week "$week" || status=1
               done <<< "$changed_lab"
-              # 其它主題仍執行原本同步；本主題不再選「最新一期」重複上傳。
               TOPICS="bioenergy farnesene proposal_radar"
             fi
           fi
