@@ -519,7 +519,58 @@ def fig_workflow():
     return s
 
 
-FIGS2 = {"fig6-1-pipeline": fig_pipeline, "fig7-1-automation": fig_automation,
+def fig_branch():
+    s = Svg(1460, 900, "圖 6-2　分支與 CI：為什麼「改壞了」不會變成災難")
+    s.text(40, 80, "研究上的類比：你不會直接在唯一一管菌上做實驗，你會先分管。"
+                   "**分支就是分管，CI 就是陰性對照。**", size=15.5, color=MUTED)
+
+    MAIN_Y, BR_Y = 232, 392
+    s.line(120, MAIN_Y, 1360, MAIN_Y, color=GREY, width=5)
+    s.text(120, MAIN_Y - 34, "main（正本）", size=18, weight=700)
+    s.text(120, MAIN_Y + 40, "一直是可用的狀態", size=14, color=MUTED)
+
+    # 分支線
+    s.raw(f'<path d="M320,{MAIN_Y} C380,{MAIN_Y} 380,{BR_Y} 440,{BR_Y} '
+          f'L1080,{BR_Y} C1140,{BR_Y} 1140,{MAIN_Y} 1200,{MAIN_Y}" fill="none" '
+          f'stroke="{PURPLE}" stroke-width="5"/>')
+    s.text(330, MAIN_Y - 20, "分出來", size=14.5, color=PURPLE, weight=700)
+    s.text(1194, MAIN_Y - 20, "合併回去", size=14.5, color=PURPLE, weight=700)
+    s.text(440, BR_Y + 54, "claude/… 分支（分出來的那一管）", size=18, weight=700, color=PURPLE)
+
+    commits = [(520, "改教材"), (680, "畫圖"), (840, "補文獻"), (1000, "修版面")]
+    for cx, name in commits:
+        s.raw(f'<circle cx="{cx}" cy="{BR_Y}" r="13" fill="#ffffff" stroke="{PURPLE}" '
+              f'stroke-width="4"/>')
+        s.text(cx, BR_Y - 30, name, size=14.5, anchor="middle", color=PURPLE)
+    s.text(1210, BR_Y + 54, "確認沒問題", size=14.5, color=MUTED)
+    s.text(1210, BR_Y + 78, "才合併回正本", size=14.5, color=MUTED)
+
+    # CI 守門員
+    s.box(820, 520, 640, 150, "", color=GREEN, fill=tint(GREEN, 0.94))
+    s.icon("shield", 850, 550, 26, GREEN, 2.1)
+    s.text(892, 572, "CI：每次推上去就自動跑一遍", size=18, weight=700, color=GREEN)
+    s.text(850, 610, "① 核對每一筆文獻的 DOI（丟去 Crossref 對標題與年份）", size=14.5)
+    s.text(850, 636, "② 檢查通過了才上傳到 Folio", size=14.5)
+    s.text(850, 660, "寫錯 DOI 會讓 build 失敗——擋在上架之前", size=14.5, weight=700, color=GREEN)
+    s.arrow([(1000, 516), (1000, 418)], color=GREEN, width=3)
+
+    s.card(40, 520, 740, ["改壞了只影響這一管，正本還是好的",
+                          "可以一直推上去存檔，不用等「做完」才敢存",
+                          "每一步都有紀錄，三個月後查得到是哪一次改壞的"],
+           title="為什麼要分管", icon="git-branch", color=PURPLE, size=15,
+           foot="這個 repo 的規矩：所有開發都在 claude/… 分支，除非你明講，否則不開 PR")
+
+    s.box(40, 726, 1380, 142, "", color=RED, fill=tint(RED, 0.95))
+    s.icon("triangle-alert", 72, 758, 26, RED, 2.1)
+    s.text(116, 780, "為什麼品質不能靠自律", size=18, weight=700)
+    for i, ln in enumerate([
+            "我寫教材時很可能記錯某篇論文的年份——人會記錯，模型更會。有了 CI，記錯就過不了，不用靠任何人記得去檢查。",
+            "這在研究上的對應物是**陰性對照**：你不會因為「我很小心」就省略對照組。"]):
+        s.text(116, 816 + i * 32, ln.replace("**", ""), size=15)
+    return s
+
+
+FIGS2 = {"fig6-1-pipeline": fig_pipeline, "fig6-2-branch": fig_branch, "fig7-1-automation": fig_automation,
          "fig8-1-opensource": fig_opensource, "fig9-1-ladder": fig_ladder,
          "fig10-1-workflow": fig_workflow}
 
@@ -686,6 +737,8 @@ def fig_rag():
                             "沒有出處的 RAG 回答，和它自己", "掰的沒兩樣——你無從分辨。"]):
         s.text(1004, 760 + i * 30, ln, size=15)
     return s
+
+
 
 FIGS1 = {"fig0-1-landscape": fig_landscape, "fig1-1-surfaces": fig_surfaces,
          "fig2-1-context": fig_context, "fig3-1-memory": fig_memory,

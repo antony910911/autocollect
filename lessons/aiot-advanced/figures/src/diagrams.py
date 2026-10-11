@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "_tools"))
-from svgkit import INK, MUTED, Svg, render, tint  # noqa: E402
+from svgkit import INK, MUTED, Svg, render, tint, wrap  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 BLUE, ORANGE, RED, GREEN, PURPLE, GREY, BROWN = ("#2f6fb3", "#d9821e", "#c23b3b", "#2f9e6e", "#7b4bb3", "#6b7280",
@@ -153,8 +153,66 @@ def fig9():
     return s
 
 
+def fig3_feature_time():
+    """做決定的那一刻，你手上真的有什麼？——特徵能不能用，看的是時間不是相關性。"""
+    s = Svg(1420, 980, "圖 3-2　特徵能不能用，看的是「做決定的那一刻拿不拿得到」")
+    s.text(40, 80, "第 4.5 節的「偷看未來」是結果，這張圖是原因。"
+                   "挑特徵時唯一要問的問題：**模型上線那天，這個數字在做決定前就有了嗎？**",
+           size=15.5, color=MUTED)
+
+    T = 760  # 做決定的時刻
+    s.line(60, 300, 1360, 300, color=GREY, width=3)
+    s.raw(f'<line x1="{T}" y1="180" x2="{T}" y2="560" stroke="{RED}" stroke-width="4" '
+          f'stroke-dasharray="9 6"/>')
+    s.text(T, 164, "做決定的這一刻", size=19, weight=700, color=RED, anchor="middle")
+    s.text(T, 588, "（今天傍晚決定明天餵多少）", size=14, color=MUTED, anchor="middle")
+    s.text(80, 272, "過去", size=17, weight=700, color=GREEN)
+    s.text(1340, 272, "未來", size=17, weight=700, color=RED, anchor="end")
+    s.arrow([(1340, 300), (1362, 300)], color=GREY, width=3)
+
+    s.text(92, 350, "可以用：做決定前已經量到了", size=17, weight=700, color=GREEN)
+    for i, name in enumerate(["今天／昨天／前天產氣", "7 日平均產氣",
+                              "今天／昨天／前天 COD 負荷", "今天的 pH、CH_4_%"]):
+        y = 392 + i * 42
+        s.raw(f'<rect x="92" y="{y - 24}" width="628" height="34" rx="17" '
+              f'fill="{tint(GREEN, 0.9)}" stroke="{GREEN}" stroke-width="1.6"/>')
+        s.icon("check", 106, y - 20, 20, GREEN, 2.4)
+        s.text(136, y, name, size=15)
+
+    s.text(800, 350, "不能用：那時候還不知道", size=17, weight=700, color=RED)
+    for i, name in enumerate(["明天的 pH", "明天的 CH_4_%", "明天實際產氣",
+                              "這一週的平均（含明天）"]):
+        y = 392 + i * 42
+        s.raw(f'<rect x="800" y="{y - 24}" width="560" height="34" rx="17" '
+              f'fill="{tint(RED, 0.93)}" stroke="{RED}" stroke-width="1.6"/>')
+        s.icon("x", 814, y - 20, 20, RED, 2.4)
+        s.text(844, y, name, size=15)
+
+    # 例外：明天的計畫進料
+    s.raw(f'<rect x="800" y="620" width="560" height="126" rx="12" fill="{tint(ORANGE, 0.93)}" '
+          f'stroke="{ORANGE}" stroke-width="2"/>')
+    s.icon("circle-alert", 824, 648, 24, ORANGE, 2.1)
+    s.text(860, 668, "一個例外：明天計畫的 COD 負荷", size=17, weight=700, color=ORANGE)
+    for j, ln in enumerate(wrap("它在未來，但**是操作員事先決定的**，做決定時就在手上——"
+                                "所以合法，而且正是進料建議要調的那個量。", 14.5, 512)):
+        s.text(824, 702 + j * 24, ln, size=14.5)
+
+    s.card(40, 620, 700, ["缺漏只能用**過去**的值往前填，不能用後面的值回填",
+                          "移動平均的視窗只能往回看，不能置中",
+                          "標準化的平均值與標準差只能從訓練期算，不能用全部資料算"],
+           title="同一個原則的三個常見破口", icon="triangle-alert", color=PURPLE, size=14.5,
+           foot="這三個都不會報錯，只會讓驗證分數好看得不真實")
+
+    s.box(40, 830, 1320, 116, "", color=BLUE, fill=tint(BLUE, 0.95))
+    s.icon("list-checks", 72, 862, 26, BLUE, 2.1)
+    s.text(116, 884, "一句話的檢查法", size=18, weight=700)
+    s.text(116, 918, "每做一個特徵就問一次：「這個欄位，我在做決定的那一刻打開系統看得到嗎？」"
+                     "看不到就刪掉——驗證分數會變差，但那才是上線後真正的分數。", size=15)
+    return s
+
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-problem-card": fig1, "fig2-1-model-map": fig2, "fig6-1-ekf-loop": fig6,
-        "fig8-2-mlops": fig8, "fig9-1-90days": fig9}
+        "fig3-2-feature-time": fig3_feature_time, "fig8-2-mlops": fig8, "fig9-1-90days": fig9}
 
 if __name__ == "__main__":
     only = set(sys.argv[1:])

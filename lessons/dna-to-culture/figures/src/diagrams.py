@@ -1287,7 +1287,79 @@ def fig13_resources():
                      "KEGG 的路徑是推定的，不是你的菌真的有。", size=14.5)
     return s
 
-FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig3-1-gem-build": fig3,
+
+def fig2_clues():
+    """基因體給的是「起始範圍」，不是最適條件。"""
+    s = Svg(1460, 1000, "圖 2-2　從基因體找培養條件的線索：拿到的是起始範圍，不是答案")
+    s.text(40, 80, "這一步常被跳過，但它能省下很多瞎試的時間。"
+                   "**注意它產出的是「掃描範圍」，不是「最適值」**——最適值只有實驗能給。",
+           size=15.5, color=MUTED)
+
+    srcs = [
+        (40, BLUE, "scan-search", "① 查近緣菌株已知的條件",
+         ["GTDB-Tk 找最近緣的已知菌種", "BacDive 查溫度、pH、需氧性",
+          "MediaDive 查培養基配方"],
+         "最可靠的一條：那是別人量出來的"),
+        (500, PURPLE, "cpu", "② 用基因體特徵預測",
+         ["最適生長溫度：已有 ML 模型", "pH 偏好：2023 年找出相關基因",
+          "誤差不小，只能定起始範圍"],
+         "當粗略指針用，不要當結論"),
+        (960, TEAL, "dna", "③ 從註解推培養基",
+         ["有沒有固氮基因 → 要不要加氮源", "缺哪些維生素／胺基酸路徑",
+          "能不能吃便宜碳源（木糖、乙酸）"],
+         "第 3、4 章的模型能把這一條系統化"),
+    ]
+    for x, col, ic, name, items, foot in srcs:
+        s.box(x, 140, 420, 276, "", color=col, fill=tint(col, 0.95))
+        s.icon(ic, x + 26, 170, 26, col, 2.1)
+        s.text(x + 64, 192, name, size=18, weight=700, color=col)
+        s.line(x + 26, 212, x + 394, 212, color=col)
+        yy = 248
+        for it in items:
+            for ln in wrap("・" + it, 14.5, 368):
+                s.text(x + 26, yy, ln, size=14.5)
+                yy += 23
+            yy += 7
+        for j, ln in enumerate(wrap(foot, 14, 368)):
+            s.text(x + 26, 382 + j * 21, ln, size=14, weight=700, color=col)
+        s.arrow([(x + 210, 418), (x + 210, 456)], color=col, width=2.6)
+
+    # 起始條件卡
+    s.box(40, 464, 1340, 290, "", color=GREEN, fill=tint(GREEN, 0.95))
+    s.icon("file-text", 72, 494, 26, GREEN, 2.1)
+    s.text(116, 516, "產出：一張「起始條件卡」", size=20, weight=700, color=GREEN)
+    s.text(420, 516, "（下面是示範格式與示範數值，換成你的菌的結果）", size=14, color=MUTED)
+    cols = [(92, 150, "項目"), (252, 430, "線索來源"), (700, 400, "實驗怎麼掃"),
+            (1120, 232, "誰給的")]
+    for x, w, h in cols:
+        s.text(x, 566, h, size=15.5, weight=700, color=GREEN)
+    s.line(72, 580, 1348, 580, color=GREEN)
+    rows = [("溫度", "近緣菌株 30–37 °C；預測最適 35 °C", "掃 25–42 °C", "①＋②"),
+            ("pH", "近緣菌株 6.5–7.5", "掃 5.5–8.5", "①"),
+            ("氧氣", "有完整呼吸鏈，也有發酵路徑", "好氧長菌、限氧產物都試", "③"),
+            ("碳源", "有木糖代謝基因", "葡萄糖為基準，加測木糖", "③"),
+            ("營養缺陷", "缺維生素 B12 合成基因", "培養基補 B12", "③")]
+    for i, (a, b, c, d) in enumerate(rows):
+        y = 612 + i * 28
+        s.text(92, y, a, size=14.5, weight=700)
+        s.text(252, y, b, size=14.5)
+        s.text(700, y, c, size=14.5)
+        s.text(1120, y, d, size=14.5, color=MUTED)
+
+    s.card(40, 788, 660, ["基因體說「有木糖代謝基因」，不等於「用木糖長得好」",
+                          "預測模型的誤差動輒好幾度，只夠決定掃描範圍",
+                          "註解本身就有錯誤率，缺一個基因可能只是沒註解到"],
+           title="它給不了什麼", icon="circle-x", color=RED, size=14.5,
+           foot="所以這張卡的欄位叫「實驗怎麼掃」，不叫「最適值」")
+    s.card(740, 788, 640, ["把掃描範圍縮到做得完的大小（第 7 章的實驗設計）",
+                           "避免一開始就漏掉必需的營養而白做一批",
+                           "讓第 3 章建模型時知道該放哪些交換反應"],
+           title="它真正的價值", icon="circle-check", color=GREEN, size=14.5,
+           foot="省下的是「瞎試」的時間，不是「做實驗」的時間")
+    return s
+
+
+FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig2-2-clues": fig2_clues, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
         "fig15-1-compare": fig15_compare, "fig15-2-annotate": fig15_annotate,

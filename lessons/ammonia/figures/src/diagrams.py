@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "_tools"))
-from svgkit import C, INK, MUTED, Svg, render, tint  # noqa: E402
+from svgkit import C, INK, MUTED, Svg, render, tint, wrap  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent
 
@@ -368,6 +368,137 @@ def fig9_options():
     return s
 
 
+def fig7_nbalance():
+    """氮的帳本：少量一項就會把「氨氮不見了」誤判成脫硝。"""
+    s = Svg(1340, 1000, "圖 7-2　氮的帳本：怎麼證明氨氮是真的變成氮氣，不是被同化或揮發掉")
+    s.text(40, 80, "只量氨氮下降，證明不了任何事。**氮不會消失，它只會換位置**——"
+                   "要把每一個位置都量到，帳才對得起來。", size=15.5, color=MUTED)
+
+    # 左：進流的氮
+    s.box(40, 150, 240, 150, "", color=C["nh4"], fill=tint(C["nh4"], 0.9))
+    s.icon("flask-conical", 70, 182, 28, C["nh4"], 2.1)
+    s.text(112, 206, "進流總氮", size=20, weight=700, color=C["nh4"])
+    s.text(70, 248, "TN_in_（t = 0）", size=16, weight=700)
+    s.text(70, 278, "這是帳本的左邊", size=14, color=MUTED)
+
+    # 右：四個去向
+    dests = [
+        (C["nh4"], "waves", "① 還在水裡", 150,
+         ["NH_4_^+^、NO_2_^−^、NO_3_^−^", "溶解性有機氮 DON"],
+         "量：四項都要量。只量 NH_4_^+^ 會把硝化當成去除"),
+        (C["org"], "circle-dot", "② 進到菌體裡", 322,
+         ["菌體蛋白質、核酸", "離心後的菌泥"],
+         "量：菌體凱氏氮或元素分析。**最常被漏掉的一項**"),
+        (C["n2"], "wind", "③ 變成氣體（想要的）", 494,
+         ["N_2_（真正的脫氮）", "N_2_O（溫室氣體，真菌常見）"],
+         "量：頂空氣體、N_2_O 分析；最確定的是 ^15^NH_4_^+^ 追蹤"),
+        (C["no3"], "arrow-up-from-line", "④ 氨氣跑掉了（假的）", 666,
+         ["NH_3_ 從液面揮發", "pH > 8 又曝氣時特別嚴重"],
+         "排除：密閉瓶對照組；pH 與氣提見第 1 章"),
+    ]
+    s.line(282, 225, 362, 225, color=C["grey"], width=2.6)
+    s.line(362, 225, 362, 741, color=C["grey"], width=2.6)
+    for col, ic, name, y, items, how in dests:
+        s.box(420, y, 880, 150, "", color=col, fill=tint(col, 0.95))
+        s.icon(ic, 448, y + 28, 26, col, 2.1)
+        s.text(488, y + 50, name, size=19, weight=700, color=col)
+        s.line(448, y + 68, 1276, y + 68, color=col)
+        for j, it in enumerate(items):
+            s.text(448, y + 98 + j * 26, "・" + it, size=15)
+        s.text(792, y + 98, how.split("：")[0] + "：", size=14.5, weight=700, color=col)
+        body = how.split("：", 1)[1]
+        for j, ln in enumerate(wrap(body, 14.5, 420)):
+            s.text(792, y + 124 + j * 24, ln, size=14.5)
+        s.arrow([(362, y + 75), (416, y + 75)], color=col, width=2.6)
+
+    s.card(40, 356, 300, ["① 無接種（看物化損失）",
+                          "② 滅菌菌液（看吸附）",
+                          "③ 無碳源（看同化需不需要碳）",
+                          "④ 密閉瓶（排除氨氣提）"],
+           title="四組對照", icon="columns-3", color=C["grey"], size=14.5,
+           foot="沒有對照組的「去除率」不是數據")
+
+    s.box(40, 846, 1260, 124, "", color=C["n2"], fill=tint(C["n2"], 0.94))
+    s.icon("equal", 72, 878, 26, C["n2"], 2.1)
+    s.text(116, 900, "帳怎麼算", size=18, weight=700)
+    s.text(116, 934, "TN_in_ ＝ ①水中殘留 ＋ ②菌體氮 ＋ ③氣體 ＋ ④揮發。"
+                     "①＋② 幾乎沒變 → 只是同化；②很少而①大降、又排除了④ → 才是脫氮。", size=15)
+    return s
+
+
+def fig8_choice():
+    """挑植物之前先回答兩個問題：濃度在哪一段、要移除還是回收。"""
+    s = Svg(1380, 1050, "圖 8-2　植物方案怎麼挑，什麼時候不要用")
+    s.text(40, 80, "依第 8.3 節的定性比較整理。**先看濃度決定能不能用，再看目標決定用哪一種。**",
+           size=15.5, color=MUTED)
+
+    # 濃度帶
+    s.text(40, 146, "第一個問題：你的氨氮濃度在哪一段？", size=18, weight=700)
+    bands = [(40, 560, C["n2"], "低–中濃度", "植物方案的主場",
+              "生活污水二級放流、養殖廢水、池塘與河道"),
+             (620, 330, C["no2"], "偏高", "要看物種耐受度",
+              "畜牧廢水、食品廢水；先做濃度梯度試驗"),
+             (970, 370, C["no3"], "數百 mg/L 以上", "不要直接種下去",
+              "厭氧消化液這類高濃度廢水會毒害植物，要先稀釋或前處理")]
+    for x, w, col, name, verdict, what in bands:
+        s.box(x, 172, w, 146, "", color=col, fill=tint(col, 0.93))
+        s.text(x + 24, 204, name, size=19, weight=700, color=col)
+        s.text(x + 24, 234, verdict, size=16, weight=700)
+        for j, ln in enumerate(wrap(what, 14.5, w - 48)):
+            s.text(x + 24, 264 + j * 24, ln, size=14.5, color=MUTED)
+    s.arrow([(40, 338), (1330, 338)], color=C["grey"], width=2.6)
+    s.text(1330, 362, "氨氮濃度", size=14, color=MUTED, anchor="end")
+
+    # 目標 → 選項
+    s.text(40, 418, "第二個問題：你要的是「把氮移出系統」還是「把氮變成東西」？", size=18, weight=700)
+    goals = [
+        (40, C["n2"], "只要把氮移除", "leaf",
+         [("布袋蓮", "生長極快、生物量大；外來入侵種、要圍封、怕寒"),
+          ("大萍（水芙蓉）", "和布袋蓮類似但生物量小；同樣是外來入侵種"),
+          ("挺水植物（蘆葦、香蒲）", "人工濕地主力、耐受度高；佔地大，主要靠根圈微生物")],
+         "選擇看的是生物量與耐受度"),
+        (490, C["org"], "還想回收營養或飼料", "refresh-cw",
+         [("浮萍（*Lemna*）", "**偏好吸收 NH_4_^+^**、蛋白質高、容易撈取；怕游離氨"),
+          ("微藻（*Chlorella*）", "吸收快、可回收藻體；需要光，光合會把 pH 推高"),
+          ("", "")],
+         "回收路線要配合採收方式"),
+        (940, C["nh4"], "不能挖池、只能放現有水體", "waves",
+         [("浮島植栽", "直接放在魚塭、池塘、河道上，不用動工程"),
+          ("", "去除量受面積限制，當水質改善而非處理設施"),
+          ("", "")],
+         "定位是改善，不是處理"),
+    ]
+    for x, col, name, ic, items, foot in goals:
+        s.box(x, 446, 400, 330, "", color=col, fill=tint(col, 0.95))
+        s.icon(ic, x + 26, 476, 26, col, 2.1)
+        for j, ln in enumerate(wrap(name, 18, 320)):
+            s.text(x + 64, 498 + j * 24, ln, size=18, weight=700, color=col)
+        s.line(x + 26, 536, x + 374, 536, color=col)
+        yy = 568
+        for who, what in items:
+            if who:
+                s.text(x + 26, yy, who, size=15.5, weight=700)
+                yy += 24
+            if what:
+                for ln in wrap(what, 14, 348):
+                    s.text(x + 26, yy, ln, size=14, color=MUTED)
+                    yy += 21
+            yy += 10
+        s.text(x + 26, 752, foot, size=14.5, weight=700, color=col)
+
+    s.card(40, 806, 650, ["**不收割等於沒有移除**——植體留在水裡，氮會回去",
+                          "低溫時植物與根圈微生物都慢下來，冬季效果明顯變差",
+                          "去除速率以「每平方公尺每天幾克」計，受面積限制"],
+           title="三個會讓方案失效的現實", icon="triangle-alert", color=C["no3"], size=14.5,
+           foot="收割的植體可以堆肥或拿去厭氧消化產沼氣")
+    s.card(730, 806, 610, ["浮萍偏好 NH_4_^+^，但**游離氨 NH_3_ 會抑制它**",
+                           "同樣的總氨氮，pH 越高毒性越大（Körner 2001）",
+                           "把 pH 壓在偏中性，能耐受的總氨氮就高得多"],
+           title="浮萍的 pH 陷阱", icon="droplet", color=C["nh4"], size=14.5,
+           foot="這就是第 1 章 NH_3_/NH_4_^+^ 平衡的實際應用")
+    return s
+
+
 FIGS = {
     "fig0-1-roadmap": fig0_roadmap,
     "fig1-1-n-cycle": fig1_cycle,
@@ -378,7 +509,9 @@ FIGS = {
     "fig5-1-toolbox": fig5_toolbox,
     "fig6-1-qpcr-workflow": fig6_workflow,
     "fig7-1-yeast": fig7_yeast,
+    "fig7-2-nbalance": fig7_nbalance,
     "fig8-1-plants": fig8_plant,
+    "fig8-2-plant-choice": fig8_choice,
     "fig9-1-physchem": fig9_options,
 }
 
