@@ -1,0 +1,276 @@
+<title>分階段培養模擬器</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: control rail (left) + instrument panel (right); stacks to one column on phones */
+:root{
+  --bg:#f3f6f4; --panel:#ffffff; --ink:#15302a; --muted:#5b6f69; --line:#d5dfdb;
+  --x:#1f7a5c; --s:#c07a12; --p:#7b3fa0; --a:#b8433b; --do:#2f6fb3; --stage2:rgba(123,63,160,.07);
+  --accent:#1f7a5c; --chip:#e6efeb;
+  --f-display:"Noto Serif TC","Songti TC",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1a17; --panel:#16241f; --ink:#e3eee9; --muted:#9db3ab; --line:#2a3d36;
+  --x:#4cc39a; --s:#e5a542; --p:#bb8be0; --a:#e9776d; --do:#73a9e6; --stage2:rgba(187,139,224,.10);
+  --accent:#4cc39a; --chip:#1f3530; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1a17; --panel:#16241f; --ink:#e3eee9; --muted:#9db3ab; --line:#2a3d36;
+  --x:#4cc39a; --s:#e5a542; --p:#bb8be0; --a:#e9776d; --do:#73a9e6; --stage2:rgba(187,139,224,.10);
+  --accent:#4cc39a; --chip:#1f3530; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;padding:24px 16px 48px;margin:0}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header h1{font-family:var(--f-display);font-weight:900;font-size:clamp(1.6rem,4vw,2.3rem);margin:0;text-wrap:balance;letter-spacing:.02em}
+header p{margin:6px 0 0;color:var(--muted);max-width:70ch}
+.note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--line);padding-left:10px}
+.grid{display:grid;grid-template-columns:330px minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.rail{display:flex;flex-direction:column;gap:14px}
+fieldset{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:12px 14px;margin:0;display:flex;flex-direction:column;gap:10px}
+legend{font-weight:700;font-size:.9rem;padding:0 6px}
+legend .tag{font-family:var(--f-mono);font-size:.72rem;font-weight:500;color:var(--muted);letter-spacing:.06em}
+.ctl{display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:center}
+.ctl label{font-size:.88rem}
+.ctl output{font-family:var(--f-mono);font-size:.85rem;font-variant-numeric:tabular-nums}
+.ctl input[type=range]{grid-column:1/3;width:100%;accent-color:var(--accent)}
+select{font:inherit;padding:4px 6px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:100%}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;font-size:.88rem;padding:7px 12px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--ink);cursor:pointer}
+button.primary{background:var(--accent);color:var(--bg);font-weight:700}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--do);outline-offset:2px}
+.main{display:flex;flex-direction:column;gap:16px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;min-width:0}
+.card h2{font-size:1rem;margin:0 0 8px;font-weight:700}
+.card h2 small{font-weight:400;color:var(--muted);font-size:.8rem;margin-left:6px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.kpi{background:var(--chip);border-radius:8px;padding:8px 10px}
+.kpi b{display:block;font-family:var(--f-mono);font-size:1.25rem;font-variant-numeric:tabular-nums}
+.kpi span{font-size:.78rem;color:var(--muted)}
+.kpi i{font-style:normal;font-size:.75rem;font-family:var(--f-mono)}
+.up{color:var(--x)} .down{color:var(--a)}
+canvas{width:100%;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--muted);margin-top:6px}
+.legend span::before{content:"";display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:5px;vertical-align:middle;background:var(--c)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media (max-width:700px){.two{grid-template-columns:minmax(0,1fr)}}
+.tornado .row{display:grid;grid-template-columns:7.5em minmax(0,1fr) 4.2em;gap:8px;align-items:center;font-size:.82rem;margin:4px 0}
+.bar{height:12px;position:relative;background:var(--chip);border-radius:3px}
+.bar i{position:absolute;top:0;bottom:0;border-radius:3px}
+.tornado .v{font-family:var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+svg text{fill:var(--ink);font-family:var(--f-body)}
+.flowlbl{font-size:12px}
+.small{font-size:.82rem;color:var(--muted)}
+#best{font-size:.85rem}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>分階段培養模擬器</h1>
+  <p>拉動左邊的條件，右邊的生長曲線、指標、代謝流向與「哪個參數最重要」會立刻跟著變。第一階段長菌、第二階段生產，切換時間也能調。</p>
+  <p class="note">這是教學用的示意模型（類大腸桿菌的預設值、Monod 生長＋溫度／pH 心形曲線＋溢流代謝＋Luedeking–Piret 產物式），數字不是你的菌。等你有自己的生長曲線，把參數換成實測值，它就變成你的菌的模擬器。</p>
+</header>
+
+<div class="grid">
+<div class="rail">
+  <fieldset>
+    <legend>目標與產物 <span class="tag">GOAL</span></legend>
+    <div class="ctl"><label for="goal">最佳化目標</label>
+      <select id="goal" style="grid-column:1/3"><option value="P">最大產量（產物 g/L）</option><option value="X">最大菌量（菌體 g/L）</option></select></div>
+    <div class="ctl"><label for="ptype">產物類型</label>
+      <select id="ptype" style="grid-column:1/3">
+        <option value="mixed">混合型（α、β 都有）</option>
+        <option value="growth">生長相關（如初級代謝物）</option>
+        <option value="non">非生長相關（如二次代謝物）</option>
+      </select></div>
+  </fieldset>
+  <fieldset>
+    <legend>起始條件 <span class="tag">t = 0</span></legend>
+    <div class="ctl"><label for="S0">起始葡萄糖</label><output id="S0o"></output><input type="range" id="S0" min="5" max="60" step="1" value="20"></div>
+    <div class="ctl"><label for="X0">接種量（菌體）</label><output id="X0o"></output><input type="range" id="X0" min="0.02" max="1" step="0.02" value="0.1"></div>
+    <div class="ctl"><label for="kla">通氣攪拌強度 kLa</label><output id="klao"></output><input type="range" id="kla" min="40" max="500" step="10" value="150"></div>
+  </fieldset>
+  <fieldset>
+    <legend>第一階段　長菌 <span class="tag">STAGE 1</span></legend>
+    <div class="ctl"><label for="T1">溫度</label><output id="T1o"></output><input type="range" id="T1" min="20" max="44" step="0.5" value="37"></div>
+    <div class="ctl"><label for="pH1">pH</label><output id="pH1o"></output><input type="range" id="pH1" min="5" max="8.5" step="0.1" value="7"></div>
+  </fieldset>
+  <fieldset>
+    <legend>第二階段　生產 <span class="tag">STAGE 2</span></legend>
+    <div class="ctl"><label for="ts">切換時間</label><output id="tso"></output><input type="range" id="ts" min="2" max="40" step="0.5" value="10"></div>
+    <div class="ctl"><label for="T2">溫度</label><output id="T2o"></output><input type="range" id="T2" min="20" max="44" step="0.5" value="30"></div>
+    <div class="ctl"><label for="pH2">pH</label><output id="pH2o"></output><input type="range" id="pH2" min="5" max="8.5" step="0.1" value="6.8"></div>
+    <div class="ctl"><label for="F">補料速度（葡萄糖）</label><output id="Fo"></output><input type="range" id="F" min="0" max="4" step="0.1" value="1.0"></div>
+  </fieldset>
+  <div class="btns">
+    <button class="primary" id="opt" type="button">自動找最佳條件</button>
+    <button id="pin" type="button">設為比較基準</button>
+    <button id="reset" type="button">回到預設</button>
+  </div>
+  <p id="best" class="small" aria-live="polite">按「自動找最佳條件」，模擬器會像貝氏最佳化一樣試 400 組條件，把最好的一組套用上來。</p>
+</div>
+
+<div class="main">
+  <div class="card">
+    <h2>關鍵指標 <small>箭頭是相對於比較基準</small></h2>
+    <div class="kpis" id="kpis"></div>
+  </div>
+  <div class="card">
+    <h2>培養過程 0–48 小時 <small>紫色底＝第二階段；虛線＝比較基準</small></h2>
+    <canvas id="chart" height="300" aria-label="菌體、葡萄糖、產物、醋酸與溶氧隨時間變化的曲線"></canvas>
+    <div class="legend">
+      <span style="--c:var(--x)">菌體 X（g/L）</span><span style="--c:var(--s)">葡萄糖 S（g/L）</span>
+      <span style="--c:var(--p)">產物 P（g/L）</span><span style="--c:var(--a)">醋酸 A（g/L，副產物）</span><span style="--c:var(--do)">溶氧 DO（%，右軸）</span>
+    </div>
+  </div>
+  <div class="two">
+    <div class="card">
+      <h2>碳往哪裡去 <small id="flowT"></small></h2>
+      <div class="ctl"><label for="tc">看第幾小時</label><output id="tco"></output><input type="range" id="tc" min="0" max="48" step="0.5" value="6"></div>
+      <svg id="flow" viewBox="0 0 340 200" role="img" aria-label="葡萄糖分配到菌體、產物、醋酸與呼吸的流向圖"></svg>
+      <p class="small">箭頭越粗＝那條路的碳流量越大。吃糖太快、氧氣又不夠時，醋酸那條會變粗，這就是「溢流代謝」。</p>
+    </div>
+    <div class="card tornado">
+      <h2>哪個參數最重要 <small id="sensT"></small></h2>
+      <div id="sens"></div>
+      <p class="small">每個參數各往上、往下推一小步（範圍的 10%），看目標改變多少。綠色＝調高有利，紅色＝調高不利。最長的那條就是你實驗最該先控制的參數。</p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const P=["S0","X0","kla","T1","pH1","ts","T2","pH2","F"];
+const LABEL={S0:"起始葡萄糖",X0:"接種量",kla:"通氣 kLa",T1:"階段1 溫度",pH1:"階段1 pH",ts:"切換時間",T2:"階段2 溫度",pH2:"階段2 pH",F:"補料速度"};
+const UNIT={S0:" g/L",X0:" g/L",kla:" 1/h",T1:" °C",pH1:"",ts:" h",T2:" °C",pH2:"",F:" g/L/h"};
+const DEF={};P.forEach(k=>DEF[k]=+$(k).value);
+
+// 溫度、pH 心形模型（Rosso 1993/1995 的 CTMI / CPM）
+function ctmi(T,Tmin,Topt,Tmax){if(T<=Tmin||T>=Tmax)return 0;
+  const n=(T-Tmax)*(T-Tmin)**2, d=(Topt-Tmin)*((Topt-Tmin)*(T-Topt)-(Topt-Tmax)*(Topt+Tmin-2*T));return Math.max(0,n/d);}
+function cpm(pH,a,o,b){if(pH<=a||pH>=b)return 0;return (pH-a)*(pH-b)/((pH-a)*(pH-b)-(pH-o)**2);}
+
+function simulate(v,ptype,keep){
+  const mumax=0.85,Ks=0.15,KiS=80,KcR=3,Yxs=0.5,ms=0.03,qScrit=1.05,Ki=4,Yxo=1.1,Cstar=0.0075;
+  const ab={mixed:[0.35,0.06],growth:[0.9,0.0],non:[0.0,0.12]}[ptype];
+  let X=v.X0,S=v.S0,Pp=0,A=0,t=0;const dt=0.05,out=[];
+  let Xmax=X,tXmax=0,Smin=S,used=0,Amax=0,DOmin=100;
+  for(let i=0;i<=960;i++){
+    const st2=t>=v.ts, T=st2?v.T2:v.T1, pH=st2?v.pH2:v.pH1;
+    const fT=ctmi(T,8,37,45.5), fpH=cpm(pH,4.6,7.0,9.2);
+    let mu=mumax*fT*fpH*S/(Ks+S+S*S/KiS)/(1+A/Ki);   // Haldane：糖太濃也會抑制
+    // 氧氣：需求 OUR 不能超過供給 OTR
+    const OTR=v.kla*Cstar; let OUR=X*mu/Yxo+0.01*X; let DO=100*(1-OUR/OTR);
+    let o2lim=1; if(OUR>OTR){o2lim=OTR/OUR;mu*=o2lim;DO=0;}
+    DO=Math.max(0,Math.min(100,DO));
+    const qSdemand=mu/Math.max(o2lim,1e-6)/Yxs+ms;      // 菌想吃的糖
+    const qS=S>0?qSdemand:0;
+    let over=Math.max(0,qS-qScrit)+ (o2lim<1?(1-o2lim)*qS*0.6:0); // 溢流：吃太快或缺氧
+    const fP=ctmi(T,10,30,42)*cpm(pH,4.8,6.8,9.0);   // 生產最適溫度假設 30°C
+    let qP=ab[0]*mu+ab[1]*fP*o2lim*S/(0.05+S)*KcR/(KcR+S)/(1+A/Ki);  // 非生長型產物：需氧、且被高糖抑制（碳分解代謝物抑制）
+    let rS=(mu/Yxs+ms+ qP*1.4 + over*0.5)*X;           // 糖去向：菌體、維持、產物、醋酸
+    const avail=S+(st2?v.F*dt:0);                       // 碳守恆：這一步最多只能吃掉現有的糖
+    if(rS*dt>avail){const k=avail/(rS*dt);mu*=k;qP*=k;over*=k;rS*=k;}
+    const flux={bio:mu/Yxs*X,prod:qP*1.4*X,ace:over*0.5*X,maint:ms*X};
+    if(keep&&i%10===0)out.push({t,X,S,P:Pp,A,DO,flux,st2});
+    if(i%10===0&&t>0)DOmin=Math.min(DOmin,DO);
+    X+=(mu-0.03*Math.max(0,A-4))*X*dt;   // 醋酸超過約 4 g/L 開始傷菌
+    Pp+=qP*X*dt; A=Math.max(0,A+(over*0.45*X-(S<0.5&&DO>20?0.015*X*fT:0))*dt);
+    let dS=-rS*dt+(st2?v.F*dt:0); used+=Math.min(S,rS*dt); S=Math.max(0,S+dS);
+    if(X>Xmax){Xmax=X;tXmax=t;} Amax=Math.max(Amax,A); t+=dt;
+  }
+  return {series:out,Xmax,tXmax,Pf:Pp,Xf:X,Amax,DOmin,yield:Pp/Math.max(used,1e-6),prod:Pp/48,totalS:v.S0+v.F*Math.max(0,48-v.ts)};
+}
+
+let base=null, cur=null;
+function vals(){const o={};P.forEach(k=>o[k]=+$(k).value);return o;}
+function objective(r){return $("goal").value==="P"?r.Pf:r.Xmax;}
+
+function fmt(x,d=2){return (Math.round(x*10**d)/10**d).toFixed(d);}
+function kpis(r){
+  const items=[["最大菌量","Xmax","g/L"],["最終產物","Pf","g/L"],["產率（產物/糖）","yield","g/g"],["生產力","prod","g/L/h"],["醋酸最高","Amax","g/L"],["溶氧最低","DOmin","%"]];
+  $("kpis").innerHTML=items.map(([n,k,u])=>{
+    let delta="";if(base){const d=r[k]-base[k];const good=(k==="Amax")?d<0:d>0;
+      if(Math.abs(d)>1e-3)delta=`<i class="${good?"up":"down"}">${d>0?"▲":"▼"} ${fmt(Math.abs(d),k==="DOmin"?0:2)}</i>`;}
+    return `<div class="kpi"><span>${n}</span><b>${fmt(r[k],k==="DOmin"?0:2)}</b><span>${u}</span> ${delta}</div>`;}).join("");
+}
+
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+function draw(r,v){
+  const c=$("chart"),dpr=window.devicePixelRatio||1,W=c.clientWidth,H=300;
+  c.width=W*dpr;c.height=H*dpr;const g=c.getContext("2d");g.scale(dpr,dpr);
+  const L=40,R=40,T=10,B=26,pw=W-L-R,ph=H-T-B;
+  const all=[r,base?base:r].flatMap(o=>o.series);
+  const ymax=Math.max(5,...all.map(p=>Math.max(p.X,p.S,p.P,p.A)))*1.08;
+  const sx=t=>L+t/48*pw, sy=y=>T+ph-y/ymax*ph, sd=d=>T+ph-d/100*ph;
+  g.fillStyle=css("--stage2");g.fillRect(sx(v.ts),T,pw-(sx(v.ts)-L),ph);
+  g.strokeStyle=css("--line");g.lineWidth=1;g.fillStyle=css("--muted");g.font="11px "+css("--f-mono");
+  const step=ymax>40?10:ymax>20?5:2;
+  for(let y=0;y<=ymax;y+=step){g.beginPath();g.moveTo(L,sy(y));g.lineTo(L+pw,sy(y));g.stroke();g.textAlign="right";g.fillText(y,L-6,sy(y)+4);}
+  for(let t=0;t<=48;t+=6){g.textAlign="center";g.fillText(t+"h",sx(t),H-8);}
+  g.textAlign="left";for(let d=0;d<=100;d+=50)g.fillText(d+"%",L+pw+6,sd(d)+4);
+  const line=(s,key,col,dash,scale)=>{g.strokeStyle=col;g.setLineDash(dash);g.lineWidth=dash.length?1.5:2.4;g.beginPath();
+    s.forEach((p,i)=>{const x=sx(p.t),y=scale?sd(p[key]):sy(p[key]);i?g.lineTo(x,y):g.moveTo(x,y);});g.stroke();g.setLineDash([]);};
+  const keys=[["X","--x"],["S","--s"],["P","--p"],["A","--a"]];
+  if(base)keys.forEach(([k,cv])=>line(base.series,k,css(cv),[4,4]));
+  line(r.series,"DO",css("--do"),[],true);
+  keys.forEach(([k,cv])=>line(r.series,k,css(cv),[]));
+  const tc=+$("tc").value;g.strokeStyle=css("--ink");g.globalAlpha=.35;g.beginPath();g.moveTo(sx(tc),T);g.lineTo(sx(tc),T+ph);g.stroke();g.globalAlpha=1;
+}
+
+function flow(r){
+  const tc=+$("tc").value;$("tco").textContent=tc+" h";
+  const p=r.series.reduce((a,b)=>Math.abs(b.t-tc)<Math.abs(a.t-tc)?b:a);
+  const f=p.flux,tot=f.bio+f.prod+f.ace+f.maint;
+  $("flowT").textContent=(p.st2?"第二階段":"第一階段")+`・吃糖 ${fmt(tot)} g/L/h`;
+  const w=x=>tot>1e-4?2+22*x/tot:1;const pct=x=>tot>1e-4?Math.round(100*x/tot)+"%":"0%";
+  const rows=[["菌體（長菌）",f.bio,"--x",30],["產物",f.prod,"--p",80],["醋酸（溢流）",f.ace,"--a",130],["維持與呼吸",f.maint,"--do",175]];
+  let s=`<rect x="8" y="78" width="70" height="44" rx="8" fill="${css("--chip")}" stroke="${css("--s")}"/><text x="43" y="98" text-anchor="middle" class="flowlbl">葡萄糖</text><text x="43" y="114" text-anchor="middle" class="flowlbl">→ 糖解</text>`;
+  rows.forEach(([n,v,cv,y])=>{s+=`<path d="M78 100 C150 100 150 ${y} 210 ${y}" fill="none" stroke="${css(cv)}" stroke-width="${w(v)}" stroke-linecap="round" opacity=".85"/><text x="216" y="${y-2}" class="flowlbl">${n}</text><text x="216" y="${y+13}" class="flowlbl" fill="${css("--muted")}">${pct(v)}</text>`;});
+  $("flow").innerHTML=s;
+}
+
+function sens(v,ptype){
+  const r0=objective(simulate(v,ptype,false));const res=[];
+  P.forEach(k=>{const el=$(k),span=(+el.max-+el.min)*0.1;
+    const up={...v,[k]:Math.min(+el.max,v[k]+span)},dn={...v,[k]:Math.max(+el.min,v[k]-span)};
+    const du=objective(simulate(up,ptype,false))-r0,dd=objective(simulate(dn,ptype,false))-r0;res.push([k,du,dd]);});
+  res.sort((a,b)=>Math.max(Math.abs(b[1]),Math.abs(b[2]))-Math.max(Math.abs(a[1]),Math.abs(a[2])));
+  const m=Math.max(1e-6,...res.map(r=>Math.max(Math.abs(r[1]),Math.abs(r[2]))));
+  $("sensT").textContent="目標："+($("goal").value==="P"?"產物":"菌量");
+  $("sens").innerHTML=res.map(([k,du,dd])=>{const eff=du-dd;const len=Math.max(Math.abs(du),Math.abs(dd))/m*50;
+    const col=eff>=0?css("--x"):css("--a");
+    return `<div class="row"><span>${LABEL[k]}</span><div class="bar"><i style="left:${eff>=0?50:50-len}%;width:${len}%;background:${col}"></i><i style="left:50%;width:1px;background:${css("--muted")}"></i></div><span class="v">${eff>=0?"+":"−"}${fmt(Math.max(Math.abs(du),Math.abs(dd)))}</span></div>`;}).join("");
+}
+
+function update(){
+  const v=vals();P.forEach(k=>$(k+"o").textContent=(+v[k]).toString()+UNIT[k]);
+  $("tc").max=48;cur=simulate(v,$("ptype").value,true);
+  kpis(cur);draw(cur,v);flow(cur);sens(v,$("ptype").value);
+}
+let raf=0;function schedule(){cancelAnimationFrame(raf);raf=requestAnimationFrame(update);}
+[...P,"goal","ptype","tc"].forEach(k=>$(k).addEventListener("input",schedule));
+$("pin").onclick=()=>{base=cur;update();};
+$("reset").onclick=()=>{P.forEach(k=>$(k).value=DEF[k]);base=null;$("best").textContent="已回到預設值。";update();};
+$("opt").onclick=()=>{
+  const ptype=$("ptype").value,start=vals();let best=start,bv=objective(simulate(start,ptype,false));const b0=bv;
+  const free=["ts","T1","T2","pH1","pH2","F","kla"];
+  for(let i=0;i<400;i++){const c={...best};
+    free.forEach(k=>{const el=$(k),lo=+el.min,hi=+el.max,st=+el.step;
+      const x=i<120?lo+Math.random()*(hi-lo):best[k]+(Math.random()-.5)*(hi-lo)*0.25;
+      c[k]=Math.min(hi,Math.max(lo,Math.round(x/st)*st));});
+    c.kla=Math.min(c.kla,start.kla);  // 不允許超過目前設備的通氣能力
+    const val=objective(simulate(c,ptype,false));if(val>bv){bv=val;best=c;}}
+  base=simulate(start,ptype,true);
+  P.forEach(k=>$(k).value=best[k]);
+  $("best").textContent=`找到了：目標從 ${fmt(b0)} 提升到 ${fmt(bv)} g/L。虛線是原本的條件。通氣上限維持你設定的 kLa（設備能力）。`;
+  update();
+};
+window.addEventListener("resize",schedule);
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",schedule);
+new MutationObserver(schedule).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+update();
+</script>
