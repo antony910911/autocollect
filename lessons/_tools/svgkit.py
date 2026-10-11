@@ -126,11 +126,15 @@ class Svg:
 
 
 def _rich(s: str) -> str:
-    """支援上下標：NH4^+^、NO3^-^、N_2_；其餘照字面跳脫。"""
+    """支援上下標：NH4^+^、NO3^-^、N_2_；`\\_` 與 `\\^` 印出字面；其餘照字面跳脫。"""
     out, i = [], 0
     s = html.escape(s, quote=False)
     while i < len(s):
         ch = s[i]
+        if ch == "\\" and i + 1 < len(s) and s[i + 1] in "^_\\":
+            out.append(s[i + 1])   # \_ \^ \\ ：印出字面，不當上下標
+            i += 2
+            continue
         if ch in "^_":
             j = s.find(ch, i + 1)
             if j > i:

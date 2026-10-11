@@ -1,0 +1,457 @@
+{
+ "source": {
+  "artifact": "Beamup 設計系統（使用者自己的）",
+  "snapshot": "2026-10-11",
+  "built_from": "github:antony910911/thought_task_entry @ f5f021f"
+ },
+ "themes": [
+  {
+   "id": "light",
+   "name": "淺色"
+  },
+  {
+   "id": "dark",
+   "name": "深色"
+  }
+ ],
+ "pairs": [
+  {
+   "fg": "ink",
+   "bg": "surface-page",
+   "what": "主要文字在頁面底上",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#15131f",
+     "bg_hex": "#f3f2f8",
+     "ratio": 16.48,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#f2f0fa",
+     "bg_hex": "#0e0b1f",
+     "ratio": 17.14,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "ink",
+   "bg": "surface-card",
+   "what": "主要文字在卡片上",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#15131f",
+     "bg_hex": "#ffffff",
+     "ratio": 18.34,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#f2f0fa",
+     "bg_hex": "#1b1636",
+     "ratio": 15.33,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "ink",
+   "bg": "surface-fill",
+   "what": "主要文字在填色控制項上",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#15131f",
+     "bg_hex": "#e9e7f2",
+     "ratio": 15.0,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#f2f0fa",
+     "bg_hex": "#2a2348",
+     "ratio": 13.0,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "ink-2",
+   "bg": "surface-page",
+   "what": "次要文字在頁面底上",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#57536a",
+     "bg_hex": "#f3f2f8",
+     "ratio": 6.62,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#b4afcb",
+     "bg_hex": "#0e0b1f",
+     "ratio": 9.15,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "ink-2",
+   "bg": "surface-card",
+   "what": "次要文字在卡片上",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#57536a",
+     "bg_hex": "#ffffff",
+     "ratio": 7.37,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#b4afcb",
+     "bg_hex": "#1b1636",
+     "ratio": 8.18,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "ink-3",
+   "bg": "surface-page",
+   "what": "placeholder 在頁面底上",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#66627a",
+     "bg_hex": "#f3f2f8",
+     "ratio": 5.25,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#948eae",
+     "bg_hex": "#0e0b1f",
+     "ratio": 6.2,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "ink-3",
+   "bg": "surface-card",
+   "what": "placeholder 在卡片上",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#66627a",
+     "bg_hex": "#ffffff",
+     "ratio": 5.84,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#948eae",
+     "bg_hex": "#1b1636",
+     "ratio": 5.55,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "blip",
+   "bg": "surface-page",
+   "what": "品牌色當連結在頁面底上",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#177a3a",
+     "bg_hex": "#f3f2f8",
+     "ratio": 4.86,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#3ddc6a",
+     "bg_hex": "#0e0b1f",
+     "ratio": 10.72,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "blip",
+   "bg": "surface-card",
+   "what": "品牌色當連結在卡片上",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#177a3a",
+     "bg_hex": "#ffffff",
+     "ratio": 5.41,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#3ddc6a",
+     "bg_hex": "#1b1636",
+     "ratio": 9.59,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "on-blip",
+   "bg": "blip",
+   "what": "主要按鈕的字",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#ffffff",
+     "bg_hex": "#177a3a",
+     "ratio": 5.41,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#0e0b1f",
+     "bg_hex": "#3ddc6a",
+     "ratio": 10.72,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "note",
+   "bg": "surface-card",
+   "what": "筆記代表色當文字",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#a85000",
+     "bg_hex": "#ffffff",
+     "ratio": 5.51,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#ffa53d",
+     "bg_hex": "#1b1636",
+     "ratio": 8.81,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "event",
+   "bg": "surface-card",
+   "what": "行程代表色當文字",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#5b48d0",
+     "bg_hex": "#ffffff",
+     "ratio": 6.4,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#a596ff",
+     "bg_hex": "#1b1636",
+     "ratio": 6.92,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "danger",
+   "bg": "surface-card",
+   "what": "錯誤訊息",
+   "need": 4.5,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#c9001a",
+     "bg_hex": "#ffffff",
+     "ratio": 6.0,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#ff6961",
+     "bg_hex": "#1b1636",
+     "ratio": 6.13,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "line",
+   "bg": "surface-page",
+   "what": "需要看見的框線（非文字）",
+   "need": 3.0,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#8d88a3",
+     "bg_hex": "#f3f2f8",
+     "ratio": 3.05,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#6c6590",
+     "bg_hex": "#0e0b1f",
+     "ratio": 3.59,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "line",
+   "bg": "surface-card",
+   "what": "未勾選 checkbox 的框（非文字）",
+   "need": 3.0,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#8d88a3",
+     "bg_hex": "#ffffff",
+     "ratio": 3.4,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#6c6590",
+     "bg_hex": "#1b1636",
+     "ratio": 3.21,
+     "pass": true
+    }
+   }
+  },
+  {
+   "fg": "blip",
+   "bg": "surface-card",
+   "what": "焦點環（非文字）",
+   "need": 3.0,
+   "by_theme": {
+    "light": {
+     "fg_hex": "#177a3a",
+     "bg_hex": "#ffffff",
+     "ratio": 5.41,
+     "pass": true
+    },
+    "dark": {
+     "fg_hex": "#3ddc6a",
+     "bg_hex": "#1b1636",
+     "ratio": 9.59,
+     "pass": true
+    }
+   }
+  }
+ ],
+ "swatches": [
+  {
+   "name": "night",
+   "light": "#201259",
+   "dark": "#201259",
+   "usage": "App icon 的夜空靛藍（取自 icon-512.png）。"
+  },
+  {
+   "name": "beam",
+   "light": "#96dcff",
+   "dark": "#96dcff",
+   "usage": "飛碟光束藍（取自 icon）。"
+  },
+  {
+   "name": "star",
+   "light": "#ffd60a",
+   "dark": "#ffd60a",
+   "usage": "星星黃（mascot.js 的 Y）。"
+  },
+  {
+   "name": "surface-page",
+   "light": "#f3f2f8",
+   "dark": "#0e0b1f",
+   "usage": "頁面底色。"
+  },
+  {
+   "name": "surface-card",
+   "light": "#ffffff",
+   "dark": "#1b1636",
+   "usage": "卡片、清單群組、輸入框底色。"
+  },
+  {
+   "name": "surface-fill",
+   "light": "#e9e7f2",
+   "dark": "#2a2348",
+   "usage": "分段控制、膠囊按鈕、次要按鈕的填色。"
+  },
+  {
+   "name": "ink",
+   "light": "#15131f",
+   "dark": "#f2f0fa",
+   "usage": "主要文字，用在 surface-page / card / fill 上（皆 ≥13:1）。"
+  },
+  {
+   "name": "ink-2",
+   "light": "#57536a",
+   "dark": "#b4afcb",
+   "usage": "次要文字：說明、日期、meta，用在三種 surface 上（≥6:1）。"
+  },
+  {
+   "name": "ink-3",
+   "light": "#66627a",
+   "dark": "#948eae",
+   "usage": "placeholder 與最弱提示，用在三種 surface 上（≥4.7:1）。"
+  },
+  {
+   "name": "sep",
+   "light": "#e2dfeb",
+   "dark": "#2f2850",
+   "usage": "清單分隔線（純裝飾，不承載意義）。"
+  },
+  {
+   "name": "line",
+   "light": "#8d88a3",
+   "dark": "#6c6590",
+   "usage": "需要被看見的框線：像素對話框、未勾選的 checkbox，用在 page / card 上（≥3:1）。"
+  },
+  {
+   "name": "blip",
+   "light": "#177a3a",
+   "dark": "#3ddc6a",
+   "usage": "品牌主色 = Blip 綠。"
+  },
+  {
+   "name": "on-blip",
+   "light": "#ffffff",
+   "dark": "#0e0b1f",
+   "usage": "blip 底上的文字與圖示（淺 5.4:1、深 10.7:1）。"
+  },
+  {
+   "name": "blip-soft",
+   "light": "#dcf2e3",
+   "dark": "#173a2a",
+   "usage": "Blip 綠的淡底：tinted 按鈕、選中的標籤、舞台淺色天空。"
+  },
+  {
+   "name": "todo",
+   "light": "#177a3a",
+   "dark": "#3ddc6a",
+   "usage": "待辦的代表色 = 品牌綠（勾選完成、待辦入口）。"
+  },
+  {
+   "name": "note",
+   "light": "#a85000",
+   "dark": "#ffa53d",
+   "usage": "筆記的代表色（琥珀）。"
+  },
+  {
+   "name": "event",
+   "light": "#5b48d0",
+   "dark": "#a596ff",
+   "usage": "行程的代表色（靛紫，呼應 night）。"
+  },
+  {
+   "name": "danger",
+   "light": "#c9001a",
+   "dark": "#ff6961",
+   "usage": "刪除、逾期、錯誤。"
+  }
+ ],
+ "n_fail": 0,
+ "counts": {
+  "colors": 18,
+  "text_styles": 9,
+  "spacing": 6,
+  "radius": 4,
+  "shadow": 2
+ }
+}

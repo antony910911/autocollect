@@ -74,3 +74,64 @@ def fig_cost():
 
 
 fig_cost()
+
+
+def fig_tokens():
+    """使用者自己的設計系統：實際色票與驗算過的對比度。"""
+    d = json.loads((CODE / "contrast.json").read_text("utf-8"))
+    sw, pairs = d["swatches"], d["pairs"]
+    fig = plt.figure(figsize=(13.4, 6.4))
+    gs = fig.add_gridspec(1, 2, width_ratios=[1.15, 1])
+    a1, a2 = fig.add_subplot(gs[0]), fig.add_subplot(gs[1])
+
+    # 左：色票（每個 token 一列，淺／深兩塊）
+    a1.set_xlim(0, 10)
+    a1.set_ylim(0, len(sw) + 1.1)
+    for i, s in enumerate(sw):
+        y = len(sw) - i - 1
+        for j, th in enumerate(("light", "dark")):
+            if s[th]:
+                a1.add_patch(plt.Rectangle((4.3 + j * 1.25, y + 0.14), 1.15, 0.72,
+                                           facecolor=s[th], edgecolor="#8a93a3", lw=0.7))
+        a1.text(4.2, y + 0.5, s["name"], ha="right", va="center", fontsize=11)
+        a1.text(7.0, y + 0.5, (s["light"] or "").lower(), ha="left", va="center",
+                fontsize=9.5, color="#5b6475", family="monospace")
+    a1.text(4.87, len(sw) + 0.3, "淺色", ha="center", fontsize=11, weight="bold")
+    a1.text(6.12, len(sw) + 0.3, "深色", ha="center", fontsize=11, weight="bold")
+    a1.axis("off")
+    c = d["counts"]
+    a1.set_title(f'{c["colors"]} 個顏色 token，每個都有深淺兩種值與用途說明', fontsize=13)
+
+    # 右：對比度
+    labels = [f'{r["fg"]} / {r["bg"]}' for r in pairs]
+    lt = [r["by_theme"]["light"]["ratio"] for r in pairs]
+    dk = [r["by_theme"]["dark"]["ratio"] for r in pairs]
+    y = np.arange(len(pairs))
+    h = 0.38
+    a2.barh(y + h / 2, lt, h, label="淺色", color="#2f6fb3")
+    a2.barh(y - h / 2, dk, h, label="深色", color="#7b4bb3")
+    a2.axvline(4.5, color="#c23b3b", lw=1.8, ls="--")
+    a2.axvline(3.0, color="#d9821e", lw=1.5, ls=":")
+    a2.text(4.7, -0.5, "4.5:1 一般文字", fontsize=10, color="#c23b3b", va="center")
+    a2.text(2.85, -0.5, "3:1 非文字", fontsize=10, color="#d9821e", ha="right", va="center")
+    a2.set_yticks(y, labels, fontsize=9.5)
+    a2.set_ylim(len(pairs) - 0.4, -1.0)
+    a2.set_xlabel("對比度（越高越清楚）")
+    a2.set_xlim(0, 20)
+    a2.legend(frameon=False, fontsize=10.5, loc="lower right")
+    a2.set_title(f'{len(pairs)} 組配對，深淺兩個模式**全部通過**'.replace("**", ""), fontsize=13)
+
+    fig.suptitle("圖 11-2　一個設計系統實際長什麼樣：你自己的 Beamup",
+                 fontsize=15, weight="bold", y=1.0)
+    fig.tight_layout()
+    fig.text(0.01, -0.03,
+             f'資料來自使用者自己的 Beamup 設計系統（{d["source"]["snapshot"]} 快照，'
+             f'建自 {d["source"]["built_from"]}）；對比度由 lessons/using-claude/code/contrast.py '
+             f'依 WCAG 2.x 公式重新算過，不是照抄系統裡寫的數字。',
+             fontsize=9.5, color=NOTE)
+    fig.savefig(OUT / "fd11-2-tokens.png", bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print("寫入 fd11-2-tokens")
+
+
+fig_tokens()

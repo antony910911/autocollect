@@ -505,10 +505,111 @@ FIGS2 = {"fig6-1-pipeline": fig_pipeline, "fig7-1-automation": fig_automation,
          "fig8-1-opensource": fig_opensource, "fig9-1-ladder": fig_ladder,
          "fig10-1-workflow": fig_workflow}
 
+def fig_artifact_types():
+    s = Svg(1460, 930, "圖 11-1　五種「成品」，以及設計系統為什麼站在中間")
+    s.text(40, 78, "Claude 不是只會回你一段文字。它可以直接做出五種成品，"
+                   "其中「設計系統」比較特別——它本身不是成品，是「給其他成品看的規格書」。",
+           size=15, color=MUTED)
+
+    types = [
+        (40, 170, "Design", PURPLE, "設計畫布", "網站、登陸頁、App 畫面、\n海報、社群圖；\n一塊可以擺很多張稿的畫布"),
+        (330, 170, "Slides", BLUE, "簡報", "16:9 投影片，\n可以播、可以下載"),
+        (620, 170, "Dashboard", TEAL, "儀表板", "圖表、數字、表格；\n每個數字都標來源"),
+        (910, 170, "Docs", BROWN, "文件", "可以一起編輯、\n留言的活文件"),
+    ]
+    for x, y, name, col, sub, what in types:
+        s.box(x, y, 260, 230, "", color=col, fill=tint(col, 0.94))
+        s.text(x + 24, y + 46, name, size=20, weight=700, color=col)
+        s.text(x + 24, y + 72, sub, size=14, color=MUTED)
+        s.line(x + 24, y + 86, x + 236, y + 86, color=col)
+        yy = y + 118
+        for ln in what.split("\n"):
+            s.text(x + 24, yy, ln, size=13.5)
+            yy += 24
+
+    s.box(40, 470, 1140, 236, "", color=ORANGE, fill=tint(ORANGE, 0.92))
+    s.text(68, 516, "Design System　設計系統", size=22, weight=700, color=ORANGE)
+    s.text(68, 548, "一份給機器讀的品牌規格書", size=14.5, color=MUTED)
+    for i, ln in enumerate([
+            "・**色彩 token**：每個顏色有名字、深淺兩種值、以及「什麼時候用」的說明",
+            "・**字體與字級**、**間距**、**圓角**、**陰影**",
+            "・**元件**（按鈕、卡片⋯）的規範與活的預覽",
+            "・**README**：寫清楚語氣、用色規則、禁止事項"]):
+        s.text(68, 594 + i * 30, ln.replace("**", ""), size=14.5)
+    for x in (170, 460, 750, 1040):
+        s.arrow([(x, 466), (x, 404)], color=ORANGE, width=2.5)
+    s.text(1210, 510, "它不是拿來看的，", size=15, weight=700, color=ORANGE)
+    s.text(1210, 540, "是拿來「被引用」的。", size=15, weight=700, color=ORANGE)
+    s.text(1210, 580, "做投影片、做設計稿時，", size=14, color=MUTED)
+    s.text(1210, 608, "它會先讀這一份，", size=14, color=MUTED)
+    s.text(1210, 636, "再決定用什麼顏色、字體。", size=14, color=MUTED)
+
+    s.box(40, 742, 1380, 160, "", color=GREEN, fill=tint(GREEN, 0.94))
+    s.text(68, 786, "你現在的狀況", size=18, weight=700)
+    _para(s, 68, 824, "你的帳號裡已經有兩個設計系統，其中一個叫 **Beamup**，"
+                      "而且是從你的 app 原始碼（github:antony910911/thought\\_task\\_entry）建出來的。"
+                      "但**沒有設成預設**——所以每次要做設計稿時，它不知道要用哪一套。設一下就好。",
+          size=15, maxw=1330, lh=30)
+    return s
+
+
+def fig_design_code():
+    s = Svg(1460, 900, "圖 11-3　設計系統和程式碼：三個方向")
+    s.text(40, 78, "這是你問的「design 能不能跟 code 一起用」的答案——可以，而且有三個方向。",
+           size=15, color=MUTED)
+
+    s.box(120, 190, 330, 150, "你的程式碼", color=BLUE, size=22,
+          sub="thought\\_task\\_entry\ncss/style.css、js/themes.js", sub_size=13)
+    s.box(1010, 190, 330, 150, "設計系統", color=ORANGE, size=22,
+          sub="Beamup\n18 色 ＋ 9 字級 ＋ 間距圓角", sub_size=13)
+
+    s.arrow([(450, 230), (730, 196), (1010, 230)], color=GREEN, width=3.5, curve=True)
+    s.text(730, 164, "① 從程式碼建系統　✓ 已完成", size=17, weight=700, color=GREEN,
+           anchor="middle")
+    s.arrow([(1010, 300), (730, 336), (450, 300)], color=RED, width=3.5, curve=True)
+    s.text(730, 372, "② 把 token 推回程式碼　← 你還沒做這一步", size=17, weight=700,
+           color=RED, anchor="middle")
+
+    s.box(40, 420, 440, 230, "", color=GREEN, fill=tint(GREEN, 0.94))
+    s.text(68, 462, "① 從程式碼建系統", size=18, weight=700, color=GREEN)
+    _para(s, 68, 498, "把 repo 給它，它讀出你現在實際用的顏色、字級、間距，"
+                      "整理成一份有名字、有說明、有深淺模式的規格。",
+          size=14, maxw=384, lh=26)
+    s.text(68, 600, "你的 Beamup 就是這樣來的。", size=14.5, weight=700, color=GREEN)
+    s.text(68, 628, "裡面標 proposed 的是「建議改成這樣」。", size=13.5, color=MUTED)
+
+    s.box(510, 420, 440, 230, "", color=RED, fill=tint(RED, 0.94))
+    s.text(538, 462, "② 把 token 推回程式碼", size=18, weight=700, color=RED)
+    _para(s, 538, 498, "把那 18 個顏色寫成 CSS 變數，然後把程式裡寫死的色碼"
+                       "一個一個換成變數。", size=14, maxw=384, lh=26)
+    s.text(538, 574, "做完之後：換色只要改一個檔案，", size=14.5, weight=700, color=RED)
+    s.text(538, 602, "深色模式自動跟上，", size=14.5, weight=700, color=RED)
+    s.text(538, 630, "而且對比度是驗算過的。", size=14.5, weight=700, color=RED)
+
+    s.box(980, 420, 440, 230, "", color=PURPLE, fill=tint(PURPLE, 0.94))
+    s.text(1008, 462, "③ 新畫面先畫稿再實作", size=18, weight=700, color=PURPLE)
+    _para(s, 1008, 498, "要加新功能時，先用 Design 畫布做幾個版本，挑一個，"
+                        "再叫它照著實作。", size=14, maxw=384, lh=26)
+    s.text(1008, 574, "比直接寫程式快，", size=14.5, weight=700, color=PURPLE)
+    s.text(1008, 602, "因為改一張稿比改一版 code 便宜。", size=14.5, weight=700, color=PURPLE)
+
+    s.box(40, 690, 1380, 180, "", color=TEAL, fill=tint(TEAL, 0.94))
+    s.text(68, 732, "第 ② 步具體怎麼講", size=18, weight=700)
+    code = ['「讀我的 Beamup 設計系統，把 color、spacing、radius 的 token 寫成',
+            ' css/tokens.css 的 CSS 變數（含 prefers-color-scheme 深色），',
+            ' 然後把 css/style.css 裡寫死的色碼換成對應的變數。',
+            ' 不要改任何版面與行為，只換顏色的來源。改完給我 diff。」']
+    for i, ln in enumerate(code):
+        s.text(68, 772 + i * 28, ln, size=14.5, color=INK)
+    return s
+
+
 FIGS1 = {"fig0-1-landscape": fig_landscape, "fig1-1-surfaces": fig_surfaces,
          "fig2-1-context": fig_context, "fig3-1-memory": fig_memory,
          "fig4-1-skills": fig_skills, "fig5-1-connect": fig_connect}
-FIGS = {**FIGS1, **FIGS2}
+FIGS3 = {"fig11-1-artifact-types": fig_artifact_types,
+         "fig11-3-design-code": fig_design_code}
+FIGS = {**FIGS1, **FIGS2, **FIGS3}
 
 if __name__ == "__main__":
     want = sys.argv[1:] or list(FIGS)
