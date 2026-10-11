@@ -30,3 +30,22 @@ topics:
       color: "#d98b2b"
       page_prefix: pg_autocollect_farn_
       item_prefix: t_autocollect_farn_
+
+  # ChatGPT 週五 20:00 的工程酵母／萜類研究快報。
+  # 僅供匯入 Folio；不加入週一自動收集主題或 Claude Code 分析任務。
+  # 與「法尼烯週報」共用 Folio 筆記本，但使用獨立分區及頁面 ID，避免互相覆寫。
+  farnesene_lab:
+    title: 工程酵母 Farnesene 研究快報
+    config: config/farnesene.yaml
+    prompt: prompts/farnesene_analysis.md
+    data_dir: data/farnesene_lab
+    reports_dir: reports/farnesene_lab
+    folio:
+      notebook_id: nb_autocollect_farnesene
+      notebook_name: 法尼烯週報
+      notebook_order: 101
+      section_id: sc_autocollect_farnesene_lab
+      section_name: 工程酵母研究快報
+      color: "#5476a3"
+      page_prefix: pg_autocollect_farn_lab_
+      item_prefix: t_autocollect_farn_lab_
