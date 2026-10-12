@@ -9,6 +9,7 @@ on:
       # ChatGPT 每週五發表的工程酵母／萜類研究快報
       - "reports/farnesene_lab/*.md"
       - "reports/proposal_radar/*.md"
+      - "reports/anaerobic_lab/*.md"
   schedule:
     # 保險：每週一 14:07（台北時間）再同步一次最新一期（重複上傳不會產生重複頁面）
     - cron: "7 6 * * 1"
@@ -17,7 +18,7 @@ on:
   workflow_dispatch:
     inputs:
       topic:
-        description: "主題（bioenergy、farnesene、farnesene_lab、proposal_radar），留空為全部主題的最新一期"
+        description: "主題（bioenergy、farnesene、farnesene_lab、proposal_radar、anaerobic_lab），留空為全部主題的最新一期"
         required: false
       week:
         description: "週次（例如 2026-W41），留空為最新一期；需同時指定主題"
@@ -42,7 +43,7 @@ jobs:
         env:
           FOLIO_SYNC_TOKEN: ${{ secrets.FOLIO_SYNC_TOKEN }}
           FOLIO_URL: ${{ vars.FOLIO_URL }}
-          TOPICS: bioenergy farnesene farnesene_lab proposal_radar
+          TOPICS: bioenergy farnesene farnesene_lab proposal_radar anaerobic_lab
           INPUT_TOPIC: ${{ inputs.topic }}
           INPUT_WEEK: ${{ inputs.week }}
         run: |
@@ -53,7 +54,23 @@ jobs:
           status=0
           # 當次 push 若包含研究快報，就同步精確週次，避免下週測試頁被選為「最新」
           if [ "$GITHUB_EVENT_NAME" = "push" ]; then
-            changed_lab="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep -E '^reports/farnesene_lab/[0-9]{4}-W[0-9]{2}\.md$' || true)"
+            changed_lab="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA" | grep -E '^reports/(farnesene_lab|anaerobic_lab)/[0-9]{4}-W[0-9]{2}\.md || true)"
+            if [ -n "$changed_lab" ]; then
+              while IFS= read -r file; do
+                [ -n "$file" ] || continue
+                week="$(basename "$file" .md)"
+                echo "本次更新週次：$week"
+                topic="$(echo "$file" | cut -d/ -f2)"
+                python -m autocollect folio --topic "$topic" --week "$week" || status=1
+              done <<< "$changed_lab"
+              TOPICS="bioenergy farnesene proposal_radar"
+            fi
+          fi
+          for t in ${INPUT_TOPIC:-$TOPICS}; do
+            python -m autocollect folio --topic "$t" || status=1
+          done
+          exit $status
+ || true)"
             if [ -n "$changed_lab" ]; then
               while IFS= read -r file; do
                 [ -n "$file" ] || continue
