@@ -1,9 +1,6 @@
 name: 厭氧消化研究快報全自動
 
 on:
-  schedule:
-    # 週一 08:20 台灣時間（UTC 週一 00:20）
-    - cron: "20 0 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -19,7 +16,6 @@ jobs:
     timeout-minutes: 60
     env:
       TZ: Asia/Taipei
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
       OPENALEX_MAILTO: ${{ vars.OPENALEX_MAILTO }}
       FOLIO_SYNC_TOKEN: ${{ secrets.FOLIO_SYNC_TOKEN }}
@@ -32,27 +28,12 @@ jobs:
       - run: pip install -r requirements.txt
       - name: 檢查必要密鑰
         run: |
-          test -n "$ANTHROPIC_API_KEY" || { echo "::error::Missing ANTHROPIC_API_KEY"; exit 1; }
           test -n "$FOLIO_SYNC_TOKEN" || { echo "::error::Missing FOLIO_SYNC_TOKEN"; exit 1; }
-      - name: 收集、AI 篩選與分析、建立報告
+      - name: 驗證 ChatGPT 已提交研究快報
         run: |
-          python -m autocollect run --topic anaerobic_lab
           week="$(TZ=Asia/Taipei date +%G-W%V)"
-          test -s "reports/anaerobic_lab/$week.md"
-          grep -q '## 二、精選研究與技術報告' "reports/anaerobic_lab/$week.md" || { echo "::error::AI analysis missing"; exit 1; }
-      - name: GitHub 歸檔
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/anaerobic_lab reports/anaerobic_lab
-          if ! git diff --cached --quiet; then
-            git commit -m "厭氧消化研究快報 $(TZ=Asia/Taipei date +%G-W%V)"
-            for i in 1 2 3; do
-              git pull --rebase origin main && git push && break
-              if [ "$i" = 3 ]; then exit 1; fi
-              sleep $((i * 5))
-            done
-          fi
+          test -s "reports/anaerobic_lab/$week.md" || { echo "::error::ChatGPT report not yet committed"; exit 1; }
+          grep -q '## 二、精選研究與技術報告' "reports/anaerobic_lab/$week.md" || { echo "::error::Report analysis missing"; exit 1; }
       - name: 同步到 Folio
         run: |
           week="$(TZ=Asia/Taipei date +%G-W%V)"
