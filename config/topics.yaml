@@ -68,8 +68,8 @@ topics:
 
   anaerobic_lab:
     title: 厭氧消化與沼氣技術研究快報
-    config: config/sources.yaml
-    prompt: prompts/weekly_analysis.md
+    config: config/anaerobic_lab.yaml
+    prompt: prompts/anaerobic_lab_analysis.md
     data_dir: data/anaerobic_lab
     reports_dir: reports/anaerobic_lab
     folio:
