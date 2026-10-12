@@ -65,3 +65,18 @@ topics:
       color: "#527d89"
       page_prefix: pg_autocollect_proposal_
       item_prefix: t_autocollect_proposal_
+
+  anaerobic_lab:
+    title: 厭氧消化與沼氣技術研究快報
+    config: config/sources.yaml
+    prompt: prompts/weekly_analysis.md
+    data_dir: data/anaerobic_lab
+    reports_dir: reports/anaerobic_lab
+    folio:
+      notebook_id: nb_autocollect_bio
+      notebook_name: 生質能週報
+      section_id: sc_autocollect_anaerobic_lab
+      section_name: 厭氧消化與沼氣技術
+      color: "#397c80"
+      page_prefix: pg_autocollect_ad_lab_
+      item_prefix: t_autocollect_ad_lab_
