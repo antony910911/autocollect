@@ -615,10 +615,18 @@ def _track(s, x0, w, c0, c1, elems, y, label, colmap, flip=False):
         else:
             small.append((ex + ew / 2, e["name"] + tag, f'{e["c0"]:,}', col))
     small.sort()
+    # 三層交錯的引線會穿過鄰居的標籤。先把線全部畫完，再鋪白底遮罩，最後才畫字：
+    # SVG 是後畫的蓋前畫的，順序錯了就會看到線從字中間穿過去。
+    placed = []
     for i, (cx, nm, pos, col) in enumerate(small):
         ty = y - 40 - (i % 3) * 30
         s.line(cx, y - 2, cx, ty + 6, color=col, width=1.4)
-        s.text(cx, ty, f"{nm}　{pos}", size=12.5, color=col, anchor="middle", weight=700)
+        placed.append((cx, ty, f"{nm}　{pos}", col))
+    for cx, ty, lab, col in placed:
+        tw = _w(lab, 12.5)
+        s.parts.append(f'<rect x="{cx - tw / 2 - 5:.1f}" y="{ty - 12}" '
+                       f'width="{tw + 10:.1f}" height="17" fill="#ffffff"/>')
+        s.text(cx, ty, lab, size=12.5, color=col, anchor="middle", weight=700)
     # 座標尺
     step = 1000
     t = ((c0 // step) + 1) * step
@@ -1109,8 +1117,9 @@ def fig15_cell():
             s.raw(f'<circle cx="{bx + a:.0f}" cy="{by + b:.0f}" r="3.2" fill="{GREY}" '
                   f'opacity="0.5"/>')
     s.text(bx, by - 164, "細菌（原核）", size=21, weight=700, anchor="middle", color=BLUE)
-    s.line(bx - 226, by - 54, bx - 108, by + 4, color=PURPLE, width=1.4)
-    s.text(bx - 232, by - 60, "DNA 散在細胞質裡", size=13.5, color=PURPLE, anchor="end")
+    # 標籤放在橢圓左上角的外面：y 再低一點就會被細胞外框切到（橢圓越往中間越寬）
+    s.line(bx - 170, by - 90, bx - 100, by - 8, color=PURPLE, width=1.4)
+    s.text(bx - 286, by - 96, "DNA 散在細胞質裡", size=13.5, color=PURPLE)
     s.text(bx + 60, by + 150, "沒有胞器、沒有核膜", size=13.5, color=MUTED, anchor="middle")
 
     # 右：酵母（真核）

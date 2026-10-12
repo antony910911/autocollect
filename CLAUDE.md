@@ -51,8 +51,11 @@ lessons/<課程名>/
   - 新章節用到字型子集沒有的字，圖上會變成 fallback 字體。
     重跑 `python lessons/_tools/make_font.py <node_modules 路徑>`
     （先 `npm install @fontsource/noto-sans-tc@5.2.5`，裝在 scratchpad 就好）。
-- **版面要檢查**。推送前跑 `python lessons/_tools/check_layout.py`，
-  確認 Folio 頁面上的文字框與圖片不會疊在一起。
+- **版面要檢查**，兩支互補的檢查器推送前都要跑：
+  - `python lessons/_tools/check_geometry.py`——一張圖**裡面**的幾何：
+    文字跑出畫布、兩段文字重疊、文字被後畫的方塊蓋住、文字壓在線上沒有遮罩。
+  - `python lessons/_tools/check_layout.py`——Folio **頁面上**文字區塊與圖片會不會疊。
+  連線的六條規則與反模式清單寫在 `.claude/skills/lesson-chapter/SKILL.md`，畫圖前先看一遍。
 - **顏色、字級、間距都在 `lessons/_tools/tokens.py`**，不要在個別的 `diagrams.py` 裡寫色碼。
   改了 token 要重跑各課的 `figures/src/diagrams.py` 與 `charts.py`。
   同一份規則也發佈成 Artifact 設計系統：
@@ -75,8 +78,9 @@ python lessons/<課程>/figures/src/charts.py
 python lessons/<課程>/code/make_figures.py
 
 # 版面檢查（推送前一定要跑）
-python lessons/_tools/check_layout.py              # 全部
-python lessons/_tools/check_layout.py lessons/<課程>
+python lessons/_tools/check_geometry.py            # 圖裡面的幾何
+python lessons/_tools/check_layout.py              # Folio 頁面上會不會疊
+python lessons/_tools/check_geometry.py lessons/<課程>
 ```
 
 Folio 的上傳由 GitHub Actions（`.github/workflows/lessons.yml`）做，**本機沒有 `FOLIO_SYNC_TOKEN`**，所以推送到分支後要去確認 Actions 的兩個 job（核對 DOI、上傳到 Folio）都成功。

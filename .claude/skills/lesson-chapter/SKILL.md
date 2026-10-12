@@ -44,6 +44,33 @@ code/xxx.py  →  code/xxx.json  →  章節引用 ＋ 圖讀取
 - **對數軸負號變亂碼**：用 `FuncFormatter(lambda v, _: f"{v:g}")`，並把 minor formatter 設成 `NullFormatter()`。
 - **圖號要和章節順序一致**：讀者先看到的圖編號要比較小。
 
+然後跑 `python lessons/_tools/check_geometry.py lessons/<課程>`。它檢查的是**圖裡面**的幾何
+（眼睛會漏看的那些）：文字跑出畫布、兩段文字重疊、文字被後畫的方塊蓋住、文字壓在線上沒有遮罩。
+`·` 開頭的斜箭頭只是提醒，不算問題。
+
+#### 連線的六條規則
+
+整理自 `diagram-design`（MIT，<https://github.com/cathrynlavery/diagram-design>）。
+我們不照抄它的複雜度預算（它給簡報用、上限 9 個節點；教材圖是要讀的，可以更密），
+但連線這六條值得全盤遵守——我們踩過的坑幾乎都在這張清單上：
+
+1. **只走直角**。要轉彎就用直角折線；斜線只在放射狀或代謝流量圖這種「斜本身有意義」的場合用。
+2. **標籤要留間隙**。箭頭標籤不要壓在線上，和線至少留 6–10 px，而且**底下要鋪不透明遮罩**。
+3. **線不要重疊**。平行走向的兩條線至少錯開 12 px，交叉處只留一個。
+4. **扇出要各自有接點**。從同一個方塊邊緣出去的多條線，各自一個接點、間隔 ≥12 px，不要共用一點。
+5. **不要從非端點的方塊後面穿過去**。繞路；真的繞不開就改虛線，標籤放在看得見的那一端。
+6. **遮罩要畫在被蓋的東西之後、文字之前**。SVG 是後畫的蓋前畫的——
+   順序寫錯就會看到線從字中間穿過去（第 17 章的構築圖就是這樣錯過一次）。
+
+第 6 條的典型寫法：先把所有引線畫完 → 鋪白底 `<rect>` → 最後畫字。
+
+#### 不要做的事
+
+- 陰影（`box-shadow`、`filter: drop-shadow`）——這套教材用框線不用陰影。
+- 每個節點都一樣大：那會把層次抹平。主角要比配角大、或顏色不同。
+- 強調色撒在五個地方：`danger`／`accent` 一張圖最多兩處，多了就沒有強調可言。
+- emoji 當圖示：跨平台長得不一樣，印出來還是彩色的。用 `lessons/_tools/icons.py` 的 Lucide 線條圖示。
+
 ### 3. 寫章節
 
 - 繁體中文（臺灣用語），`# 第 N 章　標題`（全形空格）。
@@ -53,13 +80,16 @@ code/xxx.py  →  code/xxx.json  →  章節引用 ＋ 圖讀取
 - 每章結尾放「## 本章重點」，3–7 條。
 - 有引用就放「## 參考文獻」在最後（格式見 `cite-check` 技能）。
 
-### 4. 檢查（三樣都要跑）
+### 4. 檢查（四樣都要跑）
 
 ```bash
 python -m autocollect lessons --dir lessons/<課程> --dry-run   # 看頁面會長怎樣
-python lessons/_tools/check_layout.py lessons/<課程>           # 版面有沒有疊
+python lessons/_tools/check_geometry.py lessons/<課程>         # 圖「裡面」的幾何
+python lessons/_tools/check_layout.py lessons/<課程>           # Folio 頁面上會不會疊
 python -m pytest -q tests                                      # 測試
 ```
+
+兩支檢查器是互補的：`check_geometry` 看一張圖內部，`check_layout` 看頁面上文字區塊 vs 圖片。
 
 版面檢查如果報重疊，多半是某個文字區塊太長被低估——把它拆成兩段，或縮短。
 
