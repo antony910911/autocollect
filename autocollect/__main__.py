@@ -132,6 +132,9 @@ def cmd_collect(args) -> int:
         # 已有分析的週次不能重新收集：重新收集會改變來源編號，讓既有分析的引用全部對錯
         print(f"[{topic.name}] {week} 已有分析（{topic.analysis_path(week).relative_to(ROOT)}），不重新收集")
         return 0
+    if args.if_missing and topic.raw_path(week).exists():
+        print(f"[{topic.name}] {week} 已收集過，略過（備援排程）")
+        return 0
     cfg = topic.load_config()
     bundle = collect(topic, cfg, target_date(args))
     pack = write_pack(topic, cfg, bundle)
@@ -216,6 +219,7 @@ def main(argv=None) -> int:
     p = sub.add_parser("collect", help="收集資料並產生分析包（不需 API 金鑰）")
     common(p)
     p.add_argument("--force", action="store_true", help="即使這週已有分析也重新收集（會讓既有分析的引用失效）")
+    p.add_argument("--if-missing", action="store_true", help="這週已收集過就略過（給排程的備援執行使用）")
     p.set_defaults(func=cmd_collect)
 
     p = sub.add_parser("build", help="把分析文字與本週資料組成報告，並驗證引用")

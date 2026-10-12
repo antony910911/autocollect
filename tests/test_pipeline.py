@@ -274,3 +274,23 @@ def test_recollect_does_not_overwrite_analyzed_week(tmp_path, monkeypatch):
     assert cli.main(["build", "--date", "2026-10-10"]) == 0
     assert (root / "data" / "raw" / "2026-W41.json").read_text("utf-8") == raw_before
     assert "## 一、本週重點摘要" in (root / "reports" / "2026-W41.md").read_text("utf-8")
+
+
+def test_if_missing_skips_already_collected_week(tmp_path, monkeypatch):
+    root = tmp_path
+    (root / "config").mkdir()
+    (root / "prompts").mkdir()
+    (root / "config" / "sources.yaml").write_text("researcher_profile: x\n", "utf-8")
+    (root / "prompts" / "weekly_analysis.md").write_text("指示", "utf-8")
+    monkeypatch.setattr(cli, "ROOT", root)
+    calls = []
+
+    def fake(cfg, mailto=""):
+        calls.append(1)
+        return ([{"kind": "news", "title": f"消息{len(calls)}", "url": f"https://a/{len(calls)}", "source": "X",
+                  "published": "2026-10-08", "lang": "zh-TW", "summary": "", "query": "q", "meta": {}}],
+                [{"source": "x", "ok": True, "count": 1}])
+    monkeypatch.setattr(sources, "collect_all", fake)
+    assert cli.main(["collect", "--date", "2026-10-12", "--if-missing"]) == 0
+    assert cli.main(["collect", "--date", "2026-10-12", "--if-missing"]) == 0
+    assert len(calls) == 1

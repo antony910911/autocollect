@@ -2,7 +2,9 @@ name: 週報資料收集
 
 on:
   schedule:
-    # 每週一 06:47（台北時間）= 週日 22:47 UTC
+    # GitHub 的排程偶爾會延遲或漏跑，所以排兩次：
+    # 週一 05:07（台北時間）主要執行；06:47 備援，這週已收集過的主題會自動略過
+    - cron: "7 21 * * 0"
     - cron: "47 22 * * 0"
   workflow_dispatch:
 
@@ -41,7 +43,10 @@ jobs:
           for t in $TOPICS; do
             echo "::group::$t"
             # 先產生「資料整理版」報告，分析完成後會被覆蓋；單一主題失敗不影響其他主題
-            { python -m autocollect collect --topic "$t" && python -m autocollect build --topic "$t"; } || status=1
+            args=""
+            # 排程觸發時：這週已收集過就略過（手動執行則照常重新收集）
+            if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then args="--if-missing"; fi
+            { python -m autocollect collect --topic "$t" $args && python -m autocollect build --topic "$t"; } || status=1
             echo "::endgroup::"
           done
           exit $status
