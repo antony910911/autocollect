@@ -1605,6 +1605,342 @@ def fig17_fpp_users():
     return s
 
 
+
+def _wf():
+    return json.loads((CODE / "workflow.json").read_text("utf-8"))
+
+
+def fig19_overview():
+    """七個階段：每一段的輸入、工具、產出，以及卡住要回哪一步。"""
+    d = _wf()
+    s = Svg(1570, 1120, "圖 19-1　從一段序列到一瓶菌：七個階段")
+    s.text(40, 80, "每一段都有「拿到什麼、用什麼算、產出什麼」。"
+                   "**只有第 6 段會產生真實數字**，前面五段都是在幫你把要做的實驗變少。",
+           size=15.5, color=MUTED)
+
+    cols = [BROWN, PURPLE, BLUE, TEAL, ORANGE, GREEN, RED]
+    y0, H, GAP = 148, 118, 14
+    for i, st in enumerate(d["stages"]):
+        y = y0 + i * (H + GAP)
+        col = cols[i]
+        s.box(40, y, 1390, H, "", color=col, fill=tint(col, 0.95))
+        # 階段號
+        s.raw(f'<circle cx="86" cy="{y + H / 2}" r="26" fill="{col}"/>')
+        s.text(86, y + H / 2 + 9, st["n"], size=26, weight=700, anchor="middle",
+               color="#ffffff")
+        s.text(130, y + 38, st["name"], size=19, weight=700, color=col)
+        for j, ln in enumerate(wrap(st["why"], 14, 400)):
+            s.text(130, y + 68 + j * 22, ln, size=14, color=MUTED)
+
+        # 輸入 → 工具 → 產出
+        x = 560
+        for lab, val, w in (("拿到什麼", st["input"], 190),
+                            ("用什麼算", st["tool"], 250),
+                            ("產出什麼", st["output"], 380)):
+            s.text(x, y + 30, lab, size=12.5, color=MUTED, weight=700)
+            for j, ln in enumerate(wrap(val, 14.5, w - 16)):
+                s.text(x, y + 56 + j * 22, ln, size=14.5)
+            if w != 380:
+                s.arrow([(x + w - 8, y + H / 2), (x + w + 10, y + H / 2)],
+                        color=col, width=2.2)
+            x += w + 20
+
+    # 回饋迴圈：7 → 5
+    y5 = y0 + 4 * (H + GAP)
+    y7 = y0 + 6 * (H + GAP)
+    s.arrow([(1438, y7 + H / 2), (1458, y7 + H / 2), (1458, y5 + H / 2),
+             (1434, y5 + H / 2)], color=GREY, width=2.4, dash=True)
+    ty = (y5 + y7) / 2 + H / 2
+    s.text(1472, ty - 8, "量完回來", size=13, color=MUTED, weight=700)
+    s.text(1472, ty + 12, "挑下一輪", size=13, color=MUTED, weight=700)
+
+    s.box(40, 1046, 1390, 60, "", color=INK, fill="#f3f4f7")
+    s.icon("circle-alert", 68, 1062, 24, INK, 2.1)
+    s.text(106, 1082, "最常見的錯誤：直接跳到第 6 段。"
+                      "前五段不做，你會用 20 個搖瓶去問一個模型五分鐘就能砍掉一半的問題。",
+           size=15, weight=700)
+    return s
+
+
+def fig19_where():
+    """這個專案現在走到哪裡——以及卡在哪兩件事。"""
+    s = Svg(1460, 760, "圖 19-2　你現在在第幾段")
+    s.text(40, 80, "以第 17、18 章的結果盤點。**好消息是前三段都做完了**，"
+                   "而且拷貝數那一關（文獻上最強的單一手段）已經過了。", size=15.5, color=MUTED)
+
+    states = [("1", "確認菌是什麼", "done", "紅酵母、二倍體、參考基因體找到了"),
+              ("2", "確認基改", "done", "11 個功能拷貝、位置確定、沒打斷基因"),
+              ("3", "註解與修正", "done", "基因位置檔修好了、鄰居序列抽出來了"),
+              ("4", "建模型", "todo", "要下載 rhto-GEM，在你自己電腦上跑"),
+              ("5", "挑條件", "todo", "模型好了才能做"),
+              ("6", "做實驗", "next", "**可以現在就開始**，不用等模型"),
+              ("7", "餵回模型", "todo", "有數據之後")]
+    W = 196
+    for i, (n, name, st, note) in enumerate(states):
+        x = 40 + i * (W + 6)
+        col = {"done": GREEN, "next": RED, "todo": GREY}[st]
+        fill = tint(col, 0.9 if st != "todo" else 0.96)
+        s.box(x, 150, W, 200, "", color=col, fill=fill)
+        s.raw(f'<circle cx="{x + W / 2}" cy="192" r="20" fill="{col}"/>')
+        s.text(x + W / 2, 200, n, size=20, weight=700, anchor="middle", color="#ffffff")
+        for j, ln in enumerate(wrap(name, 15.5, W - 28)):
+            s.text(x + W / 2, 240 + j * 22, ln, size=15.5, weight=700, anchor="middle")
+        tag = {"done": "做完了", "next": "下一步", "todo": "還沒"}[st]
+        s.text(x + W / 2, 294, tag, size=14, weight=700, anchor="middle", color=col)
+        for j, ln in enumerate(wrap(note, 12.5, W - 24)):
+            s.text(x + W / 2, 318 + j * 18, ln, size=12.5, anchor="middle", color=MUTED)
+        if i < len(states) - 1:
+            s.arrow([(x + W + 1, 250), (x + W + 4, 250)], color=GREY, width=2)
+
+    s.card(40, 392, 700, ["兩份定序檔的標籤可能反了（見 17.2）",
+                          "**用一次 PCR 就能分辨**——引子用比對出來的序列設計",
+                          "沒解決之前，所有結論都只能說「帶有插入的那一份」"],
+           title="卡住的事 ①：哪一管才是基改株", icon="circle-help", color=RED, size=15,
+           foot="成本最低、資訊量最大的一件事，建議第一個做")
+
+    s.card(770, 392, 690, ["AFS 前面那個開關是誰，查不出來（見 17.4）",
+                           "它決定「限氮的時候 AFS 還有沒有在工作」",
+                           "這個答案會決定你的分階段策略要不要反過來"],
+           title="卡住的事 ②：開關是哪一種", icon="circle-help", color=ORANGE, size=15,
+           foot="兩條路：BLASTn 查身分，或直接用 RT-qPCR 量——後者更直接")
+
+    s.box(40, 640, 1420, 100, "", color=GREEN, fill=tint(GREEN, 0.93))
+    s.icon("rocket", 72, 668, 26, GREEN, 2.1)
+    s.text(116, 690, "重點：第 6 段不用等第 4、5 段", size=19, weight=700, color=GREEN)
+    s.text(72, 724, "模型是用來「少做幾個實驗」的，不是做實驗的前提。"
+                    "下面那份操作單現在就能開始，而且它同時回答上面兩件卡住的事。", size=15)
+    return s
+
+
+
+def _flask(s, cx, by, h=96, w=84, overlay=False, col=TEAL, empty=False):
+    """畫一個小搖瓶：梯形瓶身＋瓶頸，有覆蓋層就在液面上多畫一層。"""
+    nw, nh = 20, 24
+    body = (f"M{cx - nw / 2},{by - h} L{cx - nw / 2},{by - h + nh} "
+            f"L{cx - w / 2},{by - 16} Q{cx - w / 2},{by} {cx - w / 2 + 14},{by} "
+            f"L{cx + w / 2 - 14},{by} Q{cx + w / 2},{by} {cx + w / 2},{by - 16} "
+            f"L{cx + nw / 2},{by - h + nh} L{cx + nw / 2},{by - h} Z")
+    cid = f"fk{abs(hash((cx, by, overlay))) % 100000}"
+    s.raw(f'<defs><clipPath id="{cid}"><path d="{body}"/></clipPath></defs>')
+    s.raw(f'<path d="{body}" fill="#ffffff" stroke="#5b6475" stroke-width="2.4" '
+          f'stroke-linejoin="round"/>')
+    if not empty:
+        s.raw(f'<rect x="{cx - w / 2}" y="{by - 34}" width="{w}" height="34" '
+              f'fill="{tint(col, 0.55)}" clip-path="url(#{cid})"/>')
+    if overlay:
+        s.raw(f'<rect x="{cx - w / 2}" y="{by - 46}" width="{w}" height="12" '
+              f'fill="{tint(ORANGE, 0.45)}" clip-path="url(#{cid})"/>')
+    return cid
+
+
+def fig19_design():
+    """第一批實驗：9 瓶，每一瓶在回答什麼。"""
+    d = _wf()["design"]
+    s = Svg(1480, 1000, f'圖 19-3　第一批實驗：{d["flasks"]} 瓶，每一瓶回答一件事')
+    v, ino = d["vessel"], d["inoculum"]
+    s.text(40, 80, f'{v["flask_mL"]:.0f} mL 搖瓶裝 {v["work_mL"]:.0f} mL'
+                   f'（{v["fill_pct"]}%）、{v["matches"].split("、")[-1]}、'
+                   f'起始 OD {ino["target_od0"]}、每個條件 {d["replicates"]["n"]} 重複。'
+                   '**三個 C/N × 有沒有十二烷，加三組對照。**', size=15.5, color=MUTED)
+
+    conds = d["conditions"]
+    X0, DX = 190, 300
+    for row, has_dod in enumerate((True, False)):
+        y = 300 + row * 250
+        s.text(40, y - 136, "有十二烷覆蓋" if has_dod else "沒有覆蓋（對照）",
+               size=17, weight=700, color=ORANGE if has_dod else GREY)
+        for i, c in enumerate([c for c in conds if c["overlay"] is has_dod]):
+            cx = X0 + i * DX
+            m = c["medium"]
+            _flask(s, cx, y, overlay=has_dod,
+                   col=(TEAL, ORANGE, RED)[i])
+            s.text(cx, y + 30, f'C/N {m["c_n_molar"]}', size=19, weight=700,
+                   anchor="middle")
+            s.text(cx, y + 54, f'糖 {m["sugar_gL"]:.0f} g/L', size=13.5,
+                   anchor="middle", color=MUTED)
+            s.text(cx, y + 74, f'硫酸銨 {m["AMS_gL"]} g/L', size=13.5,
+                   anchor="middle", color=MUTED)
+            if has_dod:
+                o = c["overlay_spec"]
+                s.text(cx, y - 108, f'十二烷 {o["dodecane_mL"]:.0f} mL',
+                       size=12.5, anchor="middle", color=ORANGE, weight=700)
+
+    s.card(1000, 170, 440, [
+        "**C/N 低**：氮一直夠，菌專心長——產物的競爭最小嗎？",
+        "**C/N 中**：看轉折點落在哪裡",
+        "**C/N 高**：催油脂——產物是不是真的被壓下去？",
+    ], title="這三個 C/N 在問什麼", icon="circle-help", color=BLUE, size=14.5,
+        foot="沒有文獻掃過 C/N 對倍半萜產量的影響（18.9），所以這是真的新資訊")
+
+    s.card(1000, 430, 440, [
+        "**有／無覆蓋的差距，就是你原本漏掉的產量**",
+        "如果兩邊量起來差不多，先懷疑取樣方法，不要先懷疑菌",
+        "覆蓋層裡要溶 pentadecane 當內標",
+    ], title="為什麼要做「沒有覆蓋」這一組", icon="droplet", color=ORANGE, size=14.5,
+        foot="這一組是一次性的——確認過差距之後，以後都加覆蓋層就好")
+
+    s.text(40, 716, "三組對照", size=17, weight=700, color=PURPLE)
+    for i, c in enumerate(d["controls"]):
+        x = 40 + i * 480
+        s.box(x, 736, 450, 150, "", color=PURPLE, fill=tint(PURPLE, 0.96))
+        _flask(s, x + 70, 850, h=76, w=64, overlay=(i != 0),
+               col=(GREY, TEAL, GREY)[i])
+        for j, ln in enumerate(wrap(c["label"], 16, 300)):
+            s.text(x + 130, 776 + j * 22, ln, size=16, weight=700, color=PURPLE)
+        for j, ln in enumerate(wrap(c["why"], 14, 300)):
+            s.text(x + 130, 828 + j * 22, ln, size=14, color=MUTED)
+
+    s.box(40, 910, 1400, 76, "", color=GREEN, fill=tint(GREEN, 0.94))
+    s.icon("circle-check", 72, 934, 24, GREEN, 2.1)
+    s.text(112, 954, "第二組對照最重要：沒有插入的那一株。"
+                     "產物訊號要是「它沒有、基改株才有」，這個數字才站得住。",
+           size=15.5, weight=700)
+    return s
+
+
+def fig19_timeline():
+    """一瓶菌的 96 小時：什麼時候量什麼、在等哪一個事件。"""
+    d = _wf()["design"]
+    s = Svg(1480, 820, "圖 19-4　一瓶菌的 96 小時：什麼時候量什麼")
+    s.text(40, 80, "取樣密度不是平均分配的。**前期確認長起來了，中段盯「氮什麼時候歸零」，"
+                   "後段看有沒有平台。**", size=15.5, color=MUTED)
+
+    X0, X1, T = 110, 1400, 96.0
+    AX = 330
+    sx = lambda h: X0 + (X1 - X0) * h / T  # noqa: E731
+
+    bands = [(0, 12, GREY, "長起來了沒"), (12, 36, BLUE, "等氮歸零"),
+             (36, 72, ORANGE, "產物累積"), (72, 96, GREEN, "有沒有平台")]
+    for a, b, col, name in bands:
+        s.raw(f'<rect x="{sx(a):.0f}" y="190" width="{sx(b) - sx(a):.0f}" height="100" '
+              f'rx="6" fill="{tint(col, 0.9)}" stroke="{col}" stroke-width="2"/>')
+        s.text((sx(a) + sx(b)) / 2, 226, name, size=16, weight=700, anchor="middle",
+               color=col)
+        s.text((sx(a) + sx(b)) / 2, 254, f"{a}–{b} 小時", size=13, anchor="middle",
+               color=MUTED)
+
+    s.arrow([(X0 - 40, AX), (X1 + 20, AX)], color=INK, width=2.6)
+    for h in (0, 12, 24, 36, 48, 60, 72, 84, 96):
+        s.line(sx(h), AX - 8, sx(h), AX + 8, color=INK, width=1.8)
+        s.text(sx(h), AX + 30, f"{h}", size=13.5, anchor="middle")
+    s.text(X1 + 20, AX + 30, "小時", size=13.5, color=MUTED)
+
+    for seg in d["sampling"]:
+        for h in seg["times"]:
+            if h <= T:
+                s.raw(f'<circle cx="{sx(h):.0f}" cy="{AX}" r="7" fill="{TEAL}"/>')
+    s.text(X0 - 40, AX - 24, "取樣點", size=14, weight=700, color=TEAL)
+
+    # 關鍵事件
+    # 虛線分兩段畫，中間讓開色塊上的文字（線穿過字就看不清楚了）
+    for a, b in ((150, 186), (294, AX - 16)):
+        s.raw(f'<line x1="{sx(24):.0f}" y1="{a}" x2="{sx(24):.0f}" y2="{b}" '
+              f'stroke="{RED}" stroke-width="3" stroke-dasharray="7 5"/>')
+    s.raw(f'<circle cx="{sx(24):.0f}" cy="{AX}" r="11" fill="none" '
+          f'stroke="{RED}" stroke-width="3"/>')
+    s.text(sx(24), 140, "氮歸零（開關被按下）", size=16, weight=700, anchor="middle",
+           color=RED)
+    s.text(sx(24), 118, "★ 實際落在哪裡要自己量", size=13, anchor="middle", color=MUTED)
+
+    rows = [(TEAL, "每次都量", "OD600、殘糖、**殘氮**", "殘氮是最關鍵的一欄"),
+            (BROWN, "每天一次", "乾重（離心烘乾）", "OD 只是代理，乾重才是基準"),
+            (ORANGE, "36 小時起", "油脂、類胡蘿蔔素", "兩個競爭者"),
+            (GREEN, "36 小時起", "十二烷相 GC-MS", "水相的數字沒有意義"),
+            (PURPLE, "三個時間點", "AFS 轉錄量 RT-qPCR", "直接回答開關受不受氮調控")]
+    for i, (col, when, what, why) in enumerate(rows):
+        y = 430 + i * 62
+        s.raw(f'<rect x="40" y="{y}" width="1400" height="52" rx="8" '
+              f'fill="{tint(col, 0.96)}" stroke="{col}" stroke-width="1.6"/>')
+        s.chip(62, y + 14, when, col, size=13)
+        s.text(240, y + 33, what, size=16, weight=700)
+        s.text(660, y + 33, why, size=14.5, color=MUTED)
+
+    s.box(40, 748, 1400, 60, "", color=RED, fill=tint(RED, 0.95))
+    s.icon("triangle-alert", 68, 764, 24, RED, 2.1)
+    s.text(106, 784, "最容易漏掉的一欄是殘氮。沒有它，你會知道「產物變多了」，"
+                     "但不知道是「什麼時候、被什麼觸發」。", size=15, weight=700)
+    return s
+
+
+
+def fig19_decide():
+    """數據回來之後：照順序問四個問題，每個答案對應一個動作。"""
+    s = Svg(1500, 1120, "圖 19-5　數據回來了，然後呢：照順序問四個問題")
+    s.text(40, 80, "不要一次看所有數字。**照這個順序問，每一個「否」都會直接指向下一步要查什麼。**",
+           size=15.5, color=MUTED)
+
+    QW, QX = 340, 40
+    steps = [
+        (160, "① 菌長得起來嗎？", "乾重和沒有插入的那株比", RED,
+         ["**先看有沒有十二烷的差別**——有覆蓋就長得好，那是產物毒性",
+          "兩組都長不好 → 培養基缺東西，或接種量太低",
+          "只有高 C/N 長不好 → 氮真的不夠，不是毒性"],
+         "長不起來就不要往下看產物——分母錯了，分子沒有意義"),
+        (330, "② 十二烷相量得到產物嗎？", "GC-MS 有沒有峰", ORANGE,
+         ["**先看沒有覆蓋那一組**——兩邊都沒有，才是真的沒產物",
+          "RT-qPCR 看 AFS 有沒有在轉錄：沒轉錄 → 開關或基因沉默",
+          "有轉錄但沒產物 → 酵素沒活性，或產物全跑掉了"],
+         "11 個拷貝都在，所以「沒表現」比「沒有基因」可能得多"),
+        (500, "③ 比沒有插入的那株明顯高嗎？", "同一個 C/N 下比", PURPLE,
+         ["差不多 → **先懷疑標籤**（17.2 那件事還沒解決）",
+          "對照株也有訊號 → 可能是污染，或那個峰不是你的產物",
+          "用質譜圖對一次，不要只看滯留時間"],
+         "這一題答錯，後面所有的最適化都是在最適化一個假訊號"),
+    ]
+    for y, q, sub, col, items, foot in steps:
+        s.box(QX, y, QW, 120, "", color=col, fill=tint(col, 0.93))
+        for j, ln in enumerate(wrap(q, 17, QW - 36)):
+            s.text(QX + 18, y + 40 + j * 24, ln, size=17, weight=700, color=col)
+        s.text(QX + 18, y + 96, sub, size=13.5, color=MUTED)
+        s.chip(QX + QW + 14, y + 44, "否", col, size=14)
+        s.card(QX + QW + 76, y - 10, 1000, items, title="", color=col, size=14.5,
+               foot=foot, min_h=140)
+        if y != 500:
+            s.text(QX + QW / 2 - 16, y + 148, "是", size=14, weight=700, color=GREEN)
+            s.arrow([(QX + QW / 2, y + 122), (QX + QW / 2, y + 168)],
+                    color=GREEN, width=2.6)
+
+    s.arrow([(QX + QW / 2, 622), (QX + QW / 2, 664)], color=GREEN, width=2.6)
+    s.text(QX + QW / 2 - 16, 648, "是", size=14, weight=700, color=GREEN)
+    s.box(40, 672, 1420, 120, "", color=GREEN, fill=tint(GREEN, 0.92))
+    s.icon("circle-check", 72, 700, 28, GREEN, 2.2)
+    s.text(118, 722, "④ 四題都「是」＝你有一個可信的產量數字了", size=20, weight=700,
+           color=GREEN)
+    s.text(72, 758, "下一步按文獻的優先順序（第 18 章）："
+                    "**補整條 MVA → 削弱油脂通量 → 調降 ERG9**。"
+                    "拷貝數那一關你已經過了，不要再加拷貝。", size=15.5)
+
+    s.text(40, 850, "另外一件事：產物隨 C/N 怎麼變，這是這批實驗最有價值的新資訊",
+           size=18, weight=700)
+    s.text(40, 878, "文獻上沒有人掃過（見 18.9），所以三種結果都有可能，每一種的意義不一樣。",
+           size=14.5, color=MUTED)
+    outs = [
+        (TEAL, "低 C/N 最高", "trending-down" if False else "chart-line",
+         "和第 17.9 的推論一致：限氮催油脂、搶走原料",
+         "→ 兩階段策略要改成「一直餵氮」，切換點改看饋料與加覆蓋層的時機"),
+        (ORANGE, "高 C/N 最高", "chart-column",
+         "推論被推翻了——限氮反而有利",
+         "→ 很可能是開關受氮調控。趕快把 RT-qPCR 的結果調出來對"),
+        (GREY, "三個差不多", "equal",
+         "C/N 不是這株菌的主要變因",
+         "→ 省下調 C/N 的時間，直接做第 18 章的基因層次手段"),
+    ]
+    for i, (col, name, ic, what, nxt) in enumerate(outs):
+        x = 40 + i * 480
+        s.box(x, 906, 450, 190, "", color=col, fill=tint(col, 0.95))
+        s.icon(ic, x + 24, 932, 24, col, 2.1)
+        s.text(x + 60, 952, name, size=18, weight=700, color=col)
+        yy = 992
+        for ln in wrap(what, 14.5, 400):
+            s.text(x + 24, yy, ln, size=14.5)
+            yy += 23
+        yy += 6
+        for ln in wrap(nxt, 14, 400):
+            s.text(x + 24, yy, ln, size=14, weight=700, color=col)
+            yy += 21
+    return s
+
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig2-2-clues": fig2_clues, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
@@ -1616,7 +1952,9 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig17-6-pathway": fig17_pathway,
         "fig17-8-states": fig17_states,
         "fig17-10-independent": fig17_independent,
-        "fig17-11-site": fig17_site, "fig17-12-fpp-users": fig17_fpp_users,
+        "fig17-11-site": fig17_site,
+        "fig19-1-overview": fig19_overview, "fig19-2-where": fig19_where, "fig19-3-design": fig19_design,
+        "fig19-4-timeline": fig19_timeline, "fig19-5-decide": fig19_decide, "fig17-12-fpp-users": fig17_fpp_users,
         "fig18-2-strategy": fig18_strategy,
         "fig17-9-overlay": fig17_overlay, "fig15-4-cell": fig15_cell,
         "fig10-4-vessels": fig10_vessels,

@@ -1,0 +1,326 @@
+{
+  "stages": [
+    {
+      "n": "1",
+      "name": "確認手上的菌是什麼",
+      "input": "定序檔",
+      "output": "菌種、倍體性、參考基因體",
+      "tool": "code/genome_tools.py stats",
+      "why": "搞錯菌種，後面全部的工具選擇都是錯的"
+    },
+    {
+      "n": "2",
+      "name": "確認基改進去了沒",
+      "input": "定序檔 ＋ 構築序列",
+      "output": "拷貝數、插入位置、哪個拷貝壞了",
+      "tool": "code/case_rt.py",
+      "why": "不知道進去幾份，就不知道瓶頸在不在拷貝數"
+    },
+    {
+      "n": "3",
+      "name": "拿到功能註解並修正",
+      "input": "定序廠的註解包",
+      "output": "基因位置檔、鄰居的身分、修過的轉殖基因模型",
+      "tool": "code/annotation.py",
+      "why": "沒有基因位置檔就不能做 RNA-seq；不修就會算錯"
+    },
+    {
+      "n": "4",
+      "name": "把基因變成模型裡的反應",
+      "input": "rhto-GEM ＋ 你的基因對照表",
+      "output": "可以跑 FBA 的模型",
+      "tool": "code/engineered.py",
+      "why": "模型是用來「先篩掉不值得做的實驗」的"
+    },
+    {
+      "n": "5",
+      "name": "用模型挑要測的條件",
+      "input": "模型",
+      "output": "一張很短的條件清單",
+      "tool": "code/experiments.py",
+      "why": "不要一開始就做 20 個搖瓶，先讓模型砍掉一半"
+    },
+    {
+      "n": "6",
+      "name": "做第一批實驗",
+      "input": "條件清單",
+      "output": "生長曲線、殘糖殘氮、油脂、色素、產物、表現量",
+      "tool": "本章的操作單",
+      "why": "這是整條流程唯一會產生「真實數字」的一步"
+    },
+    {
+      "n": "7",
+      "name": "把數據餵回模型",
+      "input": "實驗數據",
+      "output": "修正過的參數、下一輪的條件",
+      "tool": "code/calibrate.py",
+      "why": "沒有這一步，模型永遠停在教科書參數"
+    }
+  ],
+  "design": {
+    "flasks": 9,
+    "conditions": [
+      {
+        "label": "C/N 10　＋十二烷",
+        "c_n": 10,
+        "overlay": true,
+        "why": "預期：專心長菌，產物競爭最小",
+        "medium": {
+          "c_n_molar": 10,
+          "carbon": "glucose",
+          "sugar_gL": 40.0,
+          "AMS_gL": 8.802,
+          "mol_C_per_L": 1.332,
+          "mol_N_per_L": 0.1332,
+          "c_n_mass": 8.6,
+          "note": "C/N 是莫耳比；質量比（gC/gN）另外列出來對照",
+          "source": "calc"
+        },
+        "overlay_spec": {
+          "pct_v_v": 20.0,
+          "dodecane_mL": 10.0,
+          "pentadecane_mg": 10.0,
+          "istd_gL": 1.0,
+          "why": "產物會揮發；不覆蓋量到的是「還沒跑掉的那一點」",
+          "source": "lit"
+        }
+      },
+      {
+        "label": "C/N 10　無覆蓋",
+        "c_n": 10,
+        "overlay": false,
+        "why": "預期：專心長菌，產物競爭最小",
+        "medium": {
+          "c_n_molar": 10,
+          "carbon": "glucose",
+          "sugar_gL": 40.0,
+          "AMS_gL": 8.802,
+          "mol_C_per_L": 1.332,
+          "mol_N_per_L": 0.1332,
+          "c_n_mass": 8.6,
+          "note": "C/N 是莫耳比；質量比（gC/gN）另外列出來對照",
+          "source": "calc"
+        },
+        "overlay_spec": null
+      },
+      {
+        "label": "C/N 40　＋十二烷",
+        "c_n": 40,
+        "overlay": true,
+        "why": "預期：中間狀態，看轉折點落在哪",
+        "medium": {
+          "c_n_molar": 40,
+          "carbon": "glucose",
+          "sugar_gL": 40.0,
+          "AMS_gL": 2.2,
+          "mol_C_per_L": 1.332,
+          "mol_N_per_L": 0.0333,
+          "c_n_mass": 34.3,
+          "note": "C/N 是莫耳比；質量比（gC/gN）另外列出來對照",
+          "source": "calc"
+        },
+        "overlay_spec": {
+          "pct_v_v": 20.0,
+          "dodecane_mL": 10.0,
+          "pentadecane_mg": 10.0,
+          "istd_gL": 1.0,
+          "why": "產物會揮發；不覆蓋量到的是「還沒跑掉的那一點」",
+          "source": "lit"
+        }
+      },
+      {
+        "label": "C/N 40　無覆蓋",
+        "c_n": 40,
+        "overlay": false,
+        "why": "預期：中間狀態，看轉折點落在哪",
+        "medium": {
+          "c_n_molar": 40,
+          "carbon": "glucose",
+          "sugar_gL": 40.0,
+          "AMS_gL": 2.2,
+          "mol_C_per_L": 1.332,
+          "mol_N_per_L": 0.0333,
+          "c_n_mass": 34.3,
+          "note": "C/N 是莫耳比；質量比（gC/gN）另外列出來對照",
+          "source": "calc"
+        },
+        "overlay_spec": null
+      },
+      {
+        "label": "C/N 120　＋十二烷",
+        "c_n": 120,
+        "overlay": true,
+        "why": "預期：催油脂，看產物是不是真的被壓下去",
+        "medium": {
+          "c_n_molar": 120,
+          "carbon": "glucose",
+          "sugar_gL": 40.0,
+          "AMS_gL": 0.733,
+          "mol_C_per_L": 1.332,
+          "mol_N_per_L": 0.0111,
+          "c_n_mass": 102.8,
+          "note": "C/N 是莫耳比；質量比（gC/gN）另外列出來對照",
+          "source": "calc"
+        },
+        "overlay_spec": {
+          "pct_v_v": 20.0,
+          "dodecane_mL": 10.0,
+          "pentadecane_mg": 10.0,
+          "istd_gL": 1.0,
+          "why": "產物會揮發；不覆蓋量到的是「還沒跑掉的那一點」",
+          "source": "lit"
+        }
+      },
+      {
+        "label": "C/N 120　無覆蓋",
+        "c_n": 120,
+        "overlay": false,
+        "why": "預期：催油脂，看產物是不是真的被壓下去",
+        "medium": {
+          "c_n_molar": 120,
+          "carbon": "glucose",
+          "sugar_gL": 40.0,
+          "AMS_gL": 0.733,
+          "mol_C_per_L": 1.332,
+          "mol_N_per_L": 0.0111,
+          "c_n_mass": 102.8,
+          "note": "C/N 是莫耳比；質量比（gC/gN）另外列出來對照",
+          "source": "calc"
+        },
+        "overlay_spec": null
+      }
+    ],
+    "controls": [
+      {
+        "label": "不接種（培養基對照）",
+        "why": "確認沒有汙染、確認 GC-MS 的背景"
+      },
+      {
+        "label": "沒有插入的那一株（C/N 40 ＋十二烷）",
+        "why": "**最重要的對照**——產物訊號要是它沒有、基改株才有，才算數"
+      },
+      {
+        "label": "十二烷但不接種",
+        "why": "確認覆蓋層本身不會釋出干擾峰"
+      }
+    ],
+    "vessel": {
+      "flask_mL": 250.0,
+      "work_mL": 50.0,
+      "fill_pct": 20.0,
+      "matches": "搖瓶，裝液 20%、200 rpm",
+      "kla_lo": 60,
+      "kla_hi": 120,
+      "note": "kLa 是量級，**你自己的搖床一定要實測**（亞硫酸鈉法或動態法）",
+      "source": "lit"
+    },
+    "inoculum": {
+      "work_mL": 50.0,
+      "target_od0": 0.2,
+      "seed_od": 5.0,
+      "seed_mL": 2.0,
+      "pct_v_v": 4.0,
+      "source": "calc"
+    },
+    "sampling": [
+      {
+        "from_h": 0,
+        "to_h": 12,
+        "every_h": 4.0,
+        "times": [
+          0.0,
+          4.0,
+          8.0
+        ],
+        "measure": "OD、殘糖、殘氮",
+        "why": "確認有沒有長起來、有沒有汙染"
+      },
+      {
+        "from_h": 12,
+        "to_h": 36,
+        "every_h": 6.0,
+        "times": [
+          12.0,
+          18.0,
+          24.0,
+          30.0
+        ],
+        "measure": "OD、殘糖、**殘氮**、乾重",
+        "why": "**氮歸零的那一刻是開關**，這段要盯緊"
+      },
+      {
+        "from_h": 36,
+        "to_h": 72,
+        "every_h": 12.0,
+        "times": [
+          36.0,
+          48.0,
+          60.0
+        ],
+        "measure": "全部項目",
+        "why": "產物與油脂開始累積"
+      },
+      {
+        "from_h": 72,
+        "to_h": 96.0,
+        "every_h": 24.0,
+        "times": [
+          72.0,
+          96.0
+        ],
+        "measure": "全部項目",
+        "why": "看有沒有平台或下降"
+      }
+    ],
+    "ceiling": {
+      "sugar_gL": 40.0,
+      "max_product_gL": 10.08,
+      "max_product_mg_per_flask": 504.0,
+      "note": "只算碳、沒檢查 ATP 與 NADPH，所以實際一定更低；文獻實際做到的是上限的百分之幾",
+      "source": "calc"
+    },
+    "replicates": {
+      "n": 3,
+      "why": "三重複是能算標準差的最低要求；搖瓶之間的差異很大",
+      "source": "guess"
+    },
+    "assumptions": [
+      {
+        "what": "起始 OD600 = 0.2",
+        "level": "guess",
+        "why": "太低遲滯期長、太高很快缺氧。0.1–0.5 都合理，挑一個記下來就好"
+      },
+      {
+        "what": "糖 40 g/L",
+        "level": "guess",
+        "why": "搖瓶不補料，太高會滲透壓抑制。要拉高產量要改成饋料批次"
+      },
+      {
+        "what": "96 小時",
+        "level": "guess",
+        "why": "文獻的倍半萜發酵多在 3–7 天。第一批就是要量出你的曲線長什麼樣"
+      },
+      {
+        "what": "C/N 10／40／120",
+        "level": "guess",
+        "why": "橫跨「氮充足」到「明顯限氮」。**沒有文獻掃過 C/N 對倍半萜產量的影響**（見 18.9）"
+      },
+      {
+        "what": "十二烷 20% v/v、內標 1 g/L",
+        "level": "lit",
+        "why": "Yaegashi 2017：700 mL 培養液 ＋ 150 mL 覆蓋層"
+      }
+    ]
+  },
+  "constants": {
+    "g_product_per_g_glucose": 0.252,
+    "mw": {
+      "glucose": 180.16,
+      "xylose": 150.13,
+      "AMS": 132.14,
+      "dodecane": 170.33,
+      "pentadecane": 212.41
+    },
+    "source": "calc；上限見 17.8"
+  }
+}

@@ -34,9 +34,10 @@ cd ../simulator && python build.py   # 產生互動模擬器 index.html
 | `engineered.py` | 第 16 章：把異源反應加進模型、算生產包絡線與成長耦合 |
 | `annotation.py` | 第 17 章：讀定序廠的註解包（GFF／faa／xlsx）。`summary` 用 Pfam 家族計數獨立驗證拷貝數並看插入點旁邊有什麼；`fix-gff` 把轉殖基因修成單一 exon（RNA-seq 計數前必做）；`gem-map` 產生 rhto-GEM 基因對照的指令與腳本（比對要在你自己的電腦上跑）。需要 `openpyxl` |
 | `yeast.py` | 第 15 章：載入 Yeast8／rhto-GEM 等酵母菌模型、檢查、設厭氧、剔除基因（需自行下載模型，要在你自己的電腦上跑） |
+| `workflow.py` | 第 19 章：把「C/N 要 20」換算成「秤幾公克葡萄糖、幾公克硫酸銨」。培養基、接種量、容器與 kLa、十二烷與內標、取樣時程、碳的理論上限。每個數字標了出處等級（算出來的／文獻／起始猜測） |
 | `make_figures.py` | 畫教材的圖 |
 | `map_layout.json` | 中心代謝流量圖的版面（第 4 章圖與模擬器共用） |
-| `tables.json`、`results.json`、`protocol.json`、`calibration.json`、`annotation.json` | 最近一次的計算結果（教材引用的就是這份） |
+| `tables.json`、`results.json`、`protocol.json`、`calibration.json`、`annotation.json`、`workflow.json` | 最近一次的計算結果（教材引用的就是這份） |
 
 ## 換成你的菌
 
