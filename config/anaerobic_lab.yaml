@@ -1,0 +1,48 @@
+researcher_profile: |
+  台灣研發人員，聚焦共消化、沼氣增量、乾式厭氧醱酵、現地操作預警與智慧控制。
+  研究可取得產氣量與組成、VFA（乙酸/丙酸/丁酸）、鹼度、FOS/TAC、TAN/FAN、TS、OLR 等資料。
+  特別關注沼渣生物炭循環利用、淋灑策略、料源篩選及現地驗證。
+news_lookback_days: 7
+papers_lookback_days: 21
+max_items_for_analysis: 160
+quotas:
+  industry: 25
+  news: 35
+  paper: 100
+google_news:
+  - lang: en
+    hl: en-US
+    gl: US
+    ceid: "US:en"
+    max_per_query: 15
+    queries:
+      - anaerobic co-digestion methane yield research
+      - dry anaerobic digestion solid state biogas
+      - anaerobic digestion early warning VFA ammonia control
+      - anaerobic digestion digital twin machine learning
+      - site:ieabioenergy.com anaerobic digestion
+      - site:europeanbiogas.eu biomethane report
+  - lang: zh-TW
+    hl: zh-TW
+    gl: TW
+    ceid: "TW:zh-Hant"
+    max_per_query: 15
+    queries:
+      - 厭氧消化 共消化 研究
+      - 乾式厭氧 沼氣
+      - 沼氣 智慧控制 預警
+rss_feeds:
+  - name: European Biogas Association
+    url: https://www.europeanbiogas.eu/feed/
+openalex:
+  mailto: ""
+  max_per_query: 25
+  queries:
+    - anaerobic co-digestion methane yield
+    - dry anaerobic digestion solid state
+    - anaerobic digestion process monitoring early warning
+    - anaerobic digestion machine learning predictive control
+    - anaerobic digestion volatile fatty acids alkalinity
+    - digestate biochar anaerobic digestion
+    - high solids anaerobic digestion leachate recirculation
+    - biomethane upgrading techno economic analysis
