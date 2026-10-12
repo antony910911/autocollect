@@ -1,0 +1,1784 @@
+{
+ "week": "2026-W42",
+ "date_range": "2026-10-05 ～ 2026-10-12（論文回溯 21 天）",
+ "status": [
+  {
+   "source": "Google News [zh-TW] 生質能",
+   "ok": true,
+   "count": 20
+  },
+  {
+   "source": "Google News [zh-TW] 生質能源 發電",
+   "ok": true,
+   "count": 5
+  },
+  {
+   "source": "Google News [zh-TW] 生質燃料",
+   "ok": true,
+   "count": 16
+  },
+  {
+   "source": "Google News [zh-TW] 永續航空燃料 SAF",
+   "ok": true,
+   "count": 5
+  },
+  {
+   "source": "Google News [zh-TW] 沼氣 發電",
+   "ok": true,
+   "count": 6
+  },
+  {
+   "source": "Google News [zh-TW] 生質甲烷",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 生物炭 碳匯",
+   "ok": true,
+   "count": 2
+  },
+  {
+   "source": "Google News [zh-TW] 生質柴油",
+   "ok": true,
+   "count": 2
+  },
+  {
+   "source": "Google News [zh-TW] 生質酒精 纖維素",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 農業廢棄物 再利用 能源",
+   "ok": true,
+   "count": 14
+  },
+  {
+   "source": "Google News [zh-TW] 廚餘 厭氧消化",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 生質 碳捕捉 BECCS",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 能源署 生質",
+   "ok": true,
+   "count": 12
+  },
+  {
+   "source": "Google News [zh-TW] 乾式厭氧醱酵",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 養豬場 沼氣",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [zh-TW] 酒糟 再利用",
+   "ok": true,
+   "count": 5
+  },
+  {
+   "source": "Google News [zh-TW] 生物可分解塑膠 PHA",
+   "ok": true,
+   "count": 2
+  },
+  {
+   "source": "Google News [zh-TW] 合成生物學 酵母菌",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [zh-TW] 工研院 生質",
+   "ok": true,
+   "count": 7
+  },
+  {
+   "source": "Google News [en] bioenergy",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] biomass power plant",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] sustainable aviation fuel",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] renewable diesel HVO",
+   "ok": true,
+   "count": 13
+  },
+  {
+   "source": "Google News [en] biomethane OR \"renewable natural gas\"",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] biogas anaerobic digestion",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] biochar carbon removal",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] BECCS",
+   "ok": true,
+   "count": 5
+  },
+  {
+   "source": "Google News [en] bio-methanol OR \"biomethanol\"",
+   "ok": true,
+   "count": 11
+  },
+  {
+   "source": "Google News [en] cellulosic ethanol",
+   "ok": true,
+   "count": 10
+  },
+  {
+   "source": "Google News [en] pyrolysis bio-oil",
+   "ok": true,
+   "count": 6
+  },
+  {
+   "source": "Google News [en] hydrothermal liquefaction",
+   "ok": true,
+   "count": 5
+  },
+  {
+   "source": "Google News [en] biomass gasification hydrogen",
+   "ok": true,
+   "count": 3
+  },
+  {
+   "source": "Google News [en] alcohol-to-jet",
+   "ok": true,
+   "count": 13
+  },
+  {
+   "source": "Google News [en] biorefinery",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] dry anaerobic digestion",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] polyhydroxyalkanoates PHA",
+   "ok": true,
+   "count": 3
+  },
+  {
+   "source": "Google News [en] farnesene",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] precision fermentation",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] synthetic biology yeast biomanufacturing",
+   "ok": true,
+   "count": 4
+  },
+  {
+   "source": "Google News [en] biogas to bioplastics OR \"methane to PHA\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] distillery waste valorization",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] bio-based cosmetic ingredients squalane",
+   "ok": true,
+   "count": 3
+  },
+  {
+   "source": "Google News [en] site:biomassmagazine.com",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] site:biofuelsdigest.com",
+   "ok": true,
+   "count": 9
+  },
+  {
+   "source": "Google News [en] site:bioenergy-news.com",
+   "ok": true,
+   "count": 14
+  },
+  {
+   "source": "Google News [en] site:greencarcongress.com biofuel OR biogas OR bioplastic",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:bioplasticsnews.com OR site:european-bioplastics.org",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "Google News [en] site:bioenergyinternational.com",
+   "ok": true,
+   "count": 12
+  },
+  {
+   "source": "Google News [en] site:ieabioenergy.com",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [ja] バイオマス発電",
+   "ok": true,
+   "count": 10
+  },
+  {
+   "source": "Google News [ja] 持続可能な航空燃料",
+   "ok": true,
+   "count": 10
+  },
+  {
+   "source": "Google News [ja] バイオガス",
+   "ok": true,
+   "count": 10
+  },
+  {
+   "source": "RSS European Biogas Association",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "RSS Bioenergy Insight",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 biomass gasification",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 biomass pyrolysis",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 hydrothermal liquefaction biomass",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 sustainable aviation fuel",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 anaerobic digestion biogas",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 biomethane upgrading",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 biochar",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 bioenergy carbon capture storage",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 lignocellulosic biorefinery",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 bio-oil upgrading catalyst",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 microalgae biofuel",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 torrefaction biomass",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 dry anaerobic digestion solid-state",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 polyhydroxyalkanoates production waste feedstock",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 polyhydroxybutyrate mixed microbial culture",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesene Saccharomyces cerevisiae",
+   "ok": true,
+   "count": 4
+  },
+  {
+   "source": "論文 engineered yeast terpene production",
+   "ok": true,
+   "count": 19
+  },
+  {
+   "source": "論文 swine manure anaerobic digestion",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 distillery stillage valorization",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 methanotroph PHB biogas",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 volatile fatty acids anaerobic fermentation",
+   "ok": true,
+   "count": 25
+  }
+ ],
+ "stats": {
+  "total": 68,
+  "by_kind": {
+   "news": 49,
+   "paper": 19
+  },
+  "by_lang": {
+   "zh-TW": 11,
+   "en": 51,
+   "ja": 6
+  },
+  "top_queries": [
+   [
+    "sustainable aviation fuel",
+    5
+   ],
+   [
+    "農業廢棄物 再利用 能源",
+    4
+   ],
+   [
+    "renewable diesel HVO",
+    4
+   ],
+   [
+    "site:bioplasticsnews.com OR site:european-bioplastics.org",
+    4
+   ],
+   [
+    "バイオマス発電",
+    3
+   ],
+   [
+    "能源署 生質",
+    3
+   ],
+   [
+    "swine manure anaerobic digestion",
+    3
+   ],
+   [
+    "永續航空燃料 SAF",
+    2
+   ],
+   [
+    "precision fermentation",
+    2
+   ],
+   [
+    "site:biomassmagazine.com",
+    2
+   ],
+   [
+    "biomethane OR \"renewable natural gas\"",
+    2
+   ],
+   [
+    "biochar carbon removal",
+    2
+   ],
+   [
+    "biorefinery",
+    2
+   ],
+   [
+    "持続可能な航空燃料",
+    2
+   ],
+   [
+    "site:bioenergyinternational.com",
+    2
+   ]
+  ],
+  "paper_countries": [
+   [
+    "IN",
+    3
+   ],
+   [
+    "CN",
+    2
+   ],
+   [
+    "ID",
+    1
+   ],
+   [
+    "BR",
+    1
+   ],
+   [
+    "CO",
+    1
+   ],
+   [
+    "TZ",
+    1
+   ],
+   [
+    "KE",
+    1
+   ],
+   [
+    "US",
+    1
+   ],
+   [
+    "PE",
+    1
+   ],
+   [
+    "IT",
+    1
+   ],
+   [
+    "ES",
+    1
+   ],
+   [
+    "IE",
+    1
+   ]
+  ],
+  "paper_institutions": [
+   [
+    "Institut Teknologi PLN",
+    1
+   ],
+   [
+    "IPB University",
+    1
+   ],
+   [
+    "Universidade Estadual de Londrina",
+    1
+   ],
+   [
+    "Antioquia Institute of Technology",
+    1
+   ],
+   [
+    "Aditya Birla (India)",
+    1
+   ],
+   [
+    "The University of Dodoma",
+    1
+   ],
+   [
+    "University of Nairobi",
+    1
+   ],
+   [
+    "Kenya Industrial Research and Development Institute",
+    1
+   ],
+   [
+    "West Texas A&M University",
+    1
+   ],
+   [
+    "University of South Dakota",
+    1
+   ],
+   [
+    "Conservation and Production Research Laboratory",
+    1
+   ],
+   [
+    "Texas A&M University",
+    1
+   ]
+  ],
+  "top_media": [
+   [
+    "Biomass Magazine",
+    5
+   ],
+   [
+    "Quantum Commodity Intelligence",
+    4
+   ],
+   [
+    "Bioplastics NEWS",
+    4
+   ],
+   [
+    "Life 生活網",
+    3
+   ],
+   [
+    "Department of Energy (.gov)",
+    3
+   ],
+   [
+    "Bioenergy International",
+    2
+   ],
+   [
+    "經濟日報",
+    1
+   ],
+   [
+    "中央社 CNA",
+    1
+   ],
+   [
+    "巴士的報",
+    1
+   ],
+   [
+    "PChome Online新聞",
+    1
+   ],
+   [
+    "HGV Ireland",
+    1
+   ],
+   [
+    "AgFunderNews",
+    1
+   ]
+  ]
+ },
+ "items": [
+  {
+   "kind": "news",
+   "title": "從產業轉型到綠色生活 雲林智慧淨零共創永續未來",
+   "url": "https://news.google.com/rss/articles/CBMi0AJBVV95cUxPT0xKZ0V3Q3c5WVRoanp5SG1iQzlXQ0toSzl6aTVVWmQ1UE1RV0xldHR2WEU4d3g4SGhGV0dUVEJDRlZzWGpoZENMZ2NFaFBIbDhTZVM3cjAxcWlLS25GMmNHbkhpdTFUMWhjZnhBSDhNODFyRnhWT3BqSTJiSDVLSkt6bGdxZmVkVUl2bWx0X3hNeU83blZBSTJWNGwxTUNLNU9EWVh4UEJtNm5PWEZ0Zy1najd1T0NEZHo5d0M2UVVkMW92dEFNeE1ncklLRnFyc1NtclJHMTdLWXFxaGRVTmJMdWVmVGFqZEpJYzdPWWM4VWF2OWJ2RjBRNWd2b2g0ZU5pU0Rpc1llbzlVQlN0OGRSSFJpakNxOV9jcGNsM3pTOWRwUkhGUU9MQ3AySXJVTFJTOWZ4Y3JkZWNYWVNSaXNKS1NPT0lWU0J0MmE0Ulo?oc=5",
+   "source": "Life 生活網",
+   "published": "2026-10-11",
+   "lang": "zh-TW",
+   "summary": "從產業轉型到綠色生活 雲林智慧淨零共創永續未來 Life 生活網",
+   "meta": {},
+   "queries": [
+    "生質能源 發電"
+   ],
+   "sid": "S1"
+  },
+  {
+   "kind": "news",
+   "title": "南非化工能源商開賣永續航空燃料 | 外媒解析 | 國際",
+   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5YNUpZZFlsQkN1RTcySHZzc0RYcWdoLVN5MmpVc3cxRXpZd1ZraG1zbnk0S0NJdjB6ZG9ETzUtVERIVFVZY09tWWNOQnotdF9QYXlkcER5T2hCSlJ2?oc=5",
+   "source": "經濟日報",
+   "published": "2026-10-11",
+   "lang": "zh-TW",
+   "summary": "南非化工能源商開賣永續航空燃料 | 外媒解析 | 國際 經濟日報",
+   "meta": {},
+   "queries": [
+    "永續航空燃料 SAF"
+   ],
+   "sid": "S2"
+  },
+  {
+   "kind": "news",
+   "title": "鳳梨全果變身生活好物大葉大學推農業循環再生| 生活",
+   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE14QzFpZXExZmk1SjliV1F2ZkFEME9sWHJpMmNpeGltTUtDbnBPSnNJcXZGODFOZjByTXhiQlY0MUVFTDlxSnVac194ejNPWDUyWEJGN0hKZXFaOWQ3Nmpz?oc=5",
+   "source": "中央社 CNA",
+   "published": "2026-10-11",
+   "lang": "zh-TW",
+   "summary": "鳳梨全果變身生活好物大葉大學推農業循環再生| 生活 中央社 CNA",
+   "meta": {},
+   "queries": [
+    "農業廢棄物 再利用 能源"
+   ],
+   "sid": "S3"
+  },
+  {
+   "kind": "news",
+   "title": "山東省農場玉米秸稈回收推動綠色發展",
+   "url": "https://news.google.com/rss/articles/CBMisgJBVV95cUxNbGthRjFrSmdBMHgyV2ZhV2gzdWRwNENVNXdoZjNRcWpfVTB0NVo5MFJHTm5YajVEdTMzS0xXMnA2aldyR3hYZVVKbEpsNDVfQTFHaE1xOVhvZ3kwcXpsajRzeDNiM0pQUGdzMHNIYXhQbkpwd0VYTS1ZVGJTRDJXZ3N2MjRaVFVjY051ZWFZUXdYLUtsUHJrYlVaY2xQRTdEekZtWHpnSlhjaEc4ZG80THJReU90VGI5bzEzdjhGWGd6LUNGZEJJaTJLWngxZ19QRHVmeF9XZ2JjNElpRE5iTmxnU0xtaU4wVkxFS3l4aGFKeWJ6ZVcxNDIyay1ZckxfMVpjWC1kTzR5eDVYTTU0a215OGR4dUpqYXB1cW90cGdNSkZqUGxTNy04WGdQLUpfNkE?oc=5",
+   "source": "巴士的報",
+   "published": "2026-10-11",
+   "lang": "zh-TW",
+   "summary": "山東省農場玉米秸稈回收推動綠色發展 巴士的報",
+   "meta": {},
+   "queries": [
+    "農業廢棄物 再利用 能源"
+   ],
+   "sid": "S4"
+  },
+  {
+   "kind": "news",
+   "title": "廢竹變身3D列印文創 新北「筍之後」進駐台北SOGO秀循環經濟",
+   "url": "https://news.google.com/rss/articles/CBMizwJBVV95cUxOa3N4SFU2Uy1RNHU3NnhhbWI5WWxYWmFQSGdoby12ZFc3QVhaOFBjTnR2WG40VVhFckpFLUFqQ0dLUXdDaWJkblZud0xNRVg4eFRpWmc5ZFNMa2FNVVI4YU5SWmFuTHUtUkV6UXF6akJEVzBQWlZ5SFZuV0k5YWFyaGVpeUtqOUFqWHAwektmLUxNNmxYQ3FCdkpsWExCOHRWVGlBTUVHZ3JHYm1kcWM2TDd2eWplcDZfZkx3aVZSUTU2WjNSenNtWHRGX25pUXVmdzRNRmdVMXpPM2NpUFVPemNIZkRCb0VUR09RSWtEbllGMmt1UHd4dlVrNmxJTmNwbjJyOTlpOVlQU0NDUDROOTE2ZC0ycEdrZDRuTzh0VmpOOXcxbDlKZnUzYkZHb1F6dXNkdUN6YjJPeG9hZWJITXI1VHgzT2RCS3B6SDdVYw?oc=5",
+   "source": "Life 生活網",
+   "published": "2026-10-11",
+   "lang": "zh-TW",
+   "summary": "廢竹變身3D列印文創 新北「筍之後」進駐台北SOGO秀循環經濟 Life 生活網",
+   "meta": {},
+   "queries": [
+    "農業廢棄物 再利用 能源"
+   ],
+   "sid": "S5"
+  },
+  {
+   "kind": "news",
+   "title": "環境部考核傳捷報！南投環保績效獲中央雙優等 舊衣、循環杯回收繳漂亮成績單",
+   "url": "https://news.google.com/rss/articles/CBMijwNBVV95cUxNX0IwaHFGVkVPMUhQMUVfRktCMjI0NmVlUTQ1QWZtQUtrY2ZTX1hKV2VENzRkNFUwdEt2cWkzYzN2TVlhc1BMelBkbTA5ckpIZmEycEl3MlpyVTFuZ2FXMXdzX3JpXzNXOWpBMlo4bDh5RUYzeHRRc0F4M1YweGRoRC1VcFcwVWc0Y1B2MlJLU2E1MXpMa0xJdTlSUVVycThIZVhqWi1BV2pFWWppSlRiMjktMzVrcmp2M2l3OGFVUGFXcWtRbXhETkxpdVEtZXV2ODNTZktpRC11dDVIUlREOG5oUEMwZWJQbDVqV3hRTGhSMUN1TVJidksxUWNwVG5TYkVZem9CVkNBTElRX05KRzVKeTVRMDZuaUhqR1lWdnhmR0FVOWg1Qi0yZzdkU3BZdFB2WlN4U1lib1pWWDJJektJRVZOaVlBZ0RpOGkzaG5QUXZwS3FnbklodnEyT1ZKa1RLU01KV2U4UDNIWVVOMjNOTEtVUGkyamdQUEtOV1lIUUtTY2pVX21oaGxTVUU?oc=5",
+   "source": "Life 生活網",
+   "published": "2026-10-11",
+   "lang": "zh-TW",
+   "summary": "環境部考核傳捷報！南投環保績效獲中央雙優等 舊衣、循環杯回收繳漂亮成績單 Life 生活網",
+   "meta": {},
+   "queries": [
+    "農業廢棄物 再利用 能源"
+   ],
+   "sid": "S6"
+  },
+  {
+   "kind": "news",
+   "title": "金門酒廠驚艷亮相國慶酒會以70餘年之匠心佳釀向世界傳遞台灣風土之美- 財經新聞",
+   "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOdDVFT2p6YjY3NEpvU0ZyVlYyTzU0X0NDT3JNMTVFVGduQUI3WlI4bk1yMnpaOUZTR203bHdYdzZaY2RGZWVZSzh6TjYxby1jaEpKWGVpaERkZzU3MzZZa1ltUWhyZDlaZ1Q4bXdiUVI0QjNqdGVBY2REV2dFdXdKNE91UnRtWUI3aG53NQ?oc=5",
+   "source": "PChome Online新聞",
+   "published": "2026-10-11",
+   "lang": "zh-TW",
+   "summary": "金門酒廠驚艷亮相國慶酒會以70餘年之匠心佳釀向世界傳遞台灣風土之美- 財經新聞 PChome Online新聞",
+   "meta": {},
+   "queries": [
+    "酒糟 再利用"
+   ],
+   "sid": "S7"
+  },
+  {
+   "kind": "news",
+   "title": "Could Ireland slash HVO excise now? Does Ireland really have to wait for Europe to act?",
+   "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQSkZPa1RBNVNIR0EwVmJ2eXVKSmZaRnZ6dG9RX09RY1pPbWFmOEMyRWs1TkIyTEtiYk1VdlJQeHQ2d3Q0aVRTX2hwNF8weWFpb1lVeHZNOWlFUTUzeFV2M1FOcTVTWWx5V1k1V2U5dm5lODNaZDltd1lIWjRRbEtoX3VNWDBLT2lEcC1hWFR2U0Q0dDR4WHJYSTFicXpPQkJBUENGVDhkTTVIaGdtYTN2U19QZw?oc=5",
+   "source": "HGV Ireland",
+   "published": "2026-10-11",
+   "lang": "en",
+   "summary": "Could Ireland slash HVO excise now? Does Ireland really have to wait for Europe to act? HGV Ireland",
+   "meta": {},
+   "queries": [
+    "renewable diesel HVO"
+   ],
+   "sid": "S8"
+  },
+  {
+   "kind": "news",
+   "title": "BREAKING: The EVERY Co prevails in legal spat with Onego Bio. Onego “picked a fight” and lost, says judge",
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOdU1rbHF5OHFfMWdTbkU4a2MzZmtDZnNjVzh6QVZqX21yRWhiSTZlMVhqQXV0VnZZWFdvZUFJM2d2a2ZMbzlQT1lCbGU4MjNFcHlGblVaYm4zRzJ1aV94ZHhfUGpJbFd2Sm1mWEdSUGdjeGR0ZTNOLUMtV2lxREhYQ0tidlR3YzlwbGxwS3Ftb3poclJkM08yNXByb3VPVmd2ZGQtY0VxRjF0aXlHaXVMblFSaE1CU2F1NEdYX0ZqRFVJSE0?oc=5",
+   "source": "AgFunderNews",
+   "published": "2026-10-11",
+   "lang": "en",
+   "summary": "BREAKING: The EVERY Co prevails in legal spat with Onego Bio. Onego “picked a fight” and lost, says judge AgFunderNews",
+   "meta": {},
+   "queries": [
+    "precision fermentation"
+   ],
+   "sid": "S9"
+  },
+  {
+   "kind": "news",
+   "title": "Distillation Waste From Immortelle Plants Could Become Antioxidant-Rich Functional Teas",
+   "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxONWZpZGZrYm1tRlJ4VVF3NTUzYjFtN0g1YXQtaGk4em5aQk16QnB6bnh0Ui11SWY0aTBrMU02RXNzV3ZLai1kUG1qUWRvZmtDOHVZYndReTgzaU9wOGxUQk5pZWxDMFhabGt5cE05NlhtUXBMeTgzSV9KTmQ5UVlhMWEzYmttMzhMWWFGUlAwWktES0gtcXh0ZHV1MWdDUkFRb2wxc1V1LUFGT3dpZGoydDNB?oc=5",
+   "source": "Bioengineer.org",
+   "published": "2026-10-11",
+   "lang": "en",
+   "summary": "Distillation Waste From Immortelle Plants Could Become Antioxidant-Rich Functional Teas Bioengineer.org",
+   "meta": {},
+   "queries": [
+    "distillery waste valorization"
+   ],
+   "sid": "S10"
+  },
+  {
+   "kind": "news",
+   "title": "【議事録】令和６年２月定例会３月６日 一般質問 質問通算３回目",
+   "url": "https://news.google.com/rss/articles/CBMi7AJBVV95cUxPc09hV1Q0U1pXbUpub08yRVZ6cUR4ZVI1WXZkOW1ZYUd1cEl1ZnVxaF9MUTBra2ZlS1RDZHlBNGVfWkZzSU01d0VDczhoN0NrSmRZMzU5ZzkzQjdhLTdzQUdpM0dUSS1CVjBrcEpCdnFmbTVNaC02Ul9ESE1McTUwR2ZjcUJDTHV4Um1RQl8tUFVnUmNIUXBoeGZ5aG9Gb2NpeHJoa1pVcU9WY2hMYWZxMlhqWE92c3BCWkdqeGk3M0F5SFJDN05LN09wdG0ybFp6UlAtbkhQODhRaFB4NFRvNVJaRVlZNXJ2cElKOHp3dzZIRm5VcFlUcklFOVpCSUVxMndKcVVYSmlPRHdwQllFRHktbEE0LW8zcEZzdXQyVEloQmFFSnlod1BvUU5FOV9DVnNndUk0V0ZzMllwWlRFaWtuUVd4WGQ0UzZPY25lWlRrNWowdDBpb1dCRl9RWHJ6YWZoRE1GN2hJdlB2?oc=5",
+   "source": "公明党",
+   "published": "2026-10-11",
+   "lang": "ja",
+   "summary": "【議事録】令和６年２月定例会３月６日 一般質問 質問通算３回目 公明党",
+   "meta": {},
+   "queries": [
+    "バイオマス発電"
+   ],
+   "sid": "S11"
+  },
+  {
+   "kind": "news",
+   "title": "Vietnam explores SAF development at international conference in Hanoi",
+   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOQ19RTU81ZVR3cnYxc1Q1YkswWWxhc21aOEVndDg5VVBZV0djMmhtYXZVN2RqRHhTZHdIVHFWd2g3RzRUSm5QSmxaMzRaY1FEaUo0Ylg3ek9kdFhFa3BzVU5lYnRWZmdTYUptenlKTHI0ZkNWUGx5a2JMOUJUVVpydFJBRGwtR0NwSk1DZ0NSX056WHVjVmY3bm0yenRMMnktZUh6d0xLUExPUQ?oc=5",
+   "source": "Biomass Magazine",
+   "published": "2026-10-10",
+   "lang": "en",
+   "summary": "Vietnam explores SAF development at international conference in Hanoi Biomass Magazine",
+   "meta": {},
+   "queries": [
+    "sustainable aviation fuel"
+   ],
+   "sid": "S12"
+  },
+  {
+   "kind": "news",
+   "title": "PM pledges support for waste-to-fuel project",
+   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1PaGQwSnhhcUJxX0NkSlRTVm9rSjYyM18zMjRSbUktNEVnemsweWQ4UDR5UW90U2tfdWhzcnlqQ3poX3doZUdMV21kNkd6MGNCYnNEYzBPbXl6NGRNZU45elJR?oc=5",
+   "source": "www.daily-sun.com",
+   "published": "2026-10-10",
+   "lang": "en",
+   "summary": "PM pledges support for waste-to-fuel project www.daily-sun.com",
+   "meta": {},
+   "queries": [
+    "hydrothermal liquefaction"
+   ],
+   "sid": "S13"
+  },
+  {
+   "kind": "news",
+   "title": "Construction begins on liquefied biogas facility at the Port of Gothenburg in Sweden",
+   "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQbHBNQVJZQ3A1WnlmY05QYkJjTVFxWDFyTkxQbHdYNnRidC1lVlgzbnBoekkwRDRvek4wQVl6ek9lcml6VVR2ZGdhQ3ExQnI0MFNUT3dDQ0FTSGkwc0tkUXpRaVgtLU50Ui1TSlEyWEYtZ3BVd0N5bGZ0VDZqclU0RldfWjlkdzRXNUtnTEZlbmdmTC1JcWtuaHZuSFBRSnJaejMyejFHSnlaR2swOENvNEphR09rcFJjSUwtR0RB?oc=5",
+   "source": "Biomass Magazine",
+   "published": "2026-10-10",
+   "lang": "en",
+   "summary": "Construction begins on liquefied biogas facility at the Port of Gothenburg in Sweden Biomass Magazine",
+   "meta": {},
+   "queries": [
+    "site:biomassmagazine.com"
+   ],
+   "sid": "S14"
+  },
+  {
+   "kind": "news",
+   "title": "資源循環を目指した最新型の環境配慮店舗 国産木材を100%使用した「セブン‐イレブン四国中央中曽根町店」がオープン",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE40TUdUM0pfbGhUb0xTQzBlMkpfeEh0X2J4MHlyWDNYMDZiQ2VYbzNHdjNQQVVfRUw5NjlreU1iYVp3WW9kZHVpNW5qam51ejk1MHc?oc=5",
+   "source": "山陽新聞",
+   "published": "2026-10-10",
+   "lang": "ja",
+   "summary": "資源循環を目指した最新型の環境配慮店舗 国産木材を100%使用した「セブン‐イレブン四国中央中曽根町店」がオープン 山陽新聞",
+   "meta": {},
+   "queries": [
+    "バイオマス発電"
+   ],
+   "sid": "S15"
+  },
+  {
+   "kind": "news",
+   "title": "FactSet Research : Renewable Natural Gas Production Growth in the U.S.",
+   "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNc0pMSXItQmFJY0x3QmtKUl8wZ1hDMWtOUVE2S3otOVMzM3BwZjktRFhHaUlXcmVBUExPQWpOSlZQeUtfb1pRT1poNk4zOUdlM3BWaXVMQWtyOFU2d0tFUWZRRHI4Wi1qR3YyVGxPaWNLV0RJUzlFNUEyU1QtaU9nSmtuSjgwd05hRGZHVEVlQTdoQkpqckEwdDMtdDNVVGtmS0VNUmp4a1R3bGFiZ09SUHAyT1NkaElfU0ZNdw?oc=5",
+   "source": "www.marketscreener.com",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "FactSet Research : Renewable Natural Gas Production Growth in the U.S. www.marketscreener.com",
+   "meta": {},
+   "queries": [
+    "biomethane OR \"renewable natural gas\""
+   ],
+   "sid": "S16"
+  },
+  {
+   "kind": "news",
+   "title": "Metacon Secures EU Funding for Biomethane-to-Hydrogen Pilot in Crete",
+   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbU9RaHR2SmVPNk5keWFPeFcxMmRJazNfTktSVzBDX2x4SjlMWDR0OXhhTEYzcUdrdFpNTEJzb2gzQWZBZVdya3ZIT3dHYURLZlZ2MUZzOFJEYlpZcHZqaktrazk1amM2TkREamRCRWVRQ0RVQThEdkJqRjVKd2kwWE5RcnFmbUVQYlVuQTRDZWVSNDhyYWw1aldaOHV3OWU2eHJpd3ZVbHBUUzUyUWJkOHdUWGpZSER5aEE?oc=5",
+   "source": "ChemAnalyst",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Metacon Secures EU Funding for Biomethane-to-Hydrogen Pilot in Crete ChemAnalyst",
+   "meta": {},
+   "queries": [
+    "biomethane OR \"renewable natural gas\""
+   ],
+   "sid": "S17"
+  },
+  {
+   "kind": "news",
+   "title": "Clean Energy announces new RNG agreements",
+   "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOSlh5VjNlT0hfbFNKbTEyUkpUdU53eTVsdXNST1JtcXZSSVZ0c20xSkRGdFpjVUE3U0owdTducm9wdUVRcURPdXdTTkdDM3RNclBmelc3RUYydF9LSlFyYV8tSTRPN0pVNjJIWVQ5MmhqN0hNekdJTUdFdTBfT3hCUm83RzI?oc=5",
+   "source": "Biomass Magazine",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Clean Energy announces new RNG agreements Biomass Magazine",
+   "meta": {},
+   "queries": [
+    "biochar carbon removal"
+   ],
+   "sid": "S18"
+  },
+  {
+   "kind": "news",
+   "title": "ANALYSIS: DAC sector to emerge smaller, leaner after crisis",
+   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPSjNHQVV4S0dZZWhmQnU1ZVNCNHFHWTRFdTFMMU5ralhVSUowVGdYZXVYT3djRkhqeEgxeDRmWjdZUFBXTnZyeE9DSDdZM2xsMUpUdUtYeDhaUzJGMGVPb3NqenU1QlFOMW5CZXM5ZEVsUjkyaHRQQ1VSRWZlX2JSc2ZXQS11cndKQVNJdDJpWG5pcnhvVlpEWWw1cF9JNWRRVGVIRTdoYzJJVXM?oc=5",
+   "source": "Quantum Commodity Intelligence",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "ANALYSIS: DAC sector to emerge smaller, leaner after crisis Quantum Commodity Intelligence",
+   "meta": {},
+   "queries": [
+    "biochar carbon removal"
+   ],
+   "sid": "S19"
+  },
+  {
+   "kind": "news",
+   "title": "Ecostrat and BMI Group launch collaboration to accelerate conversion of legacy pulp and paper assets into next-generation biorefineries using BDO Zone Ratings",
+   "url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxOdmpDeU9XMTVqZXNtbkRpMHNkbnVycFhUZFZ0R1ZjakZYVHdtbnhMejQxOVNFVFZmOUZHZGsxSzR3SVM1UUVLeExDT0JlckxBb2V4U2I2QWVsUUM3cDFpdUlHb3lCMDZGbl82enhTNjJsS0RzTmFfa2hpbnNhQjAtZHNzb2ZVblpZVEh6SWViRGd1M1lITzhzRHY5eHA3QmxoeFM4U0pFZ0FmQkxyT0dBLXFvUG1EYl94cUVDd1VTT01TVEYxOWJ2QmtNSmg1cmFqZXl6TDVOR2h4YXJYM0g4VVFXU3JBNmRrTjR3eGRSejQ0YUowZVVRNGk5QUdEZ3FHODNmZFFoalZhTUdQNWtaM1J3Nm91UHFjekc0RlpVVkw?oc=5",
+   "source": "Biomass Magazine",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Ecostrat and BMI Group launch collaboration to accelerate conversion of legacy pulp and paper assets into next-generation biorefineries using BDO Zone Ratings Biomass Magazine",
+   "meta": {},
+   "queries": [
+    "biorefinery"
+   ],
+   "sid": "S20"
+  },
+  {
+   "kind": "news",
+   "title": "第10回ASEAN持続可能な航空フォーラム",
+   "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9JaWtzeHVwYWZTN00yR0hWX3F4UVBXTHB0MjJwWk0yR2R4b1JhZ1k5eTVDV2ZmbGNwbzRxRGp3QWhiaDUzXzhLelcyMVNqWG1mMkJQU0tUbVZOaGNNN0NoT0piZ1pLUl95SjFJRFFMV2xYN21GYmxKaHZ0OA?oc=5",
+   "source": "Vietnam.vn",
+   "published": "2026-10-09",
+   "lang": "ja",
+   "summary": "第10回ASEAN持続可能な航空フォーラム Vietnam.vn",
+   "meta": {},
+   "queries": [
+    "持続可能な航空燃料"
+   ],
+   "sid": "S21"
+  },
+  {
+   "kind": "news",
+   "title": "Hydrogen Production: Biomass Gasification",
+   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5FRUp1QnFra3RqTFcxQlJ2NEVLeWt6alhPN1dnbDdWS25oU0dWcnctQkp1eDNiMXhHQ0ViRzdua3YweW91WmcycXR1dlllX3BvaWNINERQLXFJaFZfTFBjYlYyQlJMckpMZFVJdmFUbi1hYlF3UGY5NDBGRnRsUDA?oc=5",
+   "source": "Department of Energy (.gov)",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "Hydrogen Production: Biomass Gasification Department of Energy (.gov)",
+   "meta": {},
+   "queries": [
+    "biomass power plant",
+    "biomass gasification hydrogen"
+   ],
+   "sid": "S22"
+  },
+  {
+   "kind": "news",
+   "title": "South Korea extends UCO import period, developing new SAF feedstocks",
+   "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOMFpMc08wa3RYYXVCSkEwVUpJMWhMZ1UtMFNDZ0tjX01FZGJnbW9McXE1Vno5UEtuU05iUG5IandKUjd4ZUdpOVp1ekZ3dEwtRzkzRU5sNkpRUnpqdk1QNUVQNkZsQlhJTFFyZ0NPckQ3cE1LbXBEYm45cXhxeXBuaXE2VWM2OERYVlFJU0dNMjBhLWRPTmxYSFg3VUtDSnNXRVlYaGNEYjdhQUtTV3hrTjlpcE5kbVUyUlZr?oc=5",
+   "source": "Quantum Commodity Intelligence",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "South Korea extends UCO import period, developing new SAF feedstocks Quantum Commodity Intelligence",
+   "meta": {},
+   "queries": [
+    "pyrolysis bio-oil",
+    "alcohol-to-jet"
+   ],
+   "sid": "S23"
+  },
+  {
+   "kind": "news",
+   "title": "美國航空開創先例 合成噴射燃料首次運抵美商業機場",
+   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1UM0U3T3VIZzZvR2JSMGhraXlTNVkwQVZDQVA2RXlEbEpzUDRlRW00Vi1sZHJQYnRmOEVvbHR5WTBFeFlIY2NzNy1zMGRKMHY0dTB6dnEteGYxYUt4TWktZHh2RmlHRm5vdzB3V18waw?oc=5",
+   "source": "理財周刊",
+   "published": "2026-10-08",
+   "lang": "zh-TW",
+   "summary": "美國航空開創先例 合成噴射燃料首次運抵美商業機場 理財周刊",
+   "meta": {},
+   "queries": [
+    "永續航空燃料 SAF"
+   ],
+   "sid": "S24"
+  },
+  {
+   "kind": "news",
+   "title": "DOE Explains...Biofuels",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5hbjZ3OHhEYUlJX2NySVJ1OUR2NlB2aUgybWZiQzFLQWc3cjJqSmVQVm1GbUhsQ0M0SnF0U1V1WFUwUXpxc095M293VXVRRmtBWlBiYUtnUDE2c0FHOE0zdg?oc=5",
+   "source": "Department of Energy (.gov)",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "DOE Explains...Biofuels Department of Energy (.gov)",
+   "meta": {},
+   "queries": [
+    "bioenergy"
+   ],
+   "sid": "S25"
+  },
+  {
+   "kind": "news",
+   "title": "La Mede shipments blocked as TotalEnergies workers on strike: reports",
+   "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQYmE0ZFR3QWZMYVhNeWJpVnI1NTNjby12eDVoWWtfQVQ4Uk9PUWFaMUVFZGxCSWRTclpYTEdGd0Mtby03cDRLX09fcG5mWGtReWNrYUw3bGI3WlNNZFZUa0thcHZzWjczMWZpR3ZGNl9Bd09NamRnUFd1LXdEaDBmejUzYXU2cHBlR3JSQnRrYnZURVpDOG0zenNrSklZd3NaN3V4NkJkQkNpMVZqMmlHMHFNYWZzbG5FVlRDNA?oc=5",
+   "source": "Quantum Commodity Intelligence",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "La Mede shipments blocked as TotalEnergies workers on strike: reports Quantum Commodity Intelligence",
+   "meta": {},
+   "queries": [
+    "renewable diesel HVO"
+   ],
+   "sid": "S26"
+  },
+  {
+   "kind": "news",
+   "title": "Asia biofuels: China SAF at six-month low, SE-A UCOME deadlocked",
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNSW12c2x0Mm1kWUFkc29aWUNkQzlhVUFkNngzaG1KbGcyYUlDVjhBRVFVR0E4clZPY1NJcHliNS1pdWVMLTd6YlNBVHJYMWkwV1RoeDdGalJfekk3MHIwOHAwZ3Z0SG9ncEZsTEIwTEhUVk9MVG5NUUJPSWRmdFJqZHhIQnN5WUlaWU5Lc1BJOFZkQmcyZ2xrQXJBcE9pQ2JoaGxBY3BkdnRYZzBRWkhKRVBleDA?oc=5",
+   "source": "Quantum Commodity Intelligence",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "Asia biofuels: China SAF at six-month low, SE-A UCOME deadlocked Quantum Commodity Intelligence",
+   "meta": {},
+   "queries": [
+    "renewable diesel HVO"
+   ],
+   "sid": "S27"
+  },
+  {
+   "kind": "news",
+   "title": "Council approves extension of biogas facility near Lostock EfW plant",
+   "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQNl9lbkRwYXk3QUtkWFBuSy1ZZG5EYUhaSWlKWEItMVVVNTNjMWMtTnpiR3lTam8tcUUxZ0RPd0tqVFE3eUJBU20xRloyLXAtdXJmSzctdW9xU09za0s3ekZ2dEhDbHd0TXRTMUt2NmV3QTBwYzBJcTJiSUwwZ1hMS2tSMllXX3ZfWnBjT1BJcURjNmpOZThZb2U3RW1JTGtsbTFrSXQ3WUlfMTJEUmtMUFRUME1sQ2V6d3Rv?oc=5",
+   "source": "ENDS Waste & Bioenergy",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "Council approves extension of biogas facility near Lostock EfW plant ENDS Waste & Bioenergy",
+   "meta": {},
+   "queries": [
+    "biogas anaerobic digestion"
+   ],
+   "sid": "S28"
+  },
+  {
+   "kind": "news",
+   "title": "EERE Success Story—Largest Cellulosic Ethanol Plant in the World Opened in October",
+   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQQjdGb1d3VWo0WDNPRFh5bWJxT3Jwa29WRVNYTTFxX3dLSVBFSG1LLVJEOVhBYTF3QWtBb2J1QUxvcUdXQmQzMHhydDE1b2hzMXVCSUpqNjV3eFlPRU5tZ1IwNFhjd2R6MkJfTnNDQzAxR3phRnpfbjZrRGRIeEJHRkg1U0hhYmxvLVdycjRKYzg0emhZbWdESW5PU2YzdVR2eXRRcUxZTzBaWjJfSDVVa2R1YzBNeTVG?oc=5",
+   "source": "Department of Energy (.gov)",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "EERE Success Story—Largest Cellulosic Ethanol Plant in the World Opened in October Department of Energy (.gov)",
+   "meta": {},
+   "queries": [
+    "cellulosic ethanol"
+   ],
+   "sid": "S29"
+  },
+  {
+   "kind": "news",
+   "title": "Vopak secures NSW government endorsement for Port Botany expansion plans",
+   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNUkg0SGp2V1ZmTHF6bW5JV0RSdWpvd1lfVHZraG5qM0dMSWhzc09uaXdBUFdubFNhT1dOWDRvbng3RFZkcUQ0M081NzZPYkhpc0pQLTVjaDZXV1NWM3JFNUs0Ni1MTTRSdlJTNFdmajNyUzkwTkpmcGd5cVp4R2lkejFuQmlnMlRiSmpqcUlQNDR4bXMwRURMOHI4M0dfR0lNT3h1dUtkdjBsM0tB?oc=5",
+   "source": "Bioenergy International",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "Vopak secures NSW government endorsement for Port Botany expansion plans Bioenergy International",
+   "meta": {},
+   "queries": [
+    "site:bioenergyinternational.com"
+   ],
+   "sid": "S30"
+  },
+  {
+   "kind": "news",
+   "title": "Singapore’s chance to become a global leader in sustainable aviation fuel",
+   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPQ1RYRnFUcW9WdW1MYW01RnV1N2I4TEs5Y3RrSnZvbmhUVjRIMFBuc1NaV1ZPN3FnanZzQWVBcUQzVjFzUmREUlhXYVR1TnhSQndfN1pCSUdJUkxOQ3Y0SzFXMUtOOGVYek4yZXdhYmVmNzBESEZfZUdkRkZfckprbXItaG96Y05tM0ZpdDQ1RUh6M1QwbHdtWEtpcVB2WER1NVY3WEFmc184dWVhdFVyeVpzNWZaZFBlaVZSWXJKdw?oc=5",
+   "source": "Singapore Economic Development Board (EDB)",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "Singapore’s chance to become a global leader in sustainable aviation fuel Singapore Economic Development Board (EDB)",
+   "meta": {},
+   "queries": [
+    "sustainable aviation fuel"
+   ],
+   "sid": "S31"
+  },
+  {
+   "kind": "news",
+   "title": "EU-funded projects push algae into industrial production",
+   "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOUklqSVJ4dDg5VjJvOVdmNFlrYy1zc3A1YjZtR1pJTUQ0VURQNnYtQjlldzRPeGZwcWRabHdoMWtERGc0dk9wMWRpbFBLaS1sNURzWlNaUGJIQk5uekRBLTVFNXZIU1pxVWRPTklsM2t4TG1ab1ZWWXRLeW9vbEk0VFhjVTA5N2tRREU4NElrUmw2YXQ3SFAw?oc=5",
+   "source": "World Bio Market Insights",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "EU-funded projects push algae into industrial production World Bio Market Insights",
+   "meta": {},
+   "queries": [
+    "biorefinery"
+   ],
+   "sid": "S32"
+  },
+  {
+   "kind": "news",
+   "title": "World Burns Through Its Oil Safety Buffer",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPeEVNUDBiSWVqR1RBX2V5QkFfbHlGVEQ0Y1J6aWdKalhXTEdIV2Q3NWI1cUhYSkJka2VoME5KSUVUd2ZrM0hRMkhFZ0xLV25halhDR1ZOdmVJSVBZZUpRbnNHQzZObFBKZVhmVXUyN09TYmRQc3NmWFZzZm1mb3htaGo3ZEtBT0RH?oc=5",
+   "source": "Bioplastics NEWS",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "World Burns Through Its Oil Safety Buffer Bioplastics NEWS",
+   "meta": {},
+   "queries": [
+    "site:bioplasticsnews.com OR site:european-bioplastics.org"
+   ],
+   "sid": "S33"
+  },
+  {
+   "kind": "news",
+   "title": "Global Polypropylene Prices: Winners and losers",
+   "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOQWtnZjZ0bGsza2lWeHV3VjdBTFVZR2Q4NHFWZVFRWkFqWVViaDZ1WFIycHVfRzN3X1ZQSWtnZEFULU9VcUFmLW1kUGxKa2h6WXNFZ1hkMUFMT3AwYzNJek5yUENGQ2NPOWRxcVNsRGxJNHNTSXFkSzd1eHFENDZwcVNaM0I1U1FzRkowczJzdw?oc=5",
+   "source": "Bioplastics NEWS",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "Global Polypropylene Prices: Winners and losers Bioplastics NEWS",
+   "meta": {},
+   "queries": [
+    "site:bioplasticsnews.com OR site:european-bioplastics.org"
+   ],
+   "sid": "S34"
+  },
+  {
+   "kind": "news",
+   "title": "Copenhagen Infrastructure Partners invests in Via Verde RNG platform",
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNMVJRUThkbVljeHNMLUNZQWRyeUFFVm52STEzemtpT0hDQWFLMmpNbnNpNEpzWjc3elRsZ2hpbjlRclFhZnRJLWlfRlp4V1RWVG5Xa2FnMEFScnJ2Ykk2QjBRMVVxOURQbkh1MFpLTzRRM21pUFQ1dDNOanI2aHE0dXZnUF90ZnViNzlQZFNYenJ1RnlibkVOVURSNWt3T2FpRk1CWERROA?oc=5",
+   "source": "Bioenergy International",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "Copenhagen Infrastructure Partners invests in Via Verde RNG platform Bioenergy International",
+   "meta": {},
+   "queries": [
+    "site:bioenergyinternational.com"
+   ],
+   "sid": "S35"
+  },
+  {
+   "kind": "news",
+   "title": "単一燃料に頼らない海運戦略 自然と人権まで見据える転換",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE8yNjF4cUphUURic3dnajZzQVAzQ05CVVVUVUxwS1NoWU96WHRmTUpCNko2dk9uX0RWMk1SX3NsdFpjQUE4TGF3ejJFTDZmX05WVWV6UzB3Ylp1bEpqbXJNdWpWeVFTeERxSU1HZnQ3SFE?oc=5",
+   "source": "日経BP",
+   "published": "2026-10-07",
+   "lang": "ja",
+   "summary": "単一燃料に頼らない海運戦略 自然と人権まで見据える転換 日経BP",
+   "meta": {},
+   "queries": [
+    "バイオマス発電"
+   ],
+   "sid": "S36"
+  },
+  {
+   "kind": "news",
+   "title": "ジェイ・スピリット社長の岡田一弥さんが「東京油田じょうご」を使って実演＝自由が丘で「東京油田プロジェクト」始動",
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1PaHdvZ0RDTERkYjR4b0JYS2Q1dFZ6a2J2TUZaRk15d01jdFpxdkZZSXNENWp6a01VSGxPX0VNOFRwOUJFZGQzLURucWtfaEt3TzhHbl9pQXg?oc=5",
+   "source": "自由が丘経済新聞",
+   "published": "2026-10-07",
+   "lang": "ja",
+   "summary": "ジェイ・スピリット社長の岡田一弥さんが「東京油田じょうご」を使って実演＝自由が丘で「東京油田プロジェクト」始動 自由が丘経済新聞",
+   "meta": {},
+   "queries": [
+    "持続可能な航空燃料"
+   ],
+   "sid": "S37"
+  },
+  {
+   "kind": "news",
+   "title": "DOE eyes sustainable aviation fuel mandate",
+   "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPalp0STlnR2FBTFJmUWd5V3FwMTVFV1BvUURqa3ZzRkdCN3pWekJEbWJPTzVhS29IdW92ZzlrZUVCVVpHU2ZJUlFwMHQ4SzNrcVRQZVVYOEI5WEd6QVdDU1NmNGhOVkNDc19ETy15T1lxczdWd01nRjdfcjJGMUJTZXZHZWxLNUZQX1U4?oc=5",
+   "source": "Newswav",
+   "published": "2026-10-06",
+   "lang": "en",
+   "summary": "DOE eyes sustainable aviation fuel mandate Newswav",
+   "meta": {},
+   "queries": [
+    "sustainable aviation fuel"
+   ],
+   "sid": "S38"
+  },
+  {
+   "kind": "news",
+   "title": "USDA announces $180 million Seed Sovereignty Initiative to strengthen US agricultural security",
+   "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQTmFWYVRoSXEtMENhVHIxVWZWX0s2VTJXZ3ZjMDNYcERYcXRGdGYxcVZrTGFQSkFOSi1mX2hLTkg2NGdhUG1zNFd1MHJ3b2FHWm9ma0s2dHdoMzJ5VkVCdUJaRWQ2UTBXMkN3dGIwQkwwLW9xZ3VqMFFTeTJwVW11amhuTlhxd3djUVRmbThJTG84NTN2azNrZTY3TFRQaW1QWHlmaXh0WlJVR1hjSkQwU2JIOWRaMi1tdk9McjlCem5oclRjNFBvTnYzMA?oc=5",
+   "source": "Biomass Magazine",
+   "published": "2026-10-06",
+   "lang": "en",
+   "summary": "USDA announces $180 million Seed Sovereignty Initiative to strengthen US agricultural security Biomass Magazine",
+   "meta": {},
+   "queries": [
+    "site:biomassmagazine.com"
+   ],
+   "sid": "S39"
+  },
+  {
+   "kind": "news",
+   "title": "A Small Personal Favor to the Republic of Cyprus",
+   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOd2IyV0g1RHJSbExDU0I0RmF0dnpob19QSWlKVWN5RGJxUVowc1pIRmFFQk9BN05GRFNQOTR3dER4bDhhYzNNU3pCdVpxNWo4Slp0U2tIX1VPSXdDMlZabGJIS0tCeURfaGoyYUtidW1xTjNJcEdJZGdzUjVQb0duZlVZY3JhQTAxR1pFTG5PZjViUQ?oc=5",
+   "source": "Bioplastics NEWS",
+   "published": "2026-10-06",
+   "lang": "en",
+   "summary": "A Small Personal Favor to the Republic of Cyprus Bioplastics NEWS",
+   "meta": {},
+   "queries": [
+    "site:bioplasticsnews.com OR site:european-bioplastics.org"
+   ],
+   "sid": "S40"
+  },
+  {
+   "kind": "news",
+   "title": "下水熱やバイオガス活用 エネ自立基盤造成へ協定 韓国気候エネ環境部",
+   "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5DbkhWbmdTRE9Sdk1JQnUxdWlvUURraXlmb0lHUDFqaUFsbkY2VHFmaU1kZlEzSmVrWXEzV1FHRjlfUkxyTGR5V0FlNHV2VkhwOFJOSTlFYjZjdi1uLWZ6cGxyLTJ6WHUxLXQtbHhpaG1zUWY4UnJzV2d4UQ?oc=5",
+   "source": "環境新聞オンライン",
+   "published": "2026-10-06",
+   "lang": "ja",
+   "summary": "下水熱やバイオガス活用 エネ自立基盤造成へ協定 韓国気候エネ環境部 環境新聞オンライン",
+   "meta": {},
+   "queries": [
+    "バイオガス"
+   ],
+   "sid": "S41"
+  },
+  {
+   "kind": "news",
+   "title": "高雄港啟動生質燃油加注接軌國際航運能源轉型- 地方",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBNM1FndXY1QW9velJ0dWRsN05EQ1V5TEpLaVpBRDNFXzM0cVA0RXVGU2tZZ3B0WlFmOEU2anAwRXpQZHhRaU50NlVnUUVUTVJ2NEtGSDhIbkpEVkp4YlUteDlMMTcySTl0T0NMd3p3?oc=5",
+   "source": "華視新聞網",
+   "published": "2026-10-05",
+   "lang": "zh-TW",
+   "summary": "高雄港啟動生質燃油加注接軌國際航運能源轉型- 地方 華視新聞網",
+   "meta": {},
+   "queries": [
+    "能源署 生質"
+   ],
+   "sid": "S42"
+  },
+  {
+   "kind": "news",
+   "title": "攜航商邁向永續淨零！高雄港啟動生質燃油加注服務期共創綠色航運| 地方",
+   "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE42bmJfNUtTMU9CZER2eUhOc2NmYmRsNk8xYm4tMGVCU0VMR0RvQkZWc0I0Q0lpSXNKOGJWdnR4RzZkNjVSM3JJMW1XYmU?oc=5",
+   "source": "NOWnews今日新聞",
+   "published": "2026-10-05",
+   "lang": "zh-TW",
+   "summary": "攜航商邁向永續淨零！高雄港啟動生質燃油加注服務期共創綠色航運| 地方 NOWnews今日新聞",
+   "meta": {},
+   "queries": [
+    "能源署 生質"
+   ],
+   "sid": "S43"
+  },
+  {
+   "kind": "news",
+   "title": "高雄港接軌綠色航運 生質燃油加注服務正式啟動",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5LN0JxZDJMZU5GUEJqSTd0c1M2Rngzd2FzZElhLVNZZG12d0dXM1h2bmhiSDQyOFN2TTVJYjJlLXBKNTdsbndtVmxJa3Zwemp4TXc?oc=5",
+   "source": "蕃新聞",
+   "published": "2026-10-05",
+   "lang": "zh-TW",
+   "summary": "高雄港接軌綠色航運 生質燃油加注服務正式啟動 蕃新聞",
+   "meta": {},
+   "queries": [
+    "能源署 生質"
+   ],
+   "sid": "S44"
+  },
+  {
+   "kind": "news",
+   "title": "Fossil fuel price surge and high demand lift biofuel production margins on both sides of the Atlantic in September",
+   "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOd215Y05IN1Z2aXVhN2o3WFRnalc5QzBqRnZmTXIySEt2aGlwYjlITjA1bENCY0ZRRGRiYmc5LUItRk41UkRYOFljalM1NHJwTTVGQWRMNFBtLUJjNkl1UGFTazhjYXdkUUY0OWRWVjkwUVJtcUpZNmZkZXlsMWtUZkR2Y2hRRTYySm1HdmFiX1JsM2xJeVNGTFNYNzl4a211bnRVSjlaYXZaMGRNV2VDaG10N3RLeEhwNnhmSjNoVnZ2YTRScFZIX2hxT3QzU0NfcnFXOGZoRzBfNWplZDBZNGZ5Wll2WE0?oc=5",
+   "source": "Fastmarkets",
+   "published": "2026-10-05",
+   "lang": "en",
+   "summary": "Fossil fuel price surge and high demand lift biofuel production margins on both sides of the Atlantic in September Fastmarkets",
+   "meta": {},
+   "queries": [
+    "renewable diesel HVO"
+   ],
+   "sid": "S45"
+  },
+  {
+   "kind": "news",
+   "title": "Renewable Hydrogen Powers Biomethanol Production in Delfzijl",
+   "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQZVkxeGhCeTFEYnVDRm13UnpQNkNJWktuVDF4a3lHU3M2T0x0cTVpeEdFcmw3bFl4bkQzMkJIaWJad20yY1lhVDZ6Rzh2Vk9ua3c1VjR1bkJ0OUhBRWF2TDhGSTRISDRLSk9CWVFJQ2FBVjRxMHVObUdVT0dtd0R4bGVkOWVWbHAtR0NfS2lpSU5zbWZ3cG9uQThUSzQ5U1MwUjl3M21OSm9oUGdQekdoR3V5cjYwMHVOa3E4QURaZzdCQkEtZ21sWTlsYkI3dkEySDFzdEFSLWFSSzlUcWZ1YzA5WjhJVG1TMWI4?oc=5",
+   "source": "Fuel Cells Works",
+   "published": "2026-10-05",
+   "lang": "en",
+   "summary": "Renewable Hydrogen Powers Biomethanol Production in Delfzijl Fuel Cells Works",
+   "meta": {},
+   "queries": [
+    "bio-methanol OR \"biomethanol\""
+   ],
+   "sid": "S46"
+  },
+  {
+   "kind": "news",
+   "title": "Magnesium Sulfate Heptahydrate Market To 2035: Fermentation Demand Drives Growth - News and Statistics",
+   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQUTBaZkFGT2VVeDhvaGJKMXJiUzNSejF4SVVHbDRoX2NySXVpalowbXcxLVVES1ZwQ2NTdEJfWkxYOHFRSTRMZG5sYl9vNkE5NjQ1OFZYMEJTZHJacWhxaGxNTnFqaWFPUVRHYnkzWjVpSlpibEZMcjhkYVlDcjNZU3M2NVZFcG83V1FmdC1MRlY2WmZDeE02WVVYcUFFVXJIXzV3WjdfbWpnZmMwZzBRcTRMWldDQ1FfUDBhb09yNzY2TDdpWUE?oc=5",
+   "source": "IndexBox",
+   "published": "2026-10-05",
+   "lang": "en",
+   "summary": "Magnesium Sulfate Heptahydrate Market To 2035: Fermentation Demand Drives Growth - News and Statistics IndexBox",
+   "meta": {},
+   "queries": [
+    "precision fermentation"
+   ],
+   "sid": "S47"
+  },
+  {
+   "kind": "news",
+   "title": "Other News",
+   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9nb2lwejdBRkx5dVl4ZndHd0daSkdnaGFWSkJIY1hGZUpZX01XcmxaT1ZHLTVfR2FxbnFUQkVmeWJKQjJqS1ItTWJ0ajlnY0ltTDlscXI5cF9yOFRTRERPdy1B?oc=5",
+   "source": "Bioenergy Insight Magazine",
+   "published": "2026-10-05",
+   "lang": "en",
+   "summary": "Other News Bioenergy Insight Magazine",
+   "meta": {},
+   "queries": [
+    "site:bioenergy-news.com"
+   ],
+   "sid": "S48"
+  },
+  {
+   "kind": "news",
+   "title": "Trump: Ukraine Is Responsible for Expensive U.S. Fuel",
+   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNSkhGMmJHZE1KaFpRSHdGd09ZMGVDUnQtQmVUbFl3OGNSZWhLZEdieFZ3dHhXdS1JdWZ4c2lZYkczM3FReVVDVzdPbkVqWGVPLUhQc0FWbERfS01SYmFWQUtWbzFyRk5Qc2s1MmllQXhNeDR3UmVlM0Y2MmtTZlppd3FvWnd1U3dydjNKcHQ4TEktdzN4Vnc?oc=5",
+   "source": "Bioplastics NEWS",
+   "published": "2026-10-05",
+   "lang": "en",
+   "summary": "Trump: Ukraine Is Responsible for Expensive U.S. Fuel Bioplastics NEWS",
+   "meta": {},
+   "queries": [
+    "site:bioplasticsnews.com OR site:european-bioplastics.org"
+   ],
+   "sid": "S49"
+  },
+  {
+   "kind": "paper",
+   "title": "Systematic review and quantitative synthesis of modified thermodynamic equilibrium models for biomass gasification",
+   "url": "https://doi.org/10.1016/j.rser.2026.117535",
+   "source": "Renewable and Sustainable Energy Reviews",
+   "published": "2026-10-10",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [
+     "Institut Teknologi PLN",
+     "IPB University"
+    ],
+    "countries": [
+     "ID"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221361998"
+   },
+   "rank": 8,
+   "queries": [
+    "biomass gasification"
+   ],
+   "sid": "S50"
+  },
+  {
+   "kind": "paper",
+   "title": "Coffee Agroindustrial Lignocellulosic Biomass in Brazil and Colombia: Types, Composition, and Potential Applications",
+   "url": "https://doi.org/10.3390/biomass6050091",
+   "source": "Biomass",
+   "published": "2026-10-10",
+   "lang": "en",
+   "summary": "Coffee is one of the most widely consumed beverages worldwide and plays an important cultural, economic, and social role in producing and consuming regions. This review provides an overview of the residues generated throughout the coffee production chain in Brazil and Colombia and critically evaluates their composition, valorization pathways, and potential contribution to a circular bioeconomy. Coffee consumption exceeds 2 billion cups daily, generating substantial amounts of residues from fruit processing, roasting, and beverage preparation. Dry, wet, and semidry processing generate distinct residual streams, including coffee hulls, pulp, parchment, and wastewater, while silverskin and spen…",
+   "meta": {
+    "institutions": [
+     "Universidade Estadual de Londrina",
+     "Antioquia Institute of Technology"
+    ],
+    "countries": [
+     "BR",
+     "CO"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221352774"
+   },
+   "rank": 12,
+   "queries": [
+    "lignocellulosic biorefinery"
+   ],
+   "sid": "S51"
+  },
+  {
+   "kind": "paper",
+   "title": "Experimental and statistical investigation of MgO ‐assisted microalgae biodiesel–hydrogen dual‐fuel combustion in an RCCI engine",
+   "url": "https://doi.org/10.1002/ep.70738",
+   "source": "Environmental Progress & Sustainable Energy",
+   "published": "2026-10-10",
+   "lang": "en",
+   "summary": "Abstract In Reactivity‐Controlled Compression Ignition (RCCI) operation, hydrogen was inducted through the intake manifold as a low‐reactivity fuel (LRF), whereas microalgae biodiesel‐diesel blends enriched with magnesium oxide (MgO) nanoparticles were directly injected into the combustion chamber as high‐reactivity fuel (HRF). This study explored a unique tri‐fuel combination consisting of microalgae biodiesel, magnesium oxide nanoparticles (25 and 50 ppm), and hydrogen (5 and 10 L/min). The experimental investigation was conducted at varying loads with different blends to evaluate engine performance, combustion characteristics, and emission characteristics. The results showed that the blen…",
+   "meta": {
+    "institutions": [
+     "Aditya Birla (India)"
+    ],
+    "countries": [
+     "IN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221316702"
+   },
+   "rank": 14,
+   "queries": [
+    "microalgae biofuel"
+   ],
+   "sid": "S52"
+  },
+  {
+   "kind": "paper",
+   "title": "Comparative Assessment of Bio-Oils from Agriculture Biomass Waste and Conventional Fossil Fuels: Evaluating Their Potential as Sustainable Industrial Fuel Alternatives",
+   "url": "https://doi.org/10.53982/ajerd.2026.0903.13-j",
+   "source": "ABUAD Journal of Engineering Research and Development (AJERD)",
+   "published": "2026-10-10",
+   "lang": "en",
+   "summary": "The growing demand for sustainable energy and the environmental impacts of fossil fuel dependence have intensified interest in biomass-derived fuels, particularly in developing countries such as Nigeria where agricultural residues remain largely underutilized. This study assessed bio-oils obtained from agricultural biomass in comparison to traditional fossil fuels as a source of industrial energy. Using a vertical silo reactor, bio-oils were produced from mimosa seed pods, banana peels, and cashew nut shells via three thermochemical procedures: torrefaction (200–300 °C), slow pyrolysis (300–500 °C) and fast pyrolysis (>600 °C). The resulting bio-oils were characterized in terms of key physic…",
+   "meta": {
+    "institutions": [],
+    "countries": [],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221336072"
+   },
+   "rank": 15,
+   "queries": [
+    "torrefaction biomass"
+   ],
+   "sid": "S53"
+  },
+  {
+   "kind": "paper",
+   "title": "Distillation as a cornerstone for upgrading pyrolysis oils to drop-in fuels: A systematic review and prospects",
+   "url": "https://doi.org/10.1016/j.fuproc.2026.108619",
+   "source": "Fuel Processing Technology",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Converting biomass, plastic, and waste tire feedstocks into drop-in fuels is constrained by the poor quality and instability of raw pyrolysis oils. This systematic review synthesises 51 experimental studies published between 2007 and 2025 and evaluates eight distillation-based method categories: simple/atmospheric, fractional, vacuum, molecular, steam, reactive, azeotropic, and catalytic distillation. Distillation improved the biomass oil properties, with mean increases in the higher heating value of 58% and mean water reductions of 76%. Plastic- and tire-derived distillates achieved mean higher heating values of 43.5 and 42.1 MJ/kg, respectively, which approached the conventional fuel-prope…",
+   "meta": {
+    "institutions": [
+     "The University of Dodoma"
+    ],
+    "countries": [
+     "TZ"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221177901"
+   },
+   "rank": 11,
+   "queries": [
+    "hydrothermal liquefaction biomass",
+    "bio-oil upgrading catalyst"
+   ],
+   "sid": "S54"
+  },
+  {
+   "kind": "paper",
+   "title": "Market waste composition, biomethane yield, and energy potential in Nairobi, Kenya",
+   "url": "https://doi.org/10.20935/acadenergy8515",
+   "source": "Academia green energy.",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Introduction: Municipal solid waste (MSW) management remains a critical sustainability challenge in rapidly urbanizing cities, particularly in Sub-Saharan Africa where inadequate infrastructure and reliance on unsanitary landfills exacerbate greenhouse gas emissions. Nairobi, Kenya, generates approximately 3600 tons of MSW daily, with up to 40% uncollected, straining the only dumpsite at Dandora. Material and methods: This study investigated the biomethane potential of waste from 23 food markets, applying standardized compositional analysis and anaerobic digestion (AD) protocols. Results: Results show that market waste is predominantly organic (67%), with significant variability in moisture …",
+   "meta": {
+    "institutions": [
+     "University of Nairobi",
+     "Kenya Industrial Research and Development Institute"
+    ],
+    "countries": [
+     "KE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221070534"
+   },
+   "rank": 5,
+   "queries": [
+    "biomethane upgrading"
+   ],
+   "sid": "S55"
+  },
+  {
+   "kind": "paper",
+   "title": "From measurement to mitigation: a historical review of livestock emission research in the U.S. Southern and Central Great Plains",
+   "url": "https://doi.org/10.3389/fsufs.2026.1951531",
+   "source": "Frontiers in Sustainable Food Systems",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "As airborne emissions from agricultural operations began to receive more concentrated scrutiny, the federal Task Force on Agricultural Air Quality was established in the 1996 Farm Bill and began operations in 1997 to advance research and provide solutions for sustainable agricultural operations with primary focus on particulate matter, ozone, and odors. This historical review synthesizes research conducted by institutions serving the southern and central Great Plains from the early 2000s to mid-2010s across cattle, dairy, swine, and poultry production systems, identifying three interdependent research pillars: measurement technology, emission quantification, and abatement solutions. Research…",
+   "meta": {
+    "institutions": [
+     "West Texas A&M University",
+     "University of South Dakota",
+     "Conservation and Production Research Laboratory",
+     "Texas A&M University"
+    ],
+    "countries": [
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221195799"
+   },
+   "rank": 16,
+   "queries": [
+    "swine manure anaerobic digestion"
+   ],
+   "sid": "S56"
+  },
+  {
+   "kind": "paper",
+   "title": "Thermochemical and biochemical conversion technologies for the valorization of coffee-industry residues: a systematic review",
+   "url": "https://doi.org/10.3389/frsus.2026.1947220",
+   "source": "Frontiers in Sustainability",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "Introduction The accumulation of agro-industrial residues in the coffee sector poses environmental and logistical challenges. This systematic review analyzes thermochemical and biochemical conversion technologies for the valorization of these streams. Methods Following the PRISMA 2020 guidelines and the PICO strategy, 116 primary studies published between 2020 and 2025 and indexed in Scopus and Web of Science were selected. Results Thermochemical routes, with a focus on slow pyrolysis, and biochemical pathways, such as anaerobic digestion and composting, represent the dominant recovery configurations. These systems recover biogas, biochar, biofertilizers, and liquid biofuels. Quantitative da…",
+   "meta": {
+    "institutions": [
+     "Universidad Tecnológica del Perú"
+    ],
+    "countries": [
+     "PE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221074299"
+   },
+   "rank": 22,
+   "queries": [
+    "swine manure anaerobic digestion"
+   ],
+   "sid": "S57"
+  },
+  {
+   "kind": "paper",
+   "title": "Sustainability of hybrid solar-assisted greenhouse drying for sewage sludge: An environmental and economic assessment",
+   "url": "https://doi.org/10.1016/j.jwpe.2026.111067",
+   "source": "Journal of Water Process Engineering",
+   "published": "2026-10-09",
+   "lang": "en",
+   "summary": "This study assesses the environmental and economic performance of hybrid solar-assisted greenhouse drying and its integration with hydrogen-assisted biological biogas upgrading at a municipal wastewater treatment plant in Italy. Life cycle assessment (LCA) and life cycle costing (LCC) compared the existing anaerobic digestion and mechanical-dewatering line (S0), hybrid solar-assisted greenhouse drying with photovoltaic (PV) and heat-pump support (S1), and the additional integration of PV-powered electrolysis and biological methanation (S2). Primary operating data for 2019, 2022 and 2023 were combined with full-scale engineering specifications for S1 and modelled assumptions for S2. Agricultu…",
+   "meta": {
+    "institutions": [
+     "Istituto Superiore per la Protezione e la Ricerca Ambientale",
+     "Leitat Technological Center",
+     "University College Dublin",
+     "University of Udine"
+    ],
+    "countries": [
+     "IT",
+     "ES",
+     "IE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221074459"
+   },
+   "rank": 24,
+   "queries": [
+    "dry anaerobic digestion solid-state"
+   ],
+   "sid": "S58"
+  },
+  {
+   "kind": "paper",
+   "title": "Evaluation of plasma generated reactive nitrogen species in digestates: exploring the potential of acid-base titration as a proxy indicator of nitrate formation",
+   "url": "https://doi.org/10.2166/wst.2026.354",
+   "source": "Water Science & Technology",
+   "published": "2026-10-08",
+   "lang": "en",
+   "summary": "ABSTRACT Workflow and key results for DBD plasma treatment of anaerobic digestate, showing NOx uptake, TON-N, and FOS/TAC monitoring. Ammonia accumulation reduces the stability and fertiliser value of anaerobic digestate, while conventional anaerobic digestion monitoring tools may not fully capture chemically driven nitrogen transformations. This study evaluated dielectric barrier discharge (DBD) plasma as a post-digestion treatment for ammonium-rich digestate and assessed whether acid–base titration parameters could serve as proxy indicators of plasma-induced nitrogen chemistry. Digestate was treated using an indirect gas-phase air–argon (GAAG) plasma configuration, and temporal changes in …",
+   "meta": {
+    "institutions": [
+     "Cranfield University"
+    ],
+    "countries": [
+     "GB"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221152105"
+   },
+   "rank": 17,
+   "queries": [
+    "swine manure anaerobic digestion"
+   ],
+   "sid": "S59"
+  },
+  {
+   "kind": "paper",
+   "title": "Biochar combined with CO₂-rich biogas slurry enhances water spinach growth (Ipomoea aquatica) and carbon storage in the cultivation system: Roles of nutrient retention and microorganisms",
+   "url": "https://doi.org/10.1016/j.eti.2026.105265",
+   "source": "Environmental Technology & Innovation",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "To address the global warming caused by the elevated atmospheric CO 2 concentration, exploring alternative methods for CO 2 sequestration in plants is crucial. Biogas slurry (BS), which is rich in ammonium nitrogen and alkalinity, can function as a CO 2 carrier. The introduced HCO 3 ⁻ promotes flocculation through a reduction in the absolute zeta potential, thereby reducing element leaching in soil. Biochar (BC), owing to its large specific surface area and high porosity, can adsorb HCO 3 ⁻, improve soil structure, and enhance root development and nutrient uptake. To evaluate the synergistic effects of BC and CRBS (BC-CRBS), we conducted soil-column leaching and pot cultivation experiments w…",
+   "meta": {
+    "institutions": [
+     "Huazhong Agricultural University",
+     "Chinese Academy of Sciences",
+     "Northwest Institute of Eco-Environment and Resources",
+     "Yulin University"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7220847649"
+   },
+   "rank": 24,
+   "queries": [
+    "bioenergy carbon capture storage"
+   ],
+   "sid": "S60"
+  },
+  {
+   "kind": "paper",
+   "title": "Synergistic catalytic liquefaction of hyperaccumulators using acid and steel slag: enhanced phenolic bio-oil production and stable arsenic sequestration",
+   "url": "https://doi.org/10.1016/j.biortech.2026.136040",
+   "source": "Bioresource Technology",
+   "published": "2026-10-01",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [
+     "Jiangxi Academy of Sciences",
+     "Jiang Xi Institute for Drug Control",
+     "Nanchang University",
+     "Hunan Research Academy of Environmental Sciences",
+     "City University of Hong Kong"
+    ],
+    "countries": [
+     "CN",
+     "HK"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221126913"
+   },
+   "rank": 7,
+   "queries": [
+    "hydrothermal liquefaction biomass"
+   ],
+   "sid": "S61"
+  },
+  {
+   "kind": "paper",
+   "title": "Insects as a waste-to-lipids platform for sustainable aviation fuel: Production, upgrading, and sustainability",
+   "url": "https://doi.org/10.1016/j.biotechadv.2026.109072",
+   "source": "Biotechnology Advances",
+   "published": "2026-10-01",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [
+     "Sungkyunkwan University",
+     "Ajou University"
+    ],
+    "countries": [
+     "KR"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221363203"
+   },
+   "rank": 12,
+   "queries": [
+    "sustainable aviation fuel"
+   ],
+   "sid": "S62"
+  },
+  {
+   "kind": "paper",
+   "title": "Leveraging lignocellulosic hydrolysates for sustainable methyl ketone production",
+   "url": "https://doi.org/10.1016/j.jbiotec.2026.10.008",
+   "source": "Journal of Biotechnology",
+   "published": "2026-10-01",
+   "lang": "en",
+   "summary": "Medium chain-methyl ketones are molecules with high energy content and various industrial applications. So far, biotechnological methyl ketone production was performed with glucose as a carbon source in minimal media, which is often not the best choice in terms of achieving a sustainable and cost-efficient bioprocess. We evaluated the application of lignocellulosic hydrolysates as a carbon source derived from agricultural waste streams that do not compete with food production. Notably, we demonstrate that methyl ketone production is feasible from both the cellulosic and hemicellulosic fractions. In bioreactor cultivations, the product yield with the cellulosic hydrolysate exceeded the yield …",
+   "meta": {
+    "institutions": [
+     "Jülich Aachen Research Alliance",
+     "RWTH Aachen University",
+     "FH Aachen",
+     "Technical University of Denmark"
+    ],
+    "countries": [
+     "DE",
+     "DK"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221317100"
+   },
+   "rank": 17,
+   "queries": [
+    "lignocellulosic biorefinery"
+   ],
+   "sid": "S63"
+  },
+  {
+   "kind": "paper",
+   "title": "Cellulose-based bioplastics for a circular bioeconomy: Properties, applications, market potential, consumer acceptance, and future perspectives",
+   "url": "https://doi.org/10.1016/j.frintr.2026.100026",
+   "source": "Food Research International Translational Research",
+   "published": "2026-10-01",
+   "lang": "en",
+   "summary": "Cellulose-based bioplastics have emerged as a promising alternative to conventional petroleum-derived plastics, offering a sustainable and eco-friendly solution to the growing environmental concerns associated with plastic waste. Derived from renewable resources such as wood, cotton, and agricultural residues, cellulose bioplastics exhibit biodegradability, biocompatibility, and low environmental impact. Despite their potential, several challenges impede their widespread adoption. Key challenges include the inherent hydrophilicity of cellulose, which affects the mechanical and barrier properties of the bioplastics, and the complex, energy-intensive extraction and processing methods required …",
+   "meta": {
+    "institutions": [
+     "Indian Council of Agricultural Research",
+     "Central Institute of Post-Harvest Engineering and Technology",
+     "Central Plantation Crops Research Institute"
+    ],
+    "countries": [
+     "IN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221158401"
+   },
+   "rank": 21,
+   "queries": [
+    "polyhydroxyalkanoates production waste feedstock"
+   ],
+   "sid": "S64"
+  },
+  {
+   "kind": "paper",
+   "title": "Physicochemical and Biochemical Characterisation of Ackee Apple Pod as a Potential Feedstock for Anaerobic Digestion",
+   "url": "https://doi.org/10.36108/laujoces/6202.71.0122",
+   "source": "LAUTECH Journal of Civil and Environmental Studies",
+   "published": "2026-09-30",
+   "lang": "en",
+   "summary": "The growing global demand for energy for domestic and industrial applications has intensified reliance on fossil fuels, resulting in increased anthropogenic emissions, environmental degradation, global warming, and pollution. This study evaluated the potential of ackee apple pod as a substrate for biogas production through physiochemical and biochemical characterisation. Fresh ackee apple pods were collected from Odo-Oba Village, Ogo-Oluwa Local Government Area, Ogbomoso, Nigeria, mechanically processed into powder, and characterised using standard analytical techniques. Dry Matter (DM), Organic Dry Matter (ODM), Organic Carbon (OC), and Organic Nitrogen (ON) were determined following APHA s…",
+   "meta": {
+    "institutions": [
+     "Ladoke Akintola University of Technology"
+    ],
+    "countries": [
+     "NG"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221067672"
+   },
+   "rank": 4,
+   "queries": [
+    "anaerobic digestion biogas",
+    "dry anaerobic digestion solid-state"
+   ],
+   "sid": "S65"
+  },
+  {
+   "kind": "paper",
+   "title": "Conversion and upgrading of microalgal lipids as a potential feedstock for sustainable aviation fuel production",
+   "url": "https://doi.org/10.1016/j.algal.2026.104993",
+   "source": "Algal Research",
+   "published": "2026-09-30",
+   "lang": "en",
+   "summary": "Microalgae are widely recognised as a promising feedstock for sustainable aviation fuel (SAF). However, their utilisation in hydroprocessed esters and fatty acids (HEFA) pathways is constrained by the compositional complexity and elevated impurity levels of crude microalgal lipid extracts, which are incompatible with hydrotreating requirements. This study presents a sequential acid-catalysed transesterification and vacuum distillation approach for producing fatty acid methyl esters (FAME) from crude microalgal lipids and evaluating changes in product composition and impurity characteristics relevant to HEFA applications. Crude microalgal lipids were reacted with methanol in the presence of m…",
+   "meta": {
+    "institutions": [
+     "Monash University Malaysia",
+     "Petronas (Malaysia)"
+    ],
+    "countries": [
+     "MY"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7214944095"
+   },
+   "rank": 8,
+   "queries": [
+    "sustainable aviation fuel"
+   ],
+   "sid": "S66"
+  },
+  {
+   "kind": "paper",
+   "title": "Microalgal Bioremediation of Firewood-based Flue Gas for CO2 Fixation",
+   "url": "https://doi.org/10.52151/jae2026634.2048",
+   "source": "Journal of Agricultural Engineering (India)",
+   "published": "2026-09-30",
+   "lang": "en",
+   "summary": "Flue gas (FG) contains significant levels of gaseous pollutants that must be effectively managed to prevent air pollution and global warming. The primary components of FG include carbon dioxide, carbon monoxide, sulfur oxides, nitrogen oxides, and trace metals. These pollutants are often removed using physico-chemical methods, which generally incur higher costs. An emerging technique for treating FG involves using microalgae, which have shown promise for efficiently removing and sequestering CO2, SOx, and NOx from FG, while also producing commercially valuable by-products. In the present study, a novel microalgal strain was evaluated for its CO₂ fixation potential and lipid accumulation capa…",
+   "meta": {
+    "institutions": [
+     "Sardar Patel Renewable Energy Research Institute"
+    ],
+    "countries": [
+     "IN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7216309586"
+   },
+   "rank": 24,
+   "queries": [
+    "microalgae biofuel"
+   ],
+   "sid": "S67"
+  },
+  {
+   "kind": "paper",
+   "title": "Effects of increasing dietary inclusion of Moringa oleifera biomass on in vitro ruminal fermentation kinetics and degradability of lamb diets",
+   "url": "https://doi.org/10.1080/23311932.2026.2727242",
+   "source": "Cogent Food & Agriculture",
+   "published": "2026-09-28",
+   "lang": "en",
+   "summary": "This study evaluated the effects of increasing inclusion levels of Moringa oleifera biomass on in vitro ruminal fermentation kinetics and nutrient degradability in lamb diets. Four total mixed rations were formulated to include 0, 100, 200, and 300 g/kg dry matter of M. oleifera. Gas production kinetics, estimated metabolizable energy (ME), estimated short-chain fatty acids (SCFA) concentration, and in vitro dry matter degradability (IVDMD) were determined using the in vitro gas production technique, while fiber degradability was assessed at 24 and 48 h using the ANKOM system. Increasing inclusion of M. oleifera significantly reduced asymptotic gas production, ME, SCFA concentration, and IVD…",
+   "meta": {
+    "institutions": [
+     "Autonomous University of Tamaulipas",
+     "Universidad Autónoma del Estado de México",
+     "Massey University",
+     "Consejo Nacional de Investigaciones Científicas y Técnicas",
+     "Universidad de Buenos Aires",
+     "Instituto de Investigación en Producción Animal"
+    ],
+    "countries": [
+     "MX",
+     "NZ",
+     "AR"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7214647102"
+   },
+   "rank": 24,
+   "queries": [
+    "volatile fatty acids anaerobic fermentation"
+   ],
+   "sid": "S68"
+  }
+ ]
+}

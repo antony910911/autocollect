@@ -1,0 +1,444 @@
+{
+ "week": "2026-W42",
+ "date_range": "2026-09-28 ～ 2026-10-12（論文回溯 60 天）",
+ "status": [
+  {
+   "source": "Google News [zh-TW] 法尼烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 金合歡烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 角鯊烷 甘蔗",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [zh-TW] 生物基 角鯊烷",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 合成生物 萜烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 倍半萜 發酵",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 合成生物學 化妝品 原料",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [zh-CN] 法尼烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-CN] 金合欢烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-CN] 角鲨烷 生物发酵",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-CN] 合成生物 萜类",
+   "ok": true,
+   "count": 8
+  },
+  {
+   "source": "Google News [zh-CN] 法呢烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] farnesene",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] \"beta-farnesene\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] \"alpha-farnesene\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] farnesane",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] squalane sugarcane OR \"biobased squalane\" OR \"bio-squalane\"",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] \"liquid farnesene rubber\" OR \"farnesene rubber\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] sesquiterpene fermentation",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] \"synthetic biology\" terpene ingredient",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] Amyris farnesene OR squalane",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] \"aphid alarm pheromone\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:cosmeticsdesign.com squalane OR farnesene OR terpene",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:synbiobeta.com terpene OR farnesene OR fermentation",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] site:biofuelsdigest.com farnesene OR farnesane OR terpene",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:labiotech.eu terpene OR squalane OR biomanufacturing",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [ja] ファルネセン",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [ja] スクワラン 発酵",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 farnesene",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 beta-farnesene production",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 alpha-farnesene biosynthesis",
+   "ok": true,
+   "count": 16
+  },
+  {
+   "source": "論文 farnesene synthase",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesene Yarrowia lipolytica",
+   "ok": true,
+   "count": 8
+  },
+  {
+   "source": "論文 farnesene Saccharomyces cerevisiae",
+   "ok": true,
+   "count": 20
+  },
+  {
+   "source": "論文 farnesene Escherichia coli",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesene methanol OR CO2 OR cyanobacteria",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesane jet fuel",
+   "ok": true,
+   "count": 3
+  },
+  {
+   "source": "論文 squalane farnesene hydrogenation",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "論文 farnesene polymer rubber",
+   "ok": true,
+   "count": 4
+  },
+  {
+   "source": "論文 E-beta-farnesene aphid",
+   "ok": true,
+   "count": 5
+  },
+  {
+   "source": "論文 alpha-farnesene apple superficial scald",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 sesquiterpene metabolic engineering yeast",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 mevalonate pathway farnesyl pyrophosphate engineering",
+   "ok": true,
+   "count": 25
+  }
+ ],
+ "stats": {
+  "total": 6,
+  "by_kind": {
+   "news": 2,
+   "paper": 4
+  },
+  "by_lang": {
+   "zh-CN": 2,
+   "en": 4
+  },
+  "top_queries": [
+   [
+    "合成生物 萜类",
+    2
+   ],
+   [
+    "mevalonate pathway farnesyl pyrophosphate engineering",
+    2
+   ],
+   [
+    "farnesene Escherichia coli",
+    1
+   ],
+   [
+    "sesquiterpene metabolic engineering yeast",
+    1
+   ]
+  ],
+  "paper_countries": [
+   [
+    "CN",
+    2
+   ],
+   [
+    "MY",
+    1
+   ],
+   [
+    "IQ",
+    1
+   ]
+  ],
+  "paper_institutions": [
+   [
+    "First Affiliated Hospital of Henan University",
+    1
+   ],
+   [
+    "Fujian Agriculture and Forestry University",
+    1
+   ],
+   [
+    "Chinese Academy of Medical Sciences & Peking Union Medical College",
+    1
+   ],
+   [
+    "China Academy of Chinese Medical Sciences",
+    1
+   ],
+   [
+    "International Islamic University Malaysia",
+    1
+   ],
+   [
+    "University of Diyala",
+    1
+   ],
+   [
+    "Wuhan Institute of Technology",
+    1
+   ],
+   [
+    "Haisco Pharmaceutical Group Co., Ltd. (China)",
+    1
+   ],
+   [
+    "Sun Yat-sen University",
+    1
+   ],
+   [
+    "Fifth Affiliated Hospital of Sun Yat-sen University",
+    1
+   ]
+  ],
+  "top_media": [
+   [
+    "生物通",
+    2
+   ]
+  ]
+ },
+ "items": [
+  {
+   "kind": "news",
+   "title": "番石榴果实发育过程中挥发性香气生物合成的多组学解析及其潜在调控机制研究",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBPWXcxZ3Zoby1wdEtTRElXQkZwVU5KQ1FrdkVwbGZqbGNKb3VoSXJYN3Q3VlFBNzF2REZJeHM1d3Q5SEM0cGlzNzZaMHhOZ1A0cEZrZzhUN21zaUlHMThnSXB2VGY4MzY5T3JOQ21R?oc=5",
+   "source": "生物通",
+   "published": "2026-10-11",
+   "lang": "zh-CN",
+   "summary": "番石榴果实发育过程中挥发性香气生物合成的多组学解析及其潜在调控机制研究 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S1"
+  },
+  {
+   "kind": "news",
+   "title": "蘑菇色素的结构多样化与生物活性图谱：从生物合成到产业创新",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5CZ0JaTlYzY0xYb1dIcFJyZ2hKTXZiWGtEYlp6RUQ5ckZ0d3FVZmZ1OU9sblVEcDRqUzEzdDBIY3VoelVxcEVvRUdqT0JNVDJwMzlwUUk5S0xIOVNNUTh0WkpzX0hUZnRVX01zZzNn?oc=5",
+   "source": "生物通",
+   "published": "2026-10-11",
+   "lang": "zh-CN",
+   "summary": "蘑菇色素的结构多样化与生物活性图谱：从生物合成到产业创新 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S2"
+  },
+  {
+   "kind": "paper",
+   "title": "Spatial metabolomics reveals brassinosteroid-mediated compartmentalization of saikosaponin biosynthesis in Bupleurum chinense DC. under abiotic stress",
+   "url": "https://doi.org/10.1016/j.plaphy.2026.111839",
+   "source": "Plant Physiology and Biochemistry",
+   "published": "2026-10-01",
+   "lang": "en",
+   "summary": "Although the biosynthesis of active ingredients in medicinal plants is co-regulated by diverse environmental stimuli, the endocrine mechanism by which brassinosteroids (BRs) coordinate physiological resilience with the in situ spatial distribution of saikosaponins in Bupleurum chinense DC. under combined drought and salinity remains largely elusive. We hypothesized that exogenous brassinosteroids (BRs) application alleviates oxidative impairment provoked by single and combined osmotic/ionic stresses while orchestrating the tissue-level topological routing of saikosaponin biosynthesis. Here, B. chinense seedlings were exposed to drought (15% PEG6000), salinity (150 mM NaCl), and combined stre…",
+   "meta": {
+    "institutions": [
+     "First Affiliated Hospital of Henan University",
+     "Fujian Agriculture and Forestry University",
+     "Chinese Academy of Medical Sciences & Peking Union Medical College",
+     "China Academy of Chinese Medical Sciences"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221081699"
+   },
+   "rank": 16,
+   "queries": [
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S3"
+  },
+  {
+   "kind": "paper",
+   "title": "Current developments on taxonomy, agronomy, bioactivity and in vitro micropropagation of two Malaysian ginger varieties: Zingiber officinale Rosc cv. Bentong and Zingiber officinale Rosc cv. Rubrum",
+   "url": "https://doi.org/10.14719/pst.9757",
+   "source": "Plant Science Today",
+   "published": "2026-09-24",
+   "lang": "en",
+   "summary": "Zingiber officinale Rosc., or ginger, is a widely cultivated tropical herb species belonging to the family Zingiberaceae. Ginger is renowned for its medicinal and culinary uses. In Malaysia, two prominent ginger varieties, Z. officinale Rosc. cv. Bentong (Bentong ginger) and Z. officinale Rosc. cv. Rubrum (red ginger), are highly valued for their distinctive properties and significant economic importance. Bentong ginger, recognised by its geographical indication associated with the Bentong district of Pahang, is characterised by elongated leafy stems up to 90 cm in height arising from large, horn-shaped rhizomes with a strong aroma and high phenolic contents. Owing to its high medicinal valu…",
+   "meta": {
+    "institutions": [
+     "International Islamic University Malaysia"
+    ],
+    "countries": [
+     "MY"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7214223028"
+   },
+   "rank": 24,
+   "queries": [
+    "farnesene Escherichia coli"
+   ],
+   "sid": "S4"
+  },
+  {
+   "kind": "paper",
+   "title": "Antimicrobial Activity and Antioxidant Potential of Peppermint Essential Oil (Mentha piperita L.) Against Selected Pathogenic Microorganisms Extracted via Hydrodistillation with Electromagnetic Field (EMF) Pre-treatment",
+   "url": "https://doi.org/10.47419/bjbabs.v7i4.539",
+   "source": "Baghdad Journal of Biochemistry and Applied Biological Sciences",
+   "published": "2026-09-04",
+   "lang": "en",
+   "summary": "Background: Antimicrobial resistance is increasing concerns, and there is interest in natural antimicrobials including plant essential oils, which are potentially induced to be of higher quality by non-thermal methods such as low-frequency electromagnetic field pre-treatment. The aim of this objective is to extract and characterise Mentha piperita essential oil, pre-treating the seeds with Electrosonics wave (EMF) in order to test its antimicrobial and antioxidant activity. Three seed treatments (Control; Dry hydrodistilled for 30 min; Wet soaking hydrodistilled for 60 min at power 3.8 mT/60 Hz) underwent hydrodistillation (3 h) and subsequent analysis by GC-MS while antimicrobial activity w…",
+   "meta": {
+    "institutions": [
+     "University of Diyala"
+    ],
+    "countries": [
+     "IQ"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7207667737"
+   },
+   "rank": 24,
+   "queries": [
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S5"
+  },
+  {
+   "kind": "paper",
+   "title": "Engineered strains as living factories: efficient biosynthesis and modification of natural products via synthetic biology and one-pot chemical tandem reactions",
+   "url": "https://doi.org/10.3389/fmicb.2026.1891602",
+   "source": "Frontiers in Microbiology",
+   "published": "2026-08-18",
+   "lang": "en",
+   "summary": "Natural products are a crucial source for drug discovery, but their traditional development is limited by resource availability, efficiency, chemical complexity, and the difficulty of rapidly diversifying biologically active scaffolds. This review addresses the central question of how biosynthetic precision and chemical diversification can be coupled when conventional metabolic engineering alone cannot fully overcome low titers, enzyme promiscuity limits, intermediate toxicity, and scale-up heterogeneity. We examine engineered strains as microbial living factories that construct stereochemically complex cores from renewable feedstocks, and one-pot chemical tandem reactions as complementary t…",
+   "meta": {
+    "institutions": [
+     "Wuhan Institute of Technology",
+     "Haisco Pharmaceutical Group Co., Ltd. (China)",
+     "Sun Yat-sen University",
+     "Fifth Affiliated Hospital of Sun Yat-sen University"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7203714134"
+   },
+   "rank": 24,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S6"
+  }
+ ]
+}
