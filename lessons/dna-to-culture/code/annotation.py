@@ -300,6 +300,79 @@ def cmd_fix_gff(args):
           "注意 11 個完全相同的拷貝彼此是多重對應，計數工具要設定成「整個陣列當一個單位」。")
 
 
+
+# ────────────────────────── 把插入點旁邊的鄰居抽出來 ──────────────────────────
+NEIGHBOUR_README = """# 插入點旁邊那兩個基因
+
+那段外來 DNA 插進去的地方，是兩個基因中間的空地。兩個基因本身都**沒有被壓到**，
+但右邊那個的「開關區」被蓋掉了大半（只剩 {gap} bp 原生序列）。
+
+問題是：**這兩個基因是做什麼的，定序廠的註解查不出來**——
+KEGG、GO、Pfam 三個資料庫都沒有命中。
+所以這裡把它們的蛋白質序列抽出來，讓你拿去查。
+
+## 怎麼查（在你自己的電腦或瀏覽器上）
+
+### 最快的一條：網頁版 BLAST
+
+1. 開 <https://blast.ncbi.nlm.nih.gov/Blast.cgi>，選 **blastp**。
+2. 把 `downstream.faa` 的內容整個貼進去（就是開關被蓋掉的那一個，比較重要）。
+3. Database 選 `nr`，按 BLAST。等一兩分鐘。
+4. 看前幾名的 **Description** 和 **Per. Ident**：
+   - 命中紅酵母或近緣真菌、相似度 >70% → 名稱大致可信
+   - 只命中「hypothetical protein」→ 這個蛋白質學界也還不知道是什麼
+   - 完全沒有像樣的命中 → 可能是這株菌特有的
+
+### 另一條：去 JGI 查同一個基因
+
+這株菌的參考基因體 `Rhoto_IFO0880_4` 在 JGI MycoCosm
+（<https://mycocosm.jgi.doe.gov/Rhoto_IFO0880_4/>，要註冊）。
+那份註解做得比定序廠這份好。把序列貼進它的 BLAST 介面，
+找到對應的基因編號之後，就能看到 JGI 給的功能描述與表現量資料。
+
+## 查到之後要回頭看什麼
+
+如果 `downstream` 那個基因是**代謝相關**的（酵素、轉運蛋白），
+那它的開關被動到就可能直接影響代謝，要列進實驗要量的項目。
+
+如果它是**調控蛋白**（轉錄因子、訊息傳遞），影響可能更廣但更難預測。
+
+如果它是**功能不明或非必需**的，那這件事就可以放下，專心處理拷貝數與前驅物競爭。
+
+不管答案是哪一個，最直接的驗證都是同一件事：
+**用 RNA-seq 比較兩株這個基因的表現量差多少。**
+"""
+
+
+def cmd_neighbours(args):
+    """把插入點上下游那兩個基因的蛋白質序列抽出來，附上怎麼查的說明。"""
+    folder = Path(args.dir)
+    lens = read_faa_lengths(_pick(folder, ".faa"))
+    seqs, cur = {}, None
+    for line in _pick(folder, ".faa").open():
+        if line.startswith(">"):
+            cur = re.sub(r"_(mRNA|CDS|protein).*$", "",
+                         re.split(r"[\s|]", line[1:].strip())[0])
+            seqs[cur] = []
+        elif cur:
+            seqs[cur].append(line.strip())
+    seqs = {k: "".join(v) for k, v in seqs.items()}
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    for tag, gid, what in (("upstream", args.upstream, "插入點上游；3' 端朝著插入點"),
+                           ("downstream", args.downstream, "插入點下游；開關區被蓋掉的就是這個")):
+        key = next((k for k in seqs if k.startswith(gid)), None)
+        if key is None:
+            raise SystemExit(f"{folder} 的蛋白質檔裡找不到 {gid}")
+        s = seqs[key]
+        body = "\n".join(s[i:i + 60] for i in range(0, len(s), 60))
+        (out / f"{tag}.faa").write_text(f">{gid} {len(s)}aa | {what}\n{body}\n")
+        print(f"寫入 {out}/{tag}.faa（{gid}，{len(s)} aa）")
+    (out / "README.md").write_text(NEIGHBOUR_README.format(gap=args.gap))
+    print(f"寫入 {out}/README.md")
+
+
 # ────────────────────────── gem-map ──────────────────────────
 GEM_README = """# 把 rhto-GEM 的基因對到你的 g_##### ID
 
@@ -431,6 +504,14 @@ def main(argv=None):
     s.add_argument("--copies", default="case_rt.json", help="case_rt.py 的輸出")
     s.add_argument("-o", "--out", required=True)
     s.set_defaults(fn=cmd_fix_gff)
+
+    s = sub.add_parser("neighbours", help="抽出插入點上下游兩個基因的蛋白質序列")
+    s.add_argument("--dir", required=True, help="沒有插入的那一株的註解資料夾")
+    s.add_argument("--upstream", default="g_05720")
+    s.add_argument("--downstream", default="g_05721")
+    s.add_argument("--gap", type=int, default=39, help="下游基因還剩幾 bp 原生序列")
+    s.add_argument("-o", "--out", default="insertion-neighbours")
+    s.set_defaults(fn=cmd_neighbours)
 
     s = sub.add_parser("gem-map", help="產生 rhto-GEM 基因對照所需的指令與腳本")
     s.add_argument("--faa", required=True)

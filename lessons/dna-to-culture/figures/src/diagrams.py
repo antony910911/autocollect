@@ -1452,6 +1452,159 @@ def fig17_independent():
     return s
 
 
+
+def fig17_site():
+    """白話版：那 76 kb 插在哪裡，動到了什麼。"""
+    a = json.loads((CODE / "annotation.json").read_text("utf-8"))
+    s_ = a["insertion_site"]
+    up, dn = s_["upstream"], s_["downstream"]
+
+    s = Svg(1460, 1020, "圖 17-11　那段外來 DNA 插在哪裡：兩個基因中間的空地")
+    s.text(40, 80, "基因在染色體上不是一個挨著一個，中間有空地。"
+                   "這次 76,217 bp 的外來 DNA **正好插在空地上**——所以沒有壓壞任何一個基因。",
+           size=15.5, color=MUTED)
+
+    GA, GB = TEAL, BLUE
+    # ── 上排：插入之前 ──
+    y = 160
+    s.text(40, y - 16, "插入之前", size=19, weight=700)
+    s.box(40, y, 300, 76, "基因 A", color=GA, size=18, sub="它的結尾在這裡", sub_size=13)
+    s.raw(f'<rect x="352" y="{y}" width="340" height="76" rx="8" fill="#f3f4f7" '
+          f'stroke="#c7ccd6" stroke-width="2" stroke-dasharray="7 5"/>')
+    s.text(522, y + 34, "空地", size=18, weight=700, anchor="middle", color=MUTED)
+    s.text(522, y + 58, "240 bp，沒有基因", size=13.5, anchor="middle", color=MUTED)
+    s.box(704, y, 300, 76, "基因 B", color=GB, size=18, sub="它的開頭在這裡", sub_size=13)
+    s.text(1032, y + 30, "基因 B 的「開關」就住在", size=14, color=GB, weight=700)
+    s.text(1032, y + 54, "空地靠近它的那一段", size=14, color=GB, weight=700)
+
+    # ── 下排：插入之後 ──
+    y2 = 332
+    s.text(40, y2 - 16, "插入之後", size=19, weight=700)
+    s.box(40, y2, 300, 76, "基因 A", color=GA, size=18, sub="完好", sub_size=13)
+    s.raw(f'<rect x="352" y="{y2}" width="92" height="76" rx="6" fill="#f3f4f7" '
+          f'stroke="#c7ccd6" stroke-width="2"/>')
+    s.text(398, y2 + 42, f'{up["distance_bp"] + 1} bp', size=13.5, anchor="middle", color=MUTED)
+    s.raw(f'<rect x="452" y="{y2}" width="80" height="76" rx="6" fill="{tint(RED, 0.9)}" '
+          f'stroke="{RED}" stroke-width="2" stroke-dasharray="5 4"/>')
+    s.text(492, y2 + 36, "59 bp", size=13.5, anchor="middle", weight=700, color=RED)
+    s.text(492, y2 + 58, "被鏟掉", size=13, anchor="middle", color=RED)
+    # 外來 DNA：比例差太多，中間用斷尺符號
+    s.raw(f'<rect x="540" y="{y2}" width="574" height="76" rx="8" fill="{tint(PURPLE, 0.86)}" '
+          f'stroke="{PURPLE}" stroke-width="2.5"/>')
+    s.raw(f'<path d="M812,{y2} l-14,38 l14,38" fill="none" stroke="#ffffff" stroke-width="5"/>')
+    s.raw(f'<path d="M826,{y2} l-14,38 l14,38" fill="none" stroke="#ffffff" stroke-width="5"/>')
+    s.text(676, y2 + 34, "外來 DNA 陣列", size=18, weight=700, anchor="middle", color=PURPLE)
+    s.text(676, y2 + 58, "76,217 bp（圖上畫不下，中間折斷）", size=12.5, anchor="middle", color=PURPLE)
+    s.text(972, y2 + 44, "12 份產物基因", size=13.5, anchor="middle", color=PURPLE)
+    s.raw(f'<rect x="1122" y="{y2}" width="46" height="76" rx="6" fill="{tint(ORANGE, 0.88)}" '
+          f'stroke="{ORANGE}" stroke-width="2"/>')
+    s.text(1145, y2 + 44, f'{dn["distance_bp"] - 1}', size=13.5, anchor="middle",
+           weight=700, color=ORANGE)
+    s.text(1145, y2 + 104, f'只剩 {dn["distance_bp"] - 1} bp', size=13, anchor="middle",
+           color=ORANGE, weight=700)
+    s.text(1145, y2 + 126, "原本的開關區", size=13, anchor="middle", color=ORANGE)
+    s.box(1180, y2, 240, 76, "基因 B", color=GB, size=18, sub="本體完好", sub_size=13)
+
+    s.card(40, 496, 440, ["基因 B 做出來的蛋白質和原本**逐字完全相同**",
+                          "1,441 個胺基酸，一個都沒差",
+                          "基因 A 也一樣，沒有被切到"],
+           title="好消息：基因本身都沒事", icon="circle-check", color=GREEN, size=15,
+           foot="所以這不是「把某個基因打壞了」的那種基改")
+
+    s.card(510, 496, 440, [f'開關區原本有 240 bp，現在只剩 {dn["distance_bp"] - 1} bp',
+                           "基因還在，但它「什麼時候開、開多大」",
+                           "很可能已經不照原本的規則了"],
+           title="壞消息：基因 B 的開關被蓋住", icon="triangle-alert", color=ORANGE, size=15,
+           foot="開關＝基因前面那一小段 DNA，決定這個基因何時工作")
+
+    s.card(980, 496, 440, ["KEGG、GO、Pfam 三個資料庫都查不到",
+                           "在這株菌自己的蛋白質裡也找不到親戚",
+                           "所以「被影響的是什麼功能」現在答不出來"],
+           title="問題：基因 B 是做什麼的？", icon="circle-help", color=RED, size=15,
+           foot="序列已經抽出來放在 code/insertion-neighbours/，拿去 BLAST 就知道")
+
+    s.box(40, 756, 1380, 118, "", color=BLUE, fill=tint(BLUE, 0.95))
+    s.icon("lightbulb", 72, 786, 26, BLUE, 2.1)
+    s.text(116, 808, "「開關」是什麼意思", size=18, weight=700)
+    s.text(72, 844, "每個基因前面都有一小段不會被做成蛋白質的 DNA，它決定這個基因什麼時候開工、開多大。"
+                    "把它換掉，基因本身還是好的，", size=15)
+    s.text(72, 868, "但它可能在該忙的時候睡覺、在該休息的時候加班——"
+                    "所以「基因沒壞」和「基因照常工作」是兩件事。", size=15)
+
+    s.box(40, 896, 1380, 104, "", color=GREEN, fill=tint(GREEN, 0.94))
+    s.icon("target", 72, 924, 26, GREEN, 2.1)
+    s.text(116, 946, "怎麼確認它到底有沒有被影響", size=18, weight=700)
+    s.text(72, 982, "拿兩株菌做 RNA-seq，比較基因 B 的表現量差多少。這是唯一直接的辦法——"
+                    "而且用 annotation.py 修過的 GFF 就能做。", size=15)
+    return s
+
+
+def fig17_fpp_users():
+    """白話版：FPP 是好幾個人共用的一桶原料。"""
+    s = Svg(1480, 1040, "圖 17-12　FPP 這桶原料，本來就有六個人在用")
+    s.text(40, 80, "轉進去的酵素不是去搶一個沒人要的東西。**FPP 是細胞裡的共用原料**，"
+                   "原本就有六條路在拿它，現在多了第七條。", size=15.5, color=MUTED)
+
+    CX, CY = 300, 440
+    s.raw(f'<rect x="{CX - 130}" y="{CY - 80}" width="260" height="160" rx="16" '
+          f'fill="{tint(TEAL, 0.84)}" stroke="{TEAL}" stroke-width="3"/>')
+    s.text(CX, CY - 24, "FPP", size=34, weight=700, anchor="middle", color=TEAL)
+    s.text(CX, CY + 10, "一桶共用的原料", size=16, anchor="middle")
+    s.text(CX, CY + 40, "（法呢基焦磷酸）", size=13, anchor="middle", color=MUTED)
+
+    s.box(40, 170, 520, 92, "", color=BROWN, fill=tint(BROWN, 0.93))
+    s.icon("droplet", 68, 198, 24, BROWN, 2.1)
+    s.text(104, 218, "更上游：乙醯輔酶A", size=18, weight=700, color=BROWN)
+    s.text(68, 248, "做 FPP 要先有它——而**油脂也跟它拿**，這才是搶碳的主戰場。", size=14.5)
+    s.arrow([(300, 266), (300, 356)], color=BROWN, width=3)
+
+    users = [
+        (GREEN, "leaf", "麥角固醇", "細胞膜的硬度調節",
+         "膜太軟太硬都長不好；這條不能關掉"),
+        (RED, "sun", "類胡蘿蔔素", "紅色色素、抗氧化",
+         "就是害 OD600 量不準的那個"),
+        (PURPLE, "link", "蛋白質的「標籤」", "讓訊息蛋白黏得住膜",
+         "量很少，但少了訊息傳不出去"),
+        (BLUE, "zap", "泛醌（CoQ）", "呼吸鏈的送電員",
+         "常被忘記；它出問題會先反映在耗氧量"),
+        (ORANGE, "layers", "dolichol", "幫蛋白質接糖鏈的輸送帶",
+         "常被忘記；它出問題細胞壁會變弱"),
+        (GREY, "cpu", "heme A", "呼吸鏈最後一棒的零件",
+         "常被忘記；也是呼吸那一邊的"),
+    ]
+    for i, (col, ic, name, what, note) in enumerate(users):
+        yy = 170 + i * 128
+        x = 700
+        s.box(x, yy, 740, 104, "", color=col, fill=tint(col, 0.95))
+        s.icon(ic, x + 24, yy + 26, 24, col, 2.1)
+        s.text(x + 60, yy + 46, name, size=18, weight=700, color=col)
+        s.text(x + 230, yy + 46, what, size=15.5)
+        s.text(x + 24, yy + 80, note, size=14, color=MUTED)
+        s.arrow([(CX + 132, CY), (620, CY), (620, yy + 52), (x - 4, yy + 52)],
+                color=col, width=2.2)
+
+    s.raw(f'<rect x="700" y="938" width="740" height="88" rx="10" '
+          f'fill="{tint(TEAL, 0.88)}" stroke="{TEAL}" stroke-width="3"/>')
+    s.icon("star", 724, 962, 24, TEAL, 2.2)
+    s.text(760, 982, "α-farnesene", size=18, weight=700, color=TEAL)
+    s.text(930, 982, "你要的產物（第七個來拿原料的）", size=15.5)
+    s.text(724, 1012, "12 份拷貝一起拿——但實際拿走多少，要量了才知道", size=14, color=MUTED)
+    s.arrow([(CX + 132, CY), (620, CY), (620, 982), (696, 982)], color=TEAL, width=3)
+
+    s.card(40, 560, 520, ["這六條分支是生化課本上的事實",
+                          "但**你的菌被搶走多少，目前沒有數據**",
+                          "而且很可能小到量不出來"],
+           title="這張圖是在講「有哪些人在排隊」", icon="circle-alert", color=MUTED, size=14.5,
+           foot="不是在講「每個人被搶走多少」——那要實驗才知道")
+
+    s.card(40, 790, 520, ["把色素全部關掉，最多換回 1–5 mg/g 產物",
+                          "同一時間，油脂是 500–700 mg/g",
+                          "所以真正該動的是油脂那一邊，不是色素"],
+           title="一個有數字的例子", icon="chart-column", color=BROWN, size=14.5,
+           foot="算法見 17.9；用異戊二烯單元換算")
+    return s
+
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig2-2-clues": fig2_clues, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
@@ -1463,6 +1616,7 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig17-6-pathway": fig17_pathway,
         "fig17-8-states": fig17_states,
         "fig17-10-independent": fig17_independent,
+        "fig17-11-site": fig17_site, "fig17-12-fpp-users": fig17_fpp_users,
         "fig18-2-strategy": fig18_strategy,
         "fig17-9-overlay": fig17_overlay, "fig15-4-cell": fig15_cell,
         "fig10-4-vessels": fig10_vessels,
