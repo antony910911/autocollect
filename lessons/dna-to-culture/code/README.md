@@ -32,10 +32,11 @@ cd ../simulator && python build.py   # 產生互動模擬器 index.html
 | `example-data/` | `batches.csv`（條件，每批一列）與 `samples.csv`（量測，每次取樣一列）——可以直接當你的資料範本 |
 | `genome_tools.py` | 第 2、15、16 章：組裝統計、野生株 vs 基改株的 k-mer 比對、找 ORF 與模體、定位插入點、產生完整註解流程的指令稿 |
 | `engineered.py` | 第 16 章：把異源反應加進模型、算生產包絡線與成長耦合 |
+| `annotation.py` | 第 17 章：讀定序廠的註解包（GFF／faa／xlsx）。`summary` 用 Pfam 家族計數獨立驗證拷貝數並看插入點旁邊有什麼；`fix-gff` 把轉殖基因修成單一 exon（RNA-seq 計數前必做）；`gem-map` 產生 rhto-GEM 基因對照的指令與腳本（比對要在你自己的電腦上跑）。需要 `openpyxl` |
 | `yeast.py` | 第 15 章：載入 Yeast8／rhto-GEM 等酵母菌模型、檢查、設厭氧、剔除基因（需自行下載模型，要在你自己的電腦上跑） |
 | `make_figures.py` | 畫教材的圖 |
 | `map_layout.json` | 中心代謝流量圖的版面（第 4 章圖與模擬器共用） |
-| `tables.json`、`results.json`、`protocol.json`、`calibration.json` | 最近一次的計算結果（教材引用的就是這份） |
+| `tables.json`、`results.json`、`protocol.json`、`calibration.json`、`annotation.json` | 最近一次的計算結果（教材引用的就是這份） |
 
 ## 換成你的菌
 

@@ -1359,6 +1359,90 @@ def fig2_clues():
     return s
 
 
+
+def fig17_independent():
+    """兩個互不知情的方法得到同一個答案——以及唯一不吻合的那一項。"""
+    a = json.loads((CODE / "annotation.json").read_text("utf-8"))
+    c = json.loads((CODE / "case_rt.json").read_text("utf-8"))
+    d = a["delta"]
+    ap = a["afs_predicted"]
+    copies = c["wt_afs_copies"]
+    intact = sum(1 for x in copies if x["intact"])
+    site = a["insertion_site"]
+
+    s = Svg(1480, 1100, "圖 17-10　兩個獨立方法得到同一個答案")
+    s.text(40, 80, "一個只比對鹼基、不管功能；一個只看蛋白質結構域、不知道構築長什麼樣子。"
+                   "**兩邊對上了，結論才算數。**", size=15.5, color=MUTED)
+
+    L, R, W = 40, 780, 660
+    s.box(L, 140, W, 92, "", color=BLUE, fill=tint(BLUE, 0.93))
+    s.icon("dna", L + 26, 168, 26, BLUE, 2.1)
+    s.text(L + 64, 190, "方法 A：k-mer 錨點追蹤", size=19, weight=700, color=BLUE)
+    s.text(L + 26, 218, "拿構築序列去基因體上逐鹼基比對。不知道那是什麼基因。", size=14, color=MUTED)
+
+    s.box(R, 140, W, 92, "", color=PURPLE, fill=tint(PURPLE, 0.93))
+    s.icon("scan-search", R + 26, 168, 26, PURPLE, 2.1)
+    s.text(R + 64, 190, "方法 B：定序廠的功能註解", size=19, weight=700, color=PURPLE)
+    s.text(R + 26, 218, "AUGUSTUS 預測基因，再用 Pfam／KEGG 比對結構域。不知道有構築。",
+           size=14, color=MUTED)
+
+    rows = [
+        (f'{len(copies)} 個 AFS 拷貝', f'萜類合成酶 {d["terpene_synthase"]["wt"]} 個'
+         f'（另一株 {d["terpene_synthase"]["mut"]} 個）'),
+        ('T-DNA 進去 11–12 份', f'GNAT 乙醯轉移酶 {d["gnat"]["wt"]} vs {d["gnat"]["mut"]}'
+         f'，差 {d["gnat"]["delta"]} 個'),
+        ('骨架 2–3 份', f'RepA／Resolvase／ParA 各 {d["rep_initiator"]["wt"]} vs '
+         f'{d["rep_initiator"]["mut"]}'),
+        (f'{intact} 個與設計零差異、1 個斷掉',
+         f'{ap["n"] - 1} 個同長度、1 個長度不同'),
+    ]
+    for i, (a_txt, b_txt) in enumerate(rows):
+        y = 268 + i * 62
+        s.box(L, y, W, 52, "", color=BLUE, fill="#ffffff")
+        for j, ln in enumerate(wrap(a_txt, 15, W - 48)):
+            s.text(L + 24, y + 32 + j * 20, ln, size=15)
+        s.box(R, y, W, 52, "", color=PURPLE, fill="#ffffff")
+        for j, ln in enumerate(wrap(b_txt, 15, W - 48)):
+            s.text(R + 24, y + 32 + j * 20, ln, size=15)
+        s.icon("equal", 722, y + 14, 24, GREEN, 2.4)
+
+    s.box(40, 528, 1400, 86, "", color=GREEN, fill=tint(GREEN, 0.93))
+    s.icon("circle-check", 72, 556, 26, GREEN, 2.1)
+    s.text(116, 578, "四項全部對上", size=19, weight=700, color=GREEN)
+    s.text(116, 604, "拷貝數不是 k-mer 方法的假象。剩下要解釋的只有一件事："
+                     "為什麼標示為基改株的那一份反而沒有插入。", size=15)
+
+    s.card(40, 646, 700, [
+        f'AUGUSTUS 把 {ap["exon_counts"].get("3", 0)} 個拷貝切成 3 個 exon，'
+        f'預測成 {max(ap["aa_counts"], key=lambda k: ap["aa_counts"][k])} aa',
+        f'正確答案是**單一 exon、{ap["true_aa"]} aa**——AFS 是 cDNA 來的，本來就沒有內含子',
+        "AUGUSTUS 是真核預測器，它的先驗就是「基因有內含子」",
+    ], title="但有一項不吻合", icon="triangle-alert", color=RED, size=14.5,
+        foot="直接拿這份 GFF 做 RNA-seq 計數，AFS 的讀序會被分到錯的轉錄本模型上")
+
+    s.card(770, 646, 670, [
+        "先用 annotation.py 的 fix-gff 把陣列那段換成單 exon 模型",
+        "11 個拷貝序列完全相同，計數時要當成**一個單位**，不要分 11 個基因算",
+        "修過之後翻譯驗證：11 個都是 576 aa、起頭 MEFRVHLQA",
+    ], title="所以要先修再用", icon="wrench" if False else "settings", color=GREEN, size=14.5,
+        foot="這一步不修不會報錯，只會讓表現量算錯——和第 3 章資料洩漏同一類的坑")
+
+    u, dn = site["upstream"], site["downstream"]
+    gid = lambda g: g["id"].replace("_", "\\_")   # noqa: E731  svgkit 的 _ 是下標記號
+    s.box(40, 880, 1400, 190, "", color=BROWN, fill=tint(BROWN, 0.95))
+    s.icon("map-pin" if False else "target", 72, 910, 26, BROWN, 2.1)
+    s.text(116, 932, "順便回答了一個之前答不出來的問題：插入點有沒有打斷基因", size=19,
+           weight=700, color=BROWN)
+    s.text(72, 972, f'沒有。{site["contig"]} {site["start"]:,}–{site["end"]:,} 落在兩個基因**之間**：'
+                    f'上游 {gid(u)} 隔 {u["distance_bp"]} bp、下游 {gid(dn)} 隔 '
+                    f'{dn["distance_bp"]} bp。', size=15)
+    s.text(72, 1004, f'但 **下游只隔 {dn["distance_bp"]} bp**——76 kb 的陣列幾乎確定坐在 '
+                     f'{gid(dn)} 的啟動子區裡，那個基因的表現很可能被改掉了。', size=15)
+    s.text(72, 1036, "而且這兩個鄰居在註解裡沒有任何 KEGG／GO／Pfam 命中，"
+                     "所以「被影響的是什麼」目前答不出來。", size=15, color=MUTED)
+    return s
+
+
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig2-2-clues": fig2_clues, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
@@ -1369,6 +1453,7 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig17-3-array": fig17_array, "fig17-5-junction": fig17_junction,
         "fig17-6-pathway": fig17_pathway,
         "fig17-8-states": fig17_states,
+        "fig17-10-independent": fig17_independent,
         "fig18-2-strategy": fig18_strategy,
         "fig17-9-overlay": fig17_overlay, "fig15-4-cell": fig15_cell,
         "fig10-4-vessels": fig10_vessels,

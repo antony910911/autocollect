@@ -3,3 +3,4 @@ numpy
 scipy
 scikit-learn
 matplotlib
+openpyxl        # 只有 annotation.py 讀註解 xlsx 時需要

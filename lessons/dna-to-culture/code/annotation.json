@@ -1,0 +1,865 @@
+{
+  "note": "由定序廠註解包產生；只用 Pfam／KEGG 家族計數，沒有用到 k-mer 分析的任何結果。",
+  "wt": {
+    "source": {
+      "xlsx": "#U76ca#U8fb2 x ITRI#U80e1#U82b3#U745c#U7814#U7a76#U54e1 - Rt_WT_#U57fa#U56e0#U8a3b#U89e3#U5217#U8868.xlsx",
+      "gff": "Rt_WT.gff",
+      "faa": "Rt_WT.faa"
+    },
+    "counts": {
+      "cds": 8421,
+      "known_cds": 0,
+      "hypothetical_cds": 8421,
+      "rna": 270,
+      "rrna": 20,
+      "trna": 250,
+      "gff_gene_features": 8677
+    },
+    "coverage": {
+      "kegg": {
+        "hit": 5816,
+        "no_hit": 2605
+      },
+      "pfam_rows": 8421
+    },
+    "families": {
+      "gnat": {
+        "n": 28,
+        "what": "GNAT 乙醯轉移酶（篩選標記；宿主本來也有）",
+        "genes": [
+          {
+            "id": "g_00369",
+            "ko": "",
+            "pathway": "",
+            "aa": 221,
+            "exons": 6,
+            "contig": "Contig1",
+            "start": 830355,
+            "end": 831302,
+            "strand": "+"
+          },
+          {
+            "id": "g_00471",
+            "ko": "ko:K20794",
+            "pathway": "",
+            "aa": 220,
+            "exons": 7,
+            "contig": "Contig1",
+            "start": 1074438,
+            "end": 1075469,
+            "strand": "-"
+          },
+          {
+            "id": "g_00891",
+            "ko": "",
+            "pathway": "",
+            "aa": 278,
+            "exons": 5,
+            "contig": "Contig10",
+            "start": 329738,
+            "end": 330802,
+            "strand": "+"
+          },
+          {
+            "id": "g_00892",
+            "ko": "",
+            "pathway": "",
+            "aa": 235,
+            "exons": 6,
+            "contig": "Contig10",
+            "start": 331130,
+            "end": 332125,
+            "strand": "+"
+          },
+          {
+            "id": "g_01100",
+            "ko": "ko:K00621",
+            "pathway": "Amino sugar and nucleotide sugar metabolism;Metabolic pathways;Biosynthesis of nucleotide sugars",
+            "aa": 175,
+            "exons": 4,
+            "contig": "Contig10",
+            "start": 878455,
+            "end": 879148,
+            "strand": "-"
+          },
+          {
+            "id": "g_01289",
+            "ko": "ko:K19952",
+            "pathway": "",
+            "aa": 358,
+            "exons": 3,
+            "contig": "Contig11",
+            "start": 407576,
+            "end": 408786,
+            "strand": "+"
+          },
+          {
+            "id": "g_03266",
+            "ko": "ko:K00670",
+            "pathway": "",
+            "aa": 266,
+            "exons": 4,
+            "contig": "Contig18",
+            "start": 6761,
+            "end": 7806,
+            "strand": "+"
+          },
+          {
+            "id": "g_03862",
+            "ko": "ko:K00657",
+            "pathway": "Arginine and proline metabolism;Metabolic pathways;Ferroptosis",
+            "aa": 178,
+            "exons": 3,
+            "contig": "Contig2",
+            "start": 614080,
+            "end": 614776,
+            "strand": "-"
+          },
+          {
+            "id": "g_04156",
+            "ko": "ko:K20791",
+            "pathway": "",
+            "aa": 153,
+            "exons": 7,
+            "contig": "Contig2",
+            "start": 1322172,
+            "end": 1323059,
+            "strand": "+"
+          },
+          {
+            "id": "g_04572",
+            "ko": "",
+            "pathway": "",
+            "aa": 629,
+            "exons": 8,
+            "contig": "Contig22",
+            "start": 86782,
+            "end": 89087,
+            "strand": "-"
+          },
+          {
+            "id": "g_04890",
+            "ko": "ko:K17972",
+            "pathway": "",
+            "aa": 216,
+            "exons": 6,
+            "contig": "Contig3",
+            "start": 171434,
+            "end": 172519,
+            "strand": "-"
+          },
+          {
+            "id": "g_05209",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 943936,
+            "end": 944511,
+            "strand": "-"
+          },
+          {
+            "id": "g_05212",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 953609,
+            "end": 954184,
+            "strand": "-"
+          },
+          {
+            "id": "g_05217",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 964784,
+            "end": 965359,
+            "strand": "-"
+          },
+          {
+            "id": "g_05219",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 970169,
+            "end": 970744,
+            "strand": "-"
+          },
+          {
+            "id": "g_05221",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 975553,
+            "end": 976128,
+            "strand": "-"
+          },
+          {
+            "id": "g_05223",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 981025,
+            "end": 981600,
+            "strand": "-"
+          },
+          {
+            "id": "g_05228",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 992783,
+            "end": 993358,
+            "strand": "-"
+          },
+          {
+            "id": "g_05230",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 998168,
+            "end": 998743,
+            "strand": "-"
+          },
+          {
+            "id": "g_05232",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 1003552,
+            "end": 1004127,
+            "strand": "-"
+          },
+          {
+            "id": "g_05234",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 1009024,
+            "end": 1009599,
+            "strand": "-"
+          },
+          {
+            "id": "g_05236",
+            "ko": "",
+            "pathway": "",
+            "aa": 192,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 1014409,
+            "end": 1014984,
+            "strand": "-"
+          },
+          {
+            "id": "g_05344",
+            "ko": "ko:K07739",
+            "pathway": "",
+            "aa": 557,
+            "exons": 12,
+            "contig": "Contig3",
+            "start": 1257906,
+            "end": 1260282,
+            "strand": "+"
+          },
+          {
+            "id": "g_07172",
+            "ko": "ko:K20793",
+            "pathway": "",
+            "aa": 274,
+            "exons": 4,
+            "contig": "Contig6",
+            "start": 1106841,
+            "end": 1108012,
+            "strand": "-"
+          },
+          {
+            "id": "g_07195",
+            "ko": "",
+            "pathway": "",
+            "aa": 256,
+            "exons": 2,
+            "contig": "Contig6",
+            "start": 1175960,
+            "end": 1176790,
+            "strand": "+"
+          },
+          {
+            "id": "g_07382",
+            "ko": "ko:K06062",
+            "pathway": "Viral life cycle - HIV-1;Notch signaling pathway;Thyroid hormone signaling pathway;Human T-cell leukemia virus 1 infection;Viral carcinogenesis",
+            "aa": 583,
+            "exons": 10,
+            "contig": "Contig7",
+            "start": 318105,
+            "end": 320378,
+            "strand": "+"
+          },
+          {
+            "id": "g_08630",
+            "ko": "",
+            "pathway": "",
+            "aa": 403,
+            "exons": 7,
+            "contig": "Contig9",
+            "start": 818166,
+            "end": 819702,
+            "strand": "-"
+          },
+          {
+            "id": "g_08638",
+            "ko": "",
+            "pathway": "",
+            "aa": 397,
+            "exons": 7,
+            "contig": "Contig9",
+            "start": 836117,
+            "end": 837635,
+            "strand": "+"
+          }
+        ]
+      },
+      "terpene_synthase": {
+        "n": 12,
+        "what": "萜類合成酶（AFS 本體）",
+        "genes": [
+          {
+            "id": "g_05210",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 944870,
+            "end": 947335,
+            "strand": "-"
+          },
+          {
+            "id": "g_05213",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 954543,
+            "end": 957008,
+            "strand": "-"
+          },
+          {
+            "id": "g_05216",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 541,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 961176,
+            "end": 962798,
+            "strand": "-"
+          },
+          {
+            "id": "g_05218",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 965718,
+            "end": 968183,
+            "strand": "-"
+          },
+          {
+            "id": "g_05220",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 971103,
+            "end": 973568,
+            "strand": "-"
+          },
+          {
+            "id": "g_05222",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 976487,
+            "end": 978952,
+            "strand": "-"
+          },
+          {
+            "id": "g_05224",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 981959,
+            "end": 984424,
+            "strand": "-"
+          },
+          {
+            "id": "g_05229",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 993717,
+            "end": 996182,
+            "strand": "-"
+          },
+          {
+            "id": "g_05231",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 999102,
+            "end": 1001567,
+            "strand": "-"
+          },
+          {
+            "id": "g_05233",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 1004486,
+            "end": 1006951,
+            "strand": "-"
+          },
+          {
+            "id": "g_05235",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 1009958,
+            "end": 1012423,
+            "strand": "-"
+          },
+          {
+            "id": "g_05237",
+            "ko": "ko:K14173",
+            "pathway": "Sesquiterpenoid and triterpenoid biosynthesis;Biosynthesis of secondary metabolites",
+            "aa": 682,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 1015343,
+            "end": 1017808,
+            "strand": "-"
+          }
+        ]
+      },
+      "rep_initiator": {
+        "n": 2,
+        "what": "Replication initiator protein A（質體骨架）",
+        "genes": [
+          {
+            "id": "g_05211",
+            "ko": "",
+            "pathway": "",
+            "aa": 392,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 948869,
+            "end": 950044,
+            "strand": "+"
+          },
+          {
+            "id": "g_05227",
+            "ko": "",
+            "pathway": "",
+            "aa": 392,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 988043,
+            "end": 989218,
+            "strand": "+"
+          }
+        ]
+      },
+      "resolvase": {
+        "n": 2,
+        "what": "Resolvase（質體骨架）",
+        "genes": [
+          {
+            "id": "g_05214",
+            "ko": "ko:K14060",
+            "pathway": "",
+            "aa": 229,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 958723,
+            "end": 959409,
+            "strand": "+"
+          },
+          {
+            "id": "g_05225",
+            "ko": "ko:K14060",
+            "pathway": "",
+            "aa": 229,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 986102,
+            "end": 986788,
+            "strand": "+"
+          }
+        ]
+      },
+      "para": {
+        "n": 2,
+        "what": "ParA（質體骨架）",
+        "genes": [
+          {
+            "id": "g_05215",
+            "ko": "ko:K03496",
+            "pathway": "",
+            "aa": 210,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 959708,
+            "end": 960337,
+            "strand": "+"
+          },
+          {
+            "id": "g_05226",
+            "ko": "ko:K03496",
+            "pathway": "",
+            "aa": 210,
+            "exons": 1,
+            "contig": "Contig3",
+            "start": 987087,
+            "end": 987716,
+            "strand": "+"
+          }
+        ]
+      }
+    }
+  },
+  "mut": {
+    "source": {
+      "xlsx": "#U76ca#U8fb2 x ITRI#U80e1#U82b3#U745c#U7814#U7a76#U54e1 - A13_4_#U57fa#U56e0#U8a3b#U89e3#U5217#U8868.xlsx",
+      "gff": "A13_4.gff",
+      "faa": "A13_4.faa"
+    },
+    "counts": {
+      "cds": 8386,
+      "known_cds": 0,
+      "hypothetical_cds": 8386,
+      "rna": 250,
+      "rrna": 26,
+      "trna": 224,
+      "gff_gene_features": 8623
+    },
+    "coverage": {
+      "kegg": {
+        "hit": 5789,
+        "no_hit": 2597
+      },
+      "pfam_rows": 8386
+    },
+    "families": {
+      "gnat": {
+        "n": 17,
+        "what": "GNAT 乙醯轉移酶（篩選標記；宿主本來也有）",
+        "genes": [
+          {
+            "id": "g_00232",
+            "ko": "",
+            "pathway": "",
+            "aa": 278,
+            "exons": 5,
+            "contig": "Contig1",
+            "start": 601201,
+            "end": 602265,
+            "strand": "+"
+          },
+          {
+            "id": "g_00233",
+            "ko": "",
+            "pathway": "",
+            "aa": 235,
+            "exons": 6,
+            "contig": "Contig1",
+            "start": 602593,
+            "end": 603588,
+            "strand": "+"
+          },
+          {
+            "id": "g_00442",
+            "ko": "ko:K00621",
+            "pathway": "Amino sugar and nucleotide sugar metabolism;Metabolic pathways;Biosynthesis of nucleotide sugars",
+            "aa": 175,
+            "exons": 4,
+            "contig": "Contig1",
+            "start": 1149918,
+            "end": 1150611,
+            "strand": "-"
+          },
+          {
+            "id": "g_00642",
+            "ko": "ko:K19952",
+            "pathway": "",
+            "aa": 358,
+            "exons": 3,
+            "contig": "Contig1",
+            "start": 1656366,
+            "end": 1657576,
+            "strand": "-"
+          },
+          {
+            "id": "g_01168",
+            "ko": "",
+            "pathway": "",
+            "aa": 629,
+            "exons": 8,
+            "contig": "Contig10",
+            "start": 882772,
+            "end": 885077,
+            "strand": "+"
+          },
+          {
+            "id": "g_01239",
+            "ko": "",
+            "pathway": "",
+            "aa": 397,
+            "exons": 7,
+            "contig": "Contig11",
+            "start": 94518,
+            "end": 96036,
+            "strand": "-"
+          },
+          {
+            "id": "g_01247",
+            "ko": "",
+            "pathway": "",
+            "aa": 403,
+            "exons": 7,
+            "contig": "Contig11",
+            "start": 112451,
+            "end": 113987,
+            "strand": "+"
+          },
+          {
+            "id": "g_04319",
+            "ko": "ko:K00670",
+            "pathway": "",
+            "aa": 266,
+            "exons": 4,
+            "contig": "Contig2",
+            "start": 1696477,
+            "end": 1697522,
+            "strand": "-"
+          },
+          {
+            "id": "g_04856",
+            "ko": "ko:K00657",
+            "pathway": "Arginine and proline metabolism;Metabolic pathways;Ferroptosis",
+            "aa": 178,
+            "exons": 3,
+            "contig": "Contig3",
+            "start": 612687,
+            "end": 613383,
+            "strand": "-"
+          },
+          {
+            "id": "g_05149",
+            "ko": "ko:K20791",
+            "pathway": "",
+            "aa": 153,
+            "exons": 7,
+            "contig": "Contig3",
+            "start": 1320809,
+            "end": 1321696,
+            "strand": "+"
+          },
+          {
+            "id": "g_05403",
+            "ko": "ko:K17972",
+            "pathway": "",
+            "aa": 216,
+            "exons": 6,
+            "contig": "Contig4",
+            "start": 171108,
+            "end": 172193,
+            "strand": "-"
+          },
+          {
+            "id": "g_05827",
+            "ko": "ko:K07739",
+            "pathway": "",
+            "aa": 557,
+            "exons": 12,
+            "contig": "Contig4",
+            "start": 1181424,
+            "end": 1183800,
+            "strand": "+"
+          },
+          {
+            "id": "g_07599",
+            "ko": "ko:K20793",
+            "pathway": "",
+            "aa": 274,
+            "exons": 4,
+            "contig": "Contig7",
+            "start": 1106214,
+            "end": 1107385,
+            "strand": "-"
+          },
+          {
+            "id": "g_07623",
+            "ko": "",
+            "pathway": "",
+            "aa": 256,
+            "exons": 2,
+            "contig": "Contig7",
+            "start": 1175336,
+            "end": 1176166,
+            "strand": "+"
+          },
+          {
+            "id": "g_07955",
+            "ko": "ko:K20794",
+            "pathway": "",
+            "aa": 220,
+            "exons": 7,
+            "contig": "Contig8",
+            "start": 723180,
+            "end": 724211,
+            "strand": "+"
+          },
+          {
+            "id": "g_08055",
+            "ko": "",
+            "pathway": "",
+            "aa": 221,
+            "exons": 6,
+            "contig": "Contig8",
+            "start": 967347,
+            "end": 968294,
+            "strand": "-"
+          },
+          {
+            "id": "g_08576",
+            "ko": "ko:K06062",
+            "pathway": "Viral life cycle - HIV-1;Notch signaling pathway;Thyroid hormone signaling pathway;Human T-cell leukemia virus 1 infection;Viral carcinogenesis",
+            "aa": 583,
+            "exons": 10,
+            "contig": "Contig9",
+            "start": 960870,
+            "end": 963143,
+            "strand": "-"
+          }
+        ]
+      }
+    }
+  },
+  "delta": {
+    "terpene_synthase": {
+      "wt": 12,
+      "mut": 0,
+      "what": "萜類合成酶（AFS 本體）",
+      "delta": 12
+    },
+    "gnat": {
+      "wt": 28,
+      "mut": 17,
+      "what": "GNAT 乙醯轉移酶（篩選標記；宿主本來也有）",
+      "delta": 11
+    },
+    "rep_initiator": {
+      "wt": 2,
+      "mut": 0,
+      "what": "Replication initiator protein A（質體骨架）",
+      "delta": 2
+    },
+    "resolvase": {
+      "wt": 2,
+      "mut": 0,
+      "what": "Resolvase（質體骨架）",
+      "delta": 2
+    },
+    "para": {
+      "wt": 2,
+      "mut": 0,
+      "what": "ParA（質體骨架）",
+      "delta": 2
+    }
+  },
+  "insertion_site": {
+    "contig": "Contig4",
+    "start": 942770,
+    "end": 942830,
+    "disrupts_gene": [],
+    "upstream": {
+      "id": "g_05720",
+      "contig": "Contig4",
+      "start": 940542,
+      "end": 942629,
+      "strand": "+",
+      "distance_bp": 141,
+      "annotated": false,
+      "function": {
+        "KEGG Orthology": "",
+        "KEGG Pathway ID": "",
+        "GO - Biological Process ID": "",
+        "Pfam": "",
+        "Pfam ID": ""
+      }
+    },
+    "downstream": {
+      "id": "g_05721",
+      "contig": "Contig4",
+      "start": 942870,
+      "end": 947381,
+      "strand": "+",
+      "distance_bp": 40,
+      "annotated": false,
+      "function": {
+        "KEGG Orthology": "",
+        "KEGG Pathway ID": "",
+        "GO - Biological Process ID": "",
+        "Pfam": "",
+        "Pfam ID": ""
+      }
+    }
+  },
+  "afs_predicted": {
+    "n": 12,
+    "aa_counts": {
+      "682": 11,
+      "541": 1
+    },
+    "exon_counts": {
+      "3": 11,
+      "1": 1
+    },
+    "true_aa": 576,
+    "true_exons": 1
+  }
+}
