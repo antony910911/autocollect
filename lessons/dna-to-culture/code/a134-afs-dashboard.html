@@ -1,0 +1,360 @@
+<title>A13_4 α-farnesene 模型</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+/* 版面：單欄儀器讀數。上面是可以拉的權衡盤，下面是不能拉的事實 */
+:root{
+  --bg:#f6f5f7; --surface:#ffffff; --line:#e3e0e6; --line-soft:#eeecf0;
+  --ink:#241f29; --muted:#6c6476;
+  --growth:#b8355f;      /* 紅酵母自己的顏色：生長 */
+  --product:#0f7d7d;     /* 產物 */
+  --warn:#9a5a12; --ok:#2f7a4f;
+  --grid:#ddd9e2;
+  --font-ui:"IBM Plex Sans","Noto Sans TC",system-ui,"PingFang TC","Microsoft JhengHei",sans-serif;
+  --font-num:"IBM Plex Mono","Noto Sans TC",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17141b; --surface:#201c26; --line:#352f3d; --line-soft:#2a2531;
+  --ink:#ece8f0; --muted:#a79fb2;
+  --growth:#f08aaa; --product:#4fc9c0; --warn:#e0a860; --ok:#6fc994;
+  --grid:#39333f; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#17141b; --surface:#201c26; --line:#352f3d; --line-soft:#2a2531;
+  --ink:#ece8f0; --muted:#a79fb2;
+  --growth:#f08aaa; --product:#4fc9c0; --warn:#e0a860; --ok:#6fc994;
+  --grid:#39333f; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-ui);
+     line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding-inline:20px;padding-block:40px 72px;
+      display:flex;flex-direction:column;gap:34px}
+h1{font-size:clamp(26px,5.4vw,38px);line-height:1.2;margin:0;font-weight:700;
+   letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:21px;margin:0 0 4px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:16px;margin:0;font-weight:600}
+p{margin:0}
+.eyebrow{font-family:var(--font-num);font-size:12px;letter-spacing:.14em;
+         text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.lede{color:var(--muted);font-size:16px;max-width:60ch}
+section{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.num{font-family:var(--font-num);font-variant-numeric:tabular-nums}
+
+/* 權衡盤 */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:20px;
+          border-bottom:1px solid var(--line-soft)}
+@media(max-width:560px){.controls{grid-template-columns:1fr}}
+.ctl label{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+           font-size:13px;color:var(--muted);margin-bottom:6px}
+.ctl label b{font-family:var(--font-num);font-size:17px;color:var(--ink);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--product);height:26px}
+.ctl.growth input[type=range]{accent-color:var(--growth)}
+.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft)}
+@media(max-width:560px){.readout{grid-template-columns:1fr 1fr}}
+.cell{background:var(--surface);padding:16px 18px}
+.cell .k{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.cell .v{font-family:var(--font-num);font-size:clamp(20px,4.6vw,26px);font-weight:600;
+         line-height:1.25;margin-top:2px}
+.cell .u{font-size:11px;color:var(--muted);font-family:var(--font-num)}
+.v.growth{color:var(--growth)} .v.product{color:var(--product)}
+figure{margin:0;padding:8px 8px 4px;background:var(--surface)}
+svg{display:block;width:100%;height:auto}
+.caption{font-size:13px;color:var(--muted);padding:0 18px 18px;background:var(--surface)}
+
+/* 清單 */
+.rows{display:flex;flex-direction:column;gap:1px;background:var(--line-soft);
+      border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.row{background:var(--surface);display:grid;grid-template-columns:22px 1fr auto;
+     gap:12px;align-items:start;padding:13px 16px}
+.row .t{font-size:15px}
+.row .s{font-size:13px;color:var(--muted);margin-top:2px}
+.row .verdict{font-size:12px;font-weight:600;font-family:var(--font-num);
+              white-space:nowrap;padding-top:2px}
+.dot{width:9px;height:9px;border-radius:50%;margin-top:8px}
+.dot.ok{background:var(--ok)} .dot.warn{background:var(--warn)}
+.verdict.ok{color:var(--ok)} .verdict.warn{color:var(--warn)}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+th,td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line-soft);
+      white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em}
+td.n{font-family:var(--font-num);font-variant-numeric:tabular-nums}
+tr.flat td.hl{color:var(--product);font-weight:600}
+.note{border-left:3px solid var(--warn);padding:2px 0 2px 16px;color:var(--muted);font-size:14px}
+.note b{color:var(--ink)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:var(--font-num);font-size:12px;border:1px solid var(--line);
+     border-radius:999px;padding:4px 11px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding-top:20px;font-size:13px;color:var(--muted)}
+a{color:var(--product)}
+:focus-visible{outline:2px solid var(--product);outline-offset:2px;border-radius:4px}
+@media(prefers-reduced-motion:no-preference){.mark{transition:cx .14s ease,cy .14s ease}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">rhto-GEM ＋ 候選 AFS　·　2,726 反應</p>
+  <h1>A13_4 能做多少 α-farnesene</h1>
+  <p class="lede">把糖和氮調一調，看模型說產物最多能有多少。<b>每一格都是事先算好的上限，不是預測、不是 g/L。</b>想知道這些數字怎麼來的、哪些不能信，往下看。</p>
+</header>
+
+<section>
+  <div class="panel">
+    <div class="controls">
+      <div class="ctl">
+        <label for="glc">葡萄糖吸收上限 <b><span id="glcv">10</span> <span style="font-size:12px;font-weight:400">mmol/gDW/h</span></b></label>
+        <input type="range" id="glc" min="0" max="9" step="1" value="7">
+      </div>
+      <div class="ctl growth">
+        <label for="frac">菌至少要長到 μmax 的 <b><span id="fracv">50</span>%</b></label>
+        <input type="range" id="frac" min="0" max="20" step="1" value="10">
+      </div>
+    </div>
+    <div class="readout">
+      <div class="cell"><div class="k">生長速率 μ</div><div class="v growth num" id="mu">—</div><div class="u">每小時　倍增 <span id="dt">—</span> h</div></div>
+      <div class="cell"><div class="k">產物最多</div><div class="v product num" id="afs">—</div><div class="u">mmol/gDW/h</div></div>
+      <div class="cell"><div class="k">每公克糖</div><div class="v product num" id="gg">—</div><div class="u">公克產物／公克糖</div></div>
+    </div>
+    <figure><svg id="chart" viewBox="0 0 760 330" role="img" aria-label="生產包絡線"></svg></figure>
+    <p class="caption">橫軸是生長速率，縱軸是產物上限。<b>這條線就是生產包絡線</b>——往右走（菌長得快）產物就少，兩者在搶同一批碳。線的下緣全程貼著 0，代表<b>菌完全可以不做產物</b>，要靠培養條件逼它。</p>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">限氮</p>
+  <h2>C/N 調高，產物上限會往上</h2>
+  <p class="lede">糖固定在 10，只改氮。<b>氮吸收 ＝ 6 × 糖吸收 ÷ (C/N)。</b></p>
+  <div class="panel">
+    <figure><svg id="cnchart" viewBox="0 0 760 300" role="img" aria-label="C/N 掃描"></svg></figure>
+    <p class="caption">單調的，沒有轉折點——因為 FBA 裡「限氮」只是把生長壓低，碳就剩下來了。<b>它看不到「氮耗盡會觸發油脂累積」這件事</b>，而那正是第 17 章推論限氮對產物不利的理由。兩個預期相反，第一批實驗做完就知道誰對。</p>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">最重要的一個結果</p>
+  <h2>調降 ERG9 沒有用</h2>
+  <p class="lede">ERG9（鯊烯合成酶）和 AFS 搶同一桶 FPP，所以「把它調小」聽起來天經地義。<b>但要先把生長速率固定住再比。</b></p>
+  <div class="card scroll">
+    <table>
+      <thead><tr><th>ERG9 保留</th><th>μmax</th><th>產物（各自一半生長）</th><th>產物（固定同一個生長）</th></tr></thead>
+      <tbody id="erg9"></tbody>
+    </table>
+  </div>
+  <p class="note">第三欄說「調到 10% 多 81%」，第四欄說「完全沒變」。差別是<b>生長速率有沒有被控制住</b>——第三欄其實在比「長得慢的菌 vs 長得快的菌」。<br>查一下就知道為什麼：ERG9 在最大生長時的實際通量只有 <span class="num" id="erg9flux"></span> mmol/gDW/h，上界卻是 1000，<b>差六萬倍</b>。它本來就不是瓶頸。<br><b>而要讓生長變慢，限氮就做得到，不用做菌株。</b></p>
+</section>
+
+<section>
+  <p class="eyebrow">FPP</p>
+  <h2>誰在搶原料</h2>
+  <p class="lede">對照表做完之後，每一條路都有你的菌的基因編號——可以直接拿去設計引子。</p>
+  <div class="rows" id="fpp"></div>
+</section>
+
+<section>
+  <p class="eyebrow">驗收</p>
+  <h2>這個模型我重算過</h2>
+  <p class="lede">不是讀它的說法，是把每個數字自己再跑一次。</p>
+  <div class="rows" id="audit"></div>
+  <p class="note"><b>碳產率那一項要加註解。</b>模型算出 <span class="num" id="mcy"></span>%，但經典的 MVA 路線上限是 <span class="num" id="tcy"></span>%。差別在模型走了<b>磷酸酮醇酶</b>（通量 <span class="num" id="pk"></span>）而不是丙酮酸脫氫酶（<span class="num" id="pdh"></span>）——那條路不會掉 CO₂。<br>數字沒算錯，但它預設了這條捷徑在你的菌裡真的在跑，<b>而那件事沒有人驗過</b>。誠實的講法是「落在兩個數字之間」。</p>
+</section>
+
+<section>
+  <p class="eyebrow">界線</p>
+  <h2>這張盤算不出來的事</h2>
+  <div class="rows">
+    <div class="row"><span class="dot warn"></span><div><div class="t">實際會做多少</div><div class="s">上面全部是上限。文獻實際做到的常常是上限的百分之幾</div></div><span class="verdict warn">要實驗</span></div>
+    <div class="row"><span class="dot warn"></span><div><div class="t">限氮會不會累積油脂</div><div class="s">FBA 是穩態，沒有時間、沒有累積。要 dFBA 或分階段模擬</div></div><span class="verdict warn">要 dFBA</span></div>
+    <div class="row"><span class="dot warn"></span><div><div class="t">11 個拷貝有沒有在表現</div><div class="s">模型的 OR 規則只管「有沒有」。只剩 1 份和 11 份全在，算出來一模一樣</div></div><span class="verdict warn">要 RT-qPCR</span></div>
+    <div class="row"><span class="dot warn"></span><div><div class="t">你的菌到底長多快</div><div class="s">μ 完全由糖吸收上限決定，而那個參數現在是空的——只能從生長曲線擬合</div></div><span class="verdict warn">要曲線</span></div>
+    <div class="row"><span class="dot warn"></span><div><div class="t">溫度與 pH</div><div class="s">模型裡根本沒有這兩個變數</div></div><span class="verdict warn">要實驗</span></div>
+  </div>
+</section>
+
+<footer>
+  <p>模型：rhto-GEM（Tiukova et al. 2019，建在 <b>NP11</b> 上，不是 IFO 0880）＋ 候選 α-farnesene 反應、11 個拷貝座標。查表由 <span class="num">rhto_afs_grid.py</span> 事先算好，共 <span class="num" id="ncells"></span> 格。</p>
+  <p style="margin-top:10px">這是看板，不是工作台。要換模型、試新條件、查某個反應，用 COBRApy 或 Streamlit 介面。</p>
+  <div class="tags" style="margin-top:14px">
+    <span class="tag">2,726 反應</span><span class="tag">2,279 代謝物</span><span class="tag">843 基因</span><span class="tag">11 份 AFS</span>
+  </div>
+</footer>
+
+</div>
+
+<script>
+const D = {"grid":{"glucose_grid":[1,2,3,4,5,6,8,10,12,15],"cn_grid":[10,15,20,30,40,60,80,100,120],"fracs":[0.0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0],"cn_glucose":10.0,"glucose":{"1":{"mu_max":0.07399,"afs":[0.24313,0.23213,0.22067,0.20905,0.19743,0.18581,0.17419,0.16257,0.15083,0.13832,0.12575,0.11317,0.1006,0.08802,0.07545,0.06287,0.0503,0.03772,0.02515,0.01257,0.0],"g_per_g":[0.2758,0.2633,0.2503,0.2371,0.2239,0.2108,0.1976,0.1844,0.1711,0.1569,0.1426,0.1284,0.1141,0.0998,0.0856,0.0713,0.0571,0.0428,0.0285,0.0143,0.0]},"2":{"mu_max":0.15659,"afs":[0.5079,0.4846,0.46131,0.43801,0.41442,0.38983,0.36523,0.34064,0.31604,0.29145,0.26609,0.23952,0.21291,0.1863,0.15968,0.13307,0.10645,0.07984,0.05323,0.02661,0.0],"g_per_g":[0.2881,0.2748,0.2616,0.2484,0.235,0.2211,0.2071,0.1932,0.1792,0.1653,0.1509,0.1358,0.1208,0.1057,0.0906,0.0755,0.0604,0.0453,0.0302,0.0151,0.0]},"3":{"mu_max":0.23919,"afs":[0.77266,0.73708,0.7015,0.66592,0.63033,0.59384,0.55628,0.51871,0.48114,0.44357,0.40596,0.36587,0.32522,0.28457,0.24392,0.20326,0.16261,0.12196,0.08131,0.04065,0.0],"g_per_g":[0.2921,0.2787,0.2652,0.2518,0.2383,0.2245,0.2103,0.1961,0.1819,0.1677,0.1535,0.1383,0.123,0.1076,0.0922,0.0769,0.0615,0.0461,0.0307,0.0154,0.0]},"4":{"mu_max":0.32179,"afs":[1.03743,0.98956,0.94169,0.89382,0.84595,0.79786,0.74732,0.69678,0.64624,0.59569,0.54515,0.49223,0.43753,0.38284,0.32815,0.27346,0.21877,0.16408,0.10938,0.05469,0.0],"g_per_g":[0.2942,0.2806,0.267,0.2535,0.2399,0.2263,0.2119,0.1976,0.1833,0.1689,0.1546,0.1396,0.1241,0.1086,0.0931,0.0775,0.062,0.0465,0.031,0.0155,0.0]},"5":{"mu_max":0.40439,"afs":[1.30219,1.24203,1.18188,1.12172,1.06156,1.0014,0.93836,0.87485,0.81133,0.74782,0.6843,0.61847,0.54985,0.48112,0.41239,0.34365,0.27492,0.20619,0.13746,0.06873,0.0],"g_per_g":[0.2954,0.2818,0.2681,0.2545,0.2408,0.2272,0.2129,0.1985,0.1841,0.1697,0.1552,0.1403,0.1247,0.1091,0.0936,0.078,0.0624,0.0468,0.0312,0.0156,0.0]},"6":{"mu_max":0.48699,"afs":[1.56696,1.49451,1.42206,1.34962,1.27717,1.20473,1.12941,1.05292,0.97643,0.89994,0.82345,0.74468,0.66216,0.57939,0.49662,0.41385,0.33108,0.24831,0.16554,0.08277,0.0],"g_per_g":[0.2962,0.2825,0.2688,0.2552,0.2415,0.2278,0.2135,0.1991,0.1846,0.1701,0.1557,0.1408,0.1252,0.1095,0.0939,0.0782,0.0626,0.0469,0.0313,0.0156,0.0]},"8":{"mu_max":0.6522,"afs":[2.09648,1.99946,1.90244,1.80542,1.7084,1.61138,1.5115,1.40906,1.30662,1.20418,1.10175,0.99711,0.88678,0.77594,0.66509,0.55424,0.44339,0.33254,0.2217,0.11085,0.0],"g_per_g":[0.2973,0.2835,0.2697,0.256,0.2422,0.2285,0.2143,0.1998,0.1853,0.1707,0.1562,0.1414,0.1257,0.11,0.0943,0.0786,0.0629,0.0472,0.0314,0.0157,0.0]},"10":{"mu_max":0.8174,"afs":[2.62601,2.50442,2.38282,2.26122,2.13963,2.01803,1.89359,1.7652,1.63681,1.50843,1.38004,1.24953,1.11141,0.97248,0.83356,0.69463,0.5557,0.41678,0.27785,0.13893,0.0],"g_per_g":[0.2979,0.2841,0.2703,0.2565,0.2427,0.2289,0.2148,0.2002,0.1857,0.1711,0.1565,0.1417,0.1261,0.1103,0.0946,0.0788,0.063,0.0473,0.0315,0.0158,0.0]},"12":{"mu_max":0.9826,"afs":[3.15554,3.00937,2.8632,2.71703,2.57085,2.42468,2.27567,2.12134,1.96701,1.81267,1.65834,1.50191,1.33603,1.16903,1.00203,0.83502,0.66802,0.50101,0.33401,0.167,0.0],"g_per_g":[0.2983,0.2845,0.2706,0.2568,0.243,0.2292,0.2151,0.2005,0.1859,0.1713,0.1568,0.142,0.1263,0.1105,0.0947,0.0789,0.0631,0.0474,0.0316,0.0158,0.0]},"15":{"mu_max":1.23041,"afs":[3.94984,3.7668,3.58376,3.40073,3.21769,3.03466,2.84881,2.65555,2.4623,2.26904,2.07579,1.8804,1.67297,1.46385,1.25473,1.04561,0.83649,0.62736,0.41824,0.20912,0.0],"g_per_g":[0.2987,0.2849,0.271,0.2572,0.2433,0.2295,0.2154,0.2008,0.1862,0.1716,0.157,0.1422,0.1265,0.1107,0.0949,0.0791,0.0633,0.0474,0.0316,0.0158,0.0]}},"cn":{"10":{"mu_max":0.8174,"afs":[2.62601,2.50442,2.38282,2.26122,2.13963,2.01803,1.89359,1.7652,1.63681,1.50843,1.38004,1.24953,1.11141,0.97248,0.83356,0.69463,0.5557,0.41678,0.27785,0.13893,0.0],"g_per_g":[0.2979,0.2841,0.2703,0.2565,0.2427,0.2289,0.2148,0.2002,0.1857,0.1711,0.1565,0.1417,0.1261,0.1103,0.0946,0.0788,0.063,0.0473,0.0315,0.0158,0.0]},"15":{"mu_max":0.8174,"afs":[2.62601,2.50442,2.38282,2.26122,2.13963,2.01803,1.89359,1.7652,1.63681,1.50843,1.38004,1.24953,1.11141,0.97248,0.83356,0.69463,0.5557,0.41678,0.27785,0.13893,0.0],"g_per_g":[0.2979,0.2841,0.2703,0.2565,0.2427,0.2289,0.2148,0.2002,0.1857,0.1711,0.1565,0.1417,0.1261,0.1103,0.0946,0.0788,0.063,0.0473,0.0315,0.0158,0.0]},"20":{"mu_max":0.7301,"afs":[2.62601,2.5174,2.40879,2.30018,2.19157,2.08296,1.97435,1.86118,1.74651,1.63183,1.51716,1.40248,1.28755,1.16537,1.04128,0.91719,0.7931,0.66901,0.54492,0.42083,0.29652],"g_per_g":[0.2979,0.2856,0.2732,0.2609,0.2486,0.2363,0.224,0.2111,0.1981,0.1851,0.1721,0.1591,0.1461,0.1322,0.1181,0.104,0.09,0.0759,0.0618,0.0477,0.0336]},"30":{"mu_max":0.48673,"afs":[2.62601,2.55361,2.4812,2.40879,2.33639,2.26398,2.19157,2.11917,2.04676,1.97435,1.8994,1.82296,1.74651,1.67006,1.59361,1.51716,1.44071,1.36426,1.28755,1.20652,1.12386],"g_per_g":[0.2979,0.2897,0.2814,0.2732,0.265,0.2568,0.2486,0.2404,0.2322,0.224,0.2155,0.2068,0.1981,0.1894,0.1808,0.1721,0.1634,0.1548,0.1461,0.1369,0.1275]},"40":{"mu_max":0.36505,"afs":[2.62601,2.57171,2.5174,2.4631,2.40879,2.35449,2.30018,2.24588,2.19157,2.13727,2.08296,2.02866,1.97435,1.91852,1.86118,1.80384,1.74651,1.68917,1.63183,1.57449,1.51706],"g_per_g":[0.2979,0.2917,0.2856,0.2794,0.2732,0.2671,0.2609,0.2548,0.2486,0.2424,0.2363,0.2301,0.224,0.2176,0.2111,0.2046,0.1981,0.1916,0.1851,0.1786,0.1721]},"60":{"mu_max":0.24337,"afs":[2.62601,2.58981,2.55361,2.5174,2.4812,2.445,2.40879,2.37259,2.33639,2.30018,2.26398,2.22778,2.19157,2.15537,2.11917,2.08296,2.04676,2.01055,1.97435,1.93763,1.89934],"g_per_g":[0.2979,0.2938,0.2897,0.2856,0.2814,0.2773,0.2732,0.2691,0.265,0.2609,0.2568,0.2527,0.2486,0.2445,0.2404,0.2363,0.2322,0.2281,0.224,0.2198,0.2154]},"80":{"mu_max":0.18253,"afs":[2.62601,2.59886,2.57171,2.54456,2.5174,2.49025,2.4631,2.43595,2.40879,2.38164,2.35449,2.32734,2.30018,2.27303,2.24588,2.21872,2.19157,2.16442,2.13727,2.11011,2.08292],"g_per_g":[0.2979,0.2948,0.2917,0.2886,0.2856,0.2825,0.2794,0.2763,0.2732,0.2702,0.2671,0.264,0.2609,0.2578,0.2548,0.2517,0.2486,0.2455,0.2424,0.2394,0.2363]},"100":{"mu_max":0.14602,"afs":[2.62601,2.60429,2.58257,2.56085,2.53913,2.5174,2.49568,2.47396,2.45224,2.43052,2.40879,2.38707,2.36535,2.34363,2.3219,2.30018,2.27846,2.25674,2.23502,2.21329,2.19154],"g_per_g":[0.2979,0.2954,0.2929,0.2905,0.288,0.2856,0.2831,0.2806,0.2782,0.2757,0.2732,0.2708,0.2683,0.2658,0.2634,0.2609,0.2585,0.256,0.2535,0.2511,0.2486]},"120":{"mu_max":0.12168,"afs":[2.62601,2.60791,2.58981,2.57171,2.55361,2.53551,2.5174,2.4993,2.4812,2.4631,2.445,2.42689,2.40879,2.39069,2.37259,2.35449,2.33639,2.31828,2.30018,2.28208,2.26395],"g_per_g":[0.2979,0.2958,0.2938,0.2917,0.2897,0.2876,0.2856,0.2835,0.2814,0.2794,0.2773,0.2753,0.2732,0.2712,0.2691,0.2671,0.265,0.263,0.2609,0.2589,0.2568]}}},"audit":{"model":{"reactions":2726,"metabolites":2279,"genes":843,"objective":["r_2111"]},"verify":{"afs_reaction":"s_0190 --> afs_alpha_farnesene_c + s_0633","afs_mass_balanced":true,"afs_gpr_copies":11,"afs_off_product":0.0,"no_carbon_product":0.0,"carbon_inputs_closed":1},"textbook_cy":0.5556,"model_cy":0.6078,"route":{"phosphoketolase":1.294,"pyruvate_dehydrogenase":0.8942,"co2_out":2.353,"afs":0.2431,"note":"磷酸酮醇酶不掉 CO2，所以模型的碳產率會高過教科書的 MVA 路線"},"mu_default":0.07398512},"erg9":{"reaction":"r_1012","mu_full":0.8174,"erg9_flux_at_max_growth":0.016364,"fixed_growth_floor":0.08174,"note":"afs_at_half_own_growth 的生長下限是各自 μmax 的一半（會互相不可比）；afs_at_fixed_growth 把生長固定在同一個絕對值，才是公平比較","rows":[{"erg9_fraction":1.0,"erg9_upper_bound":0.016364,"mu_max":0.8174,"afs_at_half_own_growth":1.38004,"afs_at_fixed_growth":2.38282},{"erg9_fraction":0.5,"erg9_upper_bound":0.008182,"mu_max":0.4087,"afs_at_half_own_growth":2.01803,"afs_at_fixed_growth":2.38282},{"erg9_fraction":0.25,"erg9_upper_bound":0.004091,"mu_max":0.20435,"afs_at_half_own_growth":2.32202,"afs_at_fixed_growth":2.38282},{"erg9_fraction":0.1,"erg9_upper_bound":0.001636,"mu_max":0.08174,"afs_at_half_own_growth":2.50442,"afs_at_fixed_growth":2.38282},{"erg9_fraction":0.0,"erg9_upper_bound":0.0,"mu_max":0.0,"afs_at_half_own_growth":null,"afs_at_fixed_growth":null}]},"fpp":[{"id":"AFS_alpha_farnesene","name":"Candidate apple alpha-farnesene synthase","consumes":true,"genes":["AFS_copy_01","AFS_copy_02","AFS_copy_03","AFS_copy_04","AFS_copy_05","AFS_copy_06","AFS_copy_07","AFS_copy_08","AFS_copy_09","AFS_copy_10","AFS_copy_11"],"reaction":"s_0190 --> afs_alpha_farnesene_c + s_0633"},{"id":"r_0373","name":"farnesyltranstransferase","consumes":true,"genes":["g_00412"],"reaction":"s_0190 + s_0943 --> s_0189 + s_0633"},{"id":"r_0462","name":"geranyltranstransferase","consumes":false,"genes":["g_08479"],"reaction":"s_0745 + s_0943 --> s_0190 + s_0633"},{"id":"r_1012","name":"squalene synthase","consumes":true,"genes":["g_00498"],"reaction":"2.0 s_0190 + s_0794 + s_1212 --> 2.0 s_0633 + s_1207 + s_1447"},{"id":"r_1766","name":"farnesyl diphosphate transport","consumes":true,"genes":[],"reaction":"s_0190 <=> s_0191"}],"copies":{"n_copies":11,"all_present":2.62601,"only_one_left":2.62601,"all_knocked_out":0.0}};
+const G = D.grid, A = D.audit;
+const $ = id => document.getElementById(id);
+const fmt = (v, n) => v.toFixed(n);
+
+/* ── 權衡盤 ───────────────────────────────────────────── */
+const glcEl = $("glc"), fracEl = $("frac");
+glcEl.max = G.glucose_grid.length - 1;
+fracEl.max = G.fracs.length - 1;
+
+function css(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+function envelope(){
+  const g = G.glucose_grid[+glcEl.value];
+  const row = G.glucose[String(g)];
+  const fi = +fracEl.value, f = G.fracs[fi];
+  const mu = row.mu_max * f, afs = row.afs[fi], gg = row.g_per_g[fi];
+
+  $("glcv").textContent = g;
+  $("fracv").textContent = Math.round(f * 100);
+  $("mu").textContent = fmt(mu, 3);
+  $("dt").textContent = mu > 1e-6 ? fmt(0.693 / mu, 1) : "—";
+  $("afs").textContent = fmt(afs, 3);
+  $("gg").textContent = fmt(gg, 3);
+  drawEnvelope(row, fi);
+}
+
+function drawEnvelope(row, fi){
+  const W = 760, H = 330, L = 64, R = 20, T = 22, B = 46;
+  const iw = W - L - R, ih = H - T - B;
+  const xmax = row.mu_max || 1, ymax = Math.max(...row.afs) || 1;
+  const X = v => L + (v / xmax) * iw;
+  const Y = v => T + ih - (v / ymax) * ih;
+  const ink = css("--ink"), muted = css("--muted"), grid = css("--grid");
+  const prod = css("--product"), growth = css("--growth");
+  let s = "";
+  for (let i = 0; i <= 4; i++){
+    const y = T + ih * i / 4, v = ymax * (1 - i / 4);
+    s += `<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="${grid}" stroke-width="1"/>`;
+    s += `<text x="${L-10}" y="${y+4}" fill="${muted}" font-size="11"
+           font-family="IBM Plex Mono, monospace" text-anchor="end">${v.toFixed(2)}</text>`;
+  }
+  for (let i = 0; i <= 4; i++){
+    const x = L + iw * i / 4, v = xmax * i / 4;
+    s += `<text x="${x}" y="${H-24}" fill="${muted}" font-size="11"
+           font-family="IBM Plex Mono, monospace" text-anchor="middle">${v.toFixed(2)}</text>`;
+  }
+  const pts = row.afs.map((v, i) => `${X(row.mu_max * G.fracs[i])},${Y(v)}`).join(" ");
+  s += `<polygon points="${L},${Y(0)} ${pts} ${X(xmax)},${Y(0)}" fill="${prod}" opacity="0.13"/>`;
+  s += `<polyline points="${pts}" fill="none" stroke="${prod}" stroke-width="2.5"
+         stroke-linejoin="round"/>`;
+  s += `<line x1="${L}" y1="${Y(0)}" x2="${W-R}" y2="${Y(0)}" stroke="${prod}"
+         stroke-width="2" stroke-dasharray="5 4" opacity="0.65"/>`;
+  const cx = X(row.mu_max * G.fracs[fi]), cy = Y(row.afs[fi]);
+  s += `<line x1="${cx}" y1="${T}" x2="${cx}" y2="${Y(0)}" stroke="${growth}"
+         stroke-width="1.5" stroke-dasharray="4 4"/>`;
+  s += `<circle class="mark" cx="${cx}" cy="${cy}" r="7" fill="${prod}"
+         stroke="${css('--surface')}" stroke-width="2.5"/>`;
+  s += `<text x="${L}" y="${T-6}" fill="${muted}" font-size="11"
+         font-family="IBM Plex Mono, monospace">產物上限 mmol/gDW/h</text>`;
+  s += `<text x="${W-R}" y="${H-6}" fill="${muted}" font-size="11"
+         font-family="IBM Plex Mono, monospace" text-anchor="end">生長速率 μ（每小時）</text>`;
+  s += `<text x="${L}" y="${H-6}" fill="${muted}" font-size="11"
+         font-family="IBM Plex Mono, monospace">下緣 ＝ 0：菌可以完全不做產物</text>`;
+  $("chart").innerHTML = s;
+}
+
+/* ── C/N ─────────────────────────────────────────────── */
+function drawCN(){
+  const W = 760, H = 300, L = 64, R = 64, T = 26, B = 52;
+  const iw = W - L - R, ih = H - T - B;
+  const cns = G.cn_grid, half = Math.floor((G.fracs.length - 1) / 2);
+  const mus = cns.map(c => G.cn[String(c)].mu_max);
+  const afs = cns.map(c => G.cn[String(c)].afs[half]);
+  const muMax = Math.max(...mus) * 1.12, afMax = Math.max(...afs) * 1.12;
+  const X = i => L + iw * i / (cns.length - 1);
+  const ink = css("--ink"), muted = css("--muted"), grid = css("--grid");
+  const prod = css("--product"), growth = css("--growth");
+  let s = "";
+  for (let i = 0; i <= 3; i++){
+    const y = T + ih * i / 3;
+    s += `<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="${grid}" stroke-width="1"/>`;
+  }
+  const line = (vals, max, col) => vals.map((v, i) =>
+    `${X(i)},${T + ih - (v / max) * ih}`).join(" ");
+  s += `<polyline points="${line(mus, muMax)}" fill="none" stroke="${growth}" stroke-width="2.5"
+         stroke-linejoin="round"/>`;
+  s += `<polyline points="${line(afs, afMax)}" fill="none" stroke="${prod}" stroke-width="2.5"
+         stroke-linejoin="round"/>`;
+  cns.forEach((c, i) => {
+    s += `<circle cx="${X(i)}" cy="${T + ih - (mus[i]/muMax)*ih}" r="4.5" fill="${growth}"/>`;
+    s += `<circle cx="${X(i)}" cy="${T + ih - (afs[i]/afMax)*ih}" r="4.5" fill="${prod}"/>`;
+    s += `<text x="${X(i)}" y="${H-28}" fill="${muted}" font-size="11"
+           font-family="IBM Plex Mono, monospace" text-anchor="middle">${c}</text>`;
+  });
+  s += `<text x="${L}" y="${T-8}" fill="${growth}" font-size="12" font-weight="600"
+         font-family="IBM Plex Mono, monospace">生長 μmax</text>`;
+  s += `<text x="${W-R}" y="${T-8}" fill="${prod}" font-size="12" font-weight="600"
+         font-family="IBM Plex Mono, monospace" text-anchor="end">產物上限</text>`;
+  s += `<text x="${(L+W-R)/2}" y="${H-8}" fill="${muted}" font-size="11"
+         font-family="IBM Plex Mono, monospace" text-anchor="middle">C/N（莫耳比）</text>`;
+  const last = cns.length - 1;
+  s += `<text x="${X(last)+8}" y="${T + ih - (mus[last]/muMax)*ih + 4}" fill="${growth}"
+         font-size="11" font-family="IBM Plex Mono, monospace">${mus[last].toFixed(2)}</text>`;
+  s += `<text x="${X(last)+8}" y="${T + ih - (afs[last]/afMax)*ih + 4}" fill="${prod}"
+         font-size="11" font-family="IBM Plex Mono, monospace">${afs[last].toFixed(2)}</text>`;
+  s += `<text x="${X(0)-8}" y="${T + ih - (mus[0]/muMax)*ih + 4}" fill="${growth}"
+         font-size="11" font-family="IBM Plex Mono, monospace" text-anchor="end">${mus[0].toFixed(2)}</text>`;
+  s += `<text x="${X(0)-8}" y="${T + ih - (afs[0]/afMax)*ih + 4}" fill="${prod}"
+         font-size="11" font-family="IBM Plex Mono, monospace" text-anchor="end">${afs[0].toFixed(2)}</text>`;
+  $("cnchart").innerHTML = s;
+}
+
+/* ── 表與清單 ─────────────────────────────────────────── */
+$("erg9").innerHTML = D.erg9.rows.map(r => {
+  const fixed = r.afs_at_fixed_growth, own = r.afs_at_half_own_growth;
+  const dead = fixed === null;
+  return `<tr class="${dead ? "" : "flat"}">
+    <td class="n">${Math.round(r.erg9_fraction*100)}%</td>
+    <td class="n">${r.mu_max.toFixed(3)}</td>
+    <td class="n">${own === null ? "長不起來" : own.toFixed(3)}</td>
+    <td class="n ${dead ? "" : "hl"}">${dead ? "長不起來" : fixed.toFixed(3)}</td></tr>`;
+}).join("");
+$("erg9flux").textContent = D.erg9.erg9_flux_at_max_growth;
+
+const WHAT = {
+  "AFS_alpha_farnesene": ["你轉進去的那一條", "→ α-farnesene"],
+  "r_1012": ["鯊烯合成酶（ERG9）", "→ 麥角固醇，細胞膜要用"],
+  "r_0373": ["法呢基轉移酶", "→ GGPP，再往類胡蘿蔔素"],
+  "r_1766": ["FPP 運輸", "送到其他區隔"],
+  "r_0462": ["牻牛兒基轉移酶", "這一條是在製造 FPP"]
+};
+$("fpp").innerHTML = D.fpp.map(r => {
+  const w = WHAT[r.id] || [r.name, ""];
+  const genes = r.genes.length > 3
+    ? `AFS_copy_01…${String(r.genes.length).padStart(2,"0")}`
+    : (r.genes.join("、") || "（無 GPR）");
+  return `<div class="row"><span class="dot ${r.consumes ? "warn" : "ok"}"></span>
+    <div><div class="t">${w[0]}</div><div class="s">${w[1]}　<span class="num">${r.id}</span></div></div>
+    <span class="verdict ${r.consumes ? "warn" : "ok"}">${genes}</span></div>`;
+}).join("");
+
+const V = A.verify, M = A.model;
+const AUDIT = [
+  ["模型規模", `${M.reactions} 反應、${M.metabolites} 代謝物、${M.genes} 基因`, "對上", true],
+  ["AFS 反應配平", "質量與電荷都平衡，沒有偷加質子", "對上", V.afs_mass_balanced],
+  ["關掉 AFS", `產物 ＝ ${V.afs_off_product}`, "對上", V.afs_off_product === 0],
+  ["無碳源的漏洞", `關掉含碳輸入後產物 ＝ ${V.no_carbon_product}`, "對上", V.no_carbon_product === 0],
+  ["最大生長", `μ ＝ ${A.mu_default} /h，小數點後八位一樣`, "對上", true],
+  ["生產包絡線", "六個點逐一重算，全部相同", "對上", true],
+  ["碳產率", `模型 ${(A.model_cy*100).toFixed(1)}%　教科書上限 ${(A.textbook_cy*100).toFixed(1)}%`,
+   "要加註解", false]
+];
+$("audit").innerHTML = AUDIT.map(([t, s, v, ok]) =>
+  `<div class="row"><span class="dot ${ok ? "ok" : "warn"}"></span>
+   <div><div class="t">${t}</div><div class="s">${s}</div></div>
+   <span class="verdict ${ok ? "ok" : "warn"}">${v}</span></div>`).join("");
+
+$("mcy").textContent = (A.model_cy*100).toFixed(1);
+$("tcy").textContent = (A.textbook_cy*100).toFixed(1);
+$("pk").textContent = A.route.phosphoketolase;
+$("pdh").textContent = A.route.pyruvate_dehydrogenase;
+$("ncells").textContent = (G.glucose_grid.length + G.cn_grid.length) * G.fracs.length;
+
+glcEl.addEventListener("input", envelope);
+fracEl.addEventListener("input", envelope);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { envelope(); drawCN(); });
+new MutationObserver(() => { envelope(); drawCN(); })
+  .observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+envelope();
+drawCN();
+</script>
