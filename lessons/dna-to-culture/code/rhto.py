@@ -7,7 +7,7 @@ rhto-GEM 是紅酵母的全基因體代謝模型（Tiukova et al. 2019），**�
 
     pip install cobra
     git clone https://github.com/SysBioChalmers/rhto-GEM
-    ls rhto-GEM/model/*.xml          # 找到那個 SBML 檔
+    find rhto-GEM -name "*.xml"      # 找出 SBML 檔在哪——不要猜路徑，資料夾改過幾次
 
 沒有模型檔也可以先練：**把路徑寫成 `textbook`**，程式會載入 COBRApy 內建的
 大腸桿菌核心模型。指令、輸出格式、會踩的坑全部一樣，只有數字不同。
@@ -66,8 +66,12 @@ def load(path: str):
         return cobra.io.load_model("textbook")
     p = Path(path)
     if not p.exists():
-        raise SystemExit(f"找不到 {p}。先 git clone https://github.com/SysBioChalmers/rhto-GEM，"
-                         f"模型檔在 model/ 或 ModelFiles/xml/ 底下的 .xml")
+        raise SystemExit(
+            f"找不到 {p}。\n"
+            f"先 git clone https://github.com/SysBioChalmers/rhto-GEM，\n"
+            f"再用 `find rhto-GEM -name \"*.xml\"` 把 SBML 檔的實際路徑找出來"
+            f"（資料夾名稱換過幾次，不要猜）。\n"
+            f"想先練手的話，路徑直接寫 textbook。")
     return cobra.io.read_sbml_model(str(p))
 
 

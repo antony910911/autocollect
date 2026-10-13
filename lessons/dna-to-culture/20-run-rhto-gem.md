@@ -33,10 +33,18 @@ python code/rhto.py scan     rhto.xml                  # 6 掃 C/N 與 ERG9
 ```bash
 pip install cobra                                    # 求解器會一起裝好
 git clone https://github.com/SysBioChalmers/rhto-GEM
-ls rhto-GEM/model/*.xml                              # 找到那個 SBML 檔
+find rhto-GEM -name "*.xml"                          # 找出 SBML 檔在哪
 ```
 
 **`pip install cobra` 會順便裝 GLPK 求解器**，所以不用另外處理。如果你的環境比較舊、裝不起來，用 conda：`conda install -c conda-forge cobra`。
+
+> **第三行要用 `find`，不要猜路徑。** SysBioChalmers 的模型 repo 歷年來換過資料夾
+> （`model/`、`ModelFiles/xml/` 都出現過），而且同一個模型常常同時有
+> `.xml`、`.yml`、`.mat`、`.txt` 四種格式。**`find` 一次告訴你答案，猜會猜錯。**
+> 找到之後把那個 `.xml` 的完整路徑接在指令後面就好——這支程式不在乎它放在哪。
+>
+> 如果 `find` 列出不只一個 `.xml`，挑檔名最像模型本體的那個
+> （通常是 `rhto-GEM.xml` 或 `rhto.xml`）。挑錯也沒關係，`check` 第一行就會看出來。
 
 > **為什麼這一章的程式不能在這個教材環境跑**：這個環境沒有對外網路，下載不到模型檔。
 > 所以 `rhto.py` 是寫給**你自己的電腦**用的，跟 `yeast.py`、`annotation.py gem-map` 一樣。
