@@ -2035,6 +2035,59 @@ def fig21_cn():
     return s
 
 
+
+def fig20_bounds():
+    """上下界是什麼：它是圍欄，不是車速。"""
+    s = Svg(W20, 900, "圖 20-4　上下界是什麼意思")
+    s.text(40, 78, "每條反應都有一個速度（通量）。**上下界是你給它的圍欄**，"
+                   "求解器只能在圍欄裡面挑答案。", size=17, color=MUTED)
+
+    rows = [
+        ("0 … 1000", "只能往正方向跑", "**1000 是模型的「無限大」**，等於沒有設限", GREY),
+        ("−1000 … 1000", "正著倒著都可以", "可逆反應", BLUE),
+        ("0 … 0", "這條路被關掉了", "**剔除基因就是把它設成這樣**", RED),
+        ("−10 … 1000", "交換反應：負號是往細胞裡進", "「最多可以吸收 10」", TEAL),
+    ]
+    y = 140
+    for b, what, why, col in rows:
+        s.box(40, y, 920, 82, "", color=col, fill=tint(col, 0.96))
+        s.text(64, y + 36, b, size=21, weight=700, color=col)
+        s.text(300, y + 32, what, size=17)
+        for i, ln in enumerate(wrap(why, 15, 420)):
+            s.text(300, y + 58 + i * 20, ln, size=15, color=MUTED)
+        y += 96
+
+    # 速限的比喻，用 ERG9 的真實數字
+    y += 18
+    s.text(40, y, "上界 1000 不是「這個酵素能跑這麼快」", size=21, weight=700, color=INK)
+    s.text(40, y + 28, "是「我們沒有設限」。這兩件事差很多——ERG9 就是活生生的例子。",
+           size=17, color=MUTED)
+
+    BY, BH = y + 56, 120
+    X0, X1 = 64, 700
+    s.raw(f'<rect x="{X0}" y="{BY}" width="{X1 - X0}" height="{BH}" rx="10" '
+          f'fill="{tint(GREY, 0.93)}" stroke="{GREY}" stroke-width="1.6"/>')
+    s.text(X0 + 16, BY + 32, "上界 ＝ 1000", size=19, weight=700, color=GREY)
+    s.text(X0 + 16, BY + 56, "（速限）", size=15, color=MUTED)
+    # 實際通量：0.016 / 1000 → 畫成一條幾乎看不見的線
+    w = max(3, (X1 - X0) * 0.016364 / 1000)
+    s.raw(f'<rect x="{X0}" y="{BY + 78}" width="{w:.1f}" height="26" rx="4" fill="{RED}"/>')
+    s.arrow([(X0 + 120, BY + 132), (X0 + 10, BY + 106)], color=RED, width=2.2)
+    s.text(X0 + 130, BY + 136, "實際通量 0.016（就是這一條，幾乎看不到）",
+           size=16, weight=700, color=RED)
+
+    s.card(720, BY - 10, 240, [
+        "把上界從 1000 降到 100",
+        "還是比 0.016 大六千倍",
+        "**等於什麼都沒做**",
+    ], title="所以", icon="circle-alert", color=ORANGE, size=15,
+        foot="21.3 第一版就是這樣錯的")
+
+    s.text(40, BY + 180, "要真的壓住一條反應，**上界要設成它實際通量的幾分之幾**，"
+                         "不是上界的幾分之幾。", size=17, weight=700, color=INK)
+    return s
+
+
 def fig19_flow():
     """整條流程的標準流程圖：膠囊＝起訖、方框＝步驟、菱形＝判斷。"""
     s = Svg(W19, 1580, "圖 19-1　整條流程")
@@ -2484,7 +2537,7 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig17-10-independent": fig17_independent,
         "fig17-11-site": fig17_site, "fig17-13-blast": fig17_blast, "fig19-1-flow": fig19_flow, "fig19-2-model-is": fig19_model_is,
         "fig19-3-fba": fig19_fba, "fig19-4-to-ui": fig19_to_ui, "fig19-5-design": fig19_design,
-        "fig19-6-timeline": fig19_timeline, "fig19-7-decide": fig19_decide, "fig20-1-run": fig20_run, "fig21-1-audit": fig21_audit, "fig21-2-glucose": fig21_glucose, "fig21-3-erg9": fig21_erg9, "fig21-4-cn": fig21_cn, "fig20-2-cn": fig20_cn, "fig20-3-limits": fig20_limits, "fig17-12-fpp-users": fig17_fpp_users,
+        "fig19-6-timeline": fig19_timeline, "fig19-7-decide": fig19_decide, "fig20-1-run": fig20_run, "fig21-1-audit": fig21_audit, "fig21-2-glucose": fig21_glucose, "fig21-3-erg9": fig21_erg9, "fig21-4-cn": fig21_cn, "fig20-2-cn": fig20_cn, "fig20-3-limits": fig20_limits, "fig20-4-bounds": fig20_bounds, "fig17-12-fpp-users": fig17_fpp_users,
         "fig18-2-strategy": fig18_strategy,
         "fig17-9-overlay": fig17_overlay, "fig15-4-cell": fig15_cell,
         "fig10-4-vessels": fig10_vessels,
