@@ -1844,6 +1844,197 @@ def fig20_limits():
     return s
 
 
+
+# ── 第 21 章：核對別人做的模型 ──────────────────────────────────────────
+
+W21 = 1000
+
+
+def _afs():
+    return json.loads((CODE / "rhto_afs.json").read_text("utf-8"))
+
+
+def fig21_audit():
+    """核對清單：七項自己重算，對上了幾項。"""
+    d = _afs()
+    v, e = d["verify"], d["envelope_default"]
+    s = Svg(W21, 1000, "圖 21-1　別人給的模型，我自己重算一次")
+    s.text(40, 78, "**不是重述它的說法，是把每個數字自己再跑一次。** "
+                   "七項裡六項完全對上，一項要加註解。", size=17, color=MUTED)
+
+    rows = [
+        ("模型規模", f'{d["model"]["reactions"]} 反應、{d["model"]["metabolites"]} 代謝物、'
+                     f'{d["model"]["genes"]} 基因', "對上", GREEN),
+        ("AFS 反應配平", "質量與電荷都平衡，沒有偷加質子", "對上", GREEN),
+        ("關掉 AFS", f'產物 ＝ {v["afs_off_product"]:.0f}', "對上", GREEN),
+        ("漏洞檢查",
+         f'關掉 {v["carbon_inputs_closed"]} 個含碳輸入後產物 ＝ {v["no_carbon_product"]:.0f}',
+         "對上", GREEN),
+        ("最大生長", f'μ ＝ {e["mu_max"]:.8f} /h（小數點後八位一樣）', "對上", GREEN),
+        ("生產包絡線", "六個點逐一重算，全部相同", "對上", GREEN),
+        ("碳產率",
+         f'模型 {max(r["carbon_yield"] for r in e["rows"])*100:.1f}%　'
+         f'教科書 MVA 上限 {d["textbook_carbon_yield"]*100:.1f}%',
+         "要加註解", ORANGE),
+    ]
+    y = 150
+    for name, detail, verdict, col in rows:
+        s.box(40, y, 920, 76, "", color=col, fill=tint(col, 0.96))
+        s.icon("circle-check" if col is GREEN else "circle-alert", 64, y + 26, 22, col, 2.1)
+        s.text(100, y + 32, name, size=19, weight=700, color=col)
+        s.text(100, y + 60, detail, size=16)
+        s.text(936, y + 44, verdict, size=17, weight=700, anchor="end", color=col)
+        y += 92
+
+    c = d["carbon_route"]
+    s.card(40, y + 14, 920, [
+        f'模型走的是**磷酸酮醇酶**（通量 {c["phosphoketolase"]}），不是丙酮酸脫氫酶'
+        f'（{c["pyruvate_dehydrogenase"]}）',
+        "那條路不會在丙酮酸那一步掉一個 CO₂，所以碳效率比教科書的 MVA 算法高",
+        "**數字沒錯，但它預設了這條捷徑在你的菌裡真的在跑**——那件事沒有人驗過",
+    ], title="為什麼碳產率比教科書高", icon="git-branch", color=ORANGE, size=16,
+        foot="誠實的講法：55.6%（經典路線）到 60.8%（含捷徑）之間")
+    return s
+
+
+def fig21_glucose():
+    """葡萄糖吸收上限：模型預設太低，調高又變成長太快。"""
+    d = _afs()["glucose_scan"]
+    s = Svg(W21, 870, "圖 21-2　那個 μ ＝ 0.074 不是你的菌長得慢")
+    s.text(40, 78, "模型的生長速率**完全由你給的糖吸收上限決定**。"
+                   "預設值 1.0 太低，調到 10 又變成兩倍快得離譜。", size=17, color=MUTED)
+
+    X0, X1, Y, H = 90, 700, 170, 380
+    mus = [r["mu_max"] for r in d]
+    lo, hi = 0, max(mus) * 1.12
+    sy = lambda v: Y + H - (v - lo) / (hi - lo) * H   # noqa: E731
+    s.arrow([(X0, Y + H), (X1 + 20, Y + H)], color=INK, width=2.2)
+    s.arrow([(X0, Y + H), (X0, Y - 16)], color=INK, width=2.2)
+    s.text(40, Y - 28, "μmax（每小時）", size=16, weight=700, color=MUTED)
+    s.text(X1 + 30, Y + H + 6, "糖吸收上限", size=16, weight=700, color=MUTED)
+
+    # 真實的紅酵母大概落在 0.2–0.35
+    s.raw(f'<rect x="{X0}" y="{sy(0.35):.1f}" width="{X1 - X0 + 20}" '
+          f'height="{sy(0.20) - sy(0.35):.1f}" fill="{tint(GREEN, 0.85)}"/>')
+    s.text(X1 + 30, (sy(0.35) + sy(0.20)) / 2 + 6, "文獻上紅酵母", size=15, weight=700, color=GREEN)
+    s.text(X1 + 30, (sy(0.35) + sy(0.20)) / 2 + 28, "大概在這一帶", size=15, weight=700, color=GREEN)
+
+    bw = (X1 - X0) / (len(d) + 0.6)
+    for i, r in enumerate(d):
+        x = X0 + 20 + i * bw
+        col = GREEN if 0.20 <= r["mu_max"] <= 0.35 else (RED if r["mu_max"] > 0.5 else BLUE)
+        s.raw(f'<rect x="{x:.1f}" y="{sy(r["mu_max"]):.1f}" width="{bw * 0.62:.1f}" '
+              f'height="{Y + H - sy(r["mu_max"]):.1f}" rx="4" fill="{col}"/>')
+        s.text(x + bw * 0.31, sy(r["mu_max"]) - 10, f'{r["mu_max"]:.2f}', size=15,
+               weight=700, anchor="middle", color=col)
+        s.text(x + bw * 0.31, Y + H + 26, str(r["glucose_uptake"]), size=17, anchor="middle")
+        s.text(x + bw * 0.31, Y + H + 50, f'{r["doubling_h"]:.1f} h', size=14,
+               anchor="middle", color=MUTED)
+    s.text(X0 + 20 + 0.31 * bw, Y + H + 76, "↑ 模型預設", size=15, weight=700,
+           anchor="middle", color=BLUE)
+
+    s.card(40, 650, 920, [
+        "**模型沒有「酵素做得多快」這個限制**，所以糖給越多就長越快，沒有上限",
+        "真實的細胞有上限——那個上限只能從你自己的生長曲線量出來（第 11 章）",
+        "所以這張圖不是在問「哪一格是對的」，是在說**這個參數現在是空的**",
+    ], title="為什麼會這樣", icon="circle-help", color=BLUE, size=16,
+        foot="這正好就是第 19 章第 ③ 步卡住的那個參數")
+    return s
+
+
+def fig21_erg9():
+    """ERG9 調降：兩種比法給出完全相反的結論。"""
+    d = _afs()["erg9_scan"]
+    s = Svg(W21, 900, "圖 21-3　調降 ERG9 到底有沒有用：兩種比法，相反的答案")
+    s.text(40, 78, "ERG9 和 AFS 搶同一桶 FPP，所以「把它調小」聽起來很合理。"
+                   "**但怎麼比，決定你得到什麼答案。**", size=17, color=MUTED)
+
+    rows = [r for r in d["rows"] if r["afs_at_half_own_growth"] is not None]
+    cols = [("保留比例", lambda r: f'{r["erg9_fraction"]*100:.0f}%', INK),
+            ("μmax", lambda r: f'{r["mu_max"]:.3f}', MUTED),
+            ("產物（各自一半生長）", lambda r: f'{r["afs_at_half_own_growth"]:.3f}', ORANGE),
+            ("產物（固定同一個生長）", lambda r: f'{r["afs_at_fixed_growth"]:.3f}', TEAL)]
+    xs = [110, 280, 520, 800]
+    hy = 150
+    s.raw(f'<rect x="40" y="{hy}" width="920" height="48" rx="8" fill="{C["hairline"]}"/>')
+    for x, (lab, _, col) in zip(xs, cols):
+        s.text(x, hy + 31, lab, size=16, weight=700, anchor="middle", color=col)
+    for i, r in enumerate(rows):
+        ry = hy + 48 + i * 52
+        if i % 2 == 0:
+            s.raw(f'<rect x="40" y="{ry}" width="920" height="52" fill="#fafafa"/>')
+        for x, (_, fn, col) in zip(xs, cols):
+            s.text(x, ry + 34, fn(r), size=18, weight=700 if col is not MUTED else 400,
+                   anchor="middle", color=col)
+    by = hy + 48 + len(rows) * 52 + 24
+
+    h = s.card(40, by, 450, [
+        "ERG9 調到 10% → 產物從 1.38 升到 2.50，**多 81%**",
+        "看起來值得做一個菌株",
+    ], title="用「各自一半生長」比", icon="triangle-alert", color=ORANGE, size=16,
+        foot="但每一列的生長速率都不一樣，不能這樣比")
+    s.card(510, by, 450, [
+        "把生長固定在同一個數字再比",
+        "**產物完全沒變，每一格都是 2.383**",
+    ], title="用「固定生長」比", icon="circle-check", color=TEAL, size=16,
+        foot="ERG9 根本不是瓶頸", min_h=h)
+
+    s.card(40, by + h + 24, 920, [
+        f'ERG9 在最大生長時的實際通量只有 **{d["erg9_flux_at_max_growth"]} mmol/gDW/h**，'
+        f'而它的上界是 1000——**差六萬倍**',
+        "前面那個「多 81%」，全部來自「生長變慢了，碳有剩」，和搶 FPP 無關",
+        "**而要讓生長變慢，限氮就做得到，不用做菌株**",
+    ], title="為什麼", icon="search", color=RED, size=16,
+        foot="模型說的是「化學計量上 ERG9 不是瓶頸」；它沒有排除動力學上的競爭")
+    return s
+
+
+def fig21_cn():
+    """C/N 掃描：模型給的先驗預期。"""
+    d = _afs()["cn_scan"]
+    s = Svg(W21, 836, "圖 21-4　模型對那三瓶的預期")
+    s.text(40, 78, "C/N 越高，菌長得越慢、但碳剩得越多。"
+                   "**這是模型的預期，不是預測——實驗就是去推翻它的。**", size=17, color=MUTED)
+
+    X0, X1, Y, H = 110, 660, 160, 360
+    mu_hi = max(r["mu_max"] for r in d) * 1.15
+    af_hi = max(r["afs_at_half_growth"] for r in d) * 1.15
+    sx = lambda i: X0 + (X1 - X0) * i / (len(d) - 1)        # noqa: E731
+    syl = lambda v: Y + H - v / mu_hi * H                    # noqa: E731
+    syr = lambda v: Y + H - v / af_hi * H                    # noqa: E731
+    s.arrow([(X0, Y + H), (X1 + 24, Y + H)], color=INK, width=2.2)
+    s.text(X0 - 20, Y - 24, "生長 μmax", size=16, weight=700, color=BLUE)
+    s.text(X1 - 60, Y - 24, "產物上限", size=16, weight=700, color=PURPLE)
+    s.arrow([(sx(i), syl(d[i]["mu_max"])) for i in range(len(d))], color=BLUE, width=3)
+    s.arrow([(sx(i), syr(d[i]["afs_at_half_growth"])) for i in range(len(d))],
+            color=PURPLE, width=3)
+    for i, r in enumerate(d):
+        s.raw(f'<circle cx="{sx(i):.1f}" cy="{syl(r["mu_max"]):.1f}" r="6" fill="{BLUE}"/>')
+        s.raw(f'<circle cx="{sx(i):.1f}" cy="{syr(r["afs_at_half_growth"]):.1f}" r="6" '
+              f'fill="{PURPLE}"/>')
+        s.text(sx(i), Y + H + 28, str(int(r["c_n_molar"])), size=17, weight=700, anchor="middle")
+        s.text(sx(i), syl(r["mu_max"]) - 14, f'{r["mu_max"]:.2f}', size=14,
+               anchor="middle", color=BLUE)
+        s.text(sx(i), syr(r["afs_at_half_growth"]) - 14, f'{r["afs_at_half_growth"]:.2f}',
+               size=14, anchor="middle", color=PURPLE)
+    s.text((X0 + X1) / 2, Y + H + 56, "C/N（莫耳比）", size=16, weight=700,
+           anchor="middle", color=MUTED)
+
+    s.card(700, 160, 260, [
+        "低 C/N：長得快、產物低",
+        "高 C/N：長得慢、產物高",
+        "**沒有轉折點**，是單調的",
+    ], title="模型說", icon="chart-line", color=INK, size=15,
+        foot="因為 FBA 裡限氮只是把生長壓低")
+    s.card(40, 590, 920, [
+        "17.9 推論「限氮對 farnesene 不利」（限氮催油脂、油脂搶乙醯輔酶A）",
+        "這張圖說「限氮對 farnesene 有利」（碳沒被拿去長菌）",
+        "**兩個都成立，因為講的是不同的機制**——模型只算化學計量，完全不管調控",
+    ], title="這和第 17 章打架嗎？沒有", icon="scan-search", color=BROWN, size=16,
+        foot="誰贏？第 19 章那三瓶做完就知道了。這正是那三瓶值錢的地方")
+    return s
+
+
 def fig19_flow():
     """整條流程的標準流程圖：膠囊＝起訖、方框＝步驟、菱形＝判斷。"""
     s = Svg(W19, 1580, "圖 19-1　整條流程")
@@ -2293,7 +2484,7 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig17-10-independent": fig17_independent,
         "fig17-11-site": fig17_site, "fig17-13-blast": fig17_blast, "fig19-1-flow": fig19_flow, "fig19-2-model-is": fig19_model_is,
         "fig19-3-fba": fig19_fba, "fig19-4-to-ui": fig19_to_ui, "fig19-5-design": fig19_design,
-        "fig19-6-timeline": fig19_timeline, "fig19-7-decide": fig19_decide, "fig20-1-run": fig20_run, "fig20-2-cn": fig20_cn, "fig20-3-limits": fig20_limits, "fig17-12-fpp-users": fig17_fpp_users,
+        "fig19-6-timeline": fig19_timeline, "fig19-7-decide": fig19_decide, "fig20-1-run": fig20_run, "fig21-1-audit": fig21_audit, "fig21-2-glucose": fig21_glucose, "fig21-3-erg9": fig21_erg9, "fig21-4-cn": fig21_cn, "fig20-2-cn": fig20_cn, "fig20-3-limits": fig20_limits, "fig17-12-fpp-users": fig17_fpp_users,
         "fig18-2-strategy": fig18_strategy,
         "fig17-9-overlay": fig17_overlay, "fig15-4-cell": fig15_cell,
         "fig10-4-vessels": fig10_vessels,

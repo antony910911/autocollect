@@ -31,7 +31,7 @@ lessons/<課程名>/
 | `lessons/ammonia/` | 氨氮降解 | 氨氮降解基礎教材 |
 | `lessons/aiot/` | 沼氣與廢水處理 AIoT 入門 | 沼氣與廢水處理 AIoT |
 | `lessons/aiot-advanced/` | 沼氣 AIoT 進階建模 | 沼氣 AIoT 進階：建模實作 |
-| `lessons/dna-to-culture/` | 從 DNA 到最適培養（20 章） | 從 DNA 到最適培養：建模與視覺化 |
+| `lessons/dna-to-culture/` | 從 DNA 到最適培養（21 章） | 從 DNA 到最適培養：建模與視覺化 |
 | `lessons/using-claude/` | 把 Claude 用好（11 章，給研究者的實戰手冊） | 把 Claude 用好：給研究者的實戰手冊 |
 
 ### 寫教材的規矩（重要）
@@ -119,13 +119,21 @@ Folio 的上傳由 GitHub Actions（`.github/workflows/lessons.yml`）做，**�
   T-DNA 進去 11–12 份、骨架 2–3 份；**12 個 AFS 拷貝中 11 個與設計逐鹼基零差異**，
   拷貝 #3 斷在陣列接合點（CDS 第 1,587 bp ＝ 第 530 個密碼子）。
 - 插入點在無插入株的 Contig4 942,770–942,830（兩側側翼只隔 60 bp，單一位點、無重排）。
+- **調降 ERG9 不建議做**（第 21 章，2026-10）。在加了 AFS 的 rhto-GEM 上，
+  把生長速率固定住之後調降 ERG9，產物**一點都沒多**——它的實際通量只有 0.016 mmol/gDW/h，
+  上界卻是 1000，本身就不是瓶頸。看起來有效的版本是沒有固定生長速率造成的假象。
+  **任何「改 A 之後 B 變多」的比較，都要先把生長速率固定住。**
+  使用者的菌裡鯊烯合成酶是 `g_00498`、法呢基轉移酶是 `g_00412`（基因 ID 對照做完了）。
 - **兩個啟動子的身分未知**——不在宿主基因體裡，也不是 35S／nos／trpC。
   這件事卡住「限氮階段 AFS 還有沒有在表現」，進而卡住分階段培養的設計。
   要用 BLASTn（序列要先切掉前面 216 bp 的 pUC 載體殘跡）或不同 C/N 下的 RT-qPCR 解決。
 - **這代表什麼**（已寫進第 15、16 章）：
   - 是**真核生物**，細菌的工具鏈（Prokka／Bakta、CheckM2、GTDB-Tk、CarveMe、gapseq）都不適用。
   - 是**產油酵母，不是釀酒酵母**：Crabtree 陰性、氮限制（高 C/N）觸發油脂累積、菌體紅色會干擾 OD600、可直接用木糖與乙酸。不要套用 *S. cerevisiae* 的經驗。
-  - 代謝模型要用 **rhto-GEM**（Tiukova et al. 2019，建在 IFO 0880 上），不是 Yeast8。
+  - 代謝模型要用 **rhto-GEM**（Tiukova et al. 2019）或 **iRhto1108**（Dinh et al. 2019），不是 Yeast8。
+    **注意：rhto-GEM 建在 NP11 上，不是 IFO 0880**（2026-10 查證，我先前寫錯過）。
+    建在 IFO 0880 上的是 iRhto1108。所以用 rhto-GEM 一定要做基因 ID 對照，
+    它的基因是 `RHTO_#####`（NP11 的 locus tag），不是使用者註解的 `g_#####`。
   - α-farnesene 是倍半萜，從 FPP 做；競爭者是油脂（搶乙醯輔酶 A）、ERG9／麥角固醇與類胡蘿蔔素（搶 FPP）。
   - 產物揮發，要用十二烷等有機相覆蓋收集，否則量到的產量嚴重低估。
 

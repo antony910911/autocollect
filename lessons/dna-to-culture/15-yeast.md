@@ -90,9 +90,19 @@ Prokka 之所以能快，是因為它假設「基因沒有內含子、就在一�
 | 菌 | 模型 | 備註 |
 |---|---|---|
 | *S. cerevisiae* | **Yeast8／Yeast9** 共識模型 [6] | 社群共同維護，品質最高；有酵素限制版（ecYeast8） |
-| *Rhodotorula toruloides* | **rhto-GEM** [7] | 852 個基因、2,731 個反應、2,277 個代謝物；建立在 IFO 0880 的基因體上，並用 SLIMEr 處理油脂；已驗證葡萄糖、木糖、甘油上的生長 |
+| *Rhodotorula toruloides* | **rhto-GEM** [7] | 852 個基因、2,731 個反應、2,277 個代謝物；**建立在 NP11 的基因體上**，用 SLIMEr 處理油脂；已驗證葡萄糖、木糖、甘油上的生長 |
+| *Rhodotorula toruloides* | **iRhto1108** [11] | 1,108 個基因、約 2,200 個反應；**建立在 IFO 0880 上**——和你的參考基因體同一株，而且整合了功能基因體與表型資料 |
 
-**對紅酵母使用者的重點**：rhto-GEM 正好建在 JGI 那份 IFO 0880 基因體上，和你手上的參考一致。程式 `code/yeast.py` 示範怎麼載入、檢查、設定培養基與剔除基因——**這支程式要在你自己的電腦上跑**，因為它需要先下載模型檔。
+**對紅酵母使用者的重點**：兩個模型建在不同的菌株上，這件事會影響你怎麼用它們。
+
+- **rhto-GEM 建在 NP11 上**，基因編號是 `RHTO_#####`。維護得比較好（有版本、有 CI、沿用 yeast-GEM 的慣例），油脂用 SLIMEr 處理——對產油酵母來說這一點很重要。**但它的基因不是你的菌的基因**，要做 ID 對照才能談基因層次的事。
+- **iRhto1108 建在 IFO 0880 上**，和 JGI 那份參考基因體、和 Coradetti 2018 的突變庫是同一株。
+
+> **先前這一節寫成「rhto-GEM 建在 IFO 0880 上」，那是錯的**（2026-10 更正）。
+> 實務上的建議是**以 rhto-GEM 為主**（維護與油脂處理比較好），
+> **把 iRhto1108 當交叉核對**——兩個模型對同一個問題給出不同答案時，那個答案就不能信。
+
+程式 `code/yeast.py` 示範怎麼載入、檢查、設定培養基與剔除基因，`code/rhto.py` 是完整的六步流程（第 20 章）——**都要在你自己的電腦上跑**，因為需要先下載模型檔。
 
 **二倍體要注意**：現有模型都是以單倍體為基礎。二倍體雜交株如果兩個等位基因的活性不同（例如一個親本的某個酵素失活），模型不會知道。這要靠實驗資料回來校正（第 11 章）。
 
@@ -160,3 +170,4 @@ Prokka 之所以能快，是因為它假設「基因沒有內含子、就在一�
 8. De Deken RH (1966). The Crabtree effect: a regulatory system in yeast. *Journal of General Microbiology*, 44, 149–156. https://doi.org/10.1099/00221287-44-2-149
 9. Yaegashi J, Kirby J, Ito M, et al. (2017). *Rhodosporidium toruloides*: a new platform organism for conversion of lignocellulose into terpene biofuels and bioplastics. *Biotechnology for Biofuels*, 10, 241. https://doi.org/10.1186/s13068-017-0927-5
 10. Cherry JM, Hong EL, Amundsen C, et al. (2012). *Saccharomyces* Genome Database: the genomics resource of budding yeast. *Nucleic Acids Research*, 40, D700–D705. https://doi.org/10.1093/nar/gkr1029
+11. Dinh HV, Suthers PF, Chan SHJ, et al. (2019). A comprehensive genome-scale model for *Rhodosporidium toruloides* IFO0880 accounting for functional genomics and phenotypic data. *Metabolic Engineering Communications*, 9, e00101. https://doi.org/10.1016/j.mec.2019.e00101

@@ -481,7 +481,7 @@ def cmd_gem_map(args):
     (out / "README.md").write_text(GEM_README.replace("QUERY_FAA", faa.name))
     (out / "rbh.py").write_text(RBH_PY)
     print(f"寫入 {out}/README.md 與 {out}/rbh.py")
-    print(f"  把 {faa} 和下載好的 rhto-GEM、IFO 0880 蛋白質序列放在一起，照 README 跑。")
+    print(f"  把 {faa} 和下載好的 rhto-GEM、NP11 參考蛋白質序列放在一起，照 README 跑。")
 
 
 def main(argv=None):

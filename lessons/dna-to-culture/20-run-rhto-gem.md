@@ -6,8 +6,13 @@
 
 這一章就是把那些東西一個一個拆掉。
 
-> **rhto-GEM 是什麼**：*Rhodotorula toruloides* 的全基因體代謝模型 [1]，852 個基因、2,731 個反應、2,277 個代謝物，**建在 IFO 0880 上——和你的參考基因體同一株**。已經驗證過葡萄糖、木糖、甘油上的生長。
-> 油脂用 SLIMEr 的寫法處理，所以它對「油脂」這件事比一般模型細。
+> **rhto-GEM 是什麼**：*Rhodotorula toruloides* 的全基因體代謝模型 [1]，852 個基因、2,731 個反應、2,277 個代謝物。已經驗證過葡萄糖、木糖、甘油上的生長，油脂用 SLIMEr 的寫法處理，所以它對「油脂」這件事比一般模型細。
+>
+> **它建在 NP11 這一株上，不是 IFO 0880。** 這一節原本寫成 IFO 0880，那是錯的（2026-10 更正）。
+> 差別在哪裡：模型裡的基因是 `RHTO_#####`（NP11 的編號），**不是你的參考基因體的編號**，
+> 所以 20.10 那個基因 ID 對照**不是可有可無的加分題**，而是談任何基因層次問題的前提。
+> 建在 IFO 0880 上的另有一個模型 **iRhto1108** [4]——和你的參考基因體、和 Coradetti 2018 的
+> 突變庫同一株。建議**以 rhto-GEM 為主、iRhto1108 當交叉核對**（理由見第 15 章）。
 
 ## 20.1 六個指令
 
@@ -256,7 +261,7 @@ rhto-GEM 沒有溫度，也沒有 pH。這兩個要另外用經驗模型處理�
 
 還有一件事會卡住，而且沒有捷徑。
 
-rhto-GEM 的基因用的是 **IFO 0880 的 JGI 編號**；你的定序廠註解用的是 **`g_#####`**。要把「我這個基因對應到模型裡哪一個」，得做一次**雙向最佳命中**（reciprocal best hit）比對。
+rhto-GEM 的基因用的是 **`RHTO_#####`（NP11 的 locus tag）**；你的定序廠註解用的是 **`g_#####`**。**這是兩株不同的菌**，要把「我這個基因對應到模型裡哪一個」，得做一次**雙向最佳命中**（reciprocal best hit）比對。
 
 `annotation.py gem-map` 會幫你產生所需的指令與腳本：
 
@@ -266,9 +271,11 @@ python code/annotation.py gem-map --faa Rt_WT.faa -o gem-map/
 
 **這一步要下載 rhto-GEM 和 JGI 的參考蛋白質序列，所以在你自己的電腦上跑。**
 
-> **什麼時候才真的需要它**：只有在你要「把表現量接回模型」或「模擬剔除某個特定基因」時才需要。
-> 如果你現在只是要算理論上限、生產包絡線、C/N 的影響——**用反應名字就夠了，不用做對照表。**
-> 這件事可以先放著。
+> **什麼時候才真的需要它**：只要你要談「**某個基因**」——把表現量接回模型、模擬剔除、
+> 或是在結果裡指出「你的菌的 ERG9 是哪一個」——就一定要先對照。
+> 如果只是要算理論上限、生產包絡線、C/N 的影響，**用反應名字就夠了**，可以先放著。
+>
+> 第 21 章就是別人把這件事做完的實例：832 個模型基因裡對上了 804–808 個。
 
 ## 20.11 算完之後接回哪裡
 
@@ -298,7 +305,8 @@ python code/annotation.py gem-map --faa Rt_WT.faa -o gem-map/
 
 ## 本章重點
 
-- **rhto-GEM 建在 IFO 0880 上**，和你的參考基因體同一株——這是它比 Yeast8 值得用的主要理由 [1]。
+- **rhto-GEM 建在 NP11 上，不是 IFO 0880。** 它比 Yeast8 值得用的理由是「同一個種、手工校正、SLIMEr 處理油脂」，不是菌株相同 [1]。建在 IFO 0880 上的是 iRhto1108 [4]。
+- **既然不是同一株，基因 ID 對照就是談基因層次問題的前提**，不是加分題。
 - **先用內建的大腸桿菌模型把六個指令走一遍。** 指令、輸出、會踩的坑都一樣，只有數字不同，而且不用等下載。
 - **不要把反應 id 寫死。** rhto-GEM 用 `r_####` 流水號，版本一換就會安靜地指到別的地方。一律用名字找，而且**把找到的 id 印出來核對**。
 - **區隔是最容易錯的一件事。** 萜類合成在細胞質；FPP 拿到粒線體那個，模型會跑得完但產物上限是 0。
@@ -315,3 +323,4 @@ python code/annotation.py gem-map --faa Rt_WT.faa -o gem-map/
 1. Tiukova IA, Prigent S, Nielsen J, Sandgren M, Kerkhoven EJ (2019). Genome-scale model of *Rhodotorula toruloides* metabolism. *Biotechnology and Bioengineering*, 116, 3396–3408. https://doi.org/10.1002/bit.27162
 2. Ebrahim A, Lerman JA, Palsson BO, Hyduke DR (2013). COBRApy: COnstraints-Based Reconstruction and Analysis for Python. *BMC Systems Biology*, 7, 74. https://doi.org/10.1186/1752-0509-7-74
 3. Orth JD, Thiele I, Palsson BØ (2010). What is flux balance analysis? *Nature Biotechnology*, 28, 245–248. https://doi.org/10.1038/nbt.1614
+4. Dinh HV, Suthers PF, Chan SHJ, et al. (2019). A comprehensive genome-scale model for *Rhodosporidium toruloides* IFO0880 accounting for functional genomics and phenotypic data. *Metabolic Engineering Communications*, 9, e00101. https://doi.org/10.1016/j.mec.2019.e00101

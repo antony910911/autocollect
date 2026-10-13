@@ -1,0 +1,299 @@
+{
+  "model": {
+    "reactions": 2726,
+    "metabolites": 2279,
+    "genes": 843,
+    "objective": [
+      "r_2111"
+    ]
+  },
+  "verify": {
+    "afs_reaction": "s_0190 --> afs_alpha_farnesene_c + s_0633",
+    "afs_mass_balanced": true,
+    "afs_gpr_copies": 11,
+    "afs_off_product": 0.0,
+    "no_carbon_product": 0.0,
+    "carbon_inputs_closed": 1
+  },
+  "envelope_default": {
+    "mu_max": 0.07398512,
+    "glucose_uptake": 1.0,
+    "rows": [
+      {
+        "growth_fraction": 0.0,
+        "mu": 0.0,
+        "afs_min": 0.0,
+        "afs_max": 0.243132,
+        "carbon_yield": 0.6078,
+        "g_per_g": 0.2758
+      },
+      {
+        "growth_fraction": 0.1,
+        "mu": 0.007399,
+        "afs_min": 0.0,
+        "afs_max": 0.22067,
+        "carbon_yield": 0.5517,
+        "g_per_g": 0.2503
+      },
+      {
+        "growth_fraction": 0.2,
+        "mu": 0.014797,
+        "afs_min": 0.0,
+        "afs_max": 0.197429,
+        "carbon_yield": 0.4936,
+        "g_per_g": 0.2239
+      },
+      {
+        "growth_fraction": 0.3,
+        "mu": 0.022196,
+        "afs_min": 0.0,
+        "afs_max": 0.174188,
+        "carbon_yield": 0.4355,
+        "g_per_g": 0.1976
+      },
+      {
+        "growth_fraction": 0.4,
+        "mu": 0.029594,
+        "afs_min": 0.0,
+        "afs_max": 0.150833,
+        "carbon_yield": 0.3771,
+        "g_per_g": 0.1711
+      },
+      {
+        "growth_fraction": 0.5,
+        "mu": 0.036993,
+        "afs_min": 0.0,
+        "afs_max": 0.125746,
+        "carbon_yield": 0.3144,
+        "g_per_g": 0.1426
+      },
+      {
+        "growth_fraction": 0.6,
+        "mu": 0.044391,
+        "afs_min": 0.0,
+        "afs_max": 0.100597,
+        "carbon_yield": 0.2515,
+        "g_per_g": 0.1141
+      },
+      {
+        "growth_fraction": 0.7,
+        "mu": 0.05179,
+        "afs_min": 0.0,
+        "afs_max": 0.075448,
+        "carbon_yield": 0.1886,
+        "g_per_g": 0.0856
+      },
+      {
+        "growth_fraction": 0.8,
+        "mu": 0.059188,
+        "afs_min": 0.0,
+        "afs_max": 0.050298,
+        "carbon_yield": 0.1257,
+        "g_per_g": 0.0571
+      },
+      {
+        "growth_fraction": 0.9,
+        "mu": 0.066587,
+        "afs_min": 0.0,
+        "afs_max": 0.025149,
+        "carbon_yield": 0.0629,
+        "g_per_g": 0.0285
+      },
+      {
+        "growth_fraction": 1.0,
+        "mu": 0.073985,
+        "afs_min": 0.0,
+        "afs_max": 0.0,
+        "carbon_yield": 0.0,
+        "g_per_g": 0.0
+      }
+    ]
+  },
+  "textbook_carbon_yield": 0.5556,
+  "carbon_route": {
+    "phosphoketolase": 1.294,
+    "pyruvate_dehydrogenase": 0.8942,
+    "co2_out": 2.353,
+    "afs": 0.2431,
+    "note": "磷酸酮醇酶不掉 CO2，所以模型的碳產率會高過教科書的 MVA 路線"
+  },
+  "glucose_scan": [
+    {
+      "glucose_uptake": 1,
+      "mu_max": 0.07399,
+      "doubling_h": 9.37,
+      "afs_max": 0.24313,
+      "afs_at_half_growth": 0.12575,
+      "carbon_yield_max": 0.6078
+    },
+    {
+      "glucose_uptake": 2,
+      "mu_max": 0.15659,
+      "doubling_h": 4.43,
+      "afs_max": 0.5079,
+      "afs_at_half_growth": 0.26609,
+      "carbon_yield_max": 0.6349
+    },
+    {
+      "glucose_uptake": 5,
+      "mu_max": 0.40439,
+      "doubling_h": 1.71,
+      "afs_max": 1.30219,
+      "afs_at_half_growth": 0.6843,
+      "carbon_yield_max": 0.6511
+    },
+    {
+      "glucose_uptake": 10,
+      "mu_max": 0.8174,
+      "doubling_h": 0.85,
+      "afs_max": 2.62601,
+      "afs_at_half_growth": 1.38004,
+      "carbon_yield_max": 0.6565
+    },
+    {
+      "glucose_uptake": 15,
+      "mu_max": 1.23041,
+      "doubling_h": 0.56,
+      "afs_max": 3.94984,
+      "afs_at_half_growth": 2.07579,
+      "carbon_yield_max": 0.6583
+    }
+  ],
+  "cn_scan": [
+    {
+      "c_n_molar": 10,
+      "n_uptake": 6.0,
+      "mu_max": 0.8174,
+      "afs_at_half_growth": 1.38004
+    },
+    {
+      "c_n_molar": 20,
+      "n_uptake": 3.0,
+      "mu_max": 0.7301,
+      "afs_at_half_growth": 1.51716
+    },
+    {
+      "c_n_molar": 40,
+      "n_uptake": 1.5,
+      "mu_max": 0.36505,
+      "afs_at_half_growth": 2.08296
+    },
+    {
+      "c_n_molar": 80,
+      "n_uptake": 0.75,
+      "mu_max": 0.18253,
+      "afs_at_half_growth": 2.35449
+    },
+    {
+      "c_n_molar": 120,
+      "n_uptake": 0.5,
+      "mu_max": 0.12168,
+      "afs_at_half_growth": 2.445
+    }
+  ],
+  "erg9_scan": {
+    "reaction": "r_1012",
+    "mu_full": 0.8174,
+    "erg9_flux_at_max_growth": 0.016364,
+    "fixed_growth_floor": 0.08174,
+    "note": "afs_at_half_own_growth 的生長下限是各自 μmax 的一半（會互相不可比）；afs_at_fixed_growth 把生長固定在同一個絕對值，才是公平比較",
+    "rows": [
+      {
+        "erg9_fraction": 1.0,
+        "erg9_upper_bound": 0.016364,
+        "mu_max": 0.8174,
+        "afs_at_half_own_growth": 1.38004,
+        "afs_at_fixed_growth": 2.38282
+      },
+      {
+        "erg9_fraction": 0.5,
+        "erg9_upper_bound": 0.008182,
+        "mu_max": 0.4087,
+        "afs_at_half_own_growth": 2.01803,
+        "afs_at_fixed_growth": 2.38282
+      },
+      {
+        "erg9_fraction": 0.25,
+        "erg9_upper_bound": 0.004091,
+        "mu_max": 0.20435,
+        "afs_at_half_own_growth": 2.32202,
+        "afs_at_fixed_growth": 2.38282
+      },
+      {
+        "erg9_fraction": 0.1,
+        "erg9_upper_bound": 0.001636,
+        "mu_max": 0.08174,
+        "afs_at_half_own_growth": 2.50442,
+        "afs_at_fixed_growth": 2.38282
+      },
+      {
+        "erg9_fraction": 0.0,
+        "erg9_upper_bound": 0.0,
+        "mu_max": 0.0,
+        "afs_at_half_own_growth": null,
+        "afs_at_fixed_growth": null
+      }
+    ]
+  },
+  "fpp_users": [
+    {
+      "id": "AFS_alpha_farnesene",
+      "name": "Candidate apple alpha-farnesene synthase",
+      "consumes": true,
+      "genes": [
+        "AFS_copy_01",
+        "AFS_copy_02",
+        "AFS_copy_03",
+        "AFS_copy_04",
+        "AFS_copy_05",
+        "AFS_copy_06",
+        "AFS_copy_07",
+        "AFS_copy_08",
+        "AFS_copy_09",
+        "AFS_copy_10",
+        "AFS_copy_11"
+      ],
+      "reaction": "s_0190 --> afs_alpha_farnesene_c + s_0633"
+    },
+    {
+      "id": "r_0373",
+      "name": "farnesyltranstransferase",
+      "consumes": true,
+      "genes": [
+        "g_00412"
+      ],
+      "reaction": "s_0190 + s_0943 --> s_0189 + s_0633"
+    },
+    {
+      "id": "r_0462",
+      "name": "geranyltranstransferase",
+      "consumes": false,
+      "genes": [
+        "g_08479"
+      ],
+      "reaction": "s_0745 + s_0943 --> s_0190 + s_0633"
+    },
+    {
+      "id": "r_1012",
+      "name": "squalene synthase",
+      "consumes": true,
+      "genes": [
+        "g_00498"
+      ],
+      "reaction": "2.0 s_0190 + s_0794 + s_1212 --> 2.0 s_0633 + s_1207 + s_1447"
+    },
+    {
+      "id": "r_1766",
+      "name": "farnesyl diphosphate transport",
+      "consumes": true,
+      "genes": [],
+      "reaction": "s_0190 <=> s_0191"
+    }
+  ],
+  "copy_number": {
+    "n_copies": 11,
+    "all_present": 2.62601,
+    "only_one_left": 2.62601,
+    "all_knocked_out": 0.0
+  }
+}
