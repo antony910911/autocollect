@@ -1,0 +1,61 @@
+{
+  "note": "用 COBRApy 內建的大腸桿菌核心模型（e_coli_core）跑出來的真實輸出，給第 20 章當「先練一次」的範例。這不是 rhto-GEM 的數字。",
+  "check": {
+    "model": "textbook",
+    "cmd": "check",
+    "n_reactions": 95,
+    "n_metabolites": 72,
+    "n_genes": 137,
+    "biomass": "Biomass_Ecoli_core",
+    "mu_default": 0.8739215069684279,
+    "exchanges": {
+      "glucose": "EX_glc__D_e",
+      "ammonium": "EX_nh4_e",
+      "oxygen": "EX_o2_e",
+      "xylose": null,
+      "acetate": "EX_ac_e"
+    }
+  },
+  "medium_cn40": {
+    "model": "textbook",
+    "cmd": "medium",
+    "medium": {
+      "glucose": {
+        "id": "EX_glc__D_e",
+        "uptake": 10.0
+      },
+      "ammonium": {
+        "id": "EX_nh4_e",
+        "uptake": 1.5,
+        "c_n_molar": 40.0
+      },
+      "oxygen": {
+        "id": "EX_o2_e",
+        "uptake": 1000.0
+      }
+    },
+    "mu": 0.2750880281690142,
+    "secreted": [
+      {
+        "id": "EX_ac_e",
+        "name": "Acetate exchange",
+        "flux": 3.9345
+      },
+      {
+        "id": "EX_co2_e",
+        "name": "CO2 exchange",
+        "flux": 7.1291
+      },
+      {
+        "id": "EX_h_e",
+        "name": "H+ exchange",
+        "flux": 9.4527
+      },
+      {
+        "id": "EX_h2o_e",
+        "name": "H2O exchange",
+        "flux": 9.1329
+      }
+    ]
+  }
+}

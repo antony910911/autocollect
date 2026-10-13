@@ -1704,6 +1704,146 @@ def fig17_blast():
     return s
 
 
+
+# ── 第 20 章：把 rhto-GEM 跑起來 ────────────────────────────────────────
+
+W20 = 1000
+
+
+def _demo():
+    return json.loads((CODE / "rhto_demo.json").read_text("utf-8"))
+
+
+def fig20_run():
+    """六個指令：每一步問什麼、看什麼、會踩什麼坑。"""
+    s = Svg(W20, 1060, "圖 20-1　把 rhto-GEM 跑起來：六個指令")
+    s.text(40, 78, "每一步都先看一個東西再往下走。**跳過第 2 步是最常見的失敗方式。**",
+           size=17, color=MUTED)
+
+    steps = [
+        ("check", "模型長什麼樣、長不長得起來", "區隔有十幾個嗎？只有 1–2 個代表你載到細菌模型了",
+         BLUE, "search"),
+        ("find", "用名字查出你要的反應 id", "**不要把 r_#### 寫死**。版本一換就安靜地找不到",
+         RED, "key"),
+        ("medium", "設碳源與 C/N，跑 FBA", "μ 是 0 就別往下走——先把培養基調對", ORANGE, "beaker"),
+        ("afs", "把 α-farnesene 那條反應加進去", "碳上限超過 100% ＝ 你的反應沒配平", PURPLE,
+         "git-branch"),
+        ("envelope", "生產包絡線", "下界是 0 ＝ 菌可以不做產物，要靠條件逼它", TEAL, "chart-line"),
+        ("scan", "掃 C/N 與 ERG9 調降", "拿來**排序選項**，不要拿來預測數字", GREEN, "list-checks"),
+    ]
+    X, BW, y = 64, 600, 150
+    for i, (cmd, what, trap, col, icon) in enumerate(steps):
+        s.box(X, y, BW, 112, "", color=col, fill=tint(col, 0.95))
+        s.icon(icon, X + 24, y + 26, 24, col, 2.1)
+        s.text(X + 60, y + 36, f"{i + 1}　rhto.py {cmd}", size=21, weight=700, color=col)
+        s.text(X + 60, y + 64, what, size=17)
+        for j, ln in enumerate(wrap(trap, 15, BW - 92)):
+            s.text(X + 60, y + 90 + j * 20, ln, size=15, color=MUTED)
+        if i < len(steps) - 1:
+            s.arrow([(X + BW / 2, y + 112), (X + BW / 2, y + 150)], color=MUTED, width=2.4)
+        y += 150
+
+    s.card(700, 150, 260, [
+        "pip install cobra",
+        "git clone 那個 repo",
+        "ls model/*.xml",
+    ], title="先做這三件事", icon="terminal", color=INK, size=16,
+        foot="模型檔要自己下載，這個環境沒有網路")
+    s.card(700, 420, 260, [
+        "路徑寫 textbook",
+        "指令、輸出、會踩的坑都一樣",
+        "只有數字不同",
+    ], title="不想等下載？", icon="circle-help", color=BROWN, size=16,
+        foot="先把流程走一遍，省掉很多來回")
+    return s
+
+
+def fig20_cn():
+    """C/N 這個實驗室語言，怎麼翻譯成模型裡的吸收速率。"""
+    s = Svg(W20, 786, "圖 20-2　C/N 怎麼變成模型看得懂的數字")
+    s.text(40, 78, "實驗室說「C/N 要 40」，模型只認得「每小時吸收幾毫莫耳」。中間差一個換算。",
+           size=17, color=MUTED)
+
+    s.box(64, 136, 400, 150, "", color=BROWN, fill=tint(BROWN, 0.94))
+    s.text(84, 174, "實驗室的語言", size=20, weight=700, color=BROWN)
+    s.text(84, 210, "40 公克葡萄糖", size=18)
+    s.text(84, 240, "2.2 公克硫酸銨", size=18)
+    s.text(84, 270, "C/N（莫耳）＝ 40", size=17, weight=700, color=BROWN)
+
+    s.arrow([(480, 211), (552, 211)], color=INK, width=2.6)
+
+    s.box(568, 136, 368, 150, "", color=BLUE, fill=tint(BLUE, 0.94))
+    s.text(588, 174, "模型的語言", size=20, weight=700, color=BLUE)
+    s.text(588, 210, "葡萄糖吸收 10 mmol/gDW/h", size=18)
+    s.text(588, 240, "銨吸收 1.5 mmol/gDW/h", size=18)
+    s.text(588, 270, "（上限，不是實際值）", size=15, color=MUTED)
+
+    s.text(40, 352, "換算公式（可以自己驗算）", size=20, weight=700)
+    s.box(64, 376, 872, 76, "", color=TEAL, fill=tint(TEAL, 0.94))
+    s.text(500, 408, "氮吸收速率 ＝ 6 × 葡萄糖吸收速率 ÷ (C/N)", size=22, weight=700,
+           anchor="middle", color=TEAL)
+    s.text(500, 436, "葡萄糖一個分子 6 個碳，銨一個分子 1 個氮——就只是這樣", size=15,
+           anchor="middle", color=MUTED)
+
+    rows = [(10, 6.0, "氮充足：菌專心長"), (40, 1.5, "中間"), (120, 0.5, "限氮：生長被壓住")]
+    s.text(40, 510, "三個 C/N 實際設下去的值（葡萄糖固定 10）", size=20, weight=700)
+    hy = 538
+    s.raw(f'<rect x="64" y="{hy}" width="872" height="44" rx="8" fill="{C["hairline"]}"/>')
+    for x, lab in ((120, "C/N"), (300, "銨吸收上限"), (560, "這一瓶在問什麼")):
+        s.text(x, hy + 29, lab, size=17, weight=700, color=MUTED)
+    for i, (cn, n, why) in enumerate(rows):
+        ry = hy + 44 + i * 50
+        if i % 2 == 0:
+            s.raw(f'<rect x="64" y="{ry}" width="872" height="50" fill="#fafafa"/>')
+        col = (TEAL, ORANGE, RED)[i]
+        s.text(120, ry + 32, str(cn), size=19, weight=700, color=col)
+        s.text(300, ry + 32, f"{n:.1f} mmol/gDW/h", size=18)
+        s.text(560, ry + 32, why, size=17, color=MUTED)
+    s.text(64, 740, "※ 這三個就是第 19 章那三瓶。模型先算一次，實驗再做一次，兩邊才對得起來。",
+           size=15, color=MUTED)
+    return s
+
+
+def fig20_limits():
+    """rhto-GEM 算得出什麼、算不出什麼，以及接回第 19 章的哪一步。"""
+    s = Svg(W20, 830, "圖 20-3　跑完之後：算得出什麼、算不出什麼")
+    s.text(40, 78, "模型最危險的地方不是算錯，是**算得出來但你以為它算的是別的東西**。",
+           size=17, color=MUTED)
+
+    h = s.card(40, 128, 450, [
+        "理論上最多能做多少（碳的上限）",
+        "調降 ERG9，產物會不會上升",
+        "哪幾個改動值得花三個月試",
+        "哪些反應你的菌沒有對應基因",
+        "在某個 C/N 下，生長的上限是多少",
+    ], title="算得出來", icon="circle-check", color=GREEN, size=16,
+        foot="共通點：都是「上限」和「排序」")
+    s.card(510, 128, 450, [
+        "實際會做多少（差一個數量級）",
+        "**限氮會不會累積油脂**——FBA 裡限氮只是把生長壓低",
+        "基因有沒有在表現（11 個拷貝都在，不代表在工作）",
+        "改完要多久看到效果",
+        "溫度、pH 的影響",
+    ], title="算不出來", icon="circle-alert", color=RED, size=16,
+        foot="這些只能用實驗量，或用 dFBA 另外算", min_h=h)
+
+    y = 128 + h + 34
+    s.text(40, y, "算出來之後，接回第 19 章的第 ⑤ 和第 ③ 步", size=21, weight=700, color=INK)
+    y += 24
+    items = [
+        ("生產包絡線", "告訴你「還要不要再改菌株」", "→ 第 19 章第 ⑤ 步：挑條件", PURPLE),
+        ("C/N 掃描", "給你一個先驗的預期，實驗去推翻它", "→ 第 19 章第 ⑥ 步：那三瓶", ORANGE),
+        ("生長速率 μ", "**還不能填進介面**——那要實驗擬合出來的參數", "→ 第 19 章第 ③ 步卡在這", RED),
+    ]
+    for i, (what, why, to, col) in enumerate(items):
+        yy = y + 20 + i * 96
+        s.box(40, yy, 920, 80, "", color=col, fill=tint(col, 0.96))
+        s.text(64, yy + 32, what, size=19, weight=700, color=col)
+        s.text(64, yy + 62, why, size=16)
+        s.text(936, yy + 48, to, size=16, weight=700, anchor="end", color=col)
+    return s
+
+
 def fig19_flow():
     """整條流程的標準流程圖：膠囊＝起訖、方框＝步驟、菱形＝判斷。"""
     s = Svg(W19, 1580, "圖 19-1　整條流程")
@@ -1749,7 +1889,7 @@ def fig19_flow():
     down(y, y + 34)
     y += 34
     s.diamond(CX, y + 55, 420, 110, "兩管的標籤對嗎？", color=RED, size=T_H)
-    note("L", y + 55, "先用 PCR 釐清（見 17.2）", RED)
+    note("L", y + 55, "送樣時貼反了（見 17.2）", RED)
     s.text(CX - 150, y + 48, "否", size=T_NOTE, weight=700, color=RED)
     y += 110
 
@@ -2109,7 +2249,7 @@ def fig19_decide():
           (338, "量得到產物嗎？", ORANGE,
            ["RT-qPCR 看有沒有在轉錄；", "11 個拷貝都在，「沒表現」", "比「沒有基因」可能得多"]),
           (526, "比對照株明顯高嗎？", PURPLE,
-           ["差不多 → 先懷疑標籤", "（17.2 那件事還沒解決）"])]
+           ["差不多 → 先懷疑取樣方法", "或基因沒在表現（標籤已排除）"])]
     for y, q, col, no in qs:
         cy = y + DH / 2
         s.diamond(CX, cy, DW, DH, q, color=col, size=T_H)
@@ -2153,7 +2293,7 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig17-10-independent": fig17_independent,
         "fig17-11-site": fig17_site, "fig17-13-blast": fig17_blast, "fig19-1-flow": fig19_flow, "fig19-2-model-is": fig19_model_is,
         "fig19-3-fba": fig19_fba, "fig19-4-to-ui": fig19_to_ui, "fig19-5-design": fig19_design,
-        "fig19-6-timeline": fig19_timeline, "fig19-7-decide": fig19_decide, "fig17-12-fpp-users": fig17_fpp_users,
+        "fig19-6-timeline": fig19_timeline, "fig19-7-decide": fig19_decide, "fig20-1-run": fig20_run, "fig20-2-cn": fig20_cn, "fig20-3-limits": fig20_limits, "fig17-12-fpp-users": fig17_fpp_users,
         "fig18-2-strategy": fig18_strategy,
         "fig17-9-overlay": fig17_overlay, "fig15-4-cell": fig15_cell,
         "fig10-4-vessels": fig10_vessels,
