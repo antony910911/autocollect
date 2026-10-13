@@ -38,8 +38,28 @@ def reactions(model) -> list:
     return out
 
 
-def deletions(model, glucose: float, floor_frac: float = 0.1) -> dict:
-    """每個基因剔除一次，在固定生長下限下看產物與生長怎麼變。"""
+def deletions(model, glucose: float, floor_frac: float = 0.1, timeout: int = 20) -> dict:
+    """每個基因剔除一次，在固定生長下限下看產物與生長怎麼變。
+
+    兩個加速，都是精確的、不是近似：
+
+    1. **先問「這個基因剔掉之後，有沒有反應真的被關掉」**。OR 規則裡有備援的
+       基因剔掉之後規則還是成立，等於什麼都沒動——這種直接抄野生型的值。
+    2. **會關掉同一組反應的基因，只解一次**（例如同一個複合體的多個次單元）。
+
+    另外給求解器一個時限。第一版沒給，結果卡在某一個剔除上空轉了四十分鐘
+    （GLPK 在退化的解上繞不出來），整個掃描永遠跑不完。
+    """
+    def knocked_out(gene):
+        """剔掉這個基因之後，哪些反應的 GPR 不再成立。有備援的就不會在裡面。"""
+        return frozenset(r.id for r in gene.reactions
+                         if r.gene_reaction_rule and not r.gpr.eval([gene.id]))
+
+    try:
+        model.solver.configuration.timeout = timeout
+    except Exception:
+        pass
+
     with model:
         model.reactions.get_by_id(GLC).lower_bound = -glucose
         mu0 = model.slim_optimize() or 0.0
@@ -49,11 +69,24 @@ def deletions(model, glucose: float, floor_frac: float = 0.1) -> dict:
             model.objective = AFS_EX
             afs0 = model.slim_optimize() or 0.0
 
-        rows = []
         genes = sorted(model.genes, key=lambda g: g.id)
-        for i, gene in enumerate(genes):
+        groups = {}
+        noop = []
+        for gene in genes:
+            off = knocked_out(gene)
+            if off:
+                groups.setdefault(off, []).append(gene.id)
+            else:
+                noop.append(gene.id)
+        print(f"  {len(noop)} 個基因有備援，剔掉不會關掉任何反應 → 直接抄野生型")
+        print(f"  剩下 {len(genes) - len(noop)} 個基因、{len(groups)} 組不同的影響，"
+              f"只要解 {len(groups)} 次", flush=True)
+
+        solved = {}
+        for n, off in enumerate(groups, 1):
             with model:
-                gene.knock_out()
+                for rid in off:
+                    model.reactions.get_by_id(rid).knock_out()
                 mu = model.slim_optimize()
                 mu = 0.0 if mu is None or mu != mu else float(mu)
                 afs = 0.0
@@ -63,15 +96,25 @@ def deletions(model, glucose: float, floor_frac: float = 0.1) -> dict:
                         model.objective = AFS_EX
                         v = model.slim_optimize()
                         afs = 0.0 if v is None or v != v else float(v)
-            rows.append({"i": gene.id,
-                         "mu": round(mu, 5),
-                         "afs": round(afs, 5),
+            solved[off] = (round(mu, 5), round(afs, 5))
+            if n % 50 == 0:
+                print(f"  {n}/{len(groups)} 組", flush=True)
+
+        by_gene = {}
+        for off, ids in groups.items():
+            for gid in ids:
+                by_gene[gid] = solved[off]
+        rows = []
+        for gene in genes:
+            mu, afs = by_gene.get(gene.id, (round(mu0, 5), round(afs0, 5)))
+            rows.append({"i": gene.id, "mu": mu, "afs": afs,
+                         "b": gene.id in by_gene,
                          "n": sorted(r.id for r in gene.reactions)[:6]})
-            if (i + 1) % 100 == 0:
-                print(f"  {i+1}/{len(genes)}", flush=True)
     return {"glucose": glucose, "mu_wt": round(mu0, 5), "floor": round(floor, 5),
-            "afs_wt": round(afs0, 5), "rows": rows,
-            "note": "產物都在同一個固定生長下限下算，才互相可比"}
+            "afs_wt": round(afs0, 5), "n_groups": len(groups), "n_noop": len(noop),
+            "rows": rows,
+            "note": "產物都在同一個固定生長下限下算，才互相可比。"
+                    "b=false 代表這個基因有備援，剔掉不會關掉任何反應"}
 
 
 def main() -> None:
