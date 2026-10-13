@@ -659,10 +659,10 @@ def fig_copies():
     ax.set_yticks(range(0, 13, 2))
     ax.set_xlabel("構築上的座標（bp）")
     ax.set_ylabel("在染色體陣列裡出現幾份")
-    ax.set_title("圖 17-4　整合的不是整個質體：T-DNA 進去 11–12 份，載體骨架只有 2–3 份")
+    ax.set_title("圖 3-4　整合的不是整個質體：T-DNA 進去 11–12 份，載體骨架只有 2–3 份")
     ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{int(v):,}"))
     fig.tight_layout()
-    save(fig, "fd17-4-copies", CASE_NOTE)
+    save(fig, "fdr3-4-copies", CASE_NOTE)
     plt.close(fig)
 
 
@@ -710,10 +710,10 @@ def fig_cost():
     gy = d["yield"]["glucose"]
     a2.set_title(f"碳的理論上限：{gy['carbon_yield'] * 100:.1f}%"
                  f"（{gy['mass_yield_g_per_g']:.3f} g 產物／g 糖）")
-    fig.suptitle("圖 17-7　多做一個產物要付出什麼：原料、輔因子與碳的去向",
+    fig.suptitle("圖 3-7　多做一個產物要付出什麼：原料、輔因子與碳的去向",
                  fontsize=15, weight="bold", y=1.02)
     fig.tight_layout()
-    save(fig, "fd17-7-cost", PATH_NOTE + " 碳上限沒有檢查 ATP 與 NADPH 夠不夠，實際產率一定更低。")
+    save(fig, "fdr3-7-cost", PATH_NOTE + " 碳上限沒有檢查 ATP 與 NADPH 夠不夠，實際產率一定更低。")
     plt.close(fig)
 
 
@@ -759,9 +759,9 @@ def fig_literature():
     a2.set_ylim(0, max(r["titer_mg_L"] for r in other) * 1.25)
     a2.set_title("同一株菌做過的其他萜類")
 
-    fig.suptitle("圖 18-1　紅酵母做萜類，別人做到哪裡了", fontsize=15, weight="bold", y=1.0)
+    fig.suptitle("圖 4-1　紅酵母做萜類，別人做到哪裡了", fontsize=15, weight="bold", y=1.0)
     fig.tight_layout()
-    save(fig, "fd18-1-literature", LIT_NOTE)
+    save(fig, "fdr4-1-literature", LIT_NOTE)
     plt.close(fig)
 
 

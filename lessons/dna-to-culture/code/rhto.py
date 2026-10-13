@@ -342,8 +342,8 @@ def cmd_envelope(model, a) -> dict:
     for r in rows:
         print(f"{r['mu']:>9.4f}{r['lo']:>10.4f}{r['hi']:>10.4f}")
     zero_lo = all(r["lo"] < 1e-6 for r in rows)
-    print("\n下界全部是 0 →　**細胞可以「只長菌、不做產物」**。" if zero_lo else
-          "\n下界 > 0 →　**不做產物就長不動**（成長耦合），這是最穩的狀態。")
+    print("\n下限全部是 0 →　**細胞可以「只長菌、不做產物」**。" if zero_lo else
+          "\n下限 > 0 →　**不做產物就長不動**（成長耦合），這是最穩的狀態。")
     print("所以產量要靠**控制培養條件**去逼它，不是模型算出來就會有。"
           if zero_lo else "恭喜，這種菌株不用一直盯著。")
     return {"mu_max": float(mu_max), "rows": rows, "growth_coupled": not zero_lo}

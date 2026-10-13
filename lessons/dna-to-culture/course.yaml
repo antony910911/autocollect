@@ -1,11 +1,22 @@
-# 放進 Folio「Claude圖解教材」筆記本（依名稱尋找），新增一個分區
+# 放進 Folio「Claude圖解教材」筆記本（依名稱尋找）。
+# 這門教材拆成兩個分區：前半是通用流程（細菌的例子），後半是紅酵母這個案例。
+# 兩個分區共用同一份 figures/ 與 code/，因為數字和圖是同一套程式產生的。
 notebook:
   id: nb_autocollect_ammonia   # 「Claude圖解教材」的實際 id
   name: Claude圖解教材
   find_by_name: true
-section:
-  id: sc_autocollect_dna_culture
-  name: 從 DNA 到最適培養：建模與視覺化
-  color: "#1b8a8f"
-  order: 4
-page_prefix: dnac
+sections:
+  - id: sc_autocollect_dna_culture
+    name: 從 DNA 到最適培養：建模與視覺化
+    color: "#1b8a8f"
+    order: 4
+    page_prefix: dnac
+    intro: README.md
+    glob: "[0-9][0-9]-*.md"        # 第 1–14 章
+  - id: sc_autocollect_rhto
+    name: 紅酵母 α-farnesene：定序、模型與實驗
+    color: "#b8355f"
+    order: 5
+    page_prefix: rhto
+    intro: r00-README.md
+    glob: "r0[1-9]-*.md"           # 第 1–7 章

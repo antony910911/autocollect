@@ -101,11 +101,11 @@ def fig_envelope():
     a2.set_ylabel("半速生長時「最少」的乙醇產率\n（mol/mol）")
     a2.set_title("成長耦合：細胞不產乙醇就長不了")
     a2.set_ylim(0, max(mins) * 1.35 + 0.05)
-    fig.suptitle("圖 16-3　基改菌株的評估：把剔除的基因放進模型，看產物能不能「被迫」生成",
+    fig.suptitle("圖 2-3　基改菌株的評估：把剔除的基因放進模型，看產物能不能「被迫」生成",
                  fontsize=15, weight="bold", y=1.0)
     fig.tight_layout()
     fig.text(0.01, -0.03, CN, fontsize=9.5, color=NOTE)
-    fig.savefig(OUT / "fd16-3-envelope.png", bbox_inches="tight", facecolor="white")
+    fig.savefig(OUT / "fdr2-3-envelope.png", bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print("寫入 fd16-3-envelope")
 

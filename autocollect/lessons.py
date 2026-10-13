@@ -31,29 +31,76 @@ _ITALIC = re.compile(r"(?<![\w*<])\*([^*\s<][^*<]*?)\*(?![\w*])")
 
 
 @dataclass
+class Part:
+    """一門教材要發佈到的一個 Folio 分區。
+
+    一門教材可以拆成多個分區（例如前半是通用流程、後半是某一株菌的案例）。
+    每個分區有自己的頁面 id 前綴與檔名樣式，所以章號各自從 1 開始。
+    """
+
+    section_id: str
+    section_name: str
+    page_prefix: str
+    glob: str = "[0-9][0-9]-*.md"
+    intro: str | None = "README.md"      # 這個分區的導讀，當第 0 頁
+    color: str = "#2f6fb3"
+    order: int = 1
+
+    def chapters(self, lesson_dir: Path) -> list[Path]:
+        """導讀當第 0 頁，其餘依檔名排序，章號依序從 1 給。"""
+        files = sorted(lesson_dir.glob(self.glob))
+        intro = lesson_dir / self.intro if self.intro else None
+        return ([intro] if intro and intro.exists() else []) + files
+
+
+@dataclass
 class Course:
-    """一門教材：放在哪本筆記本、哪個分區，頁面 id 用什麼前綴。設定寫在教材資料夾的 course.yaml。"""
+    """一門教材：放在哪本筆記本、拆成哪幾個分區。設定寫在教材資料夾的 course.yaml。"""
 
     dir: Path
     notebook_id: str
     notebook_name: str
-    section_id: str
-    section_name: str
-    page_prefix: str
+    parts: list[Part]
     find_notebook_by_name: bool = False  # True：Folio 裡已有同名筆記本就放進去，沒有才建立
-    section_color: str = "#2f6fb3"
     notebook_order: int = 110
-    section_order: int = 1
+
+    # 舊的單分區介面，保留給既有呼叫端
+    @property
+    def section_id(self) -> str:
+        return self.parts[0].section_id
+
+    @property
+    def section_name(self) -> str:
+        return self.parts[0].section_name
+
+    @property
+    def page_prefix(self) -> str:
+        return self.parts[0].page_prefix
+
+    @property
+    def section_color(self) -> str:
+        return self.parts[0].color
+
+    @property
+    def section_order(self) -> int:
+        return self.parts[0].order
 
     @classmethod
     def load(cls, lesson_dir: Path) -> "Course":
         cfg = yaml.safe_load((lesson_dir / "course.yaml").read_text("utf-8"))
-        nb, sc = cfg["notebook"], cfg["section"]
-        return cls(dir=lesson_dir, notebook_id=nb["id"], notebook_name=nb["name"], section_id=sc["id"],
-                   section_name=sc["name"], page_prefix=cfg["page_prefix"],
+        nb = cfg["notebook"]
+        if "sections" in cfg:                       # 多分區
+            parts = [Part(section_id=s["id"], section_name=s["name"], page_prefix=s["page_prefix"],
+                          glob=s.get("glob", "[0-9][0-9]-*.md"), intro=s.get("intro"),
+                          color=s.get("color", "#2f6fb3"), order=int(s.get("order", i + 1)))
+                     for i, s in enumerate(cfg["sections"])]
+        else:                                       # 單分區（原本的寫法）
+            sc = cfg["section"]
+            parts = [Part(section_id=sc["id"], section_name=sc["name"], page_prefix=cfg["page_prefix"],
+                          color=sc.get("color", "#2f6fb3"), order=int(sc.get("order", 1)))]
+        return cls(dir=lesson_dir, notebook_id=nb["id"], notebook_name=nb["name"], parts=parts,
                    find_notebook_by_name=bool(nb.get("find_by_name", False)),
-                   section_color=sc.get("color", "#2f6fb3"), notebook_order=int(nb.get("order", 110)),
-                   section_order=int(sc.get("order", 1)))
+                   notebook_order=int(nb.get("order", 110)))
 
 
 def all_courses(root: Path) -> list[Course]:
@@ -152,11 +199,11 @@ def asset_id(data: bytes) -> str:
 
 
 def build_chapter(course: Course, section_id: str, chapter_no: int, md_path: Path, now_ms: int,
-                  rev_counter: list[int]) -> tuple[list[dict], dict]:
+                  rev_counter: list[int], page_prefix: str | None = None) -> tuple[list[dict], dict]:
     """回傳（紀錄, 需要上傳的圖片 {asset_id: bytes}）。"""
     title, blocks = parse(md_path.read_text("utf-8"), md_path.parent)
     title = title or md_path.stem
-    tag = f"{course.page_prefix}_{chapter_no:02d}"
+    tag = f"{page_prefix or course.page_prefix}_{chapter_no:02d}"
     page_id = f"pg_autocollect_{tag}"
 
     def rev():
@@ -201,11 +248,14 @@ def _same(a: str, b: str) -> bool:
     return a.strip().casefold() == b.strip().casefold()
 
 
-def resolve_targets(course: Course, existing: list[dict] | None) -> tuple[str, str, bool, bool]:
+def resolve_targets(course: Course, existing: list[dict] | None,
+                    part: "Part | None" = None) -> tuple[str, str, bool, bool]:
     """決定實際要用的（筆記本 id, 分區 id, 要不要建筆記本, 要不要建分區）。
 
     existing 是從 Folio 拉下來的全部紀錄；None 表示不查（離線預覽）。
+    part 不給就用第一個分區（保留舊的單分區呼叫方式）。
     """
+    part = part or course.parts[0]
     live = [r for r in (existing or []) if not r.get("deleted") and isinstance(r.get("data"), dict)]
     nb_id, create_nb = course.notebook_id, True
     if any(r["key"] == f"nb:{course.notebook_id}" for r in live):
@@ -215,40 +265,77 @@ def resolve_targets(course: Course, existing: list[dict] | None) -> tuple[str, s
                                                                                  course.notebook_name)]
         if named:
             nb_id, create_nb = named[0]["id"], False
-    sc_id, create_sc = course.section_id, True
-    if any(r["key"] == f"sc:{course.section_id}" for r in live):
+    sc_id, create_sc = part.section_id, True
+    if any(r["key"] == f"sc:{part.section_id}" for r in live):
         create_sc = False
     else:
         named = [r["data"] for r in live if r["key"].startswith("sc:") and r["data"].get("notebookId") == nb_id
-                 and _same(r["data"].get("name", ""), course.section_name)]
+                 and _same(r["data"].get("name", ""), part.section_name)]
         if named:
             sc_id, create_sc = named[0]["id"], False
     return nb_id, sc_id, create_nb, create_sc
+
+
+def prune_pages(prefix: str, keep: set[str], existing: list[dict] | None,
+                rev) -> list[dict]:
+    """把同一個前綴下、這次沒有產生的頁面標記成刪除。
+
+    章節搬到別的分區之後，舊分區會留下孤兒頁。Folio 的同步只會新增與更新，
+    不會自己清掉，所以要主動送刪除紀錄——頁面本身，還有它底下的項目。
+    """
+    live = [r for r in (existing or []) if not r.get("deleted") and isinstance(r.get("data"), dict)]
+    out = []
+    head = f"pg_autocollect_{prefix}_"
+    stale = {r["data"]["id"] for r in live
+             if r["key"].startswith("pg:") and r["data"].get("id", "").startswith(head)
+             and r["data"]["id"] not in keep}
+    for pid in sorted(stale):
+        for r in live:
+            if r["key"].startswith(f"it:{pid}:"):
+                out.append({"key": r["key"], "rev": rev(), "deleted": 1, "data": None})
+        out.append({"key": f"pg:{pid}", "rev": rev(), "deleted": 1, "data": None})
+    return out
 
 
 def build_course(course: Course, existing: list[dict] | None = None, now_ms: int | None = None,
                  counter: list[int] | None = None) -> tuple[list[dict], dict]:
     now_ms = now_ms or int(time.time() * 1000)
     counter = counter if counter is not None else [0]
-    nb_id, sc_id, create_nb, create_sc = resolve_targets(course, existing)
-    records = []
-    if create_nb:
-        notebook = {"id": nb_id, "name": course.notebook_name, "order": course.notebook_order,
-                    "createdAt": now_ms, "updatedAt": now_ms}
-        records.append({"key": f"nb:{nb_id}", "rev": folio.CREATE_ONLY_REV, "deleted": 0, "data": notebook})
-    if create_sc:
-        section = {"id": sc_id, "notebookId": nb_id, "name": course.section_name, "color": course.section_color,
-                   "order": course.section_order, "createdAt": now_ms, "updatedAt": now_ms}
-        records.append({"key": f"sc:{sc_id}", "rev": folio.CREATE_ONLY_REV, "deleted": 0, "data": section})
+
+    def rev():
+        counter[0] += 1
+        return folio.make_rev(now_ms, counter[0])
+
+    records: list[dict] = []
     uploads: dict[str, bytes] = {}
-    for path in chapter_files(course.dir):
-        m = re.match(r"(\d+)-", path.name)
-        no = int(m.group(1)) if m else 0
-        recs, ups = build_chapter(course, sc_id, no, path, now_ms, counter)
-        if path.name == "README.md":
-            recs[0]["data"]["title"] = "導讀：" + recs[0]["data"]["title"]
-        records += recs
-        uploads.update(ups)
+    made_nb = False
+    for part in course.parts:
+        nb_id, sc_id, create_nb, create_sc = resolve_targets(course, existing, part)
+        if create_nb and not made_nb:
+            records.append({"key": f"nb:{nb_id}", "rev": folio.CREATE_ONLY_REV, "deleted": 0,
+                            "data": {"id": nb_id, "name": course.notebook_name,
+                                     "order": course.notebook_order,
+                                     "createdAt": now_ms, "updatedAt": now_ms}})
+            made_nb = True
+        if create_sc:
+            records.append({"key": f"sc:{sc_id}", "rev": folio.CREATE_ONLY_REV, "deleted": 0,
+                            "data": {"id": sc_id, "notebookId": nb_id, "name": part.section_name,
+                                     "color": part.color, "order": part.order,
+                                     "createdAt": now_ms, "updatedAt": now_ms}})
+        keep, n = set(), 0
+        for path in part.chapters(course.dir):
+            if part.intro and path.name == part.intro:
+                no = 0                    # 導讀固定是第 0 頁
+            else:
+                n += 1                    # 其餘依順序從 1 開始，和檔名裡的數字無關
+                no = n
+            recs, ups = build_chapter(course, sc_id, no, path, now_ms, counter, part.page_prefix)
+            if no == 0:
+                recs[0]["data"]["title"] = "導讀：" + recs[0]["data"]["title"]
+            keep.add(recs[0]["data"]["id"])
+            records += recs
+            uploads.update(ups)
+        records += prune_pages(part.page_prefix, keep, existing, rev)
     return records, uploads
 
 

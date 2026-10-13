@@ -347,8 +347,8 @@ def fig10():
 
 
 # ───────── 第 15–16 章：酵母菌與基改菌株 ─────────
-def fig15_compare():
-    s = Svg(1200, 790, "圖 15-1　前面 14 章，換成酵母菌要改哪些？")
+def figr1_compare():
+    s = Svg(1200, 790, "圖 1-1　基礎課那 14 章，換成酵母菌要改哪些？")
     rows = [
         ("完全通用", GREEN, "邏輯和菌種無關，數字換成你的菌就好", [
             ("4", "FBA"), ("6", "分階段最適化"), ("7", "溫度 pH 與實驗設計"),
@@ -387,8 +387,8 @@ def fig15_compare():
     return s
 
 
-def fig15_annotate():
-    s = Svg(1200, 660, "圖 15-2　酵母菌的註解流程：和細菌版（圖 2-1）哪裡不一樣")
+def figr1_annotate():
+    s = Svg(1200, 660, "圖 1-2　酵母菌的註解流程：和細菌版（圖 2-1）哪裡不一樣")
     s.text(24, 70, "路線 A：已知是 S. cerevisiae 或近緣種 → 用參考基因體比對（快、準、建議優先）", size=17,
            weight=700, color=GREEN)
     a = [("定序讀段", "Illumina 或\nNanopore", GREY),
@@ -430,8 +430,8 @@ def fig15_annotate():
     return s
 
 
-def fig15_culture():
-    s = Svg(1240, 720, "圖 15-3　酵母菌之間差很多：釀酒酵母的經驗不能直接套到產油酵母")
+def figr1_culture():
+    s = Svg(1240, 720, "圖 1-3　酵母菌之間差很多：釀酒酵母的經驗不能直接套到產油酵母")
     cols = [("釀酒酵母\nS. cerevisiae", BLUE), ("產油酵母\n例：Rhodotorula toruloides", ORANGE)]
     x0 = 330
     for i, (h, c) in enumerate(cols):
@@ -463,13 +463,13 @@ def fig15_culture():
     return s
 
 
-def fig16_gene_to_reaction():
-    s = Svg(1200, 640, "圖 16-1　基改菌株：把「插進去的基因」變成模型裡的反應")
+def figr2_gene_to_reaction():
+    s = Svg(1200, 640, "圖 2-1　基改菌株：把「插進去的基因」變成模型裡的反應")
     cols = [
         ("① 你知道的", BROWN, "插入了哪個基因\n（名稱、來源生物、序列）\n例：Z. mobilis 的 pdc"),
         ("② 查它催化什麼反應", BLUE, "UniProt／KEGG／BRENDA\n查 EC 編號與反應式\n例：丙酮酸 → 乙醛 + CO₂"),
         ("③ 對應到模型的代謝物", PURPLE, "找出模型裡的 id\n（pyr_c、acald_c、co2_c）\n要確認區隔（細胞質？粒線體？）"),
-        ("④ 加進模型", GREEN, "新增反應、設界限\n寫上基因對應規則\n（程式見 engineered.py）"),
+        ("④ 加進模型", GREEN, "新增反應、設上下限\n寫上基因對應規則\n（程式見 engineered.py）"),
         ("⑤ 看它改變什麼", TEAL, "最大產率、生產包絡線\n要不要再剔除競爭路徑\n（圖 16-2）"),
     ]
     x = 24
@@ -499,8 +499,8 @@ def fig16_gene_to_reaction():
 
 
 
-def fig16_fpp():
-    s = Svg(1240, 760, "圖 16-2　你的案例：α-farnesene 在和誰搶原料")
+def figr2_fpp():
+    s = Svg(1240, 760, "圖 2-2　你的案例：α-farnesene 在和誰搶原料")
     # 左側主幹
     s.box(40, 92, 220, 60, "糖（葡萄糖／木糖）", color=BROWN, size=15)
     s.arrow([(150, 154), (150, 184)], color=BROWN)
@@ -549,14 +549,14 @@ def _case():
     return json.loads((CODE / "case_rt.json").read_text("utf-8"))
 
 
-def fig17_overview():
+def figr3_overview():
     d = _case()
     km, a = d["kmer"], d["assembly"]
     arr = d["array"]
     carrier, host = arr["carrier"], ("mut" if arr["carrier"] == "wt" else "wt")
     names = {"wt": d["provenance"]["wt_file"], "mut": d["provenance"]["mut_file"]}
     n_afs = {t: len(d[t + "_afs_copies"]) for t in ("wt", "mut")}
-    s = Svg(1280, 790, "圖 17-1　兩份組裝比對的結論：轉殖基因陣列只在其中一份裡")
+    s = Svg(1280, 790, "圖 3-1　兩份組裝比對的結論：轉殖基因陣列只在其中一份裡")
 
     for tag, x in ((carrier, 40), (host, 720)):
         st = a[tag]
@@ -637,7 +637,7 @@ def _track(s, x0, w, c0, c1, elems, y, label, colmap, flip=False):
         t += step
 
 
-def fig17_construct():
+def figr3_construct():
     d = _case()
     el = d["elements"]
     L = d["provenance"]["construct_bp"]
@@ -670,7 +670,7 @@ def _w(s, size):
     return sum(size if ord(ch) > 0x2E80 else size * 0.58 for ch in s)
 
 
-def fig17_array():
+def figr3_array():
     d = _case()
     arr = d["array"]
     segs = d[arr["carrier"] + "_trace"]["segments"]
@@ -739,11 +739,11 @@ def fig17_array():
     return s
 
 
-def fig17_junction():
+def figr3_junction():
     d = _case()
     carrier = d["array"]["carrier"]
     bad = [c for c in d[carrier + "_afs_copies"] if not c["intact"]]
-    s = Svg(1280, 760, "圖 17-5　12 個拷貝裡壞掉的那一個：不是突變，是陣列的接合點")
+    s = Svg(1280, 760, "圖 3-5　12 個拷貝裡壞掉的那一個：不是突變，是陣列的接合點")
     if not bad:
         s.text(40, 120, "這一次的資料裡每個拷貝都是完整的。", size=16)
         return s
@@ -795,11 +795,11 @@ def fig17_junction():
     return s
 
 
-def fig17_pathway():
+def figr3_pathway():
     d = json.loads((CODE / "farnesene_path.json").read_text("utf-8"))
     f = d["per_farnesene"]
     gy = d["yield"]["glucose"]
-    s = Svg(1480, 950, "圖 17-6　轉進去一個基因，代謝上改變了什麼")
+    s = Svg(1480, 950, "圖 3-6　轉進去一個基因，代謝上改變了什麼")
     s.text(40, 78, "灰底＝紅酵母原本就有的路徑　　虛線框＝轉殖加進去的　　橘色＝搶同一批原料的競爭者",
            size=14.5, color=MUTED)
 
@@ -875,9 +875,9 @@ def fig17_pathway():
     return s
 
 
-def fig17_states():
+def figr3_states():
     d = json.loads((CODE / "farnesene_path.json").read_text("utf-8"))
-    s = Svg(1460, 880, "圖 17-8　四種狀態：什麼時候產油、什麼時候產色素、什麼時候產 farnesene")
+    s = Svg(1460, 880, "圖 3-8　四種狀態：什麼時候產油、什麼時候產色素、什麼時候產 farnesene")
     s.text(40, 78, "兩個開關決定細胞在做什麼：氮還有沒有，以及有沒有逆境訊號（光照、靜止期、高溶氧、產物毒性）。"
                    "象限的邊界是推論，不是量出來的。", size=14.5, color=MUTED)
 
@@ -960,10 +960,10 @@ def _wrap(txt, size, maxw):
     return lines
 
 
-def fig18_strategy():
+def figr4_strategy():
     d = json.loads((CODE / "literature_terpenes.json").read_text("utf-8"))
     steps = d["steps"]
-    s = Svg(1480, 860, "圖 18-2　八年三步：別人是怎麼從 680 mg/L 走到 20 g/L 的")
+    s = Svg(1480, 860, "圖 4-2　八年三步：別人是怎麼從 680 mg/L 走到 20 g/L 的")
     s.text(40, 78, "三篇論文、同一株菌、同一個前驅物（FPP）。每一步解決的是不同的瓶頸。",
            size=14.5, color=MUTED)
 
@@ -1052,8 +1052,8 @@ def _vessel(s, cx, top, bot, w, culture_top, overlay=None, seed=0):
           f'stroke="#5b6475" stroke-width="5" stroke-linecap="round"/>')
 
 
-def fig17_overlay():
-    s = Svg(1420, 900, "圖 17-9　為什麼沒有有機相覆蓋，你量到的產量是假的")
+def figr3_overlay():
+    s = Svg(1420, 900, "圖 3-9　為什麼沒有有機相覆蓋，你量到的產量是假的")
     s.text(40, 80, "α-farnesene 是揮發性倍半萜。它一邊被做出來，一邊從培養液裡跑掉——"
                    "你取水相去量，只會量到「還沒跑掉的那一點」。", size=15.5, color=MUTED)
 
@@ -1095,8 +1095,8 @@ def fig17_overlay():
     return s
 
 
-def fig15_cell():
-    s = Svg(1440, 900, "圖 15-4　為什麼細菌的工具鏈不能用在酵母菌上")
+def figr1_cell():
+    s = Svg(1440, 900, "圖 1-4　為什麼細菌的工具鏈不能用在酵母菌上")
     s.text(40, 80, "差別不是「比較複雜」而已，是結構上不同——而那些工具的假設，就建立在那些結構上。",
            size=15.5, color=MUTED)
 
@@ -1369,7 +1369,7 @@ def fig2_clues():
 
 
 
-def fig17_independent():
+def figr3_independent():
     """兩個互不知情的方法得到同一個答案——以及唯一不吻合的那一項。"""
     a = json.loads((CODE / "annotation.json").read_text("utf-8"))
     c = json.loads((CODE / "case_rt.json").read_text("utf-8"))
@@ -1379,7 +1379,7 @@ def fig17_independent():
     intact = sum(1 for x in copies if x["intact"])
     site = a["insertion_site"]
 
-    s = Svg(1480, 1100, "圖 17-10　兩個獨立方法得到同一個答案")
+    s = Svg(1480, 1100, "圖 3-10　兩個獨立方法得到同一個答案")
     s.text(40, 80, "一個只比對鹼基、不管功能；一個只看蛋白質結構域、不知道構築長什麼樣子。"
                    "**兩邊對上了，結論才算數。**", size=15.5, color=MUTED)
 
@@ -1453,13 +1453,13 @@ def fig17_independent():
 
 
 
-def fig17_site():
+def figr3_site():
     """白話版：那 76 kb 插在哪裡，動到了什麼。"""
     a = json.loads((CODE / "annotation.json").read_text("utf-8"))
     s_ = a["insertion_site"]
     up, dn = s_["upstream"], s_["downstream"]
 
-    s = Svg(1460, 1020, "圖 17-11　那段外來 DNA 插在哪裡：兩個基因中間的空地")
+    s = Svg(1460, 1020, "圖 3-11　那段外來 DNA 插在哪裡：兩個基因中間的空地")
     s.text(40, 80, "基因在染色體上不是一個挨著一個，中間有空地。"
                    "這次 76,217 bp 的外來 DNA **正好插在空地上**——所以沒有壓壞任何一個基因。",
            size=15.5, color=MUTED)
@@ -1539,9 +1539,9 @@ def fig17_site():
     return s
 
 
-def fig17_fpp_users():
+def figr3_fpp_users():
     """白話版：FPP 是好幾個人共用的一桶原料。"""
-    s = Svg(1480, 1040, "圖 17-12　FPP 這桶原料，本來就有六個人在用")
+    s = Svg(1480, 1040, "圖 3-12　FPP 這桶原料，本來就有六個人在用")
     s.text(40, 80, "轉進去的酵素不是去搶一個沒人要的東西。**FPP 是細胞裡的共用原料**，"
                    "原本就有六條路在拿它，現在多了第七條。", size=15.5, color=MUTED)
 
@@ -1611,7 +1611,7 @@ def fig17_fpp_users():
 # 第 19 章的圖。全部畫在 1000 px 寬、內文 ≥17 px——
 # Folio 把圖縮到 880 px，這樣縮完還有 15 px，看得清楚。
 # ───────────────────────────────────────────────────────────────
-W19 = 1000
+WR5 = 1000
 T_TITLE, T_H, T_BODY, T_NOTE = 26, 20, 17, 15
 
 
@@ -1620,7 +1620,7 @@ def _wf():
 
 
 
-def fig17_blast():
+def figr3_blast():
     """BLASTp 查鄰居基因的結果：沒查到功能，但解決了三件事。"""
     b = json.loads((CODE / "blast_neighbours.json").read_text("utf-8"))
     L = b["query"]["len"]
@@ -1630,7 +1630,7 @@ def fig17_blast():
     far = b["conservation"]["n_far_hits"]
     named = len(b["named_hits"])
 
-    s = Svg(1000, 1060, "圖 17-13　BLAST 查完那個鄰居：沒查到功能，但解決了三件事")
+    s = Svg(1000, 1060, "圖 3-13　BLAST 查完那個鄰居：沒查到功能，但解決了三件事")
     s.text(40, 78, f'把那個 {L} 個胺基酸的鄰居丟進 blastp，{b["n_hits"]} 筆命中裡'
                    f'**只有 {named} 筆有名字，而且都靠不住**。', size=17, color=MUTED)
 
@@ -1707,16 +1707,16 @@ def fig17_blast():
 
 # ── 第 20 章：把 rhto-GEM 跑起來 ────────────────────────────────────────
 
-W20 = 1000
+WR6 = 1000
 
 
 def _demo():
     return json.loads((CODE / "rhto_demo.json").read_text("utf-8"))
 
 
-def fig20_run():
+def figr6_run():
     """六個指令：每一步問什麼、看什麼、會踩什麼坑。"""
-    s = Svg(W20, 1060, "圖 20-1　把 rhto-GEM 跑起來：六個指令")
+    s = Svg(WR6, 1060, "圖 6-1　把 rhto-GEM 跑起來：六個指令")
     s.text(40, 78, "每一步都先看一個東西再往下走。**跳過第 2 步是最常見的失敗方式。**",
            size=17, color=MUTED)
 
@@ -1728,7 +1728,7 @@ def fig20_run():
         ("medium", "設碳源與 C/N，跑 FBA", "μ 是 0 就別往下走——先把培養基調對", ORANGE, "beaker"),
         ("afs", "把 α-farnesene 那條反應加進去", "碳上限超過 100% ＝ 你的反應沒配平", PURPLE,
          "git-branch"),
-        ("envelope", "生產包絡線", "下界是 0 ＝ 菌可以不做產物，要靠條件逼它", TEAL, "chart-line"),
+        ("envelope", "生產包絡線", "下限是 0 ＝ 菌可以不做產物，要靠條件逼它", TEAL, "chart-line"),
         ("scan", "掃 C/N 與 ERG9 調降", "拿來**排序選項**，不要拿來預測數字", GREEN, "list-checks"),
     ]
     X, BW, y = 64, 600, 150
@@ -1758,9 +1758,9 @@ def fig20_run():
     return s
 
 
-def fig20_cn():
+def figr6_cn():
     """C/N 這個實驗室語言，怎麼翻譯成模型裡的吸收速率。"""
-    s = Svg(W20, 786, "圖 20-2　C/N 怎麼變成模型看得懂的數字")
+    s = Svg(WR6, 786, "圖 6-2　C/N 怎麼變成模型看得懂的數字")
     s.text(40, 78, "實驗室說「C/N 要 40」，模型只認得「每小時吸收幾毫莫耳」。中間差一個換算。",
            size=17, color=MUTED)
 
@@ -1804,9 +1804,9 @@ def fig20_cn():
     return s
 
 
-def fig20_limits():
+def figr6_limits():
     """rhto-GEM 算得出什麼、算不出什麼，以及接回第 19 章的哪一步。"""
-    s = Svg(W20, 830, "圖 20-3　跑完之後：算得出什麼、算不出什麼")
+    s = Svg(WR6, 830, "圖 6-3　跑完之後：算得出什麼、算不出什麼")
     s.text(40, 78, "模型最危險的地方不是算錯，是**算得出來但你以為它算的是別的東西**。",
            size=17, color=MUTED)
 
@@ -1847,18 +1847,18 @@ def fig20_limits():
 
 # ── 第 21 章：核對別人做的模型 ──────────────────────────────────────────
 
-W21 = 1000
+WR7 = 1000
 
 
 def _afs():
     return json.loads((CODE / "rhto_afs.json").read_text("utf-8"))
 
 
-def fig21_audit():
+def figr7_audit():
     """核對清單：七項自己重算，對上了幾項。"""
     d = _afs()
     v, e = d["verify"], d["envelope_default"]
-    s = Svg(W21, 1000, "圖 21-1　別人給的模型，我自己重算一次")
+    s = Svg(WR7, 1000, "圖 7-1　別人給的模型，我自己重算一次")
     s.text(40, 78, "**不是重述它的說法，是把每個數字自己再跑一次。** "
                    "七項裡六項完全對上，一項要加註解。", size=17, color=MUTED)
 
@@ -1897,10 +1897,10 @@ def fig21_audit():
     return s
 
 
-def fig21_glucose():
+def figr7_glucose():
     """葡萄糖吸收上限：模型預設太低，調高又變成長太快。"""
     d = _afs()["glucose_scan"]
-    s = Svg(W21, 870, "圖 21-2　那個 μ ＝ 0.074 不是你的菌長得慢")
+    s = Svg(WR7, 870, "圖 7-2　那個 μ ＝ 0.074 不是你的菌長得慢")
     s.text(40, 78, "模型的生長速率**完全由你給的糖吸收上限決定**。"
                    "預設值 1.0 太低，調到 10 又變成兩倍快得離譜。", size=17, color=MUTED)
 
@@ -1942,10 +1942,10 @@ def fig21_glucose():
     return s
 
 
-def fig21_erg9():
+def figr7_erg9():
     """ERG9 調降：兩種比法給出完全相反的結論。"""
     d = _afs()["erg9_scan"]
-    s = Svg(W21, 900, "圖 21-3　調降 ERG9 到底有沒有用：兩種比法，相反的答案")
+    s = Svg(WR7, 900, "圖 7-3　調降 ERG9 到底有沒有用：兩種比法，相反的答案")
     s.text(40, 78, "ERG9 和 AFS 搶同一桶 FPP，所以「把它調小」聽起來很合理。"
                    "**但怎麼比，決定你得到什麼答案。**", size=17, color=MUTED)
 
@@ -1981,7 +1981,7 @@ def fig21_erg9():
 
     s.card(40, by + h + 24, 920, [
         f'ERG9 在最大生長時的實際通量只有 **{d["erg9_flux_at_max_growth"]} mmol/gDW/h**，'
-        f'而它的上界是 1000——**差六萬倍**',
+        f'而它的上限是 1000——**差六萬倍**',
         "前面那個「多 81%」，全部來自「生長變慢了，碳有剩」，和搶 FPP 無關",
         "**而要讓生長變慢，限氮就做得到，不用做菌株**",
     ], title="為什麼", icon="search", color=RED, size=16,
@@ -1989,10 +1989,10 @@ def fig21_erg9():
     return s
 
 
-def fig21_cn():
+def figr7_cn():
     """C/N 掃描：模型給的先驗預期。"""
     d = _afs()["cn_scan"]
-    s = Svg(W21, 836, "圖 21-4　模型對那三瓶的預期")
+    s = Svg(WR7, 836, "圖 7-4　模型對那三瓶的預期")
     s.text(40, 78, "C/N 越高，菌長得越慢、但碳剩得越多。"
                    "**這是模型的預期，不是預測——實驗就是去推翻它的。**", size=17, color=MUTED)
 
@@ -2036,61 +2036,167 @@ def fig21_cn():
 
 
 
-def fig20_bounds():
-    """上下界是什麼：它是圍欄，不是車速。"""
-    s = Svg(W20, 900, "圖 20-4　上下界是什麼意思")
-    s.text(40, 78, "每條反應都有一個速度（通量）。**上下界是你給它的圍欄**，"
-                   "求解器只能在圍欄裡面挑答案。", size=17, color=MUTED)
+def figr6_bounds():
+    """上下限是什麼：它是圍欄，不是實際速度。"""
+    s = Svg(WR6, 940, "圖 6-4　「上下限」是什麼意思")
+    s.text(40, 78, "每條反應在模型裡都有一個速度。**上下限是你給它的圍欄**——"
+                   "算出來的速度只能落在圍欄裡面。", size=17, color=MUTED)
 
     rows = [
-        ("0 … 1000", "只能往正方向跑", "**1000 是模型的「無限大」**，等於沒有設限", GREY),
-        ("−1000 … 1000", "正著倒著都可以", "可逆反應", BLUE),
-        ("0 … 0", "這條路被關掉了", "**剔除基因就是把它設成這樣**", RED),
-        ("−10 … 1000", "交換反應：負號是往細胞裡進", "「最多可以吸收 10」", TEAL),
+        ("最低 0、最高 1000", "只能往前跑，最快 1000",
+         "**1000 是模型的「無限大」。寫 1000 等於沒有限制。**", GREY),
+        ("最低 −1000、最高 1000", "往前往後都可以", "可逆反應", BLUE),
+        ("最低 0、最高 0", "這條路被關掉了", "**剔除基因就是把它設成這樣**", RED),
+        ("最低 −10", "交換反應：負號代表「從外面進到細胞裡」",
+         "這條是「最多吸收 10」", TEAL),
     ]
-    y = 140
+    y = 142
     for b, what, why, col in rows:
-        s.box(40, y, 920, 82, "", color=col, fill=tint(col, 0.96))
-        s.text(64, y + 36, b, size=21, weight=700, color=col)
-        s.text(300, y + 32, what, size=17)
-        for i, ln in enumerate(wrap(why, 15, 420)):
-            s.text(300, y + 58 + i * 20, ln, size=15, color=MUTED)
-        y += 96
+        s.box(40, y, 920, 86, "", color=col, fill=tint(col, 0.96))
+        for k, ln in enumerate(wrap(b, 18, 240)):
+            s.text(64, y + 34 + k * 24, ln, size=18, weight=700, color=col)
+        s.text(330, y + 32, what, size=17)
+        for k, ln in enumerate(wrap(why, 15, 600)):
+            s.text(330, y + 58 + k * 20, ln, size=15, color=MUTED)
+        y += 100
 
-    # 速限的比喻，用 ERG9 的真實數字
-    y += 18
-    s.text(40, y, "上界 1000 不是「這個酵素能跑這麼快」", size=21, weight=700, color=INK)
-    s.text(40, y + 28, "是「我們沒有設限」。這兩件事差很多——ERG9 就是活生生的例子。",
-           size=17, color=MUTED)
+    y += 20
+    s.text(40, y, "最高 1000 不是「這個酵素跑得了這麼快」", size=21, weight=700, color=INK)
+    s.text(40, y + 28, "是「我們沒有去限制它」。這兩件事差很多。", size=17, color=MUTED)
 
-    BY, BH = y + 56, 120
-    X0, X1 = 64, 700
-    s.raw(f'<rect x="{X0}" y="{BY}" width="{X1 - X0}" height="{BH}" rx="10" '
-          f'fill="{tint(GREY, 0.93)}" stroke="{GREY}" stroke-width="1.6"/>')
-    s.text(X0 + 16, BY + 32, "上界 ＝ 1000", size=19, weight=700, color=GREY)
-    s.text(X0 + 16, BY + 56, "（速限）", size=15, color=MUTED)
-    # 實際通量：0.016 / 1000 → 畫成一條幾乎看不見的線
+    BY = y + 62
+    X0, X1 = 64, 690
+    s.text(X0, BY - 8, "ERG9 這條反應", size=16, weight=700, color=MUTED)
+    s.raw(f'<rect x="{X0}" y="{BY + 6}" width="{X1 - X0}" height="40" rx="8" '
+          f'fill="{tint(GREY, 0.9)}" stroke="{GREY}" stroke-width="1.6"/>')
+    s.text(X0 + 14, BY + 32, "容許上限 1000", size=17, weight=700, color=GREY)
     w = max(3, (X1 - X0) * 0.016364 / 1000)
-    s.raw(f'<rect x="{X0}" y="{BY + 78}" width="{w:.1f}" height="26" rx="4" fill="{RED}"/>')
-    s.arrow([(X0 + 120, BY + 132), (X0 + 10, BY + 106)], color=RED, width=2.2)
-    s.text(X0 + 130, BY + 136, "實際通量 0.016（就是這一條，幾乎看不到）",
-           size=16, weight=700, color=RED)
+    s.raw(f'<rect x="{X0}" y="{BY + 58}" width="{w:.1f}" height="28" rx="4" fill="{RED}"/>')
+    s.arrow([(X0 + 150, BY + 116), (X0 + 10, BY + 90)], color=RED, width=2.2)
+    s.text(X0 + 160, BY + 120, "實際只跑 0.016　← 就是左邊那一小條", size=17,
+           weight=700, color=RED)
 
-    s.card(720, BY - 10, 240, [
-        "把上界從 1000 降到 100",
+    s.card(714, BY - 18, 246, [
+        "把上限從 1000 改成 100",
         "還是比 0.016 大六千倍",
-        "**等於什麼都沒做**",
+        "**等於沒碰到它**",
     ], title="所以", icon="circle-alert", color=ORANGE, size=15,
-        foot="21.3 第一版就是這樣錯的")
+        foot="第 21.3 節第一版就是這樣錯的")
 
-    s.text(40, BY + 180, "要真的壓住一條反應，**上界要設成它實際通量的幾分之幾**，"
-                         "不是上界的幾分之幾。", size=17, weight=700, color=INK)
+    s.text(40, BY + 168, "要真的壓住一條反應，上限要設成**它實際跑多快**的幾分之幾，"
+                         "不是容許上限的幾分之幾。", size=17, weight=700, color=INK)
     return s
 
 
-def fig19_flow():
+
+def figr7_compare():
+    """WT 和 A13 到底差在哪：基因體差很多，模型只差一條。"""
+    a = json.loads((CODE / "annotation.json").read_text("utf-8"))
+    d = a["delta"]
+    s = Svg(WR7, 1040, "圖 7-5　野生株和 A13 到底差在哪")
+    s.text(40, 78, "三個層次看同一件事。**往下走，差別越來越小**——"
+                   "不是因為菌變像了，是因為每一層看得到的東西不一樣。", size=17, color=MUTED)
+
+    LEV = [
+        ("① 基因體（定序逐字比對）", "差很多", RED, [
+            "多了一段 **76,217 bp** 的外來 DNA（Contig3 943,094–1,019,311）",
+            "AFS 完整拷貝 **11 份**；野生株 **0 份**",
+            "插入時鏟掉 **59 bp**，但全部落在兩個基因中間的空地上",
+            "**單一位點、沒有重排**",
+        ]),
+        ("② 功能註解（定序廠自己跑的）", "差得出來", ORANGE, [
+            f'萜類合成酶：A13 **{d["terpene_synthase"]["wt"]}** 個、野生株 **{d["terpene_synthase"]["mut"]}** 個',
+            f'GNAT 乙醯轉移酶（篩選標記）：**{d["gnat"]["wt"]}** vs **{d["gnat"]["mut"]}**，多 {d["gnat"]["delta"]} 個',
+            f'質體骨架（RepA／Resolvase／ParA）：各 **{d["rep_initiator"]["wt"]}** vs **0**',
+            "預測蛋白總數 8,421 vs 8,386",
+        ]),
+        ("③ 代謝模型", "**只差一條反應**", TEAL, [
+            "A13 多了一條 AFS 反應、一條產物運輸、一條產物出口——**就這三條**",
+            "其餘 2,723 條反應、2,277 個代謝物**完全一樣**",
+            "兩株的最大生長速率**一模一樣**（0.07398512）",
+        ]),
+    ]
+    y = 140
+    for title, verdict, col, items in LEV:
+        h = 54 + len(items) * 26 + 18
+        s.box(40, y, 920, h, "", color=col, fill=tint(col, 0.96))
+        s.text(64, y + 34, title, size=19, weight=700, color=col)
+        s.text(936, y + 34, verdict, size=18, weight=700, anchor="end", color=col)
+        yy = y + 62
+        for it in items:
+            for ln in wrap("・" + it, 16, 850):
+                s.text(64, yy, ln, size=16)
+                yy += 24
+            yy += 2
+        y += h + 20
+
+    ch = s.card(40, y + 10, 920, [
+        "**模型只差一條，不是因為兩株菌真的只差這麼多。**",
+        "是因為這個模型就是「拿野生株的模型、加一條反應」做出來的——"
+        "**差別是手動放進去的，不是算出來的**。",
+        "所以**不能**用「兩株模型算出一樣的生長速率」去說「基改沒有造成負擔」。"
+        "那個結論模型根本沒資格講。",
+    ], title="最重要的一句", icon="circle-alert", color=RED, size=16,
+        foot="要知道有沒有負擔，只有一個辦法：把兩株的生長曲線放在一起比")
+
+    s.text(40, y + ch + 38, "※ 同一個酵素在兩株有不同的基因編號（定序廠分別給的流水號）。"
+                            "那是編號問題，不是生物差異。", size=15, color=MUTED)
+    return s
+
+
+
+def figr0_roadmap():
+    """新分區的導覽圖：七章串起來在回答什麼。"""
+    s = Svg(1000, 1040, "圖 0-1　這個分區在回答什麼")
+    s.text(40, 78, "一株基改紅酵母，從定序檔一路做到「下一批實驗該怎麼做」。"
+                   "**七章，每一章解決一個卡住的地方。**", size=17, color=MUTED)
+
+    steps = [
+        ("1", "換成酵母菌", "細菌的工具鏈全部不適用。先換掉註解流程和模型來源", BROWN),
+        ("2", "基改菌株", "插進去的基因怎麼變成模型裡的一條反應；生產包絡線怎麼看", PURPLE),
+        ("3", "案例：定序比對", "76 kb 串聯陣列、11 份拷貝、插入點在哪、鄰居是什麼", RED),
+        ("4", "文獻精讀", "同一株菌八年從 261 mg/L 到 20.8 g/L，三步怎麼走的", ORANGE),
+        ("5", "完整流程", "七個步驟串成一條路，最後落在一份可執行的操作單", BLUE),
+        ("6", "把模型跑起來", "rhto-GEM 從下載到第一條生產包絡線，六個指令", TEAL),
+        ("7", "核對別人的模型", "拿到別人交回來的東西怎麼驗收；調降 ERG9 為什麼沒用", GREEN),
+    ]
+    X, BW, y = 64, 640, 150
+    for no, title, what, col in steps:
+        s.box(X, y, BW, 92, "", color=col, fill=tint(col, 0.95))
+        s.raw(f'<circle cx="{X + 34}" cy="{y + 46}" r="19" fill="{col}"/>')
+        s.text(X + 34, y + 53, no, size=20, weight=700, anchor="middle", color="#ffffff")
+        s.text(X + 70, y + 38, title, size=20, weight=700, color=col)
+        for i, ln in enumerate(wrap(what, 16, BW - 100)):
+            s.text(X + 70, y + 66 + i * 21, ln, size=16, color=MUTED)
+        if no != "7":
+            s.arrow([(X + BW / 2, y + 92), (X + BW / 2, y + 122)], color=MUTED, width=2.2)
+        y += 122
+
+    s.card(730, 150, 230, [
+        "紅酵母 **IFO 8766**",
+        "蘋果 **α-farnesene 合成酶**",
+        "農桿菌隨機嵌入",
+        "**11 份完整拷貝**",
+    ], title="這株菌", icon="dna", color=INK, size=15,
+        foot="定序比對已經確定，不用重跑")
+    s.card(730, 420, 230, [
+        "產物到底有多少",
+        "11 份拷貝有沒有在表現",
+        "限氮催不催產物",
+    ], title="還沒解決", icon="circle-help", color=RED, size=15,
+        foot="三件都只能靠實驗")
+    s.card(730, 700, 230, [
+        "rhto.py　跑模型",
+        "rhto\\_afs.py　驗收",
+        "線上看板（第 7 章）",
+    ], title="工具", icon="terminal", color=BLUE, size=15,
+        foot="都在 code/ 底下")
+    return s
+
+
+def figr5_flow():
     """整條流程的標準流程圖：膠囊＝起訖、方框＝步驟、菱形＝判斷。"""
-    s = Svg(W19, 1580, "圖 19-1　整條流程")
+    s = Svg(WR5, 1580, "圖 5-1　整條流程")
     s.text(40, 78, "中間是主流程，左邊是「不通過要做什麼」，右邊是「這一步產出什麼」。",
            size=T_BODY, color=MUTED)
 
@@ -2196,9 +2302,9 @@ def fig19_flow():
 
 
 
-def fig19_model_is():
+def figr5_model_is():
     """代謝模型聽起來很抽象，其實就是一張很長的表。"""
-    s = Svg(W19, 880, "圖 19-2　代謝模型其實就是一張表")
+    s = Svg(WR5, 880, "圖 5-2　代謝模型其實就是一張表")
     s.text(40, 78, "「建模型」聽起來很抽象。打開來看，它就是**一張很長的反應表**，"
                    "一列一個反應。", size=T_BODY, color=MUTED)
 
@@ -2250,9 +2356,9 @@ def fig19_model_is():
     return s
 
 
-def fig19_fba():
+def figr5_fba():
     """FBA 在算什麼：四條反應的小例子，算術自己看得懂。"""
-    s = Svg(W19, 1046, "圖 19-3　FBA 在算什麼")
+    s = Svg(WR5, 1046, "圖 5-3　FBA 在算什麼")
     s.text(40, 78, "用四條反應就能說完。看懂這張，幾千條的版本只是同一件事放大。",
            size=T_BODY, color=MUTED)
 
@@ -2320,9 +2426,9 @@ def fig19_fba():
 
 
 
-def fig19_to_ui():
+def figr5_to_ui():
     """有了 rhto-GEM，能不能直接丟進模擬器？——不能，中間還有五步。"""
-    s = Svg(W19, 1180, "圖 19-4　有了模型，能直接放進介面嗎？")
+    s = Svg(WR5, 1180, "圖 5-4　有了模型，能直接放進介面嗎？")
     s.text(40, 78, "**不能。** 介面讀的不是模型，是**事先算好的查表**。中間還有五件事要做。",
            size=T_BODY, color=MUTED)
 
@@ -2390,11 +2496,11 @@ def _flask(s, cx, by, h=96, w=84, overlay=False, col=TEAL, empty=False):
               f'fill="{tint(ORANGE, 0.45)}" clip-path="url(#{cid})"/>')
 
 
-def fig19_design():
+def figr5_design():
     """第一批實驗的配置：3 個 C/N × 有沒有覆蓋層 ＋ 3 組對照。"""
     d = _wf()["design"]
     v = d["vessel"]
-    s = Svg(W19, 900, "圖 19-5　第一批實驗怎麼擺")
+    s = Svg(WR5, 900, "圖 5-5　第一批實驗怎麼擺")
     s.text(40, 78, f'{v["flask_mL"]:.0f} mL 搖瓶裝 {v["work_mL"]:.0f} mL、200 rpm、'
                    f'每個條件 3 重複、遮光。', size=T_BODY, color=MUTED)
 
@@ -2432,10 +2538,10 @@ def fig19_design():
     return s
 
 
-def fig19_timeline():
+def figr5_timeline():
     """96 小時的取樣節奏。"""
     d = _wf()["design"]
-    s = Svg(W19, 700, "圖 19-6　96 小時：什麼時候量什麼")
+    s = Svg(WR5, 700, "圖 5-6　96 小時：什麼時候量什麼")
     s.text(40, 78, "取樣密度不平均：**中段盯「氮什麼時候歸零」**，那是開關被按下的時刻。",
            size=T_BODY, color=MUTED)
 
@@ -2481,9 +2587,9 @@ def fig19_timeline():
     return s
 
 
-def fig19_decide():
+def figr5_decide():
     """數據回來之後，照順序問三題。"""
-    s = Svg(W19, 1030, "圖 19-7　數據回來了，照順序問三題")
+    s = Svg(WR5, 1030, "圖 5-7　數據回來了，照順序問三題")
     s.text(40, 78, "前一題沒過就看後一題，等於在最適化一個假訊號。", size=T_BODY, color=MUTED)
 
     CX, DW, DH = 620, 440, 120
@@ -2527,19 +2633,19 @@ def fig19_decide():
 FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": fig2, "fig2-2-clues": fig2_clues, "fig3-1-gem-build": fig3,
         "fd4-5-flux-maps": flux_maps, "fig5-2-phase-indicators": fig5, "fig6-4-stage-decisions": fig6,
         "fig7-2-doe-funnel": fig7, "fig8-3-bo-loop": fig8, "fig12-1-roadmap": fig10,
-        "fig15-1-compare": fig15_compare, "fig15-2-annotate": fig15_annotate,
-        "fig15-3-yeasts": fig15_culture, "fig16-1-gene-to-reaction": fig16_gene_to_reaction,
-        "fig16-2-fpp": fig16_fpp,
-        "fig17-1-overview": fig17_overview, "fig17-2-construct": fig17_construct,
-        "fig17-3-array": fig17_array, "fig17-5-junction": fig17_junction,
-        "fig17-6-pathway": fig17_pathway,
-        "fig17-8-states": fig17_states,
-        "fig17-10-independent": fig17_independent,
-        "fig17-11-site": fig17_site, "fig17-13-blast": fig17_blast, "fig19-1-flow": fig19_flow, "fig19-2-model-is": fig19_model_is,
-        "fig19-3-fba": fig19_fba, "fig19-4-to-ui": fig19_to_ui, "fig19-5-design": fig19_design,
-        "fig19-6-timeline": fig19_timeline, "fig19-7-decide": fig19_decide, "fig20-1-run": fig20_run, "fig21-1-audit": fig21_audit, "fig21-2-glucose": fig21_glucose, "fig21-3-erg9": fig21_erg9, "fig21-4-cn": fig21_cn, "fig20-2-cn": fig20_cn, "fig20-3-limits": fig20_limits, "fig20-4-bounds": fig20_bounds, "fig17-12-fpp-users": fig17_fpp_users,
-        "fig18-2-strategy": fig18_strategy,
-        "fig17-9-overlay": fig17_overlay, "fig15-4-cell": fig15_cell,
+        "figr0-1-roadmap": figr0_roadmap, "figr1-1-compare": figr1_compare, "figr1-2-annotate": figr1_annotate,
+        "figr1-3-yeasts": figr1_culture, "figr2-1-gene-to-reaction": figr2_gene_to_reaction,
+        "figr2-2-fpp": figr2_fpp,
+        "figr3-1-overview": figr3_overview, "figr3-2-construct": figr3_construct,
+        "figr3-3-array": figr3_array, "figr3-5-junction": figr3_junction,
+        "figr3-6-pathway": figr3_pathway,
+        "figr3-8-states": figr3_states,
+        "figr3-10-independent": figr3_independent,
+        "figr3-11-site": figr3_site, "figr3-13-blast": figr3_blast, "figr5-1-flow": figr5_flow, "figr5-2-model-is": figr5_model_is,
+        "figr5-3-fba": figr5_fba, "figr5-4-to-ui": figr5_to_ui, "figr5-5-design": figr5_design,
+        "figr5-6-timeline": figr5_timeline, "figr5-7-decide": figr5_decide, "figr6-1-run": figr6_run, "figr7-1-audit": figr7_audit, "figr7-2-glucose": figr7_glucose, "figr7-3-erg9": figr7_erg9, "figr7-4-cn": figr7_cn, "figr7-5-compare": figr7_compare, "figr6-2-cn": figr6_cn, "figr6-3-limits": figr6_limits, "figr6-4-bounds": figr6_bounds, "figr3-12-fpp-users": figr3_fpp_users,
+        "figr4-2-strategy": figr4_strategy,
+        "figr3-9-overlay": figr3_overlay, "figr1-4-cell": figr1_cell,
         "fig10-4-vessels": fig10_vessels,
         "fig13-1-resources": fig13_resources}
 
