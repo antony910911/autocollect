@@ -10,6 +10,17 @@ FONT = ("'Noto Sans TC','WenQuanYi Zen Hei','Noto Sans CJK TC',"
         "'PingFang TC','Microsoft JhengHei',sans-serif")
 FONT_DIR = Path(__file__).resolve().parent / "fonts"
 
+# Folio 把圖一律縮到 880 px 寬（autocollect/lessons.py 的 PAGE_W）。
+# 所以畫布越寬，字在頁面上就越小：畫布 1480 px 的 14.5 px 字，顯示出來只有 8.5 px。
+# 新圖一律畫在 FIG_W，內文不小於 17 px——這樣縮完還有 15 px，看得清楚。
+FIG_W = 1000
+PAGE_W = 880
+
+
+def on_page(size: float, canvas_w: int) -> float:
+    """這個字級在 Folio 頁面上實際會顯示成幾 px。"""
+    return size * PAGE_W / canvas_w
+
 
 def ensure_fonts() -> bool:
     """把 repo 裡的 Noto Sans TC 裝進使用者字型目錄，讓 Chromium 與 matplotlib 都看得到。
@@ -123,6 +134,38 @@ class Svg:
     def line(self, x1, y1, x2, y2, color=MUTED, width=1.5, dash=False):
         d = ' stroke-dasharray="5 5"' if dash else ""
         self.parts.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{width}"{d}/>')
+
+
+    # ── 流程圖的標準形狀 ──
+    def stadium(self, x, y, w, h, label, color=INK, size=19, fill=None, weight=700):
+        """圓角膠囊＝流程的起點／終點。"""
+        fill = fill or tint(color, 0.9)
+        self.parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{h / 2}" '
+                          f'fill="{fill}" stroke="{color}" stroke-width="2.5"/>')
+        self._center(x, y, w, h, label, size, color, weight)
+
+    def diamond(self, cx, cy, w, h, label, color=INK, size=18, fill=None):
+        """菱形＝判斷。label 用 \n 換行；分支標籤自己畫在旁邊。"""
+        fill = fill or tint(color, 0.9)
+        self.parts.append(f'<path d="M{cx},{cy - h / 2} L{cx + w / 2},{cy} L{cx},{cy + h / 2} '
+                          f'L{cx - w / 2},{cy} Z" fill="{fill}" stroke="{color}" '
+                          f'stroke-width="2.5" stroke-linejoin="round"/>')
+        self._center(cx - w / 2, cy - h / 2, w, h, label, size, color, 700)
+
+    def para(self, x, y, w, h, label, color=INK, size=18, fill=None, skew=22):
+        """平行四邊形＝資料（輸入／輸出）。"""
+        fill = fill or tint(color, 0.9)
+        self.parts.append(f'<path d="M{x + skew},{y} L{x + w},{y} L{x + w - skew},{y + h} '
+                          f'L{x},{y + h} Z" fill="{fill}" stroke="{color}" stroke-width="2.5" '
+                          f'stroke-linejoin="round"/>')
+        self._center(x, y, w, h, label, size, color, 700)
+
+    def _center(self, x, y, w, h, label, size, color, weight):
+        lines = str(label).split("\n")
+        y0 = y + h / 2 - (len(lines) - 1) * size * 0.65 + size * 0.34
+        for i, ln in enumerate(lines):
+            self.text(x + w / 2, y0 + i * size * 1.3, ln, size=size, color=color,
+                      anchor="middle", weight=weight)
 
     # ── 圖示與元件 ──
     def icon(self, name, x, y, size=22, color=None, width=2.0):
@@ -256,6 +299,9 @@ def _text_w(s: str, size: float) -> float:
 
 
 
+_NO_LINE_START = set("，。、；：？！）」』〉》】%,.:;?!)]}…～")
+
+
 def wrap(txt: str, size: float, maxw: float) -> list[str]:
     """依實際寬度斷行；ASCII 單字不切開，行首不留標點。"""
     import re as _re
@@ -264,7 +310,8 @@ def wrap(txt: str, size: float, maxw: float) -> list[str]:
     for tok in tokens:
         if tok.isspace() and not cur:
             continue
-        if _text_w(cur + tok, size) > maxw and cur:
+        # 標點不能掉到行首：寧可讓這一行超出一點點，也不要「，」開頭
+        if _text_w(cur + tok, size) > maxw and cur and tok not in _NO_LINE_START:
             lines.append(cur.rstrip())
             cur = "" if tok.isspace() else tok
         else:
