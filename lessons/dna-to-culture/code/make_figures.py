@@ -84,7 +84,7 @@ def fig_o2_scan():
     a2.text(0.5, 19.3, "厭氧：混合酸發酵", fontsize=10, color=BLUE)
     a2.text(9.5, 14.5, "缺氧：溢流代謝（乙酸）", fontsize=10, color=ORANGE)
     a2.text(16.5, 8.5, "好氧：完全氧化\n成 CO$_2$", fontsize=10, color=NOTE)
-    fig.suptitle("圖 4-1　改變一個參數（供氧），看生長與產物怎麼變（葡萄糖吸收固定 10 mmol/gDW/h）",
+    fig.suptitle("圖 7-1　改變一個參數（供氧），看生長與產物怎麼變（葡萄糖吸收固定 10 mmol/gDW/h）",
                  fontsize=14, weight="bold", y=1.03)
     save(fig, "fd4-1-oxygen-scan")
 
@@ -112,7 +112,7 @@ def fig_phase_plane():
                 arrowprops=dict(color="white", arrowstyle="->"))
     ax.set_xlabel("氧氣吸收上限（mmol / gDW / h）")
     ax.set_ylabel("葡萄糖吸收上限（mmol / gDW / h）")
-    ax.set_title("圖 4-2　表型相平面：兩個參數一起變時，哪一個才是瓶頸？")
+    ax.set_title("圖 7-2　表型相平面：兩個參數一起變時，哪一個才是瓶頸？")
     ax.grid(False)
     save(fig, "fd4-2-phase-plane")
 
@@ -125,7 +125,7 @@ def fig_carbon():
     for i, x in enumerate(d[::-1]):
         ax.text(x["mu"] + 0.01, i, f"{x['mu']:.2f}", va="center", fontsize=10)
     ax.set_xlabel("預測最大生長率 μ（1/h）；每種碳源都給每小時 60 mmol 碳、氧氣充足")
-    ax.set_title("圖 4-3　換碳源：模型可以先幫你篩選，再進實驗室驗證")
+    ax.set_title("圖 7-3　換碳源：模型可以先幫你篩選，再進實驗室驗證")
     ax.set_xlim(0, 1.0)
     save(fig, "fd4-3-carbon-sources")
 
@@ -146,7 +146,7 @@ def fig_knockouts():
     ax.axvline(1, color=GREY, ls=":")
     ax.legend(frameon=False, loc="lower right")
     k = R["fba"]["knockouts"]
-    ax.set_title(f"圖 4-4　基因剔除模擬：同一個基因，在不同條件下重要性不同（{k['n_genes']} 個基因全部算過）")
+    ax.set_title(f"圖 7-4　基因剔除模擬：同一個基因，在不同條件下重要性不同（{k['n_genes']} 個基因全部算過）")
     notes = {"nuoA": "呼吸鏈：好氧時很重要，厭氧時用不到", "ppc": "厭氧時必需（補充草醯乙酸）",
              "pgi": "厭氧時必需（模型中無替代路徑）", "adhE": "核心模型中可被替代"}
     for i, r in enumerate(rows):
@@ -203,7 +203,7 @@ def fig_batch():
     h2, l2 = c2.get_legend_handles_labels()
     c.legend(h1 + h2, l1 + l2, frameon=False, loc="center right", fontsize=10)
     c.set_title("可以線上量的指標：耗氧、呼吸商；它們的轉折點標出階段的切換")
-    fig.suptitle("圖 5-1　dFBA 模擬的批次培養：同一瓶菌，經過五個代謝階段", fontsize=15, weight="bold", y=1.0)
+    fig.suptitle("圖 4-1　dFBA 模擬的批次培養：同一瓶菌，經過五個代謝階段", fontsize=15, weight="bold", y=1.0)
     fig.tight_layout()
     save(fig, "fd5-1-batch", DFBA_NOTE)
 
@@ -223,7 +223,7 @@ def fig_gompertz():
     ax.plot(t[sel], b0 + k * t[sel], color=BLUE, lw=3, alpha=0.8, label=f"只取指數期做直線迴歸：μ = {k:.2f}/h")
     ax.set_xlabel("時間（h）")
     ax.set_ylabel("ln(N / N$_0$)")
-    ax.set_title(f"圖 5-4　從生長曲線讀出參數（模型真實的最大 μ = {g['mu_model_max']:.2f}/h）")
+    ax.set_title(f"圖 4-4　從生長曲線讀出參數（模型真實的最大 μ = {g['mu_model_max']:.2f}/h）")
     ax.legend(frameon=False, loc="lower right")
     ax.set_xlim(0, 16)
     save(fig, "fd5-2-growth-fit", DFBA_NOTE)
@@ -244,7 +244,7 @@ def fig_otr():
         a.set_xlabel("時間（h）")
         a.set_xlim(0, 16)
     a1.legend(frameon=False)
-    fig.suptitle("圖 5-3　同一株菌、同一個培養基，只改供氧能力（搖瓶裝液量、轉速、通氣量）", fontsize=14,
+    fig.suptitle("圖 4-3　同一株菌、同一個培養基，只改供氧能力（搖瓶裝液量、轉速、通氣量）", fontsize=14,
                  weight="bold", y=1.03)
     save(fig, "fd5-3-oxygen-supply", DFBA_NOTE)
 
@@ -278,7 +278,7 @@ def fig_strategies():
     h1, l1 = axes[0].get_legend_handles_labels()
     axes[1].legend(h1 + [plt.Line2D([], [], color=GREEN, lw=2.2)], l1 + ["菌量（右軸）"], frameon=False,
                    loc="center", fontsize=10.5)
-    fig.suptitle("圖 6-1　三種策略比較：起始葡萄糖 200 mM、第 12 小時收穫", fontsize=15, weight="bold", y=1.06)
+    fig.suptitle("圖 5-1　三種策略比較：起始葡萄糖 200 mM、第 12 小時收穫", fontsize=15, weight="bold", y=1.06)
     save(fig, "fd6-1-strategies", DFBA_NOTE)
 
 
@@ -299,7 +299,7 @@ def fig_switch_scan():
     ax.set_ylabel("收穫時乙醇（mM）")
     ax.set_xlim(0, 12)
     ax.legend(frameon=False, loc="upper right")
-    ax.set_title("圖 6-2　最佳切換時間取決於「你打算什麼時候收穫」")
+    ax.set_title("圖 5-2　最佳切換時間取決於「你打算什麼時候收穫」")
     save(fig, "fd6-2-switch-scan", DFBA_NOTE)
 
 
@@ -322,7 +322,7 @@ def fig_sensitivity():
                 pass
     ax.set_xlabel(f"收穫時乙醇的變化（mM）；基準 = {s['ref']:.0f} mM（第 {s['t_sw']:g} h 切換）")
     ax.legend(frameon=False, loc="lower left")
-    ax.set_title("圖 6-3　分階段敏感度：每個階段「該顧好」的參數不一樣")
+    ax.set_title("圖 5-3　分階段敏感度：每個階段「該顧好」的參數不一樣")
     ax.set_xlim(-75, 15)
     save(fig, "fd6-3-stage-sensitivity", DFBA_NOTE)
 
@@ -367,7 +367,7 @@ def fig_env():
         c.set_ylabel("溫度（°C）")
         c.set_title(title)
         c.grid(False)
-    fig.suptitle("圖 7-1　溫度與 pH：GEM 算不出來，要靠經驗模型（上）；接上 dFBA 後可以看組合效果（下）",
+    fig.suptitle("圖 6-1　溫度與 pH：GEM 算不出來，要靠經驗模型（上）；接上 dFBA 後可以看組合效果（下）",
                  fontsize=15, weight="bold", y=0.98)
     save(fig, "fd7-1-temperature-ph", DFBA_NOTE + " 基點值是假設的示範值。")
 
@@ -759,9 +759,9 @@ def fig_literature():
     a2.set_ylim(0, max(r["titer_mg_L"] for r in other) * 1.25)
     a2.set_title("同一株菌做過的其他萜類")
 
-    fig.suptitle("圖 4-1　紅酵母做萜類，別人做到哪裡了", fontsize=15, weight="bold", y=1.0)
+    fig.suptitle("圖 7-1　紅酵母做萜類，別人做到哪裡了", fontsize=15, weight="bold", y=1.0)
     fig.tight_layout()
-    save(fig, "fdr4-1-literature", LIT_NOTE)
+    save(fig, "fdr7-1-literature", LIT_NOTE)
     plt.close(fig)
 
 

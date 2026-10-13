@@ -212,7 +212,10 @@ def build_chapter(course: Course, section_id: str, chapter_no: int, md_path: Pat
 
     page = {"id": page_id, "sectionId": section_id, "title": title, "background": "blank",
             "order": chapter_no, "createdAt": now_ms, "updatedAt": now_ms}
-    records = [{"key": f"pg:{page_id}", "rev": folio.CREATE_ONLY_REV, "deleted": 0, "data": page}]
+
+    # 頁面用「會更新」的 rev，不是 CREATE_ONLY：章節重新排序之後，
+    # 標題與順序要以 repo 為準，不然內容會跑到錯的位置上。
+    records = [{"key": f"pg:{page_id}", "rev": rev(), "deleted": 0, "data": page}]
     uploads: dict[str, bytes] = {}
     y = TOP_Y
     for i, block in enumerate(blocks):
