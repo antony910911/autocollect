@@ -1619,6 +1619,91 @@ def _wf():
     return json.loads((CODE / "workflow.json").read_text("utf-8"))
 
 
+
+def fig17_blast():
+    """BLASTp 查鄰居基因的結果：沒查到功能，但解決了三件事。"""
+    b = json.loads((CODE / "blast_neighbours.json").read_text("utf-8"))
+    L = b["query"]["len"]
+    core_a, core_b = b["conservation"]["core_blocks"][0]
+    lc = b["composition"][0]
+    tm = b["hydrophobic"][0]
+    far = b["conservation"]["n_far_hits"]
+    named = len(b["named_hits"])
+
+    s = Svg(1000, 1060, "圖 17-13　BLAST 查完那個鄰居：沒查到功能，但解決了三件事")
+    s.text(40, 78, f'把那個 {L} 個胺基酸的鄰居丟進 blastp，{b["n_hits"]} 筆命中裡'
+                   f'**只有 {named} 筆有名字，而且都靠不住**。', size=17, color=MUTED)
+
+    X0, X1, Y, H = 64, 936, 190, 54
+    px = lambda a: X0 + (X1 - X0) * (a - 1) / (L - 1)  # noqa: E731
+
+    s.text(40, Y - 26, "這個蛋白質長什麼樣", size=20, weight=700, color=INK)
+    # 低複雜度區
+    s.box(px(1), Y, px(lc["to"]) - px(1), H, "", color=BROWN, fill=tint(BROWN, 0.9))
+    s.text((px(1) + px(lc["to"])) / 2, Y + 24, "低複雜度區", size=18, weight=700,
+           anchor="middle", color=BROWN)
+    s.text((px(1) + px(lc["to"])) / 2, Y + 45, f'P＋A＋S＋T 佔 {lc["spta_pct"]}%',
+           size=15, anchor="middle", color=MUTED)
+    # 保守核心
+    s.box(px(core_a), Y, px(core_b) - px(core_a), H, "", color=TEAL, fill=tint(TEAL, 0.88))
+    s.text((px(core_a) + px(core_b)) / 2, Y + 24, "保守核心", size=18, weight=700,
+           anchor="middle", color=TEAL)
+    s.text((px(core_a) + px(core_b)) / 2, Y + 45, f'{core_b - core_a + 1} aa',
+           size=15, anchor="middle", color=MUTED)
+    # 疏水段
+    s.raw(f'<rect x="{px(tm["from"]):.1f}" y="{Y - 9}" width="{px(tm["to"]) - px(tm["from"]):.1f}" '
+          f'height="{H + 18}" rx="4" fill="{ORANGE}" opacity="0.85"/>')
+    s.arrow([(px(tm["from"]) - 60, Y - 44), (px(tm["from"]) - 6, Y - 14)], color=ORANGE, width=2.2)
+    s.text(px(tm["from"]) - 66, Y - 48, f'疑似膜錨 {tm["from"]}–{tm["to"]}',
+           size=15, weight=700, anchor="end", color=ORANGE)
+
+    for a in (1, lc["to"], L):
+        s.line(px(a), Y + H, px(a), Y + H + 8, color=MUTED, width=1.4)
+        s.text(px(a), Y + H + 28, str(a), size=15, anchor="middle", color=MUTED)
+
+    # 插入點：貼著起始密碼子畫，不要放到別的區塊去
+    s.arrow([(px(1), Y + H + 74), (px(1), Y + H + 44)], color=RED, width=2.6)
+    s.text(px(1) + 16, Y + H + 70, "插入點在這裡（起始密碼子前 39 bp）"
+                                   "——**在基因外面，不在裡面**", size=17, weight=700, color=RED)
+
+    # 保守度剖面：只有遠緣物種還留著的那一段，就是核心
+    PY_ = Y + H + 136
+    s.text(40, PY_ - 6, f'遠緣物種（{far} 筆種外命中）還保留哪一段',
+           size=17, weight=700, color=MUTED)
+    prof = b["conservation"]["profile"]
+    bw = (X1 - X0) / len(prof)
+    for i, f in enumerate(prof):
+        h = max(2, f * 54)
+        col = TEAL if f >= 0.5 else C["hairline"]
+        s.raw(f'<rect x="{X0 + i * bw:.1f}" y="{PY_ + 16 + 54 - h:.1f}" width="{bw - 1.6:.1f}" '
+              f'height="{h:.1f}" fill="{col}"/>')
+    s.text(X0 + (X1 - X0) * 0.24, PY_ + 58, "N 端這一半只有自己這一種留著",
+           size=15, anchor="middle", color=MUTED)
+
+    y = PY_ + 100
+    # 先畫比較高的那一張，再用它的高度把另一張補齊，兩張才會切齊
+    hh = s.card(520, y, 440, [
+        f'{b["n_hits"] - named} 筆是 hypothetical／uncharacterized',
+        "「proteophosphoglycan ppg4」是低複雜度區造成的誤標",
+        "「UDP-galactose transporter」只有 31% 相似、覆蓋 35%",
+    ], title="沒問出來的", icon="circle-alert", color=RED, size=16,
+        foot="功能仍然不知道——而且這是結論，不是失敗")
+    s.card(40, y, 440, [
+        f'{b["n_hits"]} 筆命中、{len(b["genera"])} 個屬，**全部是紅酵母與近緣真菌**',
+        "相似度隨親緣遞減：同種 96→83%、同屬 40–47%、更遠的 31–39%",
+        "同種的 3 筆從第 1 個胺基酸就對得上",
+    ], title="問出來的", icon="circle-check", color=GREEN, size=16,
+        foot="所以這是一個真的基因，不是註解程式亂猜出來的", min_h=hh)
+
+    s.card(40, y + hh + 26, 920, [
+        "**查 Coradetti 2018 的適應度資料**——那份 T-DNA 突變庫做在 IFO 0880，和你的參考基因體同一株。先把這條蛋白質比回 JGI 拿到基因編號，再去查那篇的補充檔，不用做實驗就可能有表型",
+        "**用結構找遠親**（HHpred／Foldseek／AlphaFold DB）——只拿保守核心那段去比。BLASTp 看不到的遠源相似，結構看得到",
+        "**上游那個 423 aa 的鄰居還沒查**——序列就在 upstream.faa，同一套流程再跑一次",
+    ], title="下一步，照這個順序", icon="list-checks", color=BLUE, size=16,
+        foot="但不管查不查得到，兩株的生長曲線一比就知道有沒有影響——那是第一批實驗本來就會做的")
+    return s
+
+
 def fig19_flow():
     """整條流程的標準流程圖：膠囊＝起訖、方框＝步驟、菱形＝判斷。"""
     s = Svg(W19, 1580, "圖 19-1　整條流程")
@@ -2066,7 +2151,7 @@ FIGS = {"fig0-1-roadmap": fig0, "fig1-1-dna-limits": fig1, "fig2-1-annotation": 
         "fig17-6-pathway": fig17_pathway,
         "fig17-8-states": fig17_states,
         "fig17-10-independent": fig17_independent,
-        "fig17-11-site": fig17_site, "fig19-1-flow": fig19_flow, "fig19-2-model-is": fig19_model_is,
+        "fig17-11-site": fig17_site, "fig17-13-blast": fig17_blast, "fig19-1-flow": fig19_flow, "fig19-2-model-is": fig19_model_is,
         "fig19-3-fba": fig19_fba, "fig19-4-to-ui": fig19_to_ui, "fig19-5-design": fig19_design,
         "fig19-6-timeline": fig19_timeline, "fig19-7-decide": fig19_decide, "fig17-12-fpp-users": fig17_fpp_users,
         "fig18-2-strategy": fig18_strategy,

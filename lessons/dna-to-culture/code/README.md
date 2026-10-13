@@ -33,11 +33,12 @@ cd ../simulator && python build.py   # 產生互動模擬器 index.html
 | `genome_tools.py` | 第 2、15、16 章：組裝統計、野生株 vs 基改株的 k-mer 比對、找 ORF 與模體、定位插入點、產生完整註解流程的指令稿 |
 | `engineered.py` | 第 16 章：把異源反應加進模型、算生產包絡線與成長耦合 |
 | `annotation.py` | 第 17 章：讀定序廠的註解包（GFF／faa／xlsx）。`summary` 用 Pfam 家族計數獨立驗證拷貝數並看插入點旁邊有什麼；`fix-gff` 把轉殖基因修成單一 exon（RNA-seq 計數前必做）；`gem-map` 產生 rhto-GEM 基因對照的指令與腳本（比對要在你自己的電腦上跑）。需要 `openpyxl` |
+| `blast_neighbours.py` | 第 17 章：讀 NCBI blastp 的 XML，回答「插入點旁邊那個基因是什麼」。算命中的分類分佈、起始密碼子對不對、保守核心落在哪一段、低複雜度區的組成，並標出 ppg4／mucin 這類由低複雜度區造成的誤標。**不連網**，XML 要自己去 NCBI 跑 |
 | `yeast.py` | 第 15 章：載入 Yeast8／rhto-GEM 等酵母菌模型、檢查、設厭氧、剔除基因（需自行下載模型，要在你自己的電腦上跑） |
 | `workflow.py` | 第 19 章：把「C/N 要 20」換算成「秤幾公克葡萄糖、幾公克硫酸銨」。培養基、接種量、容器與 kLa、十二烷與內標、取樣時程、碳的理論上限。每個數字標了出處等級（算出來的／文獻／起始猜測） |
 | `make_figures.py` | 畫教材的圖 |
 | `map_layout.json` | 中心代謝流量圖的版面（第 4 章圖與模擬器共用） |
-| `tables.json`、`results.json`、`protocol.json`、`calibration.json`、`annotation.json`、`workflow.json` | 最近一次的計算結果（教材引用的就是這份） |
+| `tables.json`、`results.json`、`protocol.json`、`calibration.json`、`annotation.json`、`workflow.json`、`blast_neighbours.json` | 最近一次的計算結果（教材引用的就是這份） |
 
 ## 換成你的菌
 

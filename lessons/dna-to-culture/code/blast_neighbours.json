@@ -1,0 +1,561 @@
+{
+  "query": {
+    "file": "downstream.faa",
+    "len": 1440
+  },
+  "blast": {
+    "program": "blastp",
+    "db": "clustered_nr",
+    "query_len": 1440
+  },
+  "n_hits": 37,
+  "hits": [
+    {
+      "num": 1,
+      "defn": "hypothetical protein OF846_001647 [Rhodotorula toruloides]",
+      "accession": "KAJ8295412",
+      "species": "Rhodotorula toruloides",
+      "hit_len": 1919,
+      "ident_pct": 96.1,
+      "qcov_pct": 100.0,
+      "evalue": 0.0,
+      "starts_at_1": false
+    },
+    {
+      "num": 2,
+      "defn": "hypothetical protein JCM10049v2_001783 [Rhodotorula toruloides]",
+      "accession": "BGP05964",
+      "species": "Rhodotorula toruloides",
+      "hit_len": 1412,
+      "ident_pct": 94.2,
+      "qcov_pct": 100.0,
+      "evalue": 0.0,
+      "starts_at_1": true
+    },
+    {
+      "num": 3,
+      "defn": "hypothetical protein JCM10296v2_001740 [Rhodotorula toruloides]",
+      "accession": "BGP29988",
+      "species": "Rhodotorula toruloides",
+      "hit_len": 1441,
+      "ident_pct": 92.4,
+      "qcov_pct": 100.0,
+      "evalue": 0.0,
+      "starts_at_1": true
+    },
+    {
+      "num": 4,
+      "defn": "Proteophosphoglycan ppg4 [Rhodotorula toruloides ATCC 204091]",
+      "accession": "EGU12451",
+      "species": "Rhodotorula toruloides ATCC 204091",
+      "hit_len": 1473,
+      "ident_pct": 88.9,
+      "qcov_pct": 100.0,
+      "evalue": 0.0,
+      "starts_at_1": true
+    },
+    {
+      "num": 5,
+      "defn": "hypothetical protein JCM10295v2_001630 [Rhodotorula toruloides]",
+      "accession": "BGP22739",
+      "species": "Rhodotorula toruloides",
+      "hit_len": 1275,
+      "ident_pct": 82.6,
+      "qcov_pct": 88.2,
+      "evalue": 0.0,
+      "starts_at_1": false
+    },
+    {
+      "num": 6,
+      "defn": "hypothetical protein JCM3770_000773 [Rhodotorula araucariae]",
+      "accession": "GAA6057459",
+      "species": "Rhodotorula araucariae",
+      "hit_len": 1371,
+      "ident_pct": 40.1,
+      "qcov_pct": 98.6,
+      "evalue": 1.34635e-177,
+      "starts_at_1": false
+    },
+    {
+      "num": 7,
+      "defn": "hypothetical protein Rhopal_001602-T1 [Rhodotorula paludigena]",
+      "accession": "GJN88636",
+      "species": "Rhodotorula paludigena",
+      "hit_len": 1168,
+      "ident_pct": 44.1,
+      "qcov_pct": 65.6,
+      "evalue": 3.46978e-149,
+      "starts_at_1": false
+    },
+    {
+      "num": 8,
+      "defn": "uncharacterized protein JCM10292_007384 [Rhodotorula paludigena]",
+      "accession": "XP_076507715",
+      "species": "Rhodotorula paludigena",
+      "hit_len": 1332,
+      "ident_pct": 44.3,
+      "qcov_pct": 76.4,
+      "evalue": 1.11167e-147,
+      "starts_at_1": false
+    },
+    {
+      "num": 9,
+      "defn": "hypothetical protein JCM10450v2_001782 [Rhodotorula kratochvilovae]",
+      "accession": "BGP45947",
+      "species": "Rhodotorula kratochvilovae",
+      "hit_len": 1315,
+      "ident_pct": 47.0,
+      "qcov_pct": 54.6,
+      "evalue": 3.12477e-145,
+      "starts_at_1": false
+    },
+    {
+      "num": 10,
+      "defn": "hypothetical protein DMC30DRAFT_401047 [Rhodotorula diobovata]",
+      "accession": "TNY19199",
+      "species": "Rhodotorula diobovata",
+      "hit_len": 1350,
+      "ident_pct": 45.3,
+      "qcov_pct": 56.6,
+      "evalue": 4.64582e-133,
+      "starts_at_1": false
+    },
+    {
+      "num": 11,
+      "defn": "uncharacterized protein RHOBADRAFT_52780 [Rhodotorula graminis WP1]",
+      "accession": "XP_018271799",
+      "species": "Rhodotorula graminis WP1",
+      "hit_len": 1383,
+      "ident_pct": 43.9,
+      "qcov_pct": 55.5,
+      "evalue": 4.20574e-123,
+      "starts_at_1": false
+    },
+    {
+      "num": 12,
+      "defn": "hypothetical protein JCM8208_001869 [Rhodotorula glutinis]",
+      "accession": "GAA5896416",
+      "species": "Rhodotorula glutinis",
+      "hit_len": 1382,
+      "ident_pct": 44.4,
+      "qcov_pct": 55.7,
+      "evalue": 2.0451e-117,
+      "starts_at_1": false
+    },
+    {
+      "num": 13,
+      "defn": "hypothetical protein JCM9279_006813 [Rhodotorula babjevae]",
+      "accession": "GAA5837632",
+      "species": "Rhodotorula babjevae",
+      "hit_len": 1396,
+      "ident_pct": 43.7,
+      "qcov_pct": 55.6,
+      "evalue": 1.93582e-110,
+      "starts_at_1": false
+    },
+    {
+      "num": 14,
+      "defn": "hypothetical protein JCM16303_000664 [Sporobolomyces ruberrimus]",
+      "accession": "GAA5875545",
+      "species": "Sporobolomyces ruberrimus",
+      "hit_len": 1399,
+      "ident_pct": 42.5,
+      "qcov_pct": 40.3,
+      "evalue": 5.39504e-94,
+      "starts_at_1": false
+    },
+    {
+      "num": 15,
+      "defn": "hypothetical protein JCM11491_004969 [Sporobolomyces phaffii]",
+      "accession": "GAA6006462",
+      "species": "Sporobolomyces phaffii",
+      "hit_len": 1428,
+      "ident_pct": 39.3,
+      "qcov_pct": 41.6,
+      "evalue": 1.59459e-88,
+      "starts_at_1": false
+    },
+    {
+      "num": 16,
+      "defn": "hypothetical protein JCM5350_001570 [Sporobolomyces pararoseus]",
+      "accession": "GAA5993336",
+      "species": "Sporobolomyces pararoseus",
+      "hit_len": 1427,
+      "ident_pct": 39.4,
+      "qcov_pct": 41.1,
+      "evalue": 1.75038e-81,
+      "starts_at_1": false
+    },
+    {
+      "num": 17,
+      "defn": "uncharacterized protein JCM15063_000654 [Sporobolomyces koalae]",
+      "accession": "XP_076532436",
+      "species": "Sporobolomyces koalae",
+      "hit_len": 1403,
+      "ident_pct": 37.9,
+      "qcov_pct": 41.8,
+      "evalue": 4.59453e-81,
+      "starts_at_1": false
+    },
+    {
+      "num": 18,
+      "defn": "hypothetical protein JCM10212_000753 [Sporobolomyces blumeae]",
+      "accession": "GAA6061836",
+      "species": "Sporobolomyces blumeae",
+      "hit_len": 1889,
+      "ident_pct": 36.4,
+      "qcov_pct": 40.0,
+      "evalue": 1.54829e-75,
+      "starts_at_1": false
+    },
+    {
+      "num": 19,
+      "defn": "hypothetical protein JCM5353_005278, partial [Sporobolomyces roseus]",
+      "accession": "GAA5856321",
+      "species": "Sporobolomyces roseus",
+      "hit_len": 705,
+      "ident_pct": 38.7,
+      "qcov_pct": 40.2,
+      "evalue": 3.42432e-75,
+      "starts_at_1": false
+    },
+    {
+      "num": 20,
+      "defn": "hypothetical protein JCM1841_004647 [Sporobolomyces salmonicolor]",
+      "accession": "GAA5929456",
+      "species": "Sporobolomyces salmonicolor",
+      "hit_len": 1859,
+      "ident_pct": 39.3,
+      "qcov_pct": 53.4,
+      "evalue": 1.01546e-71,
+      "starts_at_1": false
+    },
+    {
+      "num": 21,
+      "defn": "hypothetical protein JCM21900_001557 [Sporobolomyces salmonicolor]",
+      "accession": "GAA5958696",
+      "species": "Sporobolomyces salmonicolor",
+      "hit_len": 1372,
+      "ident_pct": 41.0,
+      "qcov_pct": 51.7,
+      "evalue": 4.08133e-71,
+      "starts_at_1": false
+    },
+    {
+      "num": 22,
+      "defn": "BQ2448_5666 [Microbotryum intermedium]",
+      "accession": "SCV67020",
+      "species": "Microbotryum intermedium",
+      "hit_len": 1397,
+      "ident_pct": 34.3,
+      "qcov_pct": 40.3,
+      "evalue": 1.37571e-48,
+      "starts_at_1": false
+    },
+    {
+      "num": 23,
+      "defn": "BQ5605_C003g02374 [Microbotryum silenes-dioicae]",
+      "accession": "SGY40427",
+      "species": "Microbotryum silenes-dioicae",
+      "hit_len": 1393,
+      "ident_pct": 34.3,
+      "qcov_pct": 40.3,
+      "evalue": 2.71635e-48,
+      "starts_at_1": false
+    },
+    {
+      "num": 24,
+      "defn": "hypothetical protein JCM8097_007475 [Rhodosporidiobolus ruineniae]",
+      "accession": "GAA6042782",
+      "species": "Rhodosporidiobolus ruineniae",
+      "hit_len": 1146,
+      "ident_pct": 42.1,
+      "qcov_pct": 39.1,
+      "evalue": 2.55561e-42,
+      "starts_at_1": false
+    },
+    {
+      "num": 25,
+      "defn": "UDP-galactose transporter [Pseudohyphozyma bogoriensis]",
+      "accession": "KAI5479562",
+      "species": "Pseudohyphozyma bogoriensis",
+      "hit_len": 1213,
+      "ident_pct": 31.4,
+      "qcov_pct": 34.6,
+      "evalue": 1.56866e-40,
+      "starts_at_1": false
+    },
+    {
+      "num": 26,
+      "defn": "hypothetical protein T439DRAFT_172773 [Meredithblackwellia eburnea MCA 4105]",
+      "accession": "KAM0754166",
+      "species": "Meredithblackwellia eburnea MCA 4105",
+      "hit_len": 1407,
+      "ident_pct": 29.6,
+      "qcov_pct": 39.9,
+      "evalue": 1.68982e-32,
+      "starts_at_1": false
+    },
+    {
+      "num": 27,
+      "defn": "hypothetical protein OIO90_0005594 [Microbotryomycetes sp. JL221]",
+      "accession": "KAN0260516",
+      "species": "Microbotryomycetes sp. JL221",
+      "hit_len": 1477,
+      "ident_pct": 37.8,
+      "qcov_pct": 26.7,
+      "evalue": 1.55171e-26,
+      "starts_at_1": false
+    },
+    {
+      "num": 28,
+      "defn": "hypothetical protein MNV49_003288 [Pseudohyphozyma bogoriensis]",
+      "accession": "KAI5479551",
+      "species": "Pseudohyphozyma bogoriensis",
+      "hit_len": 868,
+      "ident_pct": 37.4,
+      "qcov_pct": 24.1,
+      "evalue": 2.37819e-25,
+      "starts_at_1": false
+    },
+    {
+      "num": 29,
+      "defn": "hypothetical protein BCR35DRAFT_307774 [Leucosporidium creatinivorum]",
+      "accession": "ORY72220",
+      "species": "Leucosporidium creatinivorum",
+      "hit_len": 1170,
+      "ident_pct": 34.6,
+      "qcov_pct": 19.0,
+      "evalue": 5.21393e-21,
+      "starts_at_1": false
+    },
+    {
+      "num": 30,
+      "defn": "hypothetical protein ACM66B_005047 [Microbotryomycetes sp. NB124-2]",
+      "accession": "KAM0792367",
+      "species": "Microbotryomycetes sp. NB124-2",
+      "hit_len": 1420,
+      "ident_pct": 34.1,
+      "qcov_pct": 10.7,
+      "evalue": 6.17321e-11,
+      "starts_at_1": false
+    },
+    {
+      "num": 31,
+      "defn": "hypothetical protein RQP46_009134 [Phenoliferia psychrophenolica]",
+      "accession": "KAL8278444",
+      "species": "Phenoliferia psychrophenolica",
+      "hit_len": 508,
+      "ident_pct": 33.3,
+      "qcov_pct": 11.1,
+      "evalue": 1.20867e-09,
+      "starts_at_1": false
+    },
+    {
+      "num": 32,
+      "defn": "hypothetical protein OIV83_0002896 [Microbotryomycetes sp. JL201]",
+      "accession": "KAN0276161",
+      "species": "Microbotryomycetes sp. JL201",
+      "hit_len": 1325,
+      "ident_pct": 37.8,
+      "qcov_pct": 8.8,
+      "evalue": 2.12084e-09,
+      "starts_at_1": false
+    },
+    {
+      "num": 33,
+      "defn": "hypothetical protein JCM5353_008957, partial [Sporobolomyces roseus]",
+      "accession": "GAA5851340",
+      "species": "Sporobolomyces roseus",
+      "hit_len": 723,
+      "ident_pct": 43.2,
+      "qcov_pct": 12.0,
+      "evalue": 1.29868e-07,
+      "starts_at_1": false
+    },
+    {
+      "num": 34,
+      "defn": "hypothetical protein JCM5296_006987 [Sporobolomyces johnsonii]",
+      "accession": "GAA5899019",
+      "species": "Sporobolomyces johnsonii",
+      "hit_len": 1368,
+      "ident_pct": 40.4,
+      "qcov_pct": 13.0,
+      "evalue": 1.38629e-06,
+      "starts_at_1": false
+    },
+    {
+      "num": 35,
+      "defn": "hypothetical protein JCM3765_001630 [Sporobolomyces pararoseus]",
+      "accession": "GAA5947336",
+      "species": "Sporobolomyces pararoseus",
+      "hit_len": 2207,
+      "ident_pct": 38.9,
+      "qcov_pct": 12.5,
+      "evalue": 0.000110559,
+      "starts_at_1": false
+    },
+    {
+      "num": 36,
+      "defn": "hypothetical protein JCM3766R1_004017 [Sporobolomyces carnicolor]",
+      "accession": "GAA5849852",
+      "species": "Sporobolomyces carnicolor",
+      "hit_len": 1471,
+      "ident_pct": 34.4,
+      "qcov_pct": 16.4,
+      "evalue": 0.00034077,
+      "starts_at_1": false
+    },
+    {
+      "num": 37,
+      "defn": "uncharacterized protein JCM6883_002027 [Sporobolomyces salmoneus]",
+      "accession": "XP_076488277",
+      "species": "Sporobolomyces salmoneus",
+      "hit_len": 1374,
+      "ident_pct": 39.6,
+      "qcov_pct": 11.9,
+      "evalue": 0.00593341,
+      "starts_at_1": false
+    }
+  ],
+  "named_hits": [
+    "Proteophosphoglycan ppg4 [Rhodotorula toruloides ATCC 204091]",
+    "UDP-galactose transporter [Pseudohyphozyma bogoriensis]"
+  ],
+  "genera": {
+    "Rhodotorula": 13,
+    "Sporobolomyces": 13,
+    "Microbotryomycetes": 3,
+    "Microbotryum": 2,
+    "Pseudohyphozyma": 2,
+    "Rhodosporidiobolus": 1,
+    "Meredithblackwellia": 1,
+    "Leucosporidium": 1,
+    "Phenoliferia": 1
+  },
+  "conservation": {
+    "n_far_hits": 32,
+    "core_blocks": [
+      [
+        862,
+        1440
+      ]
+    ],
+    "profile": [
+      0.17,
+      0.31,
+      0.3,
+      0.28,
+      0.29,
+      0.14,
+      0.11,
+      0.05,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.03,
+      0.08,
+      0.24,
+      0.25,
+      0.25,
+      0.25,
+      0.26,
+      0.51,
+      0.75,
+      0.77,
+      0.8,
+      0.73,
+      0.69,
+      0.67,
+      0.66,
+      0.66,
+      0.68,
+      0.74,
+      0.75,
+      0.75,
+      0.75,
+      0.73
+    ]
+  },
+  "composition": [
+    {
+      "from": 1,
+      "to": 861,
+      "len": 861,
+      "top": [
+        [
+          "P",
+          15.2
+        ],
+        [
+          "A",
+          14.1
+        ],
+        [
+          "S",
+          12.2
+        ],
+        [
+          "E",
+          9.2
+        ],
+        [
+          "V",
+          6.4
+        ],
+        [
+          "D",
+          6.4
+        ]
+      ],
+      "spta_pct": 46.9,
+      "charged_pct": 22.6,
+      "hydrophobic_pct": 17.0
+    },
+    {
+      "from": 862,
+      "to": 1440,
+      "len": 579,
+      "top": [
+        [
+          "S",
+          13.3
+        ],
+        [
+          "A",
+          10.0
+        ],
+        [
+          "G",
+          9.8
+        ],
+        [
+          "E",
+          7.6
+        ],
+        [
+          "V",
+          7.4
+        ],
+        [
+          "P",
+          7.3
+        ]
+      ],
+      "spta_pct": 34.7,
+      "charged_pct": 25.0,
+      "hydrophobic_pct": 21.9
+    }
+  ],
+  "hydrophobic": [
+    {
+      "from": 859,
+      "to": 883,
+      "peak": 2.04,
+      "seq": "EGGVGVVDVGVAVAGALVMGGLSVG"
+    }
+  ]
+}
