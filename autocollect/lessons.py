@@ -198,11 +198,25 @@ def asset_id(data: bytes) -> str:
     return "as_lesson_" + hashlib.sha256(data).hexdigest()[:32]
 
 
+def chapter_label(chapter_no: int, total: int, part_name: str) -> str:
+    """頁面最上面那一行「第幾章」。
+
+    一門教材可以拆成多個分區，每個分區的章號都從 1 開始，所以光寫「第 3 章」
+    還是會搞混；分區名稱一起寫上去才知道是哪一套的第 3 章。
+    """
+    if chapter_no == 0:
+        return f"**導讀**　{part_name}（共 {total} 章）"
+    return f"**第 {chapter_no} 章**（共 {total} 章）　{part_name}"
+
+
 def build_chapter(course: Course, section_id: str, chapter_no: int, md_path: Path, now_ms: int,
-                  rev_counter: list[int], page_prefix: str | None = None) -> tuple[list[dict], dict]:
+                  rev_counter: list[int], page_prefix: str | None = None,
+                  part_name: str = "", total: int = 0) -> tuple[list[dict], dict]:
     """回傳（紀錄, 需要上傳的圖片 {asset_id: bytes}）。"""
     title, blocks = parse(md_path.read_text("utf-8"), md_path.parent)
     title = title or md_path.stem
+    if part_name and total:
+        blocks.insert(0, Text(chapter_label(chapter_no, total, part_name)))
     tag = f"{page_prefix or course.page_prefix}_{chapter_no:02d}"
     page_id = f"pg_autocollect_{tag}"
 
@@ -325,14 +339,17 @@ def build_course(course: Course, existing: list[dict] | None = None, now_ms: int
                             "data": {"id": sc_id, "notebookId": nb_id, "name": part.section_name,
                                      "color": part.color, "order": part.order,
                                      "createdAt": now_ms, "updatedAt": now_ms}})
+        paths = list(part.chapters(course.dir))
+        total = sum(1 for p in paths if not (part.intro and p.name == part.intro))
         keep, n = set(), 0
-        for path in part.chapters(course.dir):
+        for path in paths:
             if part.intro and path.name == part.intro:
                 no = 0                    # 導讀固定是第 0 頁
             else:
                 n += 1                    # 其餘依順序從 1 開始，和檔名裡的數字無關
                 no = n
-            recs, ups = build_chapter(course, sc_id, no, path, now_ms, counter, part.page_prefix)
+            recs, ups = build_chapter(course, sc_id, no, path, now_ms, counter, part.page_prefix,
+                                      part.section_name, total)
             if no == 0:
                 recs[0]["data"]["title"] = "導讀：" + recs[0]["data"]["title"]
             keep.add(recs[0]["data"]["id"])

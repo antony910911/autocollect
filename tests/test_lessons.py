@@ -63,15 +63,17 @@ def test_layout_stacks_without_overlap_and_cleans_old_items(lesson):
     pages = [r["data"] for r in records if r["key"].startswith("pg:")]
     assert [p["title"] for p in pages] == ["導讀：導讀", "第 1 章　測試"]
     items = [r["data"] for r in records if r["key"].startswith("it:pg_autocollect_amm_01:") and not r["deleted"]]
-    assert [i["type"] for i in items] == ["text", "image", "text", "image", "text"]
+    # 第一塊是自動加上的「第幾章」標注，後面才是 md 的內容
+    assert [i["type"] for i in items] == ["text", "text", "image", "text", "image", "text"]
+    assert items[0]["html"] == "<div><b>第 1 章</b>（共 1 章）　測試分區</div>"
     for a, b in zip(items, items[1:]):
         bottom = a["y"] + (a["h"] if a["type"] == "image" else lessons.estimate_height(a["html"]))
         assert bottom < b["y"]
-    img = items[1]
+    img = items[2]
     assert img["w"] == lessons.PAGE_W and img["h"] == lessons.PAGE_W // 2
     assert img["asset"] in uploads and f"as:{img['asset']}" in keys
     tomb = [r for r in records if r["key"].startswith("it:pg_autocollect_amm_01:") and r["deleted"]]
-    assert len(tomb) == lessons.SPARE_TOMBSTONES and tomb[0]["key"].endswith("x_amm_01_005")
+    assert len(tomb) == lessons.SPARE_TOMBSTONES and tomb[0]["key"].endswith("x_amm_01_006")
     revs = [r["rev"] for r in records if r["key"].startswith("it:")]
     assert len(set(revs)) == len(revs) and all(folio.CREATE_ONLY_REV < r for r in revs)
 
