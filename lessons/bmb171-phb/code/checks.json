@@ -1,0 +1,213 @@
+{
+ "source": "使用者上傳的 BMB171_PHB_分析筆記.md（整理自一份 ChatGPT 對話）。模型與通量不是這個 repo 算的，這裡只做內部一致性查核。",
+ "basis": {
+  "glucose_uptake": 10.0,
+  "o2_uptake_cap": 60.0,
+  "mu_max": 0.443536,
+  "nh4_per_mu": 10.7682,
+  "mw_phb_repeat": 86.09,
+  "mw_glucose": 180.156
+ },
+ "ceiling": {
+  "phb_flux": 12.5,
+  "mol_per_mol_glucose": 1.25,
+  "mass_yield_g_g": 0.5973,
+  "carbon_recovery": 0.8333,
+  "textbook_mol_per_mol": 1.0,
+  "textbook_mass_yield_g_g": 0.4779,
+  "textbook_carbon_recovery": 0.6667,
+  "ratio_to_textbook": 1.25
+ },
+ "tradeoff": [
+  {
+   "growth_fraction": 0.0,
+   "growth_flux": 0.0,
+   "growth_flux_reported": 0.0,
+   "phb_flux": 12.5,
+   "phb_yield_g_g": 0.5973,
+   "phb_yield_reported": 0.597,
+   "pct_of_ceiling": 1.0,
+   "pct_of_ceiling_reported": 1.0,
+   "nh4_required": 0.0,
+   "metabolic_c_n": null,
+   "o2_uptake_reported": 3.75
+  },
+  {
+   "growth_fraction": 0.1,
+   "growth_flux": 0.044354,
+   "growth_flux_reported": 0.0444,
+   "phb_flux": 11.78,
+   "phb_yield_g_g": 0.5629,
+   "phb_yield_reported": 0.563,
+   "pct_of_ceiling": 0.9424,
+   "pct_of_ceiling_reported": 0.94,
+   "nh4_required": 0.4776,
+   "metabolic_c_n": 125.6,
+   "o2_uptake_reported": 5.24
+  },
+  {
+   "growth_fraction": 0.25,
+   "growth_flux": 0.110884,
+   "growth_flux_reported": 0.1109,
+   "phb_flux": 10.71,
+   "phb_yield_g_g": 0.5118,
+   "phb_yield_reported": 0.512,
+   "pct_of_ceiling": 0.8568,
+   "pct_of_ceiling_reported": 0.86,
+   "nh4_required": 1.194,
+   "metabolic_c_n": 50.3,
+   "o2_uptake_reported": 7.47
+  },
+  {
+   "growth_fraction": 0.5,
+   "growth_flux": 0.221768,
+   "growth_flux_reported": 0.2218,
+   "phb_flux": 8.92,
+   "phb_yield_g_g": 0.4263,
+   "phb_yield_reported": 0.426,
+   "pct_of_ceiling": 0.7136,
+   "pct_of_ceiling_reported": 0.71,
+   "nh4_required": 2.388,
+   "metabolic_c_n": 25.1,
+   "o2_uptake_reported": 11.18
+  },
+  {
+   "growth_fraction": 0.55,
+   "growth_flux": 0.243945,
+   "growth_flux_reported": null,
+   "phb_flux": 8.56,
+   "phb_yield_g_g": 0.4091,
+   "phb_yield_reported": 0.409,
+   "pct_of_ceiling": 0.6848,
+   "pct_of_ceiling_reported": 0.68,
+   "nh4_required": 2.6268,
+   "metabolic_c_n": 22.8,
+   "o2_uptake_reported": 11.93
+  },
+  {
+   "growth_fraction": 0.6,
+   "growth_flux": 0.266122,
+   "growth_flux_reported": null,
+   "phb_flux": 8.0,
+   "phb_yield_g_g": 0.3823,
+   "phb_yield_reported": 0.382,
+   "pct_of_ceiling": 0.64,
+   "pct_of_ceiling_reported": 0.64,
+   "nh4_required": 2.8657,
+   "metabolic_c_n": 20.9,
+   "o2_uptake_reported": 13.78
+  },
+  {
+   "growth_fraction": 0.75,
+   "growth_flux": 0.332652,
+   "growth_flux_reported": 0.3327,
+   "phb_flux": 5.0,
+   "phb_yield_g_g": 0.2389,
+   "phb_yield_reported": 0.239,
+   "pct_of_ceiling": 0.4,
+   "pct_of_ceiling_reported": 0.4,
+   "nh4_required": 3.5821,
+   "metabolic_c_n": 16.8,
+   "o2_uptake_reported": 27.22
+  },
+  {
+   "growth_fraction": 0.9,
+   "growth_flux": 0.399182,
+   "growth_flux_reported": 0.3992,
+   "phb_flux": 2.0,
+   "phb_yield_g_g": 0.0956,
+   "phb_yield_reported": 0.096,
+   "pct_of_ceiling": 0.16,
+   "pct_of_ceiling_reported": 0.16,
+   "nh4_required": 4.2985,
+   "metabolic_c_n": 14.0,
+   "o2_uptake_reported": 40.67
+  },
+  {
+   "growth_fraction": 1.0,
+   "growth_flux": 0.443536,
+   "growth_flux_reported": 0.4435,
+   "phb_flux": 0.0,
+   "phb_yield_g_g": 0.0,
+   "phb_yield_reported": 0.0,
+   "pct_of_ceiling": 0.0,
+   "pct_of_ceiling_reported": 0.0,
+   "nh4_required": 4.7761,
+   "metabolic_c_n": 12.6,
+   "o2_uptake_reported": 49.63
+  }
+ ],
+ "nitrogen_consistency": [
+  {
+   "growth_flux": 0.04435,
+   "nh4_computed": 0.4776,
+   "nh4_reported": 0.4776
+  },
+  {
+   "growth_flux": 0.11088,
+   "nh4_computed": 1.194,
+   "nh4_reported": 1.194
+  },
+  {
+   "growth_flux": 0.22177,
+   "nh4_computed": 2.3881,
+   "nh4_reported": 2.388
+  },
+  {
+   "growth_flux": 0.33265,
+   "nh4_computed": 3.582,
+   "nh4_reported": 3.5821
+  }
+ ],
+ "phb_slope_per_5pct": [
+  {
+   "from": 0.0,
+   "to": 0.1,
+   "delta_phb": 0.72,
+   "per_5pct": 0.36
+  },
+  {
+   "from": 0.1,
+   "to": 0.25,
+   "delta_phb": 1.07,
+   "per_5pct": 0.357
+  },
+  {
+   "from": 0.25,
+   "to": 0.5,
+   "delta_phb": 1.79,
+   "per_5pct": 0.358
+  },
+  {
+   "from": 0.5,
+   "to": 0.55,
+   "delta_phb": 0.36,
+   "per_5pct": 0.36
+  },
+  {
+   "from": 0.55,
+   "to": 0.6,
+   "delta_phb": 0.56,
+   "per_5pct": 0.56
+  },
+  {
+   "from": 0.6,
+   "to": 0.75,
+   "delta_phb": 3.0,
+   "per_5pct": 1.0
+  },
+  {
+   "from": 0.75,
+   "to": 0.9,
+   "delta_phb": 3.0,
+   "per_5pct": 1.0
+  },
+  {
+   "from": 0.9,
+   "to": 1.0,
+   "delta_phb": 2.0,
+   "per_5pct": 1.0
+  }
+ ],
+ "mismatches": []
+}

@@ -1,0 +1,11 @@
+# 放進 Folio「Claude圖解教材」筆記本（依名稱尋找），新增一個分區
+notebook:
+  id: nb_autocollect_ammonia   # 「Claude圖解教材」的實際 id
+  name: Claude圖解教材
+  find_by_name: true
+section:
+  id: sc_autocollect_bmb171_phb
+  name: BMB171 PHB：從基因體到代謝模型
+  color: "#2f6fb3"
+  order: 6
+page_prefix: bmbphb
