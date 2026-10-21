@@ -1,11 +1,22 @@
-# 放進 Folio「Claude圖解教材」筆記本（依名稱尋找），新增一個分區
+# 放進 Folio「Claude圖解教材」筆記本（依名稱尋找），兩個分區共用這個資料夾
 notebook:
   id: nb_autocollect_ammonia   # 「Claude圖解教材」的實際 id
   name: Claude圖解教材
   find_by_name: true
-section:
-  id: sc_autocollect_using_claude
-  name: 把 Claude 用好：給研究者的實戰手冊
-  color: "#7b4bb3"
-  order: 5
-page_prefix: uclaude
+sections:
+  # 觀念篇：三個介面、context、CLAUDE.md、技能、連接器、程式與 CI⋯⋯
+  - id: sc_autocollect_using_claude
+    name: 把 Claude 用好：給研究者的實戰手冊
+    color: "#7b4bb3"
+    order: 5
+    page_prefix: uclaude
+    intro: README.md
+    glob: "[0-9][0-9]-*.md"
+  # 操作篇：Claude Code 這個工具本身怎麼開、怎麼省、怎麼接力
+  - id: sc_autocollect_claude_code
+    name: Claude Code 操作手冊：從不會用到很順手
+    color: "#2f6fb3"
+    order: 7
+    page_prefix: ccode
+    intro: c00-README.md
+    glob: "c[0-9][0-9]-[a-z]*.md"

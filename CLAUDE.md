@@ -47,8 +47,15 @@ lessons/<課程名>/
 | `lessons/aiot-advanced/` | 沼氣 AIoT 進階建模 | 沼氣 AIoT 進階：建模實作 |
 | `lessons/dna-to-culture/` | 從 DNA 到最適培養（14 章，通用流程） | 從 DNA 到最適培養：建模與視覺化 |
 | 同上（`r0*.md`） | 紅酵母 α-farnesene（7 章，實際案例） | 紅酵母 α-farnesene：定序、模型與實驗 |
-| `lessons/using-claude/` | 把 Claude 用好（11 章，給研究者的實戰手冊） | 把 Claude 用好：給研究者的實戰手冊 |
+| `lessons/using-claude/` | 把 Claude 用好（11 章，觀念篇） | 把 Claude 用好：給研究者的實戰手冊 |
+| 同上（`c*.md`） | Claude Code 操作手冊（11 章，操作篇） | Claude Code 操作手冊：從不會用到很順手 |
 | `lessons/bmb171-phb/` | *B. thuringiensis* BMB171 的 PHB 代謝模型（8 章） | BMB171 PHB：從基因體到代謝模型 |
+
+`lessons/using-claude/` 也是兩個分區共用一個資料夾：`[0-9][0-9]-*.md` 是觀念篇，
+`c[0-9][0-9]-[a-z]*.md` 是 Claude Code 操作篇（圖檔名用 `fc` 開頭，程式在
+`figures/src/cc_diagrams.py`）。操作篇的內容 2026-10 逐項查過 `code.claude.com/docs`，
+**指令與功能變動很快，改之前要重查，不要憑印象**。第 10 章（和 Codex 接力）的 Codex 那一側
+只查到第三方整理，章首已標明沒核對過 OpenAI 官方文件。
 
 `lessons/bmb171-phb/` 的素材是使用者上傳的 ChatGPT 對話整理（原檔留在該課的 `SOURCE.md`）。
 **模型在這個環境重跑不了**（沒有 BMB171 基因體、沒有 CarveMe、沒有網路），所以 `code/checks.py`
