@@ -91,7 +91,7 @@ def fig_turn():
 
 def fig_two_budgets():
     """空間和額度是兩回事。"""
-    s = Svg(W, 560, "圖 2-1　空間與額度是兩回事")
+    s = Svg(W, 650, "圖 2-1　空間與額度是兩回事")
     s.text(26, 72, "兩個都叫「token 用量」，但滿了之後發生的事完全不同。", size=16, color=MUTED)
 
     s.card(40, 108, 448, [
@@ -124,7 +124,7 @@ def fig_two_budgets():
 
 def fig_pick_model():
     """換不換模型的決策。"""
-    s = Svg(W, 592, "圖 3-1　要不要換模型")
+    s = Svg(W, 608, "圖 3-1　要不要換模型")
     s.text(26, 72, "預設就是 Opus。只有兩條路會走到「要換」。", size=16, color=MUTED)
 
     s.stadium(360, 108, 280, 56, "預設：Opus", color=TEAL, size=20,
@@ -141,17 +141,17 @@ def fig_pick_model():
             label="有", label_dy=-12, size=14, label_color=ORANGE)
     s.box(756, 206, 204, 96, "看是哪一種\n額度訊息", color=ORANGE, size=17)
 
-    s.arrow([(858, 306), (858, 348)], color=MUTED, width=2.2)
+    s.arrow([(858, 306), (858, 344)], color=MUTED, width=2.2)
     s.box(512, 348, 448, 72, "「Opus 限制」", color=BLUE, size=17,
           sub="單一模型的額度 → /model sonnet 就能繼續", sub_size=14)
-    s.box(512, 430, 448, 72, "「session／weekly 限制」", color=RED, size=17,
+    s.text(736, 436, "或", size=15, weight=700, color=MUTED, anchor="middle")
+    s.box(512, 448, 448, 72, "「session／weekly 限制」", color=RED, size=17,
           sub="整個方案的額度 → **換模型沒有用**，等重置或加購", sub_size=14)
-    s.line(858, 306, 858, 466, color=MUTED, width=1.4, dash=True)
 
     s.card(40, 348, 448, [
         "・幾小時的重構、一次改幾十個檔案",
         "・很難的除錯",
-        "・**但先試 Opus**：新模型用低設定常贏過舊模型最高設定"],
+        "・**先試 Opus**：新模型低設定常贏過舊模型最高設定"],
         title="另一條路：這件事真的很難", sub="那就 /model fable（它不是預設）",
         color=PURPLE, icon="zap", size=15, lh=26)
     return s
@@ -159,7 +159,7 @@ def fig_pick_model():
 
 def fig_effort():
     """五個等級。"""
-    s = Svg(W, 548, "圖 4-1　思考等級：調的是「想多久」")
+    s = Svg(W, 620, "圖 4-1　思考等級：調的是「想多久」")
     s.text(26, 72, "模型沒換，換的是它花多少力氣。多數時候不用動。", size=16, color=MUTED)
 
     levels = [("low", 56, GREY, "問事實、改錯字"), ("medium", 92, BLUE, "日常問答"),
@@ -184,7 +184,7 @@ def fig_effort():
 
     s.card(512, 404, 448, [
         "・多數模型預設 high",
-        "・**Opus 5.5、Sonnet 5.5、Haiku 5.5 預設 medium**",
+        "・**Opus 5.5／Sonnet 5.5／Haiku 5.5 是 medium**",
         "・這幾個模型**關不掉思考**，只能調深淺"],
         title="預設值", color=PURPLE, icon="circle-dot", size=15, lh=26)
     return s
@@ -256,7 +256,7 @@ def fig_layers():
 
 def fig_skill_load():
     """技能分三階段載入。"""
-    s = Svg(W, 560, "圖 7-1　技能平常只有名字在，用到才整份載入")
+    s = Svg(W, 600, "圖 7-1　技能平常只有名字在，用到才整份載入")
     s.text(26, 72, "這是它比 CLAUDE.md 省的原因。", size=16, color=MUTED)
 
     stages = [
@@ -282,13 +282,14 @@ def fig_skill_load():
         size=15, lh=26)
 
     s.card(512, 300, 448, [
-        "・壓縮後每個技能最多 **5,000 token**，全部共用 **25,000**",
+        "・壓縮後每個技能最多 **5,000 token**",
+        "・全部技能共用 **25,000 token**",
         "・截斷是從後面切 → **重要的話寫前面**",
         "・/skill-doctor 找出佔空間卻沒用的"],
         title="技能不是免費的", color=RED, icon="triangle-alert",
         size=15, lh=26)
 
-    s.box(40, 476, 920, 64, "同一套做法做到第三次，就該做一個技能",
+    s.box(40, 512, 920, 64, "同一套做法做到第三次，就該做一個技能",
           color=GREEN, size=19, fill=tint(GREEN, 0.93))
     return s
 
@@ -375,14 +376,14 @@ def fig_when_to_switch():
 
 def fig_handoff():
     """Claude Code 和 Codex 共用規矩。"""
-    s = Svg(W, 600, "圖 10-1　兩個工具怎麼共用同一份規矩")
+    s = Svg(W, 648, "圖 10-1　兩個工具怎麼共用同一份規矩")
     s.text(26, 72, "規矩用 AGENTS.md 共用；進度靠 git 和一份進度檔。", size=16, color=MUTED)
 
     s.box(60, 112, 240, 70, "Claude Code", color=PURPLE, size=19)
     s.box(700, 112, 240, 70, "Codex", color=GREY, size=19)
     s.box(360, 244, 280, 76, "AGENTS.md", color=TEAL, size=20,
           sub="兩邊都讀得到的共通規矩", sub_size=13.5)
-    s.arrow([(200, 190), (420, 238)], color=PURPLE, width=2.4)
+    s.arrow([(304, 162), (486, 238)], color=PURPLE, width=2.4)
     s.arrow([(800, 190), (580, 238)], color=GREY, width=2.4)
 
     s.box(60, 206, 268, 100, "CLAUDE.md", color=PURPLE, size=18,
@@ -404,17 +405,17 @@ def fig_handoff():
         title="進度沒有自動機制", sub="靠這三樣", color=ORANGE, icon="git-branch",
         size=15, lh=26)
 
-    s.box(40, 512, 920, 72, "", color=GREEN, fill=tint(GREEN, 0.95))
-    s.icon("circle-help", 72, 540, 24, GREEN, 2.1)
-    s.text(116, 546, "先問一句：你為什麼要兩個都用？", size=17, weight=700, color=GREEN)
-    s.text(116, 572, "如果只是因為額度用完了，/model sonnet 換個模型繼續比較簡單，"
+    s.box(40, 556, 920, 72, "", color=GREEN, fill=tint(GREEN, 0.95))
+    s.icon("circle-help", 72, 584, 24, GREEN, 2.1)
+    s.text(116, 590, "先問一句：你為什麼要兩個都用？", size=17, weight=700, color=GREEN)
+    s.text(116, 616, "如果只是因為額度用完了，/model sonnet 換個模型繼續比較簡單，"
                      "不用維護兩套設定。", size=15)
     return s
 
 
 def fig_day():
     """一天的工作流。"""
-    s = Svg(W, 600, "圖 11-1　一天大概長這樣")
+    s = Svg(W, 756, "圖 11-1　一天大概長這樣")
     s.text(26, 72, "照這個順序做，大部分的浪費都避開了。", size=16, color=MUTED)
 
     steps = [
@@ -440,10 +441,10 @@ def fig_day():
             yy += 26
         y += h + 14
 
-    s.box(40, 500, 920, 84, "", color=RED, fill=tint(RED, 0.95))
-    s.icon("triangle-alert", 72, 530, 24, RED, 2.1)
-    s.text(116, 536, "最常犯的兩個錯", size=18, weight=700, color=RED)
-    s.text(116, 566, "**① 捨不得 /clear**（整天的對話，問一句都在重送整天的東西）"
+    s.box(40, 654, 920, 84, "", color=RED, fill=tint(RED, 0.95))
+    s.icon("triangle-alert", 72, 684, 24, RED, 2.1)
+    s.text(116, 690, "最常犯的兩個錯", size=18, weight=700, color=RED)
+    s.text(116, 720, "**① 捨不得 /clear**（整天的對話，問一句都在重送整天的東西）"
                      "　**② 等它做完才講它做錯了**", size=15.5)
     return s
 

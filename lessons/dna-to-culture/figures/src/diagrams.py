@@ -388,7 +388,7 @@ def figr1_compare():
 
 
 def figr1_annotate():
-    s = Svg(1200, 660, "圖 1-2　酵母菌的註解流程：和細菌版（圖 2-1）哪裡不一樣")
+    s = Svg(1200, 696, "圖 1-2　酵母菌的註解流程：和細菌版（圖 2-1）哪裡不一樣")
     s.text(24, 70, "路線 A：已知是 S. cerevisiae 或近緣種 → 用參考基因體比對（快、準、建議優先）", size=17,
            weight=700, color=GREEN)
     a = [("定序讀段", "Illumina 或\nNanopore", GREY),
@@ -1858,7 +1858,7 @@ def figr6_audit():
     """核對清單：七項自己重算，對上了幾項。"""
     d = _afs()
     v, e = d["verify"], d["envelope_default"]
-    s = Svg(WR6, 1000, "圖 6-1　別人給的模型，我自己重算一次")
+    s = Svg(WR6, 1032, "圖 6-1　別人給的模型，我自己重算一次")
     s.text(40, 78, "**不是重述它的說法，是把每個數字自己再跑一次。** "
                    "七項裡六項完全對上，一項要加註解。", size=17, color=MUTED)
 
@@ -1969,7 +1969,7 @@ def figr6_erg9():
     by = hy + 48 + len(rows) * 52 + 24
 
     h = s.card(40, by, 450, [
-        "ERG9 調到 10% → 產物從 1.38 升到 2.50，**多 81%**",
+        "**多 81%**：ERG9 調到 10%，產物 1.38 升到 2.50",
         "看起來值得做一個菌株",
     ], title="用「各自一半生長」比", icon="triangle-alert", color=ORANGE, size=16,
         foot="但每一列的生長速率都不一樣，不能這樣比")
@@ -2174,7 +2174,7 @@ def figr0_roadmap():
 
     s.card(730, 150, 230, [
         "紅酵母 **IFO 8766**",
-        "蘋果 **α-farnesene 合成酶**",
+        "蘋果的 α-farnesene 合成酶",
         "農桿菌隨機嵌入",
         "**11 份完整拷貝**",
     ], title="這株菌", icon="dna", color=INK, size=15,

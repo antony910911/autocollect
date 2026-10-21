@@ -13,6 +13,8 @@
 - C 文字被「畫在它後面」的不透明矩形蓋住（SVG 是後畫的蓋前畫的）
 - D 文字壓在線條或箭頭上，而且底下沒有白底遮罩
 - E 箭頭有斜線段（只是提醒；教材有幾張是刻意畫斜的）
+- F 方塊或線條跑出畫布（A 只看文字，所以卡片底部被切掉它抓不到）
+- G 版面標記沒生效：圖上出現字面的反引號，或 `**` 被換行切斷（粗體失效＋多一個空行）
 
 文字寬度用 svgkit 的 `_text_w()` 估，和畫圖時用的是同一支函式，所以誤差一致。
 
@@ -47,6 +49,7 @@ PAD_Y = 2.0      # 上下同理
 MIN_OVERLAP = 4.0   # 重疊要超過這麼多 px 才報，避免標點擦邊
 EDGE_TOL = 4.0      # 出界容忍：_text_w() 把全形標點當 1em，會高估一點
 BITE = 3.0          # 線要吃進文字框這麼多 px 才算「壓在線上」，擦邊不算
+SHAPE_TOL = 1.0     # 方塊出界容忍：框線有寬度，剛好切齊邊緣也會被切掉半條
 ASCENT, DESCENT = 0.78, 0.22        # 相對於 font-size 的上緣與下緣
 WHITE = {"#ffffff", "#fff", "white"}
 
@@ -86,7 +89,19 @@ def parse(svg_text: str):
     """回傳 (文字框, 不透明矩形, 線段)，三者都帶繪製順序 i。"""
     root = ET.fromstring(svg_text)
     texts, rects, segs = [], [], []
-    for i, el in enumerate(root.iter()):
+
+    def walk(node, out, depth=0):
+        for child in node:
+            # 帶 transform 的群組（icon、旋轉過的東西）裡面是區域座標，
+            # 直接拿來比會得到一堆假的出界。整個子樹跳過。
+            if child.tag == NS + "g" and child.get("transform"):
+                continue
+            out.append(child)
+            walk(child, out)
+
+    flat = []
+    walk(root, flat)
+    for i, el in enumerate(flat):
         tag = el.tag
         if tag == NS + "text":
             s = _plain(el)
@@ -176,6 +191,36 @@ def check_svg(name: str, svg_text: str, w: int, h: int, skip: set[str]) -> list[
                 bad.append(f"D 文字壓在線上又沒有遮罩：「{t.what[:26]}」{t}")
                 break
 
+    if "F" not in skip:
+        # card() 會自己算高度，所以畫布開太矮的時候，卡片下半截會直接被切掉。
+        # A 只看文字，文字通常還在畫布內，所以這種問題它抓不到——實際踩過三次。
+        worst = {}
+        for r in rects:
+            for edge, over in (("下", r.y1 - h), ("右", r.x1 - w),
+                               ("上", -r.y0), ("左", -r.x0)):
+                if over > SHAPE_TOL and over > worst.get(edge, (0, None))[0]:
+                    worst[edge] = (over, r)
+        for x1, y1, x2, y2, _, _ in segs:
+            for edge, over in (("下", max(y1, y2) - h), ("右", max(x1, x2) - w),
+                               ("上", -min(y1, y2)), ("左", -min(x1, x2))):
+                if over > SHAPE_TOL and over > worst.get(edge, (0, None))[0]:
+                    worst[edge] = (over, None)
+        for edge, (over, r) in sorted(worst.items()):
+            where = f"：{r} {r.what}" if r is not None else "（線條）"
+            bad.append(f"F 方塊/線條超出畫布{edge}緣 {over:.0f} px（{w}×{h}）{where}")
+
+    if "G" not in skip:
+        # svgkit 不支援反引號，會原樣印在圖上。
+        for t in texts:
+            if "`" in t.what:
+                bad.append(f"G 圖上出現字面的反引號（svgkit 不支援）：「{t.what[:40]}」")
+        # wrap() 會從 **粗體** 中間切斷。切斷之後 _rich() 把落單的 ** 變成一個
+        # 空的斜體 tspan：粗體失效，而且那一行變成空行。實際踩過。
+        n_eaten = svg_text.count('<tspan font-style="italic"></tspan>')
+        if n_eaten:
+            bad.append(f"G ** 被換行切斷 {n_eaten} 處（粗體失效，多一個空行）"
+                       "——把那一項縮短到一行，或拆成兩項")
+
     note = 0
     if "E" not in skip:
         note = sum(1 for x1, y1, x2, y2, _, arrow in segs
@@ -189,16 +234,24 @@ def check_svg(name: str, svg_text: str, w: int, h: int, skip: set[str]) -> list[
 
 
 def load_figs(course: Path) -> dict[str, Svg]:
-    src = course / "figures/src/diagrams.py"
-    if not src.exists():
+    """載入這門課 figures/src/ 底下所有 *diagrams*.py 的 FIGS。
+
+    一門課可能有不只一支（using-claude 的操作篇在 cc_diagrams.py），
+    漏掉就等於那些圖完全沒檢查。
+    """
+    srcs = sorted((course / "figures/src").glob("*diagrams*.py"))
+    if not srcs:
         return {}
-    sys.path.insert(0, str(src.parent))
     import importlib.util
-    spec = importlib.util.spec_from_file_location(f"_dg_{course.name}", src)
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    sys.path.pop(0)
-    return {k: fn() for k, fn in mod.FIGS.items()}
+    figs = {}
+    for src in srcs:
+        sys.path.insert(0, str(src.parent))
+        spec = importlib.util.spec_from_file_location(f"_dg_{course.name}_{src.stem}", src)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        sys.path.pop(0)
+        figs.update({k: fn() for k, fn in mod.FIGS.items()})
+    return figs
 
 
 def main(argv=None):
