@@ -1,0 +1,1191 @@
+{
+ "week": "2026-W46",
+ "date_range": "2026-10-26 ～ 2026-11-09（論文回溯 60 天）",
+ "status": [
+  {
+   "source": "Google News [zh-TW] 法尼烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 金合歡烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 角鯊烷 甘蔗",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [zh-TW] 生物基 角鯊烷",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 合成生物 萜烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 倍半萜 發酵",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 合成生物學 化妝品 原料",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [zh-CN] 法尼烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-CN] 金合欢烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-CN] 角鲨烷 生物发酵",
+   "ok": true,
+   "count": 2
+  },
+  {
+   "source": "Google News [zh-CN] 合成生物 萜类",
+   "ok": true,
+   "count": 5
+  },
+  {
+   "source": "Google News [zh-CN] 法呢烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] farnesene",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] \"beta-farnesene\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] \"alpha-farnesene\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] farnesane",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] squalane sugarcane OR \"biobased squalane\" OR \"bio-squalane\"",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] \"liquid farnesene rubber\" OR \"farnesene rubber\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] sesquiterpene fermentation",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] \"synthetic biology\" terpene ingredient",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] Amyris farnesene OR squalane",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] \"aphid alarm pheromone\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:cosmeticsdesign.com squalane OR farnesene OR terpene",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:synbiobeta.com terpene OR farnesene OR fermentation",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:biofuelsdigest.com farnesene OR farnesane OR terpene",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:labiotech.eu terpene OR squalane OR biomanufacturing",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [ja] ファルネセン",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [ja] スクワラン 発酵",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "論文 farnesene",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 beta-farnesene production",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 alpha-farnesene biosynthesis",
+   "ok": true,
+   "count": 19
+  },
+  {
+   "source": "論文 farnesene synthase",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesene Yarrowia lipolytica",
+   "ok": true,
+   "count": 7
+  },
+  {
+   "source": "論文 farnesene Saccharomyces cerevisiae",
+   "ok": true,
+   "count": 14
+  },
+  {
+   "source": "論文 farnesene Escherichia coli",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesene methanol OR CO2 OR cyanobacteria",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesane jet fuel",
+   "ok": true,
+   "count": 5
+  },
+  {
+   "source": "論文 squalane farnesene hydrogenation",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 farnesene polymer rubber",
+   "ok": true,
+   "count": 2
+  },
+  {
+   "source": "論文 E-beta-farnesene aphid",
+   "ok": true,
+   "count": 9
+  },
+  {
+   "source": "論文 alpha-farnesene apple superficial scald",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 sesquiterpene metabolic engineering yeast",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 mevalonate pathway farnesyl pyrophosphate engineering",
+   "ok": true,
+   "count": 25
+  }
+ ],
+ "stats": {
+  "total": 33,
+  "by_kind": {
+   "news": 8,
+   "paper": 25
+  },
+  "by_lang": {
+   "zh-CN": 6,
+   "zh-TW": 1,
+   "en": 26
+  },
+  "top_queries": [
+   [
+    "sesquiterpene metabolic engineering yeast",
+    7
+   ],
+   [
+    "合成生物 萜类",
+    5
+   ],
+   [
+    "farnesene synthase",
+    5
+   ],
+   [
+    "farnesene",
+    4
+   ],
+   [
+    "mevalonate pathway farnesyl pyrophosphate engineering",
+    4
+   ],
+   [
+    "farnesene Saccharomyces cerevisiae",
+    3
+   ],
+   [
+    "farnesene Escherichia coli",
+    3
+   ],
+   [
+    "E-beta-farnesene aphid",
+    3
+   ],
+   [
+    "farnesene methanol OR CO2 OR cyanobacteria",
+    3
+   ],
+   [
+    "farnesene Yarrowia lipolytica",
+    2
+   ],
+   [
+    "beta-farnesene production",
+    2
+   ],
+   [
+    "角鲨烷 生物发酵",
+    1
+   ],
+   [
+    "角鯊烷 甘蔗",
+    1
+   ],
+   [
+    "squalane sugarcane OR \"biobased squalane\" OR \"bio-squalane\"",
+    1
+   ],
+   [
+    "farnesene polymer rubber",
+    1
+   ]
+  ],
+  "paper_countries": [
+   [
+    "CN",
+    9
+   ],
+   [
+    "IN",
+    4
+   ],
+   [
+    "US",
+    3
+   ],
+   [
+    "IQ",
+    2
+   ],
+   [
+    "BE",
+    2
+   ],
+   [
+    "DE",
+    2
+   ],
+   [
+    "JP",
+    1
+   ],
+   [
+    "NL",
+    1
+   ],
+   [
+    "EG",
+    1
+   ],
+   [
+    "RO",
+    1
+   ],
+   [
+    "BR",
+    1
+   ],
+   [
+    "SG",
+    1
+   ]
+  ],
+  "paper_institutions": [
+   [
+    "Ministry of Agriculture and Rural Affairs",
+    3
+   ],
+   [
+    "Chinese Academy of Agricultural Sciences",
+    2
+   ],
+   [
+    "Fakir Mohan University",
+    1
+   ],
+   [
+    "Siksha O Anusandhan University",
+    1
+   ],
+   [
+    "Jiangnan University",
+    1
+   ],
+   [
+    "University of Sulaimani",
+    1
+   ],
+   [
+    "Kobe University",
+    1
+   ],
+   [
+    "National Museum of Nature and Science",
+    1
+   ],
+   [
+    "The University of Tokyo",
+    1
+   ],
+   [
+    "Huaibei Normal University",
+    1
+   ],
+   [
+    "Wageningen University & Research",
+    1
+   ],
+   [
+    "VIB-KU Leuven Center for Microbiology",
+    1
+   ]
+  ],
+  "top_media": [
+   [
+    "生物通",
+    4
+   ],
+   [
+    "国际科技创新中心",
+    1
+   ],
+   [
+    "上海科技报",
+    1
+   ],
+   [
+    "Cosmopolitan",
+    1
+   ],
+   [
+    "Prestige Online - Singapore",
+    1
+   ]
+  ]
+ },
+ "items": [
+  {
+   "kind": "news",
+   "title": "代谢工程改造酿酒酵母实现角鲨烯富集生物质制备及其裂解物对DSS诱导结肠炎的防护效应研究",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBpWkNRU2dyUXpDUVdDRDliZkltVkFBVFNTQjFHeDFVcUJVb1FqV3Z3SkJVajZLcWt4N3AtS2dFQnpCeWpRQjlaWjFKMVRhVkdmQ3h2d0ZSVGVNQkFCc1g4N1Rfa0t1eHRhaWZvQ1Vn?oc=5",
+   "source": "生物通",
+   "published": "2026-11-08",
+   "lang": "zh-CN",
+   "summary": "代谢工程改造酿酒酵母实现角鲨烯富集生物质制备及其裂解物对DSS诱导结肠炎的防护效应研究 生物通",
+   "meta": {},
+   "queries": [
+    "角鲨烷 生物发酵"
+   ],
+   "sid": "S1"
+  },
+  {
+   "kind": "news",
+   "title": "海洋所深海天然产物及其生物合成机制研究取得新进展",
+   "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxObWREcXlscDdMUExoVDR4dHBmX1pJNVBwa0VQdzN4YXZ3YUZGQjV5akdaUzNYRncxZnhyUE5iM2V2d2lSQmZ1U1BXQnBDTWNDNWl3clgyOFV0b1BXNS12WlQ5UTJSWms0YThVR0M4Y2dqdGNTejlYTk4wOWw3ZHdDS09iWDZaYkU?oc=5",
+   "source": "国际科技创新中心",
+   "published": "2026-11-08",
+   "lang": "zh-CN",
+   "summary": "海洋所深海天然产物及其生物合成机制研究取得新进展 国际科技创新中心",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S2"
+  },
+  {
+   "kind": "news",
+   "title": "通过对两种栽培的日本麦冬（Ophiopogon japonicus）品种进行转录组分析和代谢组学验证",
+   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1HS2hKUUJTMGxuTkZKMm1MLXdGbFJ1WnRFQ29DX2hXN3BHLWZuWjVJTHJ3SDdOQ2lENmFuUEkxTktCa0VQWm1ybmFYdnVobExPYnRwNF9QUXo3eGtrem1KaTFkeDgxNkthSzlKN0ZWYw?oc=5",
+   "source": "生物通",
+   "published": "2026-11-08",
+   "lang": "zh-CN",
+   "summary": "通过对两种栽培的日本麦冬（Ophiopogon japonicus）品种进行转录组分析和代谢组学验证 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S3"
+  },
+  {
+   "kind": "news",
+   "title": "植物挥发性有机化合物介导的植物-昆虫通讯：生物合成、功能与多层次调控机制",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBnMThXblhsNkZ3VF9Od1RyUG9rRE55bklMYm9SSlJPQW1hczAxSEpLQnZoR1pMaE5aN0lVUE5sUndrRTVQV2sxcl8tbUVrak1WN0FpV1R5bEw1UFo0SnNHRnlER2lFdzVIb3JPRHNR?oc=5",
+   "source": "生物通",
+   "published": "2026-11-07",
+   "lang": "zh-CN",
+   "summary": "植物挥发性有机化合物介导的植物-昆虫通讯：生物合成、功能与多层次调控机制 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S4"
+  },
+  {
+   "kind": "news",
+   "title": "土臭味素生物合成在双组分蛋白壳内的区室化",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBvUGluMk5pWjNzMjNaU1h6QnZmMmhaSXJKR01IaGtfLVhteDV0WXpzNXhYWk5YTy04TW9kVEFQYWYzTzlpV01SeEtXOWdIby1JVzliUDR2YV9OQkwyNEFDRGFKSHQ4ZS0tdno2c3J3?oc=5",
+   "source": "生物通",
+   "published": "2026-11-06",
+   "lang": "zh-CN",
+   "summary": "土臭味素生物合成在双组分蛋白壳内的区室化 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S5"
+  },
+  {
+   "kind": "news",
+   "title": "基因技术、合成生物、脑机交互等前沿技术荟萃",
+   "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBuZzI0bGhfcVlMcFhWcjZ6VWI5V0ZkMjJNbWZXM1pIZU84UXhnOU9rZjViWnc1SlFzdDZhYS11eTBFX2pQQWVzWm8yc1QyOHFnVFJUOTRrSQ?oc=5",
+   "source": "上海科技报",
+   "published": "2026-11-04",
+   "lang": "zh-CN",
+   "summary": "基因技术、合成生物、脑机交互等前沿技术荟萃 上海科技报",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S6"
+  },
+  {
+   "kind": "news",
+   "title": "懷孕後保養品要全部換掉？5個「孕期友善」CLEAN BEAUTY推薦，無香精、敏感肌也想跟著用",
+   "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNc3RBUllYRmY5QWNpYWstcnQyMXF0N2xDNmhGUlNUU1dkTFNvU05Lb3FyTnZYczJVYVBxZnZmWG10bDdDekJIU2FROS0xTnYzd0wwUFVIRGVzOHdHTHROWWhCeHBfVmNDSnZYdW5EVVd4WGs4NHltMmNoSTBoWjI4MEppMEU?oc=5",
+   "source": "Cosmopolitan",
+   "published": "2026-11-03",
+   "lang": "zh-TW",
+   "summary": "懷孕後保養品要全部換掉？5個「孕期友善」CLEAN BEAUTY推薦，無香精、敏感肌也想跟著用 Cosmopolitan",
+   "meta": {},
+   "queries": [
+    "角鯊烷 甘蔗"
+   ],
+   "sid": "S7"
+  },
+  {
+   "kind": "news",
+   "title": "The new moisture: Four moisturisers to add to rotation",
+   "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPQWZoM2FYck5odlFrSEdOVDFwR2JoYmp5N3Qtcm5hRWZuTk9IR0RpWXFkdW9SdzZmTWpzWnY2LUlRcVMtc25KMTVjZjBfenFxcklCWnJFVW5ieWZ1aEFuRGJTOVp1eDc4dmdkSml0OFVRbGRCczB1cGxIakpIczM5Mko2QnVjLUpObmlpVW9KZjVGellQdFpEcElURm5DZzVpNFpB0gGoAUFVX3lxTFB3QkY5dUdiYUVkVU1OS1dWTnQxcnlCRE9sYWc1V2stZzRVR0s0U1RhS2h0VEVqOWw5ODBydU9wbVBadXdOV3VTZml1WU00QmJ6OFBMUzZQOXEzRjh2cEVNR1B3TVIxUnE5OTVUWjV3M2t3TVJ6R1k0Y256Y2JlcUk0ZGFPeEY5UDg1MDlDN01vVkNYaEs0ZkpZNFhhTE5jZVduaEZmT0FTVA?oc=5",
+   "source": "Prestige Online - Singapore",
+   "published": "2026-11-02",
+   "lang": "en",
+   "summary": "The new moisture: Four moisturisers to add to rotation Prestige Online - Singapore",
+   "meta": {},
+   "queries": [
+    "squalane sugarcane OR \"biobased squalane\" OR \"bio-squalane\""
+   ],
+   "sid": "S8"
+  },
+  {
+   "kind": "paper",
+   "title": "Plant volatile organic compounds as mediators of plant insect communication",
+   "url": "https://doi.org/10.1007/s44372-026-00962-w",
+   "source": "Discover Plants.",
+   "published": "2026-11-07",
+   "lang": "en",
+   "summary": "Plants are sessile organisms exposed to a constant dialogue with various pests, insects, and microbes. After communication through various interactions (mutualism, predation, and parasitism), the plants trigger a range of volatile organic compounds (VOCs) through the modulation of the host gene. Plants responded to insect interactions both specifically and broadly. These interactions are controlled by various metabolic tracks such as the cytosolic mevalonic acid (MVA) pathway, plastidic methylerythritol phosphate (MEP) pathway, the phyto-oxylipin pathway, and shikimate pathways, where terpenoids, green-leaf volatiles (GLVs), and benzenoids/phenylpropanoids like VOCs are produced. Moreover, V…",
+   "meta": {
+    "institutions": [
+     "Fakir Mohan University",
+     "Siksha O Anusandhan University"
+    ],
+    "countries": [
+     "IN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225464680"
+   },
+   "rank": 10,
+   "queries": [
+    "farnesene synthase",
+    "farnesene Saccharomyces cerevisiae",
+    "farnesene Escherichia coli"
+   ],
+   "sid": "S9"
+  },
+  {
+   "kind": "paper",
+   "title": "A biosynthetic paradox implicating dynamic zeaxanthin biosynthesis at the ER-LD interface",
+   "url": "https://doi.org/10.1016/j.synbio.2026.09.005",
+   "source": "Synthetic and Systems Biotechnology",
+   "published": "2026-11-05",
+   "lang": "en",
+   "summary": "Traditional metabolic engineering often treats lipid droplets (LDs) as inert storage sinks and assumes shortening enzyme-substrate distance inherently enhances pathway efficiency. Harnessing Yarrowia lipolytica for zeaxanthin production, we uncovered a pivotal “spatial paradox” challenging this conventional dogma. A selective shielding strategy first identified the hydroxylase Pa CrtZ as the primary biosynthetic bottleneck. Subcellular localization trials revealed that directly targeting Pa CrtZ to the β-carotene-rich LD surface unexpectedly yielded the lowest zeaxanthin relative fraction (9.87%), significantly underperforming compared to cytosolic (27.15%) or peroxisomal targeting (43.16%).…",
+   "meta": {
+    "institutions": [
+     "Jiangnan University",
+     "University of Sulaimani"
+    ],
+    "countries": [
+     "CN",
+     "IQ"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225265346"
+   },
+   "rank": 1,
+   "queries": [
+    "farnesene Yarrowia lipolytica",
+    "farnesene Saccharomyces cerevisiae",
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S10"
+  },
+  {
+   "kind": "paper",
+   "title": "Female Melanostoma hoverflies pollinate Cypripedium yatabeanum through a Paphiopedilum ‐like floral trap",
+   "url": "https://doi.org/10.1002/ppp3.70297",
+   "source": "Plants People Planet",
+   "published": "2026-11-05",
+   "lang": "en",
+   "summary": "Societal Impact Statement Conserving rare plants requires understanding the ecological interactions that enable their reproduction. Most studied Cypripedium species are pollinated by bees, but the pollinators of many slipper orchids remain undocumented. We show that Cypripedium yatabeanum is pollinated by female aphidophagous hoverflies despite sharing broadly similar floral architecture with the closely related, bee‐pollinated Cypripedium guttatum . This contrast indicates that pollinators cannot be inferred from floral structure alone. Conservation strategies should therefore protect not only orchid populations but also their pollinators and the surrounding resources that sustain them, inc…",
+   "meta": {
+    "institutions": [
+     "Kobe University",
+     "National Museum of Nature and Science",
+     "The University of Tokyo"
+    ],
+    "countries": [
+     "JP"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225305225"
+   },
+   "rank": 18,
+   "queries": [
+    "farnesene"
+   ],
+   "sid": "S11"
+  },
+  {
+   "kind": "paper",
+   "title": "A Smelly Conflict: The Role of Olfactory Information in the Interaction of Insect Herbivores and Their Natural Enemies",
+   "url": "https://doi.org/10.1111/eea.70214",
+   "source": "Entomologia Experimentalis et Applicata",
+   "published": "2026-11-03",
+   "lang": "en",
+   "summary": "ABSTRACT Chemical communication is one of the most fundamental ways in which insects interact with their environment. Many herbivores rely on olfactory cues such as plant volatiles to locate natural‐enemy‐free spaces for feeding or ovipositing; conversely, predatory and parasitic natural enemies detect herbivores by chemical cues from damaged plants or from the herbivores themselves. The role olfactory cues play in mediating insect behaviors as well as the molecular and neuronal mechanisms by which these infochemicals are perceived have been investigated in a wide range of insects. However, the questions of how certain infochemicals shape the interactions between herbivores and their natural…",
+   "meta": {
+    "institutions": [
+     "Huaibei Normal University",
+     "Wageningen University & Research"
+    ],
+    "countries": [
+     "CN",
+     "NL"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225141850"
+   },
+   "rank": 4,
+   "queries": [
+    "beta-farnesene production",
+    "E-beta-farnesene aphid"
+   ],
+   "sid": "S12"
+  },
+  {
+   "kind": "paper",
+   "title": "Harnessing yeast biodiversity to identify superior chassis strains for metabolic engineering and precision fermentation",
+   "url": "https://doi.org/10.1093/femsyr/foag060",
+   "source": "FEMS Yeast Research",
+   "published": "2026-11-03",
+   "lang": "en",
+   "summary": "Microbial cell factories are increasingly used for the sustainable production of fuels, chemicals and pharmaceuticals. Yeasts are particularly suitable as production hosts because of their metabolic flexibility, robustness, and expanding synthetic biology toolkits. Metabolic engineering of yeast historically relied on a narrow set of reference species and strains, especially Saccharomyces cerevisiae. Recent studies, however, show that applying identical pathway designs to different strain backgrounds or species can yield significant differences in titer, rate and yield (TRY). In this review, we examine how diversity within and between species in genomic features, metabolic regulation, substr…",
+   "meta": {
+    "institutions": [
+     "VIB-KU Leuven Center for Microbiology",
+     "KU Leuven"
+    ],
+    "countries": [
+     "BE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225202284"
+   },
+   "rank": 0,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S13"
+  },
+  {
+   "kind": "paper",
+   "title": "Preparation of Water‐ and Alkali‐Resistant Silicone‐Modified Polyacrylate Emulsions and Their Performance Enhancement in Glass Fiber Fabric",
+   "url": "https://doi.org/10.1002/pc.71797",
+   "source": "Polymer Composites",
+   "published": "2026-11-03",
+   "lang": "en",
+   "summary": "ABSTRACT Glass fiber fabrics used in exterior wall insulation systems are susceptible to alkaline corrosion and mechanical degradation in the highly alkaline environment of cement mortar. In this study, a vinyltrimethoxysilane (VTMS)‐modified polyacrylate emulsion was synthesized via seeded emulsion polymerization. Single‐factor and orthogonal experiments were used to screen the formulation, and a VTMS loading of 7 wt% was identified as a favorable dosage within the tested range. FT‐IR, 1 H NMR, XPS, and SEM showed that VTMS was covalently grafted to the polyacrylate backbone and that Si–O–C and Si–O–Si groups were present. The emulsion showed a narrow particle size distribution and favorabl…",
+   "meta": {
+    "institutions": [
+     "Northwest University"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225251567"
+   },
+   "rank": 1,
+   "queries": [
+    "farnesene polymer rubber"
+   ],
+   "sid": "S14"
+  },
+  {
+   "kind": "paper",
+   "title": "Global Metabolic Rewiring Induced by HAC1 Overexpression Facilitates Efficient Linalool Synthesis in Saccharomyces cerevisiae",
+   "url": "https://doi.org/10.1002/yea.70059",
+   "source": "Yeast",
+   "published": "2026-11-03",
+   "lang": "en",
+   "summary": "The present study employs global transcriptional engineering (GTE) to optimize metabolic flux toward linalool synthesis by screening seven key transcription factors in Saccharomyces cerevisiae. Overexpression of HAC1 in the strain SA44, the master regulator of the unfolded protein response (UPR), increased 2.9-fold in linalool titers compared to the control strain (SA49). Genome-wide transcriptomic analysis revealed that Hac1p-mediated activation induces a redirection of carbon flux into the mevalonate (MVA) pathway, the glyoxylate cycle, and gluconeogenesis, alongside the substantial repression of master sterol pathway activator (UPC2) and the hexose transporters. Multi-layer network analys…",
+   "meta": {
+    "institutions": [
+     "Central Food Technological Research Institute",
+     "Academy of Scientific and Innovative Research"
+    ],
+    "countries": [
+     "IN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225143897"
+   },
+   "rank": 12,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S15"
+  },
+  {
+   "kind": "paper",
+   "title": "Role of herbivore-induced plant volatiles from Cnaphalocrocis medinalis infested rice genotypes in mediating host-location behaviour of the larval ectoparasitoid, Habrobracon hebetor",
+   "url": "https://doi.org/10.14719/pst.17473",
+   "source": "Plant Science Today",
+   "published": "2026-11-03",
+   "lang": "en",
+   "summary": "Herbivore-induced plant volatiles (HIPVs) are critical mediators of tritrophic interactions, providing parasitoids with reliable cues for host location and parasitisation. This study investigated whether HIPVs emitted by rice infested (I) with the rice leaffolder, Cnaphalocrocis medinalis (Guenee), affect the olfactory perception and behavioural responses of its larval parasitoid, Habrobracon hebetor (Say). Volatiles were collected from six rice genotypes (three resistant and three susceptible), each with three biological replicates. Gas chromatography–mass spectrometry (GC-MS) identified 37 volatile organic compounds (VOCs) in uninfested (U) and C. medinalis-I. plants across all genotypes. …",
+   "meta": {
+    "institutions": [
+     "Odisha University of Agriculture and Technology",
+     "Central Rice Research Institute"
+    ],
+    "countries": [
+     "IN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225143841"
+   },
+   "rank": 23,
+   "queries": [
+    "farnesene synthase"
+   ],
+   "sid": "S16"
+  },
+  {
+   "kind": "paper",
+   "title": "Friedelin in plants: metabolism, synthase engineering and production strategies",
+   "url": "https://doi.org/10.3389/fpls.2026.1890611",
+   "source": "Frontiers in Plant Science",
+   "published": "2026-11-02",
+   "lang": "en",
+   "summary": "Friedelin (FD) is a pentacyclic triterpenoid with significant pharmacological potential and serves as the biosynthetic precursor to the anti-obesity drug celastrol. Despite its value, FD availability is limited by low natural abundance and the stereochemical complexity of chemical synthesis. This article critically reviews the state-of-the-art in FD research, spanning natural distribution, extraction methodologies, and the molecular basis of its biosynthesis. The structural evolution of friedelin synthases (FDSs), contrasting the mechanisms of multifunctional versus single-function enzymes, was analyzed. Furthermore, a comprehensive roadmap for sustainable production, integrating “Push-Block…",
+   "meta": {
+    "institutions": [
+     "Zhejiang Chinese Medical University",
+     "China National Rice Research Institute",
+     "State Key Laboratory of Rice Biology"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225106592"
+   },
+   "rank": 4,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast",
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S17"
+  },
+  {
+   "kind": "paper",
+   "title": "Phytochemical diversity and chemotaxonomic classification among 9 Salvia leaf species revealed using UPLC–MS, GC–MS, and UV–Vis metabolomics",
+   "url": "https://doi.org/10.1016/j.sajb.2026.10.013",
+   "source": "South African Journal of Botany",
+   "published": "2026-11-02",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [
+     "Cairo University",
+     "Tanta University",
+     "Iuliu Hațieganu University of Medicine and Pharmacy",
+     "University of Agricultural Sciences and Veterinary Medicine of Cluj-Napoca",
+     "Assiut University",
+     "Technische Universität Braunschweig"
+    ],
+    "countries": [
+     "EG",
+     "RO",
+     "DE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225127484"
+   },
+   "rank": 22,
+   "queries": [
+    "farnesene",
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S18"
+  },
+  {
+   "kind": "paper",
+   "title": "Performance of asphalt mixtures modified with bio-based hydrogenated styrene poly(β-farnesene) copolymer through morphology, mixture-scale evaluation, and mechanistic pavement simulation",
+   "url": "https://doi.org/10.1016/j.conbuildmat.2026.148722",
+   "source": "Construction and Building Materials",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "This study evaluates asphalt mixtures modified with hydrogenated styrene poly(β-farnesene) copolymer (HSF), an 80% bio-based thermoplastic elastomer derived from sugarcane fermentation. HSF-modified binders contained 12.0 wt% HSF in a 50/70 binder and 10.5 wt% HSF in a 30/45 binder. These performance-selected laboratory dosages had previously provided rheological responses close to those of a commercial SBS-modified binder (60/85-E). Morphology was assessed by atomic force and fluorescence microscopy, and chemical characterization by FTIR spectroscopy. Mixtures were evaluated for fatigue resistance, permanent deformation, and moisture susceptibility, while mechanistic simulations employed th…",
+   "meta": {
+    "institutions": [
+     "Universidade Federal de Santa Catarina"
+    ],
+    "countries": [
+     "BR"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225083273"
+   },
+   "rank": 1,
+   "queries": [
+    "farnesene",
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S19"
+  },
+  {
+   "kind": "paper",
+   "title": "Closing the loop on precision fermentation: recycling and upcycling spent media and biomass",
+   "url": "https://doi.org/10.1016/j.fufo.2026.101241",
+   "source": "Future Foods",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "Precision fermentation (PF) offers a flexible method for producing high-value food ingredients, but it generates large volumes of spent media and microbial biomass, which pose environmental and economic challenges. This article explores strategies for recycling spent media into fresh fermentation inputs and upcycling microbial biomass into food ingredients. Focusing on yeast and fungal fermentations, we examine case studies involving widely-used chassis strains. Case studies indicate that recycling can reduce wastewater emissions by 70% or more, and reduce operating cost by nearly 30%. Spent media contains valuable nutrients such as amino acids, organic acids, lipids, vitamins, and minerals,…",
+   "meta": {
+    "institutions": [
+     "Singapore Institute of Food and Biotechnology Innovation"
+    ],
+    "countries": [
+     "SG"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225039472"
+   },
+   "rank": 3,
+   "queries": [
+    "farnesene Yarrowia lipolytica",
+    "farnesene Saccharomyces cerevisiae"
+   ],
+   "sid": "S20"
+  },
+  {
+   "kind": "paper",
+   "title": "Comparative foliar elicitation with yeast extract and sodium butyrate reshapes terpenoid metabolism in Salvia officinalis",
+   "url": "https://doi.org/10.1016/j.plaphy.2026.111912",
+   "source": "Plant Physiology and Biochemistry",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "The industrial utilization of Salvia officinalis L. depends on cost-effective and scalable strategies for improving the consistent production of high-value bioactive terpenoids. In this study, two non-transgenic foliar elicitation strategies, yeast extract (YE, 2 g L -1 ) and sodium butyrate (NaB, 25 and 50 mM), were evaluated for their ability to reprogram terpenoid metabolism in S. officinalis . Integrated GC–MS metabolite profiling and qRT-PCR analysis showed that the two elicitors induced distinct transcriptional and metabolic responses. YE promoted coordinated upregulation of MVA and MEP pathway genes, resulting in moderate enrichment of β-caryophyllene (4.28-fold) and ferruginol (2.92-…",
+   "meta": {
+    "institutions": [
+     "Shiraz University",
+     "Semnan University"
+    ],
+    "countries": [
+     "IR"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225165431"
+   },
+   "rank": 5,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast",
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S21"
+  },
+  {
+   "kind": "paper",
+   "title": "Deep learning‐based prediction of insect odorant receptor–ligand interactions for behavioral regulator discovery",
+   "url": "https://doi.org/10.1002/ps.71454",
+   "source": "Pest Management Science",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "BACKGROUND: Widespread chemical insecticide use causes resistance and ecological damage, driving need for sustainable pest control via olfaction-based behavioral regulators targeting odorant receptors (ORs). Conventional screening is costly and low-throughput. Deep learning (DL) offers solutions but faces challenges of scarce data, distinct OR-ligand binding properties, and requirements for explainability to guide regulator design. RESULTS: To explore effective representations of volatile compounds under a limited data setting, we developed three deep learning models based on molecular descriptors (Concat-Desc), molecular graphs (Concat-GNN), and Simplified Molecular Input Line Entry System …",
+   "meta": {
+    "institutions": [
+     "Murdoch University",
+     "Agricultural Genomics Institute at Shenzhen",
+     "Chinese Academy of Agricultural Sciences",
+     "Ministry of Agriculture and Rural Affairs",
+     "Cooper Medical School of Rowan University"
+    ],
+    "countries": [
+     "AU",
+     "CN",
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225107776"
+   },
+   "rank": 6,
+   "queries": [
+    "alpha-farnesene biosynthesis",
+    "E-beta-farnesene aphid"
+   ],
+   "sid": "S22"
+  },
+  {
+   "kind": "paper",
+   "title": "Deciphering the key drivers of enhanced floral aroma and reduced bitterness in jasmine tea during multi–round scenting through integrated multi–omics, electronic sensory, and molecular docking analyses",
+   "url": "https://doi.org/10.1016/j.foodres.2026.121113",
+   "source": "Food Research International",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [
+     "Hunan Agricultural University"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225034829"
+   },
+   "rank": 21,
+   "queries": [
+    "farnesene",
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S23"
+  },
+  {
+   "kind": "paper",
+   "title": "Synthesis and Thermal Degradation Kinetics of Cyclopropanated β‐Pinane for Rocket and Missile Fuel Applications",
+   "url": "https://doi.org/10.1002/ente.70714",
+   "source": "Energy Technology",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "The development of high‐energy‐density (HED) hydrocarbon fuels derived from renewable feedstocks is of significant interest for advanced rocket and missile propulsion systems requiring compact fuel storage and high volumetric energy output. In this study, cyclopropanated β‐pinane (CPBP) was synthesized from bio‐derived β‐pinene through Simmons–Smith cyclopropanation route and systematically investigated for its thermal degradation behavior and decomposition kinetics. Comprehensive spectroscopic and chromatographic characterization using FTIR, NMR, GC–FID, and GC–MS/MS confirmed the successful incorporation of cyclopropane moieties. The synthesized fuel exhibited a density of 0.894 g mL −1 , …",
+   "meta": {
+    "institutions": [
+     "Defence Institute of Bio-Energy Research",
+     "Meerut College"
+    ],
+    "countries": [
+     "IN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225343449"
+   },
+   "rank": 1,
+   "queries": [
+    "farnesane jet fuel"
+   ],
+   "sid": "S24"
+  },
+  {
+   "kind": "paper",
+   "title": "Chloroplast genome engineering: Recent advances, pathways towards commercialization and future directions",
+   "url": "https://doi.org/10.1016/j.biotechadv.2026.109091",
+   "source": "Biotechnology Advances",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "Chloroplasts are ideal biofactories because thousands of transgene copies integrated into each plant cell to produce high levels of recombinant proteins and enzymes. Because chloroplast genomes are predominantly maternally inherited, transgenes are generally not transmitted via pollen. Nuclear genome engineering ushered in the GMO revolution for crop protection that mostly required lower levels of transgene expression. Higher level expression and biosafety through gene containment facilitate new applications of GM crops, including production of high-value biopharmaceuticals and enzymes. This review focuses on recent advances in this field, including the first FDA approval of biopharmaceutica…",
+   "meta": {
+    "institutions": [
+     "University of Pennsylvania"
+    ],
+    "countries": [
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225340386"
+   },
+   "rank": 3,
+   "queries": [
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S25"
+  },
+  {
+   "kind": "paper",
+   "title": "Current advances in chemical ecology-based management tactics for the spotted lanternfly, Lycorma delicatula (Hemiptera: Fulgoridae)",
+   "url": "https://doi.org/10.1093/jisesa/ieag120",
+   "source": "Journal of Insect Science",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "The spotted lanternfly (Lycorma delicatula [White]), an invasive fulgorid planthopper of significant economic concern, relies on a complex suite of chemical signals to navigate host selection, aggregation, and reproductive success in its US invaded range. While initial research focused primarily on volatile attraction, recent advances have broadened to include a multitrophic understanding of the insect's chemical ecology. This review synthesizes the rapidly expanding body of literature on L. delicatula chemical ecology, with a focus on findings published since 2023, to delineate the mechanisms governing host selection, conspecific recruitment, and complex tritrophic interactions. Current man…",
+   "meta": {
+    "institutions": [
+     "Agricultural Research Service",
+     "Appalachian Fruit Research Laboratory",
+     "Virginia Tech"
+    ],
+    "countries": [
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225336854"
+   },
+   "rank": 8,
+   "queries": [
+    "E-beta-farnesene aphid"
+   ],
+   "sid": "S26"
+  },
+  {
+   "kind": "paper",
+   "title": "Genetic Engineering Efforts to Generate Chlamydomonas Strains for Large‐Scale Biomolecule Production",
+   "url": "https://doi.org/10.1111/1751-7915.70466",
+   "source": "Microbial Biotechnology",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "Chlamydomonas reinhardtii is an established model microalga. Its easy manipulation, metabolic flexibility and tractable genomes allowed researchers to investigate fundamental processes such as photosynthesis using genetic studies for decades. Chlamydomonas is not naturally rich in lipids or pigments compared to industrially relevant microalgae. However, we highlight how its biotechnological potential relies on advanced genetic and metabolic engineering strategies, now possible due to the availability of extensive toolbox and synthetic biology platforms, which can improve industrial traits and allow to produce a variety of biomolecules of biotechnological interest. We provide examples of biom…",
+   "meta": {
+    "institutions": [
+     "University of Liège",
+     "Institut National de Recherche pour l'Agriculture, l'Alimentation et l'Environnement",
+     "Interactions Arbres-Microorganismes",
+     "Université de Lorraine",
+     "Institut Universitaire de France"
+    ],
+    "countries": [
+     "BE",
+     "FR"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225231614"
+   },
+   "rank": 8,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S27"
+  },
+  {
+   "kind": "paper",
+   "title": "Rare earth elements for osteoporotic bone regeneration: Cellular mechanisms & biomaterial applications",
+   "url": "https://doi.org/10.1016/j.bioadv.2026.215296",
+   "source": "Biomaterials Advances",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "Osteoporosis is characterized by an imbalance in bone remodeling, where increased osteoclastic resorption and reduced osteoblastic activity leads to bone loss and fracture risk. Recent advances in biomaterials have highlighted the potential of rare earth elements (REE) as bioactive components for bone regeneration with a handful of studies focusing on osteoporosis associated bone loss. Due to their unique physicochemical properties, REE can modulate bone associated cells' activity and influence signaling pathways benefitting the potential treatment options in osteoporotic bone fracture. Evidence indicates that REE can enhance osteogenic differentiation, modulate osteoclast activity, reduce o…",
+   "meta": {
+    "institutions": [
+     "Justus-Liebig-Universität Gießen",
+     "Universitätsklinikum Gießen und Marburg",
+     "Biruni University"
+    ],
+    "countries": [
+     "DE",
+     "TR"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225086050"
+   },
+   "rank": 23,
+   "queries": [
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S28"
+  },
+  {
+   "kind": "paper",
+   "title": "Elevated nitrogen deposition protects an invasive plant from herbivory through altering leaf volatile‐mediated tritrophic interactions",
+   "url": "https://doi.org/10.1111/1365-2435.70467",
+   "source": "Functional Ecology",
+   "published": "2026-10-25",
+   "lang": "en",
+   "summary": "Abstract Atmospheric nitrogen deposition disrupts plant–herbivore interactions, but its impact on leaf volatile organic compounds (VOCs)‐mediated multi‐trophic herbivore resistance remains unclear within the context of plant invasion. In this study, we initially investigated the differences in leaf feeding damage and number of eggs laid by herbivores between the invasive weed Alternanthera philoxeroides and its native congener, Alternanthera sessilis , in different terrestrial habitats that experienced various levels of atmospheric nitrogen deposition. Furthermore, we compared the quantity and composition of leaf constitutive plant volatiles (CPVs) and herbivore‐induced plant volatiles (HIPV…",
+   "meta": {
+    "institutions": [
+     "Yunnan University",
+     "Chinese Academy of Agricultural Sciences",
+     "Tea Research Institute",
+     "Ministry of Agriculture and Rural Affairs"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7214679931"
+   },
+   "rank": 19,
+   "queries": [
+    "farnesene synthase"
+   ],
+   "sid": "S29"
+  },
+  {
+   "kind": "paper",
+   "title": "The genetic alchemy: deciphering WRKY's role in the flavor quality of horticultural crops",
+   "url": "https://doi.org/10.1093/hr/uhag451",
+   "source": "Horticulture Research",
+   "published": "2026-10-24",
+   "lang": "en",
+   "summary": "Abstract Fruits of horticultural crops are indispensable sources of nutrients and bioactive compounds, and their flavor quality, a complex phenotypic trait orchestrated by soluble sugars, organic acids, volatile aromas, is a pivotal determinant of their market competitiveness and consumer preference. Enhancing flavor quality has therefore become a primary priority of horticultural crop breeding. WRKY transcription factors (TFs) constitute one of the largest TF families in plants, and are emerging as central regulators of specialized metabolism underlying fruit flavor formation. In this review, we first identify two core evolutionary features of WRKY TFs in horticultural crops: cross-species …",
+   "meta": {
+    "institutions": [
+     "Northeast Agricultural University",
+     "Ministry of Agriculture and Rural Affairs",
+     "Northwest A&F University"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7223971149"
+   },
+   "rank": 7,
+   "queries": [
+    "beta-farnesene production",
+    "farnesene synthase"
+   ],
+   "sid": "S30"
+  },
+  {
+   "kind": "paper",
+   "title": "Citrus Essential Oils in Food Safety and Health: Advances in AI‐Assisted Authentication, Antimicrobial Applications, Sustainable Extraction, and Regulatory Translation",
+   "url": "https://doi.org/10.1002/fsh3.70124",
+   "source": "Food Safety and Health",
+   "published": "2026-09-19",
+   "lang": "en",
+   "summary": "ABSTRACT Citrus essential oils (CEOs) are complex mixtures of monoterpenes, sesquiterpenes, and oxygenated compounds with significant potential for improving food safety and consumer health. This review critically examines recent advances in artificial intelligence (AI), machine learning (ML), and multi‐omics technologies for CEO authentication, quality assessment, and regulatory compliance. CEOs exhibit broad‐spectrum antimicrobial activity against foodborne bacteria and spoilage fungi through membrane disruption, enzyme inhibition, protein denaturation, and quorum‐sensing interference, supporting their application as natural preservatives in foods, active packaging, and postharvest preserv…",
+   "meta": {
+    "institutions": [
+     "Shahjalal University of Science and Technology",
+     "University of Brawijaya"
+    ],
+    "countries": [
+     "BD",
+     "ID"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7213657557"
+   },
+   "rank": 20,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S31"
+  },
+  {
+   "kind": "paper",
+   "title": "Zingiber officinale: Hot Aqueous Extract against the Growth and Production of MR Staphylococcus aurous Biofilms",
+   "url": "https://doi.org/10.58709/niujhs.v12i2.2751",
+   "source": "NIU Journal of Health Sciences",
+   "published": "2026-09-14",
+   "lang": "en",
+   "summary": "Aims: to determine the efficacy of Zingiber officinale (Ginger) as a medicinal plant containing active compounds against the growth and biofilm production of methicillin-resistant Staphylococcus aureus (MRSA). Study design: the Case control study. Place and Duration of Study: Department of Biology Faculty of Education /Kufa University and hospitals of Al-Najaf Al-AShraf /Iraq for the period (September 2 to December 25 /2025) Methodology: Twenty clinical isolates of MR Staphylococcus aureus and were diagnosed by using VITEK 2 compact system. Its efficiency in production of biofilm was performed by Congo Red Agar and Tissue culture plate methods. Four concentrations (2.5%, 5%, 10%, and 20%) of…",
+   "meta": {
+    "institutions": [
+     "University of Kufa"
+    ],
+    "countries": [
+     "IQ"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225065036"
+   },
+   "rank": 15,
+   "queries": [
+    "farnesene Escherichia coli"
+   ],
+   "sid": "S32"
+  },
+  {
+   "kind": "paper",
+   "title": "Molecular mechanisms underlying the synthesis of unique floral scent in Lonicera japonica",
+   "url": "https://doi.org/10.1016/j.hpj.2025.12.024",
+   "source": "Horticultural Plant Journal",
+   "published": "2026-09-11",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [
+     "Chinese Academy of Medical Sciences & Peking Union Medical College",
+     "Institute of Medicinal Plant Development",
+     "State Administration of Traditional Chinese Medicine of the People's Republic of China"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7212324498"
+   },
+   "rank": 11,
+   "queries": [
+    "farnesene synthase",
+    "farnesene Escherichia coli"
+   ],
+   "sid": "S33"
+  }
+ ]
+}
