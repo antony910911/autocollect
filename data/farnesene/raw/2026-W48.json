@@ -1,0 +1,1694 @@
+{
+ "week": "2026-W48",
+ "date_range": "2026-11-09 ～ 2026-11-23（論文回溯 60 天）",
+ "status": [
+  {
+   "source": "Google News [zh-TW] 法尼烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 金合歡烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 角鯊烷 甘蔗",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 生物基 角鯊烷",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 合成生物 萜烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 倍半萜 發酵",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-TW] 合成生物學 化妝品 原料",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [zh-CN] 法尼烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-CN] 金合欢烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-CN] 角鲨烷 生物发酵",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [zh-CN] 合成生物 萜类",
+   "ok": true,
+   "count": 9
+  },
+  {
+   "source": "Google News [zh-CN] 法呢烯",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] farnesene",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] \"beta-farnesene\"",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] \"alpha-farnesene\"",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] farnesane",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] squalane sugarcane OR \"biobased squalane\" OR \"bio-squalane\"",
+   "ok": true,
+   "count": 1
+  },
+  {
+   "source": "Google News [en] \"liquid farnesene rubber\" OR \"farnesene rubber\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] sesquiterpene fermentation",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] \"synthetic biology\" terpene ingredient",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] Amyris farnesene OR squalane",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] \"aphid alarm pheromone\"",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:cosmeticsdesign.com squalane OR farnesene OR terpene",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:synbiobeta.com terpene OR farnesene OR fermentation",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:biofuelsdigest.com farnesene OR farnesane OR terpene",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [en] site:labiotech.eu terpene OR squalane OR biomanufacturing",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "Google News [ja] ファルネセン",
+   "ok": true,
+   "count": 2
+  },
+  {
+   "source": "Google News [ja] スクワラン 発酵",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 farnesene",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 beta-farnesene production",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 alpha-farnesene biosynthesis",
+   "ok": true,
+   "count": 17
+  },
+  {
+   "source": "論文 farnesene synthase",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesene Yarrowia lipolytica",
+   "ok": true,
+   "count": 6
+  },
+  {
+   "source": "論文 farnesene Saccharomyces cerevisiae",
+   "ok": true,
+   "count": 15
+  },
+  {
+   "source": "論文 farnesene Escherichia coli",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesene methanol OR CO2 OR cyanobacteria",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 farnesane jet fuel",
+   "ok": true,
+   "count": 6
+  },
+  {
+   "source": "論文 squalane farnesene hydrogenation",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 farnesene polymer rubber",
+   "ok": true,
+   "count": 2
+  },
+  {
+   "source": "論文 E-beta-farnesene aphid",
+   "ok": true,
+   "count": 10
+  },
+  {
+   "source": "論文 alpha-farnesene apple superficial scald",
+   "ok": true,
+   "count": 0
+  },
+  {
+   "source": "論文 sesquiterpene metabolic engineering yeast",
+   "ok": true,
+   "count": 25
+  },
+  {
+   "source": "論文 mevalonate pathway farnesyl pyrophosphate engineering",
+   "ok": true,
+   "count": 25
+  }
+ ],
+ "stats": {
+  "total": 54,
+  "by_kind": {
+   "news": 11,
+   "paper": 43
+  },
+  "by_lang": {
+   "zh-CN": 7,
+   "en": 45,
+   "zh-TW": 1,
+   "ja": 1
+  },
+  "top_queries": [
+   [
+    "farnesene methanol OR CO2 OR cyanobacteria",
+    25
+   ],
+   [
+    "合成生物 萜类",
+    7
+   ],
+   [
+    "farnesene",
+    5
+   ],
+   [
+    "sesquiterpene metabolic engineering yeast",
+    5
+   ],
+   [
+    "farnesene Escherichia coli",
+    4
+   ],
+   [
+    "mevalonate pathway farnesyl pyrophosphate engineering",
+    4
+   ],
+   [
+    "farnesene synthase",
+    4
+   ],
+   [
+    "beta-farnesene production",
+    2
+   ],
+   [
+    "alpha-farnesene biosynthesis",
+    2
+   ],
+   [
+    "farnesene Saccharomyces cerevisiae",
+    2
+   ],
+   [
+    "\"alpha-farnesene\"",
+    1
+   ],
+   [
+    "合成生物學 化妝品 原料",
+    1
+   ],
+   [
+    "\"beta-farnesene\"",
+    1
+   ],
+   [
+    "ファルネセン",
+    1
+   ],
+   [
+    "farnesane jet fuel",
+    1
+   ]
+  ],
+  "paper_countries": [
+   [
+    "US",
+    10
+   ],
+   [
+    "CN",
+    10
+   ],
+   [
+    "DE",
+    5
+   ],
+   [
+    "IN",
+    4
+   ],
+   [
+    "BR",
+    3
+   ],
+   [
+    "CA",
+    3
+   ],
+   [
+    "AU",
+    2
+   ],
+   [
+    "PE",
+    2
+   ],
+   [
+    "RU",
+    2
+   ],
+   [
+    "EG",
+    2
+   ],
+   [
+    "SE",
+    2
+   ],
+   [
+    "IL",
+    2
+   ]
+  ],
+  "paper_institutions": [
+   [
+    "Chinese Academy of Sciences",
+    2
+   ],
+   [
+    "Central University of Himachal Pradesh",
+    1
+   ],
+   [
+    "Universidade Federal do Rio Grande",
+    1
+   ],
+   [
+    "University of Rio Grande and Rio Grande Community College",
+    1
+   ],
+   [
+    "Lagos State University",
+    1
+   ],
+   [
+    "University of Lagos",
+    1
+   ],
+   [
+    "Aromatic Plant Research Center",
+    1
+   ],
+   [
+    "University of Alabama in Huntsville",
+    1
+   ],
+   [
+    "The University of Western Australia",
+    1
+   ],
+   [
+    "ARC Centre of Excellence in Plant Energy Biology",
+    1
+   ],
+   [
+    "Saitama University",
+    1
+   ],
+   [
+    "National Chung Hsing University",
+    1
+   ]
+  ],
+  "top_media": [
+   [
+    "生物通",
+    5
+   ],
+   [
+    "Bioengineer.org",
+    2
+   ],
+   [
+    "IndexBox",
+    2
+   ],
+   [
+    "ライブドアニュース",
+    1
+   ],
+   [
+    "兰州大学新闻网",
+    1
+   ]
+  ]
+ },
+ "items": [
+  {
+   "kind": "news",
+   "title": "基于植物内生微生物平台的植物源抗癌次生代谢产物可持续生产研究进展",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE8wMC1DOUx3T0xhdkdVcmhHU21yYkVQZjgwRkhwTjNMRFduaThFUGU2Mzg1R25QMHlCUExVSFB0OUVtOHdfWXFOREtSU0h0a0ZxVmRhRFo4Q3IxRFRJaVN5T01UX2dYWURxMmpYNktB?oc=5",
+   "source": "生物通",
+   "published": "2026-11-22",
+   "lang": "zh-CN",
+   "summary": "基于植物内生微生物平台的植物源抗癌次生代谢产物可持续生产研究进展 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S1"
+  },
+  {
+   "kind": "news",
+   "title": "通过单细胞与bulk转录组解析Tabernanthe iboga中iboga型与ibophyllidine型单萜吲哚生物碱生物合成途径",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE13OXRvenBDck9faXpXTzhQYXp1eWI3T0hROGZKbnhUQnphRlBHNmV4Vkk3aUpRaTVwcjlhMW81LWlJMzFiSnRQMmcyd0Jqbmk4LVVSa0xBMDJyZlV2LVZsZ3RXcHdLdHptTG9tV1Zn?oc=5",
+   "source": "生物通",
+   "published": "2026-11-21",
+   "lang": "zh-CN",
+   "summary": "通过单细胞与bulk转录组解析Tabernanthe iboga中iboga型与ibophyllidine型单萜吲哚生物碱生物合成途径 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S2"
+  },
+  {
+   "kind": "news",
+   "title": "Lovastatin and 1-MCP Suppress Scald Genes in Cold-Stored Apples",
+   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQYWhNTTd5aEM2MGVHN3hQU1FONEVWNjJ4dTlnQjN1TFVtMkdqSzRfQm5Kd3pCNGFraXNlNEsxcHd6Y3FzMGx2Q3RSaUJFZ1RxMTZsZ3dGZzZ5SFV2VUpVZ0FVQ18yOEFITjFwUE1kUVpoWnV3b1BWSVA5Qkt4Z2RVek05bzdUdkE2LW8wTmhlcEJmZw?oc=5",
+   "source": "Bioengineer.org",
+   "published": "2026-11-19",
+   "lang": "en",
+   "summary": "Lovastatin and 1-MCP Suppress Scald Genes in Cold-Stored Apples Bioengineer.org",
+   "meta": {},
+   "queries": [
+    "farnesene",
+    "\"alpha-farnesene\""
+   ],
+   "sid": "S3"
+  },
+  {
+   "kind": "news",
+   "title": "白樺脂酸市場展望2035：抗癌研究與護膚需求推動成長 - 新聞與統計",
+   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPUjExb1Q4SExONDZMM3FKT2dqNjJ0MU1uQjZXb243RFJNeXF6OXlNNnBrenF3VnBuNG1iSkVMNzVYNkd0eWpKQURQN1dKR3ZudG5oaHg1NUtfVGt0TG5SNWpBMkotMXNHbThWajdoMmVjSDB4YkIyNHVYeFFCQW0yZE00X2FqN3NMVk1VTXVZa3dVTFVDUTZGRlp6ZFpNSTVwUzdhM2tubmcya211VElYcnIzUkt1QTFjNDQ0ay1hOGI3X0w4MEp4ZHJGRjcwUUpMbUNIQ2FVNE02RlJM?oc=5",
+   "source": "IndexBox",
+   "published": "2026-11-19",
+   "lang": "zh-TW",
+   "summary": "白樺脂酸市場展望2035：抗癌研究與護膚需求推動成長 - 新聞與統計 IndexBox",
+   "meta": {},
+   "queries": [
+    "合成生物學 化妝品 原料"
+   ],
+   "sid": "S4"
+  },
+  {
+   "kind": "news",
+   "title": "桦木酸市场展望2035：抗癌研究与护肤需求驱动增长 - 新闻和统计",
+   "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNUHgwd1RHU05ETUZsMjBrNzRGSGRVQ2lDYmZnbkpkUklGaEZkWjNhSGZUVmM1SDU1aHA0bzNIOEhFSEs0V1lPMHF0SnFIZGlrVzdDSmpURFY0UTl0cVdheEI3dld4WnVfOUxoai1Bem1rV3JrbExIdDNYSDRQTkZSN0xQZldqSk1SNk9GV0xRbzFIOFE3VGdqYTZGR0hvMkV5WExTMWhZUUYtUU45b1FWZXZuMmpYd2VlVnlfWlNqY0hLR0hhb3M0eGFJanNKc0kzS2dvOXpaN3E3RTEz?oc=5",
+   "source": "IndexBox",
+   "published": "2026-11-19",
+   "lang": "zh-CN",
+   "summary": "桦木酸市场展望2035：抗癌研究与护肤需求驱动增长 - 新闻和统计 IndexBox",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S5"
+  },
+  {
+   "kind": "news",
+   "title": "Chamomile Oil and Apigenin Suppress Antibiotic Efflux Pump Genes in Clinical Bacteria",
+   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOZWZkb3hSeXFFTDNkSWE2OUctaXg5TnJjc1RDbFJxQ0o1UHgzS2JtVVdpdVJncUc4djM2VXU4UzVid0VzdGZ3ZVQybDNLeEp6amE0OXEwUS01ZzhOcjVLeWkwclZfSEY5Qk5CaVNTNExVSzN4bFA2SkE4YllMaFdYLVRGcjlWX0w4UkJ3Mi15OUUxWUEwaTVOTUc2LU9qNGw1clZkSldJRkJBOHFXMDVJ?oc=5",
+   "source": "Bioengineer.org",
+   "published": "2026-11-19",
+   "lang": "en",
+   "summary": "Chamomile Oil and Apigenin Suppress Antibiotic Efflux Pump Genes in Clinical Bacteria Bioengineer.org",
+   "meta": {},
+   "queries": [
+    "\"beta-farnesene\""
+   ],
+   "sid": "S6"
+  },
+  {
+   "kind": "news",
+   "title": "基于代谢组学与转录组学解析鼠李糖乳酪杆菌（Lacticaseibacillus rhamnosus）发酵桑叶茶中脂肪酸与萜类的变化",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1ncXlLZF9DWTgzM2ZPanJybFo0UklnaG1jVFVqZThNNXMwN05wajBJNUd1aS1FaXVReTlyek9sdE5VajEtOGtlbk1wdzB6Q2Z1SEFrbXk0UVNiOVExSS1EcERxcGhZWWhVZTFwVkFR?oc=5",
+   "source": "生物通",
+   "published": "2026-11-17",
+   "lang": "zh-CN",
+   "summary": "基于代谢组学与转录组学解析鼠李糖乳酪杆菌（Lacticaseibacillus rhamnosus）发酵桑叶茶中脂肪酸与萜类的变化 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S7"
+  },
+  {
+   "kind": "news",
+   "title": "古茶树鲜叶季节性代谢动态：代谢组学解析光合作用驱动“春水秋香”品质分化的机制",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5pa0dNOTMtdms5eVlhUWQtd1JNRkQtLW1lTDZWcnpudlUzcGVLUmNTaFJyeHNDT3ZueTJwanh0Y3NOVVRGN3VHX0R5SW9GM29pMnd0c1pmX2diLXJ3OWhSLWtRQUdpSkVHam9KWHBn?oc=5",
+   "source": "生物通",
+   "published": "2026-11-15",
+   "lang": "zh-CN",
+   "summary": "古茶树鲜叶季节性代谢动态：代谢组学解析光合作用驱动“春水秋香”品质分化的机制 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S8"
+  },
+  {
+   "kind": "news",
+   "title": "ファルネセンの世界市場規模：2026年は97百万米ドルに達する見込み (2026年11月13日掲載)",
+   "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE82Qnc3a1htcEsyR3R3Rk1QZk9VeUw0bmZWQV9OV2tKTmpnY0tRUHpqdEw4ejc0eFpqMlBHVmZEVmxhUWNFRzRvRldZLXBYdmhYQ3IzMUJtS0tPUlJFT2NXRVV3?oc=5",
+   "source": "ライブドアニュース",
+   "published": "2026-11-13",
+   "lang": "ja",
+   "summary": "ファルネセンの世界市場規模：2026年は97百万米ドルに達する見込み (2026年11月13日掲載) ライブドアニュース",
+   "meta": {},
+   "queries": [
+    "ファルネセン"
+   ],
+   "sid": "S9"
+  },
+  {
+   "kind": "news",
+   "title": "莲MYB转录因子家族的系统解析揭示NnMYB48作为阿朴啡类生物碱生物合成正调控因子的作用",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFA3bUMwRW1LVjJPYUF3c0swU0Vvbm55OTYyZzZIVnhXQ0NFaUF3M2ZFVjhuVGZqdi10Zzh5VGdXNFdhWmtIQmVnWHN1UDVadTVYQ3JJTU15OUZjQ0FDOGNlNWpwTHV0Y0U0N1hTRFFR?oc=5",
+   "source": "生物通",
+   "published": "2026-11-12",
+   "lang": "zh-CN",
+   "summary": "莲MYB转录因子家族的系统解析揭示NnMYB48作为阿朴啡类生物碱生物合成正调控因子的作用 生物通",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S10"
+  },
+  {
+   "kind": "news",
+   "title": "兰州大学研究团队完成抗结核杆菌活性复杂二倍半萜(+)-Asperterpenoids D和E的首次全合成",
+   "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1VQ3pnUG5NOEdKVGJVeFFuQldRcVpPMFdYS0V6VmRnNFpuMEw5b3dCeXdFUVBHZXBNRkFkUWw1aU16dTQ0bUNYRjVoZjl0SFhVV3NyblJQZWQ?oc=5",
+   "source": "兰州大学新闻网",
+   "published": "2026-11-09",
+   "lang": "zh-CN",
+   "summary": "兰州大学研究团队完成抗结核杆菌活性复杂二倍半萜(+)-Asperterpenoids D和E的首次全合成 兰州大学新闻网",
+   "meta": {},
+   "queries": [
+    "合成生物 萜类"
+   ],
+   "sid": "S11"
+  },
+  {
+   "kind": "paper",
+   "title": "Morpho-anatomical and phytochemical characterization of two Apiaceae members: Selinum vaginatum and Ligusticopsis wallichiana from Himachal Pradesh",
+   "url": "https://doi.org/10.37446/corbio/rsa/4.1.2026.1-17",
+   "source": "Cornous Biology",
+   "published": "2026-12-31",
+   "lang": "en",
+   "summary": "Background: Selinum is an aromatic perennial herb belonging to the Apiaceae family, and the genus comprises two main species found at high altitudes in Himachal Pradesh, which are Selinum vaginatum (Edgew.) C.B.Clarke and Ligusticopsis wallichiana (DC.) Pimenov & Kljuykov. These species exhibit a high level of morphological similarity, making it challenging to distinguish between them. Therefore, a thorough study is essential to prevent misidentification and minimize the risk of adulteration. The research aims to clarify the controversies between these two species by comparing their morphology, anatomy and phytochemical profile. Methods: A total of 31 quantitative morphological characters we…",
+   "meta": {
+    "institutions": [
+     "Central University of Himachal Pradesh"
+    ],
+    "countries": [
+     "IN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7166449266"
+   },
+   "rank": 14,
+   "queries": [
+    "farnesene"
+   ],
+   "sid": "S12"
+  },
+  {
+   "kind": "paper",
+   "title": "Understanding the Global Research Landscape of Pesticide Impacts on Aquatic Microalgae and Cyanobacteria",
+   "url": "https://doi.org/10.1007/s11270-026-10182-3",
+   "source": "Water Air & Soil Pollution",
+   "published": "2026-11-21",
+   "lang": "en",
+   "summary": "In recent decades, the global use of pesticides—particularly herbicides—to control economically harmful organisms and to meet food demands has increased significantly. However, this increased use of pesticides can affect non-target organisms, such as microalgae and cyanobacteria, which play critical roles in aquatic ecosystems. To assess the scientific progress on the effects of pesticides, especially herbicides, on microalgae and cyanobacteria, scientometric and systematic mapping analyses was conducted, considering publications from 1991 to 2023 in the Web of Science database. The findings show a steady increase in publications over the years, with China, the United States, and India ranki…",
+   "meta": {
+    "institutions": [
+     "Universidade Federal do Rio Grande",
+     "University of Rio Grande and Rio Grande Community College"
+    ],
+    "countries": [
+     "BR",
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7237120806"
+   },
+   "rank": 20,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S13"
+  },
+  {
+   "kind": "paper",
+   "title": "Chemical composition and antimicrobial activity of Morinda citrifolia L. leaf essential oil",
+   "url": "https://doi.org/10.58985/jeopc.2026.v04i03.89",
+   "source": "Journal of Essential Oil and Plant Composition ",
+   "published": "2026-11-20",
+   "lang": "en",
+   "summary": "Morinda citrifolia L. (Rubiaceae), commonly known as noni, is a medicinal plant, traditionally used in the management of various ailments, including diabetes, infections, inflammation, cancer, and liver diseases. This study investigated the chemical constituents and antimicrobial activity of M. citrifolia leaf essential oil. Essential oil was extracted from air-dried leaves by hydrodistillation using a Clevenger-type apparatus and characterized by gas chromatography–mass spectrometry (GC–MS). Antimicrobial activity was evaluated against six bacterial strains and three fungal isolates using broth microdilution assays to determine the minimum inhibitory concentration (MIC), minimum bactericida…",
+   "meta": {
+    "institutions": [
+     "Lagos State University",
+     "University of Lagos",
+     "Aromatic Plant Research Center",
+     "University of Alabama in Huntsville"
+    ],
+    "countries": [
+     "NG",
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7237003717"
+   },
+   "rank": 6,
+   "queries": [
+    "farnesene",
+    "beta-farnesene production",
+    "farnesene Escherichia coli"
+   ],
+   "sid": "S14"
+  },
+  {
+   "kind": "paper",
+   "title": "Moss is more: The moss Physcomitrium patens as an ideal chassis for plant synthetic biology",
+   "url": "https://doi.org/10.1093/plphys/kiag876",
+   "source": "PLANT PHYSIOLOGY",
+   "published": "2026-11-20",
+   "lang": "en",
+   "summary": "Physcomitrium patens, commonly known as the spreading earthmoss or Physco, has gained increasing attention as a chassis for synthetic biology in plants. This review explores its advantages over flowering plants traditionally used more often for biotechnology, such as Arabidopsis thaliana and maize, including shorter life cycles and ease to handle experimentally, being haploid, and much higher efficiency for integration of transgenes into its genome by homologous recombination. In addition, Physco's ability to maintain episomes also introduces an additional possibility for transgene expression and manipulation. With these advantageous traits, Physco has already been used for synthetic genomes…",
+   "meta": {
+    "institutions": [
+     "The University of Western Australia",
+     "ARC Centre of Excellence in Plant Energy Biology"
+    ],
+    "countries": [
+     "AU"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7237108721"
+   },
+   "rank": 21,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S15"
+  },
+  {
+   "kind": "paper",
+   "title": "Physiological memory links fluctuating light to oxidative and metabolic dynamics in cyanobacteria",
+   "url": "https://doi.org/10.1016/j.envexpbot.2026.106503",
+   "source": "Environmental and Experimental Botany",
+   "published": "2026-11-18",
+   "lang": "en",
+   "summary": "Cyanobacterial responses to fluctuating light reflect physiological states that adjust at different rates. We exposed Microcystis aeruginosa NIES-111 and Phormidium ambiguum NIES-2119 to a controlled diel light programme at 20 and 30 °C and measured intracellular H₂O₂, protein and chlorophyll-a (Chl-a). At 09:00 and 18:00, both with a three-hour mean PAR of 450 μmol photons m⁻² s⁻¹, descending/ascending H₂O₂/protein ratios were 2.069 in Microcystis (95% CI 1.587–2.697) and 0.871 in Phormidium (0.648–1.172). Their ratio of phase contrasts was 2.376 (temperature-stratified permutation P = 0.005; Holm-adjusted P = 0.025). The original reduced-model coefficients were retained. Conditional pooled…",
+   "meta": {
+    "institutions": [
+     "Saitama University"
+    ],
+    "countries": [
+     "JP"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7235860206"
+   },
+   "rank": 19,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S16"
+  },
+  {
+   "kind": "paper",
+   "title": "Cyanobacteria–rice symbiosis: A nature-based solution for sustainable rice cultivation",
+   "url": "https://doi.org/10.1016/j.fcr.2026.110802",
+   "source": "Field Crops Research",
+   "published": "2026-11-18",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [
+     "National Chung Hsing University",
+     "Academia Sinica",
+     "National Taipei University"
+    ],
+    "countries": [
+     "TW"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7235718018"
+   },
+   "rank": 23,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S17"
+  },
+  {
+   "kind": "paper",
+   "title": "Maize varieties native to northern Mexico show distinctive tissue-derived volatile profiles in response to Spodoptera frugiperda herbivory",
+   "url": "https://doi.org/10.1007/s11829-026-10306-w",
+   "source": "Arthropod-Plant Interactions",
+   "published": "2026-11-17",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [
+     "The University of Texas at El Paso",
+     "Centro de Investigación en Alimentación y Desarrollo",
+     "Autonomous University of Chihuahua"
+    ],
+    "countries": [
+     "MX",
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7235378212"
+   },
+   "rank": 6,
+   "queries": [
+    "farnesene"
+   ],
+   "sid": "S18"
+  },
+  {
+   "kind": "paper",
+   "title": "Hijacking Prenyltransferases and Terpene Synthases for the Enzymatic Synthesis of Non‐natural C 19 , C 24 , and C 29 Terpenoids",
+   "url": "https://doi.org/10.1002/anie.6338076",
+   "source": "Angewandte Chemie International Edition",
+   "published": "2026-11-17",
+   "lang": "en",
+   "summary": "The terpenoid substrate analog 14‐ nor ‐farnesyl pyrophosphate (14‐ nor ‐FPP), lacking the methyl group Me14, was synthesized and enzymatically elongated to 18‐ nor ‐geranylgeranyl pyrophosphate (18‐ nor ‐GGPP) and 22‐ nor ‐geranylfarnesyl pyrophosphate (22‐ nor ‐GFPP) by GGPP synthase (GGPPS) and GFPP synthase (GFPPS), respectively. Downstream conversion with 20 diterpene synthases (DTSs) and 10 sesterterpene synthases (StTSs) yielded in total 24 new compounds. Surprisingly, in two cases the substrate analogs were converted by GGPPS and a DTS into nor ‐sesterterpenes (C 24 ), while one combination of GFPPS and a StTS yielded a nor ‐triterpene (C 29 ), demonstrating that the lack of just one…",
+   "meta": {
+    "institutions": [
+     "University of Bonn",
+     "University of Cologne"
+    ],
+    "countries": [
+     "DE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7234983701"
+   },
+   "rank": 12,
+   "queries": [
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S19"
+  },
+  {
+   "kind": "paper",
+   "title": "The evolution and function of eukaryote-to-cyanobacteria horizontal gene transfer",
+   "url": "https://doi.org/10.1073/pnas.2630965123",
+   "source": "Proceedings of the National Academy of Sciences",
+   "published": "2026-11-16",
+   "lang": "en",
+   "summary": "Prokaryote-to-eukaryote horizontal gene transfer (HGT) has emerged as a driver of eukaryotic evolution. In contrast, eukaryote-to-prokaryote HGT remains poorly characterized, limiting insight into how eukaryote-derived genes influence prokaryotic evolution and function. Here, we reconstructed a comprehensive and well-resolved phylogeny of 469 high-quality Cyanobacteria genomes spanning all orders. Leveraging this framework, we identified 204 candidate functionally diverse genes of eukaryotic origin in cyanobacteria, likely representing 59 putative transfer events, including 197 genes not previously documented. All 204 candidates were intronless, consistent with intron loss during their evolu…",
+   "meta": {
+    "institutions": [
+     "Shandong University",
+     "State Key Laboratory of Microbial Technology",
+     "Yellow Sea Fisheries Research Institute",
+     "Chinese Academy of Fishery Sciences",
+     "Zhejiang University",
+     "Howard Hughes Medical Institute"
+    ],
+    "countries": [
+     "CN",
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7234545076"
+   },
+   "rank": 11,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S20"
+  },
+  {
+   "kind": "paper",
+   "title": "Cortex-specific accumulation of terpene volatiles mainly accounts for aroma quality in ginger rhizome",
+   "url": "https://doi.org/10.1016/j.foodres.2026.121202",
+   "source": "Food Research International",
+   "published": "2026-11-14",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [
+     "Yangtze University",
+     "Tarim University",
+     "Chongqing University of Arts and Sciences"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7227322795"
+   },
+   "rank": 3,
+   "queries": [
+    "farnesene",
+    "farnesene synthase"
+   ],
+   "sid": "S21"
+  },
+  {
+   "kind": "paper",
+   "title": "A sensory-to-enzyme framework reveals engineerable aroma modulators in sweet orange",
+   "url": "https://doi.org/10.1093/hr/uhag479",
+   "source": "Horticulture Research",
+   "published": "2026-11-13",
+   "lang": "en",
+   "summary": "Sweet orange (Citrus sinensis) is a major fruit crop worldwide, but its flavor quality has declined after centuries of clonal propagation. Terpenoids dominate citrus aroma, but the links among sensory perception, volatile chemistry, biosynthetic enzymes, and engineerable metabolic routes remain incomplete. Here, we developed an integrative “discovery–decoding–design” workflow that integrates consumer evaluation, volatile metabolomics, high-throughput terpene synthase (TPS) screening in yeast, protein engineering, and pathway optimization. The resulting three-dimensional Aroma Wheel connected aroma phenotypes, terpenoid chemotypes, and TPS genotypes across sweet orange cultivars. This framewo…",
+   "meta": {
+    "institutions": [
+     "Chinese Academy of Sciences",
+     "Huazhong Agricultural University",
+     "Shenzhen Institutes of Advanced Technology",
+     "Shenzhen Institute of Synthetic Biology",
+     "Shanghai Jiao Tong University",
+     "State Key Laboratory of Microbial Metabolism"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7233718554"
+   },
+   "rank": 2,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S22"
+  },
+  {
+   "kind": "paper",
+   "title": "Updating Analytical Methods for Cyanobacteria and Their Metabolites",
+   "url": "https://doi.org/10.1002/awwa.70175",
+   "source": "American Water Works Association",
+   "published": "2026-11-12",
+   "lang": "en",
+   "summary": "Key Takeaways Cyanobacteria blooms pose significant water quality challenges. A multi‐tiered monitoring approach, in‐field and in‐laboratory, is essential. Standard Methods for the Examination of Water and Wastewater offers guidance on monitoring of algae and cyanobacteria. Future method updates will continue to expand monitoring options for utilities.",
+   "meta": {
+    "institutions": [],
+    "countries": [],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7226004799"
+   },
+   "rank": 4,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S23"
+  },
+  {
+   "kind": "paper",
+   "title": "Microbial CO2 Capture and Bioconversion from Energy Systems as a Tool Supporting Decarbonization and Sustainable Development: A Comparative Review of Microalgae, Cyanobacteria, and Bacteria",
+   "url": "https://doi.org/10.3390/en19225401",
+   "source": "Energies",
+   "published": "2026-11-10",
+   "lang": "en",
+   "summary": "Microbial carbon dioxide (CO2) utilization can supply biomass and chemicals while reducing fossil feedstock demand. This critical review compares microalgae, cyanobacteria, acetogens, hydrogen-oxidizing bacteria, and microbial electrosynthesis for integration with energy systems. Evidence is organized by measurement endpoint, reactor scale, and operating duration within a common process boundary. Photosynthetic cultivation favors sites with natural light, land, and local nutrients; annual productivity, harvesting, and contaminant transfer constrain implementation. Engineered cyanobacteria offer target metabolites when culture stability and product recovery are demonstrated. Hydrogen-oxidizin…",
+   "meta": {
+    "institutions": [
+     "University of Warmia and Mazury in Olsztyn",
+     "Bialystok University of Technology"
+    ],
+    "countries": [
+     "PL"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225720089"
+   },
+   "rank": 1,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S24"
+  },
+  {
+   "kind": "paper",
+   "title": "Adaptive laboratory evolution of Cupriavidus necator to sodium salts as a whole cell engineering strategy for enhanced trehalose production",
+   "url": "https://doi.org/10.1186/s12934-026-03167-8",
+   "source": "Microbial Cell Factories",
+   "published": "2026-11-07",
+   "lang": "en",
+   "summary": "Trehalose is an important compatible solute with diverse applications in the pharmaceutical, food, and cosmetic industries. In Cupriavidus necator, trehalose biosynthesis is naturally associated with osmotic stress, but typically retained intracellularly as an osmo-protectant. In this study, adaptive laboratory evolution (ALE) was used as a whole cell engineering strategy to adapt C. necator H16 to increasing osmotic stress. ALE was performed with independent lineages and gradually increasing concentrations of NaCl and Na₂SO₄, reaching stable growth at up to 500 mM NaCl or 400 mM Na₂SO₄. In selected single colonies of the adapted cultures, the SetA sugar efflux transporter from Escherichia c…",
+   "meta": {
+    "institutions": [
+     "Karlsruhe Institute of Technology"
+    ],
+    "countries": [
+     "DE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225450397"
+   },
+   "rank": 2,
+   "queries": [
+    "beta-farnesene production",
+    "farnesene Escherichia coli",
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S25"
+  },
+  {
+   "kind": "paper",
+   "title": "Endophytic Bacteria as Modulators of Fragrance Biosynthesis in Plants: Mechanisms and Prospects",
+   "url": "https://doi.org/10.3390/ijms27219950",
+   "source": "International Journal of Molecular Sciences",
+   "published": "2026-11-06",
+   "lang": "en",
+   "summary": "Plant fragrance is the blend of volatile terpenoids, phenylpropanoids/benzenoids, fatty acid derivatives, and nitrogen- or sulfur-containing compounds released from flowers, leaves, and fruit. It drives pollination and defence and accounts for much of the economic value of aromatic, medicinal, and ornamental crops. However, it shifts with genotype, developmental stage, tissue type, and stress, and a large share of it still comes from wild-harvested plants. Endophytic bacteria are the microorganisms that colonize internal plant tissues without causing apparent disease symptoms, may modulate these specialized metabolic pathways. Only a limited number of studies have directly investigated these…",
+   "meta": {
+    "institutions": [
+     "Shri Ramswaroop Memorial University",
+     "Amity University",
+     "Truett-McConnell College"
+    ],
+    "countries": [
+     "IN",
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225399233"
+   },
+   "rank": 22,
+   "queries": [
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S26"
+  },
+  {
+   "kind": "paper",
+   "title": "Regulatory Functions and Stress-Response Mechanisms of the Plant bHLH Transcription Factor Family",
+   "url": "https://doi.org/10.3390/biology15212005",
+   "source": "Biology",
+   "published": "2026-11-05",
+   "lang": "en",
+   "summary": "Plant basic helix-loop-helix (bHLH) transcription factors constitute one of the largest and most functionally diverse transcription factor families in plants. Through a conserved bHLH domain, they bind E-box cis-elements or dimerize with partner proteins, coupling developmental and metabolic programs to environmental cues. However, a systematic synthesis of their multilayered stress responses remains lacking. Here, we review the structural features, genome-wide distribution, and evolutionary diversification of plant bHLH transcription factors, with emphasis on their regulatory functions under low-temperature, drought, salinity, and iron-deficiency conditions. We further integrate their roles…",
+   "meta": {
+    "institutions": [
+     "Yunnan Institute of Tropical Crops"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225308083"
+   },
+   "rank": 6,
+   "queries": [
+    "alpha-farnesene biosynthesis"
+   ],
+   "sid": "S27"
+  },
+  {
+   "kind": "paper",
+   "title": "Cyanobacteria as a Valuable Source of Mycosporine-like Amino Acids for Biotechnological Applications",
+   "url": "https://doi.org/10.9734/bji/2026/v30i6928",
+   "source": "Biotechnology Journal International",
+   "published": "2026-11-05",
+   "lang": "en",
+   "summary": "Cyanobacteria are photosynthetic prokaryotes that appeared on Earth more than 2.6 billion years ago. They are found in many environments, including land and water, and play an important role in primary production and nitrogen fixation. However, because they need sunlight for photosynthesis, cyanobacteria are often exposed to increasing levels of ultraviolet (UV) radiation at the Earth’s surface. Over time, cyanobacteria have developed different ways to protect themselves from UV radiation. One important mechanism is the production of mycosporine-like amino acids (MAAs), which act as natural UV protectants. MAAs are small, water-soluble, and colourless compounds that can absorb UV radiation. …",
+   "meta": {
+    "institutions": [
+     "Université de Diffa",
+     "Université Dan Dicko Dankoulodo de Maradi",
+     "Université Abdou Moumouni"
+    ],
+    "countries": [
+     "NE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225318539"
+   },
+   "rank": 21,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S28"
+  },
+  {
+   "kind": "paper",
+   "title": "Beyond Phosphorus: Nutrient Medium Composition Shapes Early Growth in Cyanobacteria-Dominated Biocrusts from a Peruvian Fog Oasis",
+   "url": "https://doi.org/10.3390/soilsystems10110143",
+   "source": "Soil Systems",
+   "published": "2026-11-04",
+   "lang": "en",
+   "summary": "Biological soil crusts are key components of dryland ecosystems, contributing to soil stabilization, nutrient cycling, and primary productivity. However, little is known about how nutrient availability influences the early development of biocrusts from South American desert fog oases, where fog is the dominant water source. Here, we evaluated functional responses of cyanobacteria-dominated biocrust microcosms from the Lachay National Reserve, Peru, to varying nutrient additions over a 57-day laboratory experiment. Prior to addition, the initial inoculum was characterized using light microscopy and DNA metabarcoding to establish ecological context. Responses were assessed through standardized…",
+   "meta": {
+    "institutions": [
+     "National University of San Marcos",
+     "Norwegian University of Science and Technology"
+    ],
+    "countries": [
+     "PE",
+     "NO"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225246523"
+   },
+   "rank": 7,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S29"
+  },
+  {
+   "kind": "paper",
+   "title": "Volatile Profiles of Sweet Breads Enriched with Orange and Lime Peel Flours",
+   "url": "https://doi.org/10.3390/foods15213931",
+   "source": "Foods",
+   "published": "2026-11-02",
+   "lang": "en",
+   "summary": "This study characterized the volatile organic compounds of sweet breads formulated with 2% and 4% orange (Citrus sinensis) (C.S.) and lime (Citrus limetta Risso) (C.L.) peel flours by integrating gas chromatography–mass spectrometry (GC-MS) and multivariate analysis. A total of 165 volatile compounds belonging to 11 chemical families were identified. Citrus peel flour significantly modified the volatile profile (p ≤ 0.05), primarily reducing furans, carboxylic acids, aldehydes, ketones, and pyrazines while increasing terpenes, aldehydes, alcohols, and esters. Monoterpenes reached their highest relative abundance in C.L. 2% (45.029 ± 2.284%), whereas sesquiterpenes progressively increased to …",
+   "meta": {
+    "institutions": [
+     "National University Toribio Rodríguez de Mendoza"
+    ],
+    "countries": [
+     "PE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225200258"
+   },
+   "rank": 20,
+   "queries": [
+    "sesquiterpene metabolic engineering yeast"
+   ],
+   "sid": "S30"
+  },
+  {
+   "kind": "paper",
+   "title": "Advances in Genome Engineering of Social Amoebae for Natural Product Discovery",
+   "url": "https://doi.org/10.1111/1751-7915.70490",
+   "source": "Microbial Biotechnology",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "Natural products are low-molecular-weight molecules derived from living organisms which often exhibit distinct biological activities for potential pharmaceutical, agricultural or cosmetic applications. However, identifying novel natural products is becoming increasingly difficult due to high rates of rediscovery. Nevertheless, given the genetic information available across thousands of microbial genomes, there exists a vast 'dark matter' of biosynthetic pathways whose potential remains to be elucidated. In this mini review, we highlight the potential of Dictyostelids to serve as a valuable source for novel natural products, summarize established genetic engineering methods and present advanc…",
+   "meta": {
+    "institutions": [
+     "Bielefeld University"
+    ],
+    "countries": [
+     "DE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7237345295"
+   },
+   "rank": 3,
+   "queries": [
+    "farnesene Escherichia coli",
+    "sesquiterpene metabolic engineering yeast",
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S31"
+  },
+  {
+   "kind": "paper",
+   "title": "Untargeted Metabolomics Profiling of a Susceptible and Deterrent Spring Wheat ( Triticum aestivum ) Cultivar Using Thermal Desorption Comprehensive Two‐Dimensional Gas Chromatography‐Time‐of‐Flight Mass Spectrometry for Insights Into Potential Deterrent Volatile Organic Compounds Against the Orange …",
+   "url": "https://doi.org/10.1002/jssc.70585",
+   "source": "Journal of Separation Science",
+   "published": "2026-11-01",
+   "lang": "en",
+   "summary": "A pest of grave concern for wheat, Triticum aestivum (Poaceae), is the orange wheat blossom midge, Sitodiplosis mosellana (Géhin) (Diptera: Cecidomyiidae), which infests wheat by laying eggs in wheat heads. Upon hatching, larvae will begin to feed on the kernels of wheat, resulting in a decrease in yield and grain quality. The wheat cultivar 'Reeder' is known to deter wheat midge from laying their eggs. To understand the mechanism behind the resistance of 'Reeder' wheat, an untargeted approach using an in vivo active sampling system onto thermal desorption tubes followed by comprehensive two-dimensional gas chromatography time-of-flight mass spectrometry was employed, the first time wheat ha…",
+   "meta": {
+    "institutions": [
+     "University of Alberta",
+     "The Metabolomics Innovation Centre",
+     "University of Manitoba"
+    ],
+    "countries": [
+     "CA"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7237005850"
+   },
+   "rank": 18,
+   "queries": [
+    "farnesene synthase"
+   ],
+   "sid": "S32"
+  },
+  {
+   "kind": "paper",
+   "title": "EMPLOYING CYANOBACTERIA SP. IN BIOREMEDIATION OF SALINE SOILS TO REDUCE WATER POLLUTION",
+   "url": "https://doi.org/10.30574/gscarr.2026.29.1.0249",
+   "source": "GSC Advanced Research and Reviews",
+   "published": "2026-10-31",
+   "lang": "en",
+   "summary": "This study evaluated the influence of surface-applied wet algal biomass on key physicochemical properties of saline soil collected from the Abu Ghraib region of central Iraq. The algal mixture, a naturally occurring consortium obtained from a freshwater canal located within the University of Baghdad, was taxonomically identified as belonging to four major algal classes: Bacillariophyceae, Chlorophyceae, Cyanophyceae, and Zygnemataceae. These indigenous algae were applied to the soil surface to assess their capacity to modify salinity-related parameters through biological and physicochemical mechanisms. Temporal measurements of electrical conductivity (EC), total dissolved solids (TDS), NaCl …",
+   "meta": {
+    "institutions": [
+     "Scientific Research Commission"
+    ],
+    "countries": [
+     "IQ"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7215765117"
+   },
+   "rank": 15,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S33"
+  },
+  {
+   "kind": "paper",
+   "title": "Exploring Cyanobacteria diversity through molecular techniques",
+   "url": "https://doi.org/10.21608/mid.2026.534493.4486",
+   "source": "Microbes and Infectious Diseases /Microbes and Infectious Diseases",
+   "published": "2026-10-30",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [],
+    "countries": [],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7225053315"
+   },
+   "rank": 6,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S34"
+  },
+  {
+   "kind": "paper",
+   "title": "Effects of Cellulase and β-Glucosidase on the Quality and Aroma Profiles of Crown Pear Wine",
+   "url": "https://doi.org/10.3390/foods15213843",
+   "source": "Foods",
+   "published": "2026-10-27",
+   "lang": "en",
+   "summary": "Enzymatic treatment is an effective approach for regulating the quality and aroma of fruit wines. In this study, the effects of cellulase and β-glucosidase at different concentrations on pear wine quality, volatile aroma compounds, and sensory characteristics were investigated. Multivariate statistical analyses and entropy-weighted TOPSIS were used to characterize aroma differentiation and rank treatments based on comprehensive quality attributes. Enzymatic treatment significantly affected clarification, color, antioxidant capacity, and volatile aroma profiles, whereas most conventional physicochemical parameters showed limited changes. A total of 54 and 53 volatile compounds were identified…",
+   "meta": {
+    "institutions": [
+     "Chinese Academy of Agricultural Sciences",
+     "Institute of Food Science and Technology"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7223793699"
+   },
+   "rank": 2,
+   "queries": [
+    "farnesene Saccharomyces cerevisiae"
+   ],
+   "sid": "S35"
+  },
+  {
+   "kind": "paper",
+   "title": "From cell factories to photobiocatalysts: reengineering cyanobacteria for solar-driven chemical manufacturing",
+   "url": "https://doi.org/10.1080/07388551.2026.2741611",
+   "source": "Critical Reviews in Biotechnology",
+   "published": "2026-10-25",
+   "lang": "en",
+   "summary": "To achieve more sustainable, light-powered chemical manufacturing, cyanobacterial engineering is expanding from conventional carbon-accumulating “cell factories” toward the complementary use of cyanobacteria as “whole-cell photobiocatalysts.” This review critically examines this conceptual extension. By shifting the engineering focus from carbon-centric biosynthesis to electron- and energy-coupled catalysis, this emerging approach partially decouples target-product formation from the de novo assembly of CO2-derived carbon skeletons. Instead, it exploits photosynthetically generated reducing equivalents and ATP to support redox and energy-dependent enzymatic transformations, thereby reducing …",
+   "meta": {
+    "institutions": [
+     "Tianjin University"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7223568145"
+   },
+   "rank": 5,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S36"
+  },
+  {
+   "kind": "paper",
+   "title": "Toward standard testing methods in biophotovoltaics based on cyanobacteria",
+   "url": "https://doi.org/10.1016/j.xcrp.2026.103594",
+   "source": "Cell Reports Physical Science",
+   "published": "2026-10-24",
+   "lang": "en",
+   "summary": "Microbial biophotovoltaics (BPVs) are an emerging renewable energy technology that harnesses photosynthetic microorganisms to generate electric current. Despite the rapid growth of the field, the lack of standardized testing and reporting methods currently prevents the benchmarking of devices, slowing technological progress. This article provides a critical analysis of the experimental practices used in BPV research, highlighting the significant variability in device configurations, light sources, electrode materials, biomass quantification methods, and electrochemical measurement protocols reported in the literature. It further considers the historical standardization of protocols for conve…",
+   "meta": {
+    "institutions": [
+     "École Polytechnique Fédérale de Lausanne",
+     "Massachusetts Institute of Technology",
+     "Laboratório Associado TERRA",
+     "University of Coimbra",
+     "Helmholtz Centre for Environmental Research",
+     "University of Applied Sciences and Arts of Southern Switzerland"
+    ],
+    "countries": [
+     "CH",
+     "US",
+     "PT",
+     "DE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7223392961"
+   },
+   "rank": 8,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S37"
+  },
+  {
+   "kind": "paper",
+   "title": "Nitrate Versus Ammonium Assimilation in Neochlorella semenenkoi: 15N-Tracking Study of Metabolomic Dynamics",
+   "url": "https://doi.org/10.3390/ijms27219497",
+   "source": "International Journal of Molecular Sciences",
+   "published": "2026-10-24",
+   "lang": "en",
+   "summary": "Microalgae of the Chlorellaceae family are promising producers of valuable metabolites, yet the choice of nitrogen source significantly modulates their physiology and biochemistry. In this study, we investigated the effect of two inorganic nitrogen sources—ammonium acetate (AA) and sodium nitrate—on the metabolic recovery of Neochlorella semenenkoi IPPAS C-1210 after nitrogen starvation. Using a combination of targeted amino acid quantification (HPLC-MS/MS) and untargeted high-resolution metabolomics, we tracked both concentration changes and de novo biosynthesis of nitrogen-containing metabolites via 15N isotopic labeling. Our results show that ammonium acetate and sodium nitrate enable equ…",
+   "meta": {
+    "institutions": [
+     "Russian Academy of Sciences",
+     "Timiryazev Institute of Plant Physiology"
+    ],
+    "countries": [
+     "RU"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7223837308"
+   },
+   "rank": 10,
+   "queries": [
+    "farnesene Saccharomyces cerevisiae"
+   ],
+   "sid": "S38"
+  },
+  {
+   "kind": "paper",
+   "title": "MXene-polydopamine-cyanobacteria photobioelectrochemical biosensor for atrazine detection in environmental waters",
+   "url": "https://doi.org/10.1007/s00604-026-08471-z",
+   "source": "Microchimica Acta",
+   "published": "2026-10-23",
+   "lang": "en",
+   "summary": "A cyanobacteria-based photobioelectrochemical biosensor was developed for the first time using Synechococcus elongatus whole cells immobilized on a Ti₃C₂Tₓ MXene electrode modified with an electropolymerized polydopamine (PDA) layer. This surface created a biotic-abiotic interface that facilitated light-driven electron transfer for the sensitive screening of photosystem II (PSII)-inhibiting herbicides in environmental waters, using atrazine (ATZ) as a model analyte. The biosensor was characterized by scanning electron microscopy (SEM), electrochemical impedance spectroscopy (EIS), X-ray photoelectron spectroscopy (XPS), and Fourier-transform infrared spectroscopy (FTIR). The detection strate…",
+   "meta": {
+    "institutions": [
+     "Universidade Estadual Paulista (Unesp)",
+     "Universidade Estadual de Campinas (UNICAMP)"
+    ],
+    "countries": [
+     "BR"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7223371945"
+   },
+   "rank": 16,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S39"
+  },
+  {
+   "kind": "paper",
+   "title": "Integrated Aroma Profiling and Functional Characterization of LcTPS24 Uncover Its Role in Monoterpene Biosynthesis in Litchi Fruit",
+   "url": "https://doi.org/10.3390/plants15213256",
+   "source": "Plants",
+   "published": "2026-10-22",
+   "lang": "en",
+   "summary": "Litchi (Litchi chinensis) is a commercially valuable subtropical fruit prized for its unique floral–fruity aroma, which largely determines consumer preference and commercial quality. Terpenoids serve as the core volatile compounds that shape the characteristic litchi fruit aroma. Despite their importance, the volatile profile of litchi fruit and the key genes underlying its aroma formation remain poorly understood. Herein, we determine the gas chromatography–mass spectrometry (GC-MS)-based metabolomic profiling of litchi cultivars and functionally characterize a key litchi terpene synthase gene, LcTPS24, a candidate selected on the basis of previously reported TPS-family expression patterns …",
+   "meta": {
+    "institutions": [
+     "South China Agricultural University",
+     "Hainan Provincial Academy of Agricultural Sciences",
+     "Ministry of Agriculture and Rural Affairs"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7223209085"
+   },
+   "rank": 0,
+   "queries": [
+    "alpha-farnesene biosynthesis",
+    "farnesene synthase",
+    "farnesene Escherichia coli",
+    "mevalonate pathway farnesyl pyrophosphate engineering"
+   ],
+   "sid": "S40"
+  },
+  {
+   "kind": "paper",
+   "title": "Terpene synthases are highly substrate tolerant – among them BcBOT2 is a “jack of all trades”",
+   "url": "https://doi.org/10.1039/d6np00040a",
+   "source": "Natural Product Reports",
+   "published": "2026-10-21",
+   "lang": "en",
+   "summary": "complex carbocation cascades. It was found that these sometimes exhibit unusual substrate acceptance. Using the example of the fungal sesquiterpene synthase BcBOT2, it is shown that the \"terpenome\" can be expanded in an unprecedented way, whereby completely new terpene backbones can be generated that nature is usually unable to access, as of today.",
+   "meta": {
+    "institutions": [
+     "Leibniz University Hannover",
+     "Leibniz Institute of Plant Biochemistry",
+     "Assiut University",
+     "Uppsala University"
+    ],
+    "countries": [
+     "DE",
+     "EG",
+     "SE"
+    ],
+    "cited_by": 2,
+    "openalex_id": "https://openalex.org/W7168400244"
+   },
+   "rank": 1,
+   "queries": [
+    "farnesene synthase"
+   ],
+   "sid": "S41"
+  },
+  {
+   "kind": "paper",
+   "title": "Cycloparaffin-rich high density sustainable aviation fuel: pathways from terpenes, terpenoids, and plant oils",
+   "url": "https://doi.org/10.1039/d6ra06326h",
+   "source": "RSC Advances",
+   "published": "2026-10-21",
+   "lang": "en",
+   "summary": "hydrogenation, dimerization, and cyclopropanation. The review examines the types of catalysts employed in various processes, along with their activity, selectivity, and product yields. It also compares the properties of resulting isomers, dimers, and their mixtures with aviation fuels to assess their suitability as drop-in replacements. Overall, this review presents the manufacturing of high-quality SAF from terpenes and terpenoids as renewable, scalable feedstocks, offering a sustainable solution in reducing greenhouse gas emissions from the aviation sector.",
+   "meta": {
+    "institutions": [
+     "Indian Institute of Technology Hyderabad",
+     "University of Surrey",
+     "King Mongkut's University of Technology North Bangkok",
+     "Chongqing University",
+     "University of Houston"
+    ],
+    "countries": [
+     "IN",
+     "GB",
+     "TH",
+     "CN",
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7215124401"
+   },
+   "rank": 3,
+   "queries": [
+    "farnesane jet fuel"
+   ],
+   "sid": "S42"
+  },
+  {
+   "kind": "paper",
+   "title": "Signal peptides for engineered protein secretion by free and hydrogel-encapsulated cyanobacteria",
+   "url": "https://doi.org/10.1073/pnas.2624792123",
+   "source": "Proceedings of the National Academy of Sciences",
+   "published": "2026-10-21",
+   "lang": "en",
+   "summary": "Cyanobacteria provide a promising platform for light-driven heterologous protein production. In heterologous production systems, cells are typically lysed for product purification or to facilitate interaction with external substrates, unless the product is secreted. Fusion to molecular “shipping labels” known as signal peptides can target chimeric proteins to native membrane translocation pathways and result in secretion. In this work, we identified signal peptides from the model cyanobacterium Synechococcus elongatus PCC 7942 ( S. elongatus ) and genetically fused to two heterologous enzymes: the reporter nanoluciferase (NLuc) and an oxidative laccase (CotA). Increased extracellular activit…",
+   "meta": {
+    "institutions": [
+     "University of California San Diego",
+     "Bar-Ilan University"
+    ],
+    "countries": [
+     "US",
+     "IL"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7223112361"
+   },
+   "rank": 18,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S43"
+  },
+  {
+   "kind": "paper",
+   "title": "Microalgae and Cyanobacteria Species Valorization Towards Sustainable Bioplastics Production",
+   "url": "https://doi.org/10.3390/md24100367",
+   "source": "Marine Drugs",
+   "published": "2026-10-20",
+   "lang": "en",
+   "summary": "The depletion of fossil resources and increasing plastic-derived pollution have become major environmental concerns. In this context, biodegradable biopolymers such as polyhydroxyalkanoates (PHA) have attracted considerable scientific interest. Microalgae and cyanobacteria represent promising photosynthetic microorganisms for sustainable bioplastic production. In this study, ten microalgal species (Parachlorella kessleri, Chlorella vulgaris, Chlorella minutissima, Tetraselmis tetrathele, Chromochloris zofigiensis, Acutodesmus obliquus, Euglena gracilis, Chlorococcum oleofaciens, Botryococcus braunii, and Coelastrella vacuolata) and four cyanobacterial species (Arthrospira platensis, Nostoc m…",
+   "meta": {
+    "institutions": [
+     "University of Patras",
+     "Tanta University"
+    ],
+    "countries": [
+     "GR",
+     "EG"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7222996889"
+   },
+   "rank": 13,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S44"
+  },
+  {
+   "kind": "paper",
+   "title": "Eco-Environmental, Health and Socio-Economic Perspectives on Cyanobacteria and Cyanotoxins",
+   "url": "https://doi.org/10.3390/toxins18100456",
+   "source": "Toxins",
+   "published": "2026-10-20",
+   "lang": "en",
+   "summary": "Cyanobacteria, or blue-green algae, the first oxygenic photosynthetic organisms on Earth, play indispensable ecological roles as primary producers and drivers of biogeochemical cycles, and are also sources of human food, nutraceuticals, and biotechnological products. However, cyanobacterial harmful algal blooms (CyanoHABs), intensified by eutrophication and global climate change, threaten water quality, biodiversity, and human health due to their production of diverse secondary metabolites, i.e., taste and odor (T&O) compounds and cyanotoxins. This Special Issue, \"Ecology and Toxicology of Cyanobacteria and Cyanotoxins\", compiles 13 papers from 9 countries that collectively advance our under…",
+   "meta": {
+    "institutions": [
+     "Yunnan University",
+     "Chinese Academy of Sciences",
+     "Institute of Hydrobiology",
+     "University of Chinese Academy of Sciences"
+    ],
+    "countries": [
+     "CN"
+    ],
+    "cited_by": 1,
+    "openalex_id": "https://openalex.org/W7223045808"
+   },
+   "rank": 14,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S45"
+  },
+  {
+   "kind": "paper",
+   "title": "10 CO2",
+   "url": "https://doi.org/10.5281/zenodo.23512941",
+   "source": "Zenodo (CERN European Organization for Nuclear Research)",
+   "published": "2026-10-20",
+   "lang": "en",
+   "summary": "",
+   "meta": {
+    "institutions": [],
+    "countries": [],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7223058879"
+   },
+   "rank": 17,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S46"
+  },
+  {
+   "kind": "paper",
+   "title": "Taxonomic composition of cyanobacteria in small reservoirs of the Republic of Tatarstan",
+   "url": "https://doi.org/10.33624/2311-0147-2026-1(40)-30-41",
+   "source": "Issues of modern algology (Вопросы современной альгологии)",
+   "published": "2026-10-15",
+   "lang": "en",
+   "summary": "An annotated list of cyanobacteria in small reservoirs of the Republic of Tatarstan is given, indicating their ecological and geographical characteristics, the type of adaptive strategy based on functional classification.",
+   "meta": {
+    "institutions": [
+     "Tatarstan Academy of Sciences"
+    ],
+    "countries": [
+     "RU"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7234463766"
+   },
+   "rank": 9,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S47"
+  },
+  {
+   "kind": "paper",
+   "title": "Expanding the Diversity of Guanitoxin-Producing Cyanobacteria, first report from Anabaenopsis",
+   "url": "https://doi.org/10.5281/zenodo.23325191",
+   "source": "Zenodo (CERN European Organization for Nuclear Research)",
+   "published": "2026-10-12",
+   "lang": "en",
+   "summary": "Data and scripts associated with our manuscript \"Expanding the Diversity of Guanitoxin-Producing Cyanobacteria, first report from Anabaenopsis\"",
+   "meta": {
+    "institutions": [
+     "University of Florida",
+     "Universidade de São Paulo",
+     "United States Food and Drug Administration",
+     "United States Geological Survey",
+     "University of Waterloo",
+     "University of Liège"
+    ],
+    "countries": [
+     "US",
+     "BR",
+     "BE",
+     "CA"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221551527"
+   },
+   "rank": 22,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S48"
+  },
+  {
+   "kind": "paper",
+   "title": "Extraction and Characterization of Bioactive Metabolites from an Axenically Cultured cyanobacteria Microcystis aeruginosa",
+   "url": "https://doi.org/10.36948/ijfmr.2026.v08i05.89157",
+   "source": "International Journal For Multidisciplinary Research",
+   "published": "2026-10-07",
+   "lang": "en",
+   "summary": "Cyanobacteria are recognized as promising sources of diverse metabolites with potential applications in pharmaceutical, nutraceutical and biotechnological fields. The present study investigated the bioactive compound profile of an axenically cultured isolate Microcystis aeruginosa through solvent extraction, quantitative estimation and gas chromatography–mass spectrometry (GC-MS) analysis. The polyphenol and phenolic contents were estimated as 0.31 and 0.24 µg/mg extract, respectively, whereas the flavonoid, alkaloid, terpenoids and saponin contents were 9.84, 110.52 and 6.6 and 165 µg/mg extract, respectively. GC-MS analysis revealed a diverse chemical profile comprising hydrocarbons, fatty…",
+   "meta": {
+    "institutions": [
+     "Veer Narmad South Gujarat University"
+    ],
+    "countries": [
+     "IN"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7220851141"
+   },
+   "rank": 24,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S49"
+  },
+  {
+   "kind": "paper",
+   "title": "Effects of glyphosate on cyanobacteria and phytoplankton communities",
+   "url": "https://doi.org/10.1080/09670262.2026.2741656",
+   "source": "European Journal of Phycology",
+   "published": "2026-10-02",
+   "lang": "en",
+   "summary": "Glyphosate, the most widely used herbicide in agriculture, is frequently detected in rivers and coastal waters influenced by agricultural runoff, raising concerns about its potential effects on non-target aquatic primary producers. Here, we combined mono-culture and community-level experiments to examine how glyphosate influences cyanobacteria and phytoplankton. We conducted a 20-day mono-culture experiment using the toxin-producing cyanobacterium Nodularia spumigena AV1 grown under phosphate-replete (P+), phosphate-free (P-) and glyphosate-amended conditions, in which glyphosate was the only added phosphorus-containing compound (GLY). In parallel, a 7-day microcosm experiment exposed a natu…",
+   "meta": {
+    "institutions": [
+     "Fujian Normal University",
+     "Fujian Polytechnic Normal University",
+     "Novia University of Applied Sciences",
+     "Station Linné"
+    ],
+    "countries": [
+     "CN",
+     "FI",
+     "SE"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W4402145929"
+   },
+   "rank": 2,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S50"
+  },
+  {
+   "kind": "paper",
+   "title": "Organic Matter Dynamics and Biogeochemical Signatures in Lakes From the Prairies to Tundra in Western Canada",
+   "url": "https://doi.org/10.1029/2025jg009558",
+   "source": "Journal of Geophysical Research Biogeosciences",
+   "published": "2026-10-01",
+   "lang": "en",
+   "summary": "Climate‐driven poleward shifts of terrestrial ecosystems are expected to alter organic matter inputs and biogeochemical processes in northern lakes. In regions lacking long‐term observations, latitudinal gradients provide valuable space‐for‐time substitutions for predicting these changes. We sampled water columns and sediments from 23 lakes across six ecoregions spanning the Canadian Prairies, boreal forest, and tundra to identify spatial patterns in organic matter composition, carbon burial, and dissolved greenhouse gases (GHG; notably CO 2 , CH 4 , and N 2 O). Catchment characteristics strongly influenced lake biogeochemistry by regulating terrestrial organic matter inputs and water column…",
+   "meta": {
+    "institutions": [
+     "Université du Québec à Chicoutimi",
+     "Center for Northern Studies",
+     "Groupe de recherche interuniversitaire en limnologie et en environnement aquatique",
+     "University of Jyväskylä",
+     "University of Lethbridge",
+     "University of Ottawa"
+    ],
+    "countries": [
+     "CA",
+     "FI"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7221612815"
+   },
+   "rank": 0,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S51"
+  },
+  {
+   "kind": "paper",
+   "title": "Cyanobacteria: A sustainable platform for high-value biopharmaceutical protein production",
+   "url": "https://doi.org/10.1016/j.jpha.2026.101807",
+   "source": "Journal of Pharmaceutical Analysis",
+   "published": "2026-10-01",
+   "lang": "en",
+   "summary": "Biopharmaceutical (therapeutic) proteins are biologically-derived drugs used to treat a variety of diseases. Producing these proteins naturally from mammalian cells presents significant challenges. As a result, non-native hosts, including plants, algae, yeast, and bacteria, have been employed to produce these proteins; however, the complex genetic reconstruction process, high cultivation costs, contamination risks, and regulatory hurdles have hampered commercial success. Cyanobacteria are a group of photoautotrophic organisms with enormous potential for sustainable manufacturing. They have recently been exploited as a potential bio-factory for therapeutic protein production. Cyanobacteria pr…",
+   "meta": {
+    "institutions": [
+     "University of California, Berkeley"
+    ],
+    "countries": [
+     "US"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7215033008"
+   },
+   "rank": 12,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S52"
+  },
+  {
+   "kind": "paper",
+   "title": "Integrating Synthetic Biology, Systems Biology, and Bioprocessing to Advance Terpene Production in Cyanobacteria",
+   "url": "https://doi.org/10.1021/acssynbio.6c00175",
+   "source": "ACS Synthetic Biology",
+   "published": "2026-09-25",
+   "lang": "en",
+   "summary": "Cyanobacteria act as efficient \"solar-powered\" cell factories, converting CO2 and light into valuable products while thriving in seawater or wastewater. Cyanobacteria are attractive hosts for terpenoid bioproduction because they natively produce terpene precursors. Our review found that while cyanobacteria have been engineered to produce 26 different terpenoids, only 1 of the 63 terpene bioproduction studies achieved titers in the g/L range. To identify the path forward towards maximizing cyanobacterial terpene titers and productivity, this review has taken a twofold approach. First, it synthesizes progress and bottlenecks across three interconnected dimensions: synthetic biology, systems bi…",
+   "meta": {
+    "institutions": [
+     "The University of Queensland",
+     "Macquarie University"
+    ],
+    "countries": [
+     "AU"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7214298106"
+   },
+   "rank": 3,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S53"
+  },
+  {
+   "kind": "paper",
+   "title": "Photosynthesis–Respiration Coupling in Cyanobacteria: Regulation or Redox Opportunity?",
+   "url": "https://doi.org/10.3390/phycology6040106",
+   "source": "Phycology",
+   "published": "2026-09-24",
+   "lang": "en",
+   "summary": "Cyanobacterial photosynthesis and respiration share electron carriers, allowing respiratory and auxiliary sinks to intersect with the photosynthetic electron-transfer chain. Across ecological niches and stress conditions, these connections can redistribute electrons when dominant photosynthetic routes become limited, revealing an integrated but often underappreciated bioenergetic network. Here, we reinterpret photosynthesis–respiration coupling as a hierarchy of electron-transfer opportunities rather than as fixed, separate pathways. Midpoint-potential relationships help define which transfers are thermodynamically plausible, whereas physiological conditions determine which routes become fun…",
+   "meta": {
+    "institutions": [
+     "Israel Oceanographic and Limnological Research"
+    ],
+    "countries": [
+     "IL"
+    ],
+    "cited_by": 0,
+    "openalex_id": "https://openalex.org/W7214172935"
+   },
+   "rank": 10,
+   "queries": [
+    "farnesene methanol OR CO2 OR cyanobacteria"
+   ],
+   "sid": "S54"
+  }
+ ]
+}
