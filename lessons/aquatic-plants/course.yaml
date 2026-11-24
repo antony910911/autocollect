@@ -1,0 +1,31 @@
+# 放進 Folio「Claude圖解教材」筆記本（依名稱尋找，不另外建新筆記本）。
+# 這門教材拆成三個分區，章號各自從 1 開始，共用同一份 figures/ 與 code/：
+#   [0-9][0-9]-*.md  原理與物種（6 章）
+#   b0[1-9]-*.md     廢水處理的實際應用（5 章）
+#   c0[1-9]-*.md     硝化槽＋植體槽與延伸應用（5 章）
+notebook:
+  id: nb_autocollect_ammonia   # 「Claude圖解教材」的實際 id
+  name: Claude圖解教材
+  find_by_name: true
+sections:
+  - id: sc_autocollect_aqplant_basics
+    name: 水生植物與氨氮：原理與物種篩選
+    color: "#2f9e6e"
+    order: 8
+    page_prefix: aqp
+    intro: README.md
+    glob: "0[1-9]-*.md"
+  - id: sc_autocollect_aqplant_field
+    name: 水生植物處理廢水：濕地、浮島與實場案例
+    color: "#2f6fb3"
+    order: 9
+    page_prefix: aqpf
+    intro: b00-README.md
+    glob: "b0[1-9]-*.md"
+  - id: sc_autocollect_aqplant_coupled
+    name: 硝化槽＋植體槽：耦合設計與延伸應用
+    color: "#7b4bb3"
+    order: 10
+    page_prefix: aqpc
+    intro: c00-README.md
+    glob: "c0[1-9]-*.md"

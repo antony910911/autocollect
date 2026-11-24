@@ -1,0 +1,602 @@
+{
+ "stoichiometry": {
+  "o2_per_n": 4.569,
+  "alk_caco3_per_n": 7.139,
+  "note": "自己依 NH4+ + 2O2 → NO3- + 2H+ + H2O 算的。教科書常見的 4.3 g O2/g N 是扣掉菌體合成所用的氮之後的值，比純化學計量略低。",
+  "o2_per_n_textbook": 4.3,
+  "o2_textbook_ref": "r_osu_nutrient"
+ },
+ "protein_to_n": 6.25,
+ "areal_rates": [
+  {
+   "key": "duckweed_full",
+   "zh": "浮萍塘（實場，豬糞廢水）",
+   "rate": 4.4,
+   "kind": "TKN 去除",
+   "conf": "abstract",
+   "ref": "r_duckweed_full",
+   "note": "文獻自稱是已報導中最高的之一"
+  },
+  {
+   "key": "cw_hybrid",
+   "zh": "混合式濕地（含表面流段）",
+   "rate": 4.24,
+   "kind": "總氮去除",
+   "conf": "secondary",
+   "ref": "r_vymazal_hybrid",
+   "note": "4.24 ± 5.12"
+  },
+  {
+   "key": "hyacinth_opt",
+   "zh": "布袋蓮（最適條件、無機氮源）",
+   "rate": 2.161,
+   "kind": "植物吸收",
+   "conf": "abstract",
+   "ref": "r_reddy_tucker",
+   "note": "同一篇的範圍是 0.533–2.161"
+  },
+  {
+   "key": "cw_vf",
+   "zh": "垂直流人工濕地（VF）",
+   "rate": 1.85,
+   "kind": "總氮去除",
+   "conf": "secondary",
+   "ref": "r_vymazal_hybrid",
+   "note": "1.85 ± 3.66"
+  },
+  {
+   "key": "tw_daniaopi",
+   "zh": "打鳥埤濕地（台灣）",
+   "rate": 1.3,
+   "kind": "氨氮去除",
+   "conf": "secondary",
+   "ref": "r_tw_thesis"
+  },
+  {
+   "key": "duckweed_pilot",
+   "zh": "浮萍塘（中試，豬糞液稀釋）",
+   "rate": 1.2,
+   "kind": "總氮去除",
+   "conf": "abstract",
+   "ref": "r_duckweed_pilot"
+  },
+  {
+   "key": "cw_hssf",
+   "zh": "水平流人工濕地（HF）",
+   "rate": 1.13,
+   "kind": "總氮去除",
+   "conf": "secondary",
+   "ref": "r_vymazal_hybrid",
+   "note": "1.13 ± 2.01，標準差比平均大"
+  },
+  {
+   "key": "tw_xinhai",
+   "zh": "新海二期表面流濕地（台灣）",
+   "rate": 1.0,
+   "kind": "氨氮去除",
+   "conf": "secondary",
+   "ref": "r_tw_thesis"
+  },
+  {
+   "key": "myrio_cw",
+   "zh": "粉綠狐尾藻濕地（中試，養豬廢水）",
+   "rate": 0.9,
+   "kind": "氨氮去除",
+   "conf": "abstract",
+   "ref": "r_myrio_cw",
+   "note": "原文 9 kg N/ha/d，600 天平均去除率 98.3%"
+  },
+  {
+   "key": "ftw_mean",
+   "zh": "浮島（16 個系統的平均）",
+   "rate": 0.64,
+   "kind": "總氮去除",
+   "conf": "secondary",
+   "ref": "r_ftw_review",
+   "note": "範圍 0.0015–2.8"
+  },
+  {
+   "key": "hyacinth_digestate",
+   "zh": "布袋蓮（沼液為氮源）",
+   "rate": 0.602,
+   "kind": "植物吸收",
+   "conf": "abstract",
+   "ref": "r_reddy_tucker",
+   "note": "同一篇：沼液組只有 0.124–0.602"
+  },
+  {
+   "key": "ftw_field",
+   "zh": "浮島（實場滯洪池／處理塘）",
+   "rate": 0.3,
+   "kind": "總氮去除",
+   "conf": "abstract",
+   "ref": "r_ftw_lagoon",
+   "note": "原文 0.06–0.57，這裡取中點"
+  }
+ ],
+ "scenarios": [
+  {
+   "key": "digestate",
+   "zh": "養豬場沼液（厭氧消化後）",
+   "q_m3d": 30.0,
+   "tan": 800.0,
+   "target": 0.8,
+   "note": "濃度高，一定要先稀釋或先硝化",
+   "load_kgN_d": 24.0,
+   "removed_kgN_d": 19.2,
+   "areas": [
+    {
+     "tech": "浮萍塘（實場，豬糞廢水）",
+     "key": "duckweed_full",
+     "rate": 4.4,
+     "area_m2": 4364,
+     "area_ha": 0.436
+    },
+    {
+     "tech": "浮萍塘（中試，豬糞液稀釋）",
+     "key": "duckweed_pilot",
+     "rate": 1.2,
+     "area_m2": 16000,
+     "area_ha": 1.6
+    },
+    {
+     "tech": "布袋蓮（最適條件、無機氮源）",
+     "key": "hyacinth_opt",
+     "rate": 2.161,
+     "area_m2": 8885,
+     "area_ha": 0.888
+    },
+    {
+     "tech": "布袋蓮（沼液為氮源）",
+     "key": "hyacinth_digestate",
+     "rate": 0.602,
+     "area_m2": 31894,
+     "area_ha": 3.189
+    },
+    {
+     "tech": "粉綠狐尾藻濕地（中試，養豬廢水）",
+     "key": "myrio_cw",
+     "rate": 0.9,
+     "area_m2": 21333,
+     "area_ha": 2.133
+    },
+    {
+     "tech": "水平流人工濕地（HF）",
+     "key": "cw_hssf",
+     "rate": 1.13,
+     "area_m2": 16991,
+     "area_ha": 1.699
+    },
+    {
+     "tech": "垂直流人工濕地（VF）",
+     "key": "cw_vf",
+     "rate": 1.85,
+     "area_m2": 10378,
+     "area_ha": 1.038
+    },
+    {
+     "tech": "混合式濕地（含表面流段）",
+     "key": "cw_hybrid",
+     "rate": 4.24,
+     "area_m2": 4528,
+     "area_ha": 0.453
+    },
+    {
+     "tech": "浮島（16 個系統的平均）",
+     "key": "ftw_mean",
+     "rate": 0.64,
+     "area_m2": 30000,
+     "area_ha": 3.0
+    },
+    {
+     "tech": "浮島（實場滯洪池／處理塘）",
+     "key": "ftw_field",
+     "rate": 0.3,
+     "area_m2": 64000,
+     "area_ha": 6.4
+    },
+    {
+     "tech": "新海二期表面流濕地（台灣）",
+     "key": "tw_xinhai",
+     "rate": 1.0,
+     "area_m2": 19200,
+     "area_ha": 1.92
+    },
+    {
+     "tech": "打鳥埤濕地（台灣）",
+     "key": "tw_daniaopi",
+     "rate": 1.3,
+     "area_m2": 14769,
+     "area_ha": 1.477
+    }
+   ]
+  },
+  {
+   "key": "ras",
+   "zh": "室內養殖循環水排放",
+   "q_m3d": 100.0,
+   "tan": 3.0,
+   "target": 0.8,
+   "note": "濃度低、水量大",
+   "load_kgN_d": 0.3,
+   "removed_kgN_d": 0.24,
+   "areas": [
+    {
+     "tech": "浮萍塘（實場，豬糞廢水）",
+     "key": "duckweed_full",
+     "rate": 4.4,
+     "area_m2": 55,
+     "area_ha": 0.005
+    },
+    {
+     "tech": "浮萍塘（中試，豬糞液稀釋）",
+     "key": "duckweed_pilot",
+     "rate": 1.2,
+     "area_m2": 200,
+     "area_ha": 0.02
+    },
+    {
+     "tech": "布袋蓮（最適條件、無機氮源）",
+     "key": "hyacinth_opt",
+     "rate": 2.161,
+     "area_m2": 111,
+     "area_ha": 0.011
+    },
+    {
+     "tech": "布袋蓮（沼液為氮源）",
+     "key": "hyacinth_digestate",
+     "rate": 0.602,
+     "area_m2": 399,
+     "area_ha": 0.04
+    },
+    {
+     "tech": "粉綠狐尾藻濕地（中試，養豬廢水）",
+     "key": "myrio_cw",
+     "rate": 0.9,
+     "area_m2": 267,
+     "area_ha": 0.027
+    },
+    {
+     "tech": "水平流人工濕地（HF）",
+     "key": "cw_hssf",
+     "rate": 1.13,
+     "area_m2": 212,
+     "area_ha": 0.021
+    },
+    {
+     "tech": "垂直流人工濕地（VF）",
+     "key": "cw_vf",
+     "rate": 1.85,
+     "area_m2": 130,
+     "area_ha": 0.013
+    },
+    {
+     "tech": "混合式濕地（含表面流段）",
+     "key": "cw_hybrid",
+     "rate": 4.24,
+     "area_m2": 57,
+     "area_ha": 0.006
+    },
+    {
+     "tech": "浮島（16 個系統的平均）",
+     "key": "ftw_mean",
+     "rate": 0.64,
+     "area_m2": 375,
+     "area_ha": 0.037
+    },
+    {
+     "tech": "浮島（實場滯洪池／處理塘）",
+     "key": "ftw_field",
+     "rate": 0.3,
+     "area_m2": 800,
+     "area_ha": 0.08
+    },
+    {
+     "tech": "新海二期表面流濕地（台灣）",
+     "key": "tw_xinhai",
+     "rate": 1.0,
+     "area_m2": 240,
+     "area_ha": 0.024
+    },
+    {
+     "tech": "打鳥埤濕地（台灣）",
+     "key": "tw_daniaopi",
+     "rate": 1.3,
+     "area_m2": 185,
+     "area_ha": 0.018
+    }
+   ]
+  },
+  {
+   "key": "sewage",
+   "zh": "生活污水二級放流",
+   "q_m3d": 1000.0,
+   "tan": 20.0,
+   "target": 0.8,
+   "note": "人工濕地最常見的對象",
+   "load_kgN_d": 20.0,
+   "removed_kgN_d": 16.0,
+   "areas": [
+    {
+     "tech": "浮萍塘（實場，豬糞廢水）",
+     "key": "duckweed_full",
+     "rate": 4.4,
+     "area_m2": 3636,
+     "area_ha": 0.364
+    },
+    {
+     "tech": "浮萍塘（中試，豬糞液稀釋）",
+     "key": "duckweed_pilot",
+     "rate": 1.2,
+     "area_m2": 13333,
+     "area_ha": 1.333
+    },
+    {
+     "tech": "布袋蓮（最適條件、無機氮源）",
+     "key": "hyacinth_opt",
+     "rate": 2.161,
+     "area_m2": 7404,
+     "area_ha": 0.74
+    },
+    {
+     "tech": "布袋蓮（沼液為氮源）",
+     "key": "hyacinth_digestate",
+     "rate": 0.602,
+     "area_m2": 26578,
+     "area_ha": 2.658
+    },
+    {
+     "tech": "粉綠狐尾藻濕地（中試，養豬廢水）",
+     "key": "myrio_cw",
+     "rate": 0.9,
+     "area_m2": 17778,
+     "area_ha": 1.778
+    },
+    {
+     "tech": "水平流人工濕地（HF）",
+     "key": "cw_hssf",
+     "rate": 1.13,
+     "area_m2": 14159,
+     "area_ha": 1.416
+    },
+    {
+     "tech": "垂直流人工濕地（VF）",
+     "key": "cw_vf",
+     "rate": 1.85,
+     "area_m2": 8649,
+     "area_ha": 0.865
+    },
+    {
+     "tech": "混合式濕地（含表面流段）",
+     "key": "cw_hybrid",
+     "rate": 4.24,
+     "area_m2": 3774,
+     "area_ha": 0.377
+    },
+    {
+     "tech": "浮島（16 個系統的平均）",
+     "key": "ftw_mean",
+     "rate": 0.64,
+     "area_m2": 25000,
+     "area_ha": 2.5
+    },
+    {
+     "tech": "浮島（實場滯洪池／處理塘）",
+     "key": "ftw_field",
+     "rate": 0.3,
+     "area_m2": 53333,
+     "area_ha": 5.333
+    },
+    {
+     "tech": "新海二期表面流濕地（台灣）",
+     "key": "tw_xinhai",
+     "rate": 1.0,
+     "area_m2": 16000,
+     "area_ha": 1.6
+    },
+    {
+     "tech": "打鳥埤濕地（台灣）",
+     "key": "tw_daniaopi",
+     "rate": 1.3,
+     "area_m2": 12308,
+     "area_ha": 1.231
+    }
+   ]
+  }
+ ],
+ "dilution": [
+  {
+   "limit_tan": 60.0,
+   "label": "浮萍操作上限 60 mg N/L",
+   "fold": 13.3,
+   "extra_water_m3d": 370.0
+  },
+  {
+   "limit_tan": 200.0,
+   "label": "美人蕉／香蒲自我修復門檻 200 mg N/L",
+   "fold": 4.0,
+   "extra_water_m3d": 90.0
+  },
+  {
+   "limit_tan": 364.0,
+   "label": "粉綠狐尾藻可存活 364 mg N/L",
+   "fold": 2.2,
+   "extra_water_m3d": 35.9
+  }
+ ],
+ "harvest": [
+  {
+   "key": "duckweed_pilot",
+   "zh": "浮萍（中試，豬糞液）",
+   "dw": 5.5,
+   "protein_pct": null,
+   "n_pct": 5.6,
+   "total_removal": 1.2,
+   "conf": "abstract",
+   "ref": "r_duckweed_pilot",
+   "note": "含氮率由實場那篇的 35% 粗蛋白換算（35/6.25）",
+   "n_pct_used": 5.6,
+   "harvest_n_g_m2_d": 0.308,
+   "share_pct": 25.7
+  },
+  {
+   "key": "duckweed_full",
+   "zh": "浮萍（實場，豬糞廢水）",
+   "dw": 18.6,
+   "protein_pct": 35.0,
+   "n_pct": null,
+   "total_removal": 4.4,
+   "conf": "abstract",
+   "ref": "r_duckweed_full",
+   "note": "68 t DW/ha/yr 換成每日每平方公尺",
+   "n_pct_used": 5.6,
+   "harvest_n_g_m2_d": 1.042,
+   "share_pct": 23.7
+  },
+  {
+   "key": "lemna_gibba_urban",
+   "zh": "浮萍（都市污水，Lemna gibba）",
+   "dw": 30.0,
+   "protein_pct": null,
+   "n_pct": 5.6,
+   "total_removal": null,
+   "conf": "abstract",
+   "ref": "r_lemna_urban",
+   "note": "原文 23.87–36.17 g DW/m²/d，這裡取中點；蛋白產率 1.19–1.95 g/m²/d",
+   "n_pct_used": 5.6,
+   "harvest_n_g_m2_d": 1.68
+  },
+  {
+   "key": "hyacinth_opt",
+   "zh": "布袋蓮（最適條件）",
+   "dw": 53.0,
+   "protein_pct": null,
+   "n_pct": null,
+   "total_removal": 2.161,
+   "conf": "abstract",
+   "ref": "r_reddy_tucker",
+   "note": "這一組反過來算含氮率（見 implied_n_pct）",
+   "n_pct_used": null,
+   "implied_n_pct": 4.08,
+   "harvest_n_g_m2_d": 2.161
+  }
+ ],
+ "cw_harvest": {
+  "harvest_g_m2_yr": [
+   100.0,
+   200.0
+  ],
+  "total_g_m2_yr": [
+   250.0,
+   630.0
+  ],
+  "conf": "secondary",
+  "ref": "r_vymazal2007",
+  "share_pct_range": [
+   15.9,
+   80.0
+  ],
+  "harvest_g_m2_d": [
+   0.274,
+   0.548
+  ],
+  "share_pct_paired": [
+   40.0,
+   31.7
+  ]
+ },
+ "coupling": {
+  "feed_ratio_design": 80.0,
+  "feed_ratio_range": [
+   60.0,
+   100.0
+  ],
+  "feed_ratio_uvi": 57.0,
+  "nft_factor": [
+   0.25,
+   0.75
+  ],
+  "protein_pct": 32.0,
+  "conf": "secondary",
+  "ref": "r_osu_smallscale",
+  "per_m2": [
+   {
+    "feed_g_m2_d": 57.0,
+    "n_in_feed": 2.918,
+    "tan_g_m2_d": 1.678,
+    "tan_pct_of_feed_n": 57.5,
+    "o2_g_m2_d": 7.67,
+    "alk_g_caco3_m2_d": 11.98
+   },
+   {
+    "feed_g_m2_d": 60.0,
+    "n_in_feed": 3.072,
+    "tan_g_m2_d": 1.766,
+    "tan_pct_of_feed_n": 57.5,
+    "o2_g_m2_d": 8.07,
+    "alk_g_caco3_m2_d": 12.61
+   },
+   {
+    "feed_g_m2_d": 100.0,
+    "n_in_feed": 5.12,
+    "tan_g_m2_d": 2.944,
+    "tan_pct_of_feed_n": 57.5,
+    "o2_g_m2_d": 13.45,
+    "alk_g_caco3_m2_d": 21.02
+   },
+   {
+    "feed_g_m2_d": 80.0,
+    "n_in_feed": 4.096,
+    "tan_g_m2_d": 2.355,
+    "tan_pct_of_feed_n": 57.5,
+    "o2_g_m2_d": 10.76,
+    "alk_g_caco3_m2_d": 16.81
+   }
+  ],
+  "tan_coef": 0.092,
+  "example": {
+   "fish_kg": 300.0,
+   "feed_pct_bw": 1.5,
+   "feed_kg_d": 4.5,
+   "tan_g_d": 132.5,
+   "o2_g_d": 605.3,
+   "alk_g_caco3_d": 945.8,
+   "caco3_g_d": 945.8,
+   "plant_area_m2": 56.2,
+   "plant_area_m2_range": [
+    45.0,
+    75.0
+   ],
+   "note": "投餵率、蛋白含量都是假設值，換成自己的數字再算一次。"
+  },
+  "cross_check": {
+   "n_load_at_feed_60_100": [
+    1.766,
+    2.944
+   ],
+   "wetland_rate_range": [
+    0.9,
+    4.4
+   ],
+   "comment": "兩套互相獨立的文獻：魚菜共生的投餵率經驗法則（60–100 g 飼料/m²/d）換算成氨氮負荷是 1.8–2.9 g N/m²/d，和濕地／浮萍塘實測的去除速率 0.9–4.4 g N/m²/d 落在同一個區間。這是推論，不是哪一篇文獻的結論。",
+   "kind": "inference"
+  }
+ },
+ "biogas": {
+  "water_hyacinth_untreated": 143.0,
+  "water_hyacinth_pretreated": 193.0,
+  "water_hyacinth_continuous": 332.0,
+  "duckweed_codigest": 193.0,
+  "unit": "mL CH4 / g VS",
+  "conf": "abstract",
+  "ref": "r_bmp_wh",
+  "ch4_lhv_mj_m3": 35.8,
+  "example": {
+   "dw_g_m2_d": 18.6,
+   "vs_frac": 0.85,
+   "ch4_L_m2_d": 3.05,
+   "energy_kj_m2_d": 109.2,
+   "note": "VS 佔乾重 85% 是假設值（沒查到浮萍的實測 VS/TS）。"
+  }
+ }
+}

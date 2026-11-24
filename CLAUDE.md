@@ -50,12 +50,24 @@ lessons/<課程名>/
 | `lessons/using-claude/` | 把 Claude 用好（11 章，觀念篇） | 把 Claude 用好：給研究者的實戰手冊 |
 | 同上（`c*.md`） | Claude Code 操作手冊（11 章，操作篇） | Claude Code 操作手冊：從不會用到很順手 |
 | `lessons/bmb171-phb/` | *B. thuringiensis* BMB171 的 PHB 代謝模型（8 章） | BMB171 PHB：從基因體到代謝模型 |
+| `lessons/aquatic-plants/` | 水生植物與氨氮（6 章，原理與物種） | 水生植物與氨氮：原理與物種篩選 |
+| 同上（`b0*.md`） | 濕地、浮島與實場案例（5 章） | 水生植物處理廢水：濕地、浮島與實場案例 |
+| 同上（`c0*.md`） | 硝化槽＋植體槽與延伸應用（5 章） | 硝化槽＋植體槽：耦合設計與延伸應用 |
 
 `lessons/using-claude/` 也是兩個分區共用一個資料夾：`[0-9][0-9]-*.md` 是觀念篇，
 `c[0-9][0-9]-[a-z]*.md` 是 Claude Code 操作篇（圖檔名用 `fc` 開頭，程式在
 `figures/src/cc_diagrams.py`）。操作篇的內容 2026-10 逐項查過 `code.claude.com/docs`，
 **指令與功能變動很快，改之前要重查，不要憑印象**。第 10 章（和 Codex 接力）的 Codex 那一側
 只查到第三方整理，章首已標明沒核對過 OpenAI 官方文件。
+
+`lessons/aquatic-plants/` 是**一個資料夾三個分區**（`course.yaml` 的 `sections:` 列了三個，
+glob 分別是 `0[1-9]-*.md`、`b0[1-9]-*.md`、`c0[1-9]-*.md`，導讀各自是 `README.md`、`b00-README.md`、`c00-README.md`）。
+數字由 `code/` 的三支程式產生：`tolerance.py`（把各篇文獻的耐受門檻換算成游離氨、算安全曲線）、
+`sizing.py`（單位面積去除速率、面積需求、收割佔比、硝化的氧氣與鹼度）、`literature.py`（物種表、案例表、文獻清單）。
+**這門教材沒有一筆文獻核對過全文**（環境連不到期刊），所以每一筆都標了 `abstract`／`secondary`／`inference`，
+章節裡也寫明了。最有教學價值的兩個結果：**同一份沼液酸化到 pH 6.5 後，總氨氮高 4 倍的那一組反而長得好，
+因為游離氨低了 11.8 倍**；以及**魚菜共生的投餵率經驗法則換算成氮負荷（1.8–2.9 g N/m²/d），
+和人工濕地實測的去除速率落在同一個區間**（這是推論，兩套文獻互相獨立）。
 
 `lessons/bmb171-phb/` 的素材是使用者上傳的 ChatGPT 對話整理（原檔留在該課的 `SOURCE.md`）。
 **模型在這個環境重跑不了**（沒有 BMB171 基因體、沒有 CarveMe、沒有網路），所以 `code/checks.py`
