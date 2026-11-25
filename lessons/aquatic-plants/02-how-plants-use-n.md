@@ -61,7 +61,7 @@
 
 ## 參考文獻
 
-1. Nitrogen Utilization in *Lemna*: III. Short-Term Effects of Ammonium on Nitrate Uptake and Nitrate Reduction. *Plant Physiology*. https://pubmed.ncbi.nlm.nih.gov/16665792/
+1. Nitrogen Utilization in *Lemna*: III. Short-Term Effects of Ammonium on Nitrate Uptake and Nitrate Reduction (1987). *Plant Physiology*. https://doi.org/10.1104/pp.85.3.865
 2. Cedergreen N, Madsen TV (2002). Nitrogen uptake by the floating macrophyte *Lemna minor*. *New Phytologist*. https://doi.org/10.1046/j.1469-8137.2002.00463.x
 3. Wang et al. (2016). The inhibition and adaptability of four wetland plant species to high concentration of ammonia wastewater and nitrogen removal efficiency in constructed wetlands. *Bioresource Technology*, 202, 198–205. https://doi.org/10.1016/j.biortech.2015.11.049
 4. Wang C, Zhang S, Li W, et al. (2019). Complex regulatory network allows Myriophyllum aquaticum to thrive under high-concentration ammonia toxicity. *Scientific Reports*, 9. https://doi.org/10.1038/s41598-019-41236-8

@@ -57,5 +57,5 @@ Vymazal 的回顧講得很直接：**單一型態的人工濕地無法達到高�
 
 1. Vymazal J (2007). Removal of nutrients in various types of constructed wetlands. *Science of the Total Environment*, 380, 48–65. https://doi.org/10.1016/j.scitotenv.2006.09.014
 2. 大漢溪畔表面流人工濕地除氮機制相關碩士論文（臺灣博碩士論文知識加值系統）。https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id=%22103NCHU5105069%22.&searchmode=basic
-3. Vymazal J (2013). The use of hybrid constructed wetlands for wastewater treatment with special attention to nitrogen removal: A review of a recent development. *Water Research*, 47, 4795–4811. https://www.sciencedirect.com/science/article/pii/S0043135413004375
+3. Vymazal J (2013). The use of hybrid constructed wetlands for wastewater treatment with special attention to nitrogen removal: A review of a recent development. *Water Research*, 47, 4795–4811. https://doi.org/10.1016/j.watres.2013.05.029
 4. Brix H (1997). Do macrophytes play a role in constructed treatment wetlands? *Water Science and Technology*, 35(5), 11–17. https://doi.org/10.1016/S0273-1223(97)00047-4

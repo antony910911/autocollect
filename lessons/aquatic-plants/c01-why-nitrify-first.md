@@ -78,5 +78,5 @@ NH₄⁺ + 2 O₂ → NO₃⁻ + 2 H⁺ + H₂O
 
 ## 參考文獻
 
-1. The applicability of anaerobically treated domestic wastewater as a nutrient medium in hydroponic lettuce cultivation: Nitrogen toxicity and health risk assessment. *Science of the Total Environment*. https://www.sciencedirect.com/science/article/abs/pii/S0048969721015503
+1. The applicability of anaerobically treated domestic wastewater as a nutrient medium in hydroponic lettuce cultivation: Nitrogen toxicity and health risk assessment. *Science of the Total Environment*. https://doi.org/10.1016/j.scitotenv.2021.146482
 2. Evaluation of the Water Quality and Farming Growth Benefits of an Intelligence Aquaponics System (2021). *Sustainability*, 13, 4210. https://doi.org/10.3390/su13084210

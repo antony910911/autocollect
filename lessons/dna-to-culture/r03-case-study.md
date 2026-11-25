@@ -820,7 +820,7 @@ python code/annotation.py gem-map --faa WT.faa -o gem-map/
 ## 參考文獻
 
 1. Pechous SW, Whitaker BD (2004). Cloning and functional expression of an (E,E)-α-farnesene synthase cDNA from peel tissue of apple fruit. *Planta*, 219, 84–94. https://doi.org/10.1007/s00425-003-1191-4
-2. Michielse CB, Hooykaas PJJ, van den Hondel CAMJJ, Ram AFJ (2005). *Agrobacterium*-mediated transformation as a tool for functional genomics in fungi. *Current Genetics*, 48, 1–17.（農桿菌轉形在真菌的整合模式，包含串聯多拷貝與骨架共整合）
+2. Michielse CB, Hooykaas PJJ, van den Hondel CAMJJ, Ram AFJ (2005). *Agrobacterium*-mediated transformation as a tool for functional genomics in fungi. *Current Genetics*, 48, 1–17.（農桿菌轉形在真菌的整合模式，包含串聯多拷貝與骨架共整合） https://doi.org/10.1007/s00294-005-0578-0
 3. Kirby J, Geiselman GM, Yaegashi J, et al. (2021). Further engineering of *R. toruloides* for the production of terpenes from lignocellulosic biomass. *Biotechnology for Biofuels*, 14, 101. https://doi.org/10.1186/s13068-021-01950-w
 4. Coradetti ST, Pinel D, Geiselman GM, et al. (2018). Functional genomics of lipid metabolism in the oleaginous yeast *Rhodosporidium toruloides*. *eLife*, 7, e32110. https://doi.org/10.7554/eLife.32110
 5. Yaegashi J, Kirby J, Ito M, et al. (2017). *Rhodosporidium toruloides*: a new platform organism for conversion of lignocellulose into terpene biofuels and bioplastics. *Biotechnology for Biofuels*, 10, 241. https://doi.org/10.1186/s13068-017-0927-5

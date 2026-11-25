@@ -71,7 +71,7 @@
 1. Rakocy JE, Bailey DS, Shultz RC, Danaher JJ。A Commercial-Scale Aquaponic System Developed at the University of the Virgin Islands。https://tag2grow.org/wp-content/uploads/2021/09/UVI-Aquaponics.pdf
 2. Monsees H, Kloas W, Wuertz S (2017). Decoupled systems on trial: Eliminating bottlenecks to improve aquaponic processes. *PLOS ONE*, 12, e0183056. https://doi.org/10.1371/journal.pone.0183056
 3. Evaluation of the Water Quality and Farming Growth Benefits of an Intelligence Aquaponics System (2021). *Sustainability*, 13, 4210. https://doi.org/10.3390/su13084210
-4. The applicability of anaerobically treated domestic wastewater as a nutrient medium in hydroponic lettuce cultivation: Nitrogen toxicity and health risk assessment. *Science of the Total Environment*. https://www.sciencedirect.com/science/article/abs/pii/S0048969721015503
-5. Organic Waste-Based Fertilizer in Hydroponics Increases Tomato Fruit Size but Reduces Fruit Quality. *Frontiers in Plant Science*. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8261069/
+4. The applicability of anaerobically treated domestic wastewater as a nutrient medium in hydroponic lettuce cultivation: Nitrogen toxicity and health risk assessment. *Science of the Total Environment*. https://doi.org/10.1016/j.scitotenv.2021.146482
+5. Organic Waste-Based Fertilizer in Hydroponics Increases Tomato Fruit Size but Reduces Fruit Quality. *Frontiers in Plant Science*. https://doi.org/10.3389/fpls.2021.680030
 6. Udert KM, Wächter M (2012). Complete nutrient recovery from source-separated urine by nitrification and distillation. *Water Research*（線上先行 2011）。 https://www.eawag.ch/fileadmin/Domain1/Abteilungen/eng/projekte/vuna/doc/VUNA_Handbook_Urine_Treatment.pdf
 7. Acidophilic nitrification of biogas digestates accelerates sustainable hydroponics by enhancing phosphorus dissolution (2023). *Environmental Technology & Innovation*. https://www.sciencedirect.com/science/article/abs/pii/S2589014X23000622

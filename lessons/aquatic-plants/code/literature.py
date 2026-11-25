@@ -234,9 +234,9 @@ REFS = {
         note="作者名單沒核對過（CI 只核對標題與年份）"),
     "r_aber_ph": dict(
         cite="Lowering pH enables duckweed (*Lemna minor* L.) growth on toxic concentrations of "
-             "high-nutrient agricultural wastewater（Aberystwyth University 研究紀錄；期刊與年份未查證）",
-        url="https://research.aber.ac.uk/en/publications/lowering-ph-enables-duckweed-lemna-minor-l-growth-on-toxic-concen/",
-        doi=None),
+             "high-nutrient agricultural wastewater (2023). *Journal of Cleaner Production*.",
+        doi="10.1016/j.jclepro.2023.136392",
+        note="2026-11 由 Crossref 標題檢索找到；原本只有大學機構典藏的紀錄"),
     "r_abr_lemna": dict(
         cite="Nitrogen and phosphorus removal from anaerobic baffled reactor effluent using *Lemna minor* "
              "and fertiliser value of the biomass for ryegrass production (2025). *Environmental "
@@ -284,8 +284,7 @@ REFS = {
     "r_ipomoea_fb": dict(
         cite="Effect of *Ipomoea aquatica* floating-bed on the quantity and distribution of nitrogen "
              "cycling bacteria and nitrogen removal。",
-        url="https://pure.ecnu.edu.cn/en/publications/effect-of-ipomoea-aquatica-floating-bed-on-the-quantity-and-distr/",
-        doi=None),
+        doi="10.5846/stxb201103240370"),
     "r_vetiver_leachate": dict(
         cite="Phytoremediatory efficiency of *Chrysopogon zizanioides* in the treatment of landfill "
              "leachate: a case study (2019). *Environmental Science and Pollution Research*.",
@@ -302,7 +301,7 @@ REFS = {
         cite="Vymazal J (2013). The use of hybrid constructed wetlands for wastewater treatment with "
              "special attention to nitrogen removal: A review of a recent development. "
              "*Water Research*, 47, 4795–4811.",
-        url="https://www.sciencedirect.com/science/article/pii/S0043135413004375", doi=None),
+        doi="10.1016/j.watres.2013.05.029"),
     "r_brix1997": dict(
         cite="Brix H (1997). Do macrophytes play a role in constructed treatment wetlands? "
              "*Water Science and Technology*, 35(5), 11–17.",
@@ -310,11 +309,11 @@ REFS = {
     "r_ftw_review": dict(
         cite="Application of floating treatment wetlands for stormwater runoff: A critical review of the "
              "recent developments with emphasis on heavy metals and nutrient removal。",
-        url="https://www.researchgate.net/publication/349737859", doi=None),
+        doi="10.1016/j.scitotenv.2021.146044"),
     "r_ftw_lagoon": dict(
         cite="Field Evaluation of a Constructed Floating Wetland for Nutrients and PFAS Attenuation in a "
              "Treatment Lagoon。*ACS ES&T Water*。",
-        url="https://pubs.acs.org/aewcaa/article/6/4/2278/5146861/", doi=None),
+        doi="10.1021/acsestwater.5c01268"),
     "r_headley2012": dict(
         cite="Headley TR, Tanner CC (2012). Constructed wetlands with floating emergent macrophytes: an "
              "innovative stormwater treatment technology. *Critical Reviews in Environmental Science and "
@@ -364,7 +363,7 @@ REFS = {
         cite="Ebeling JM, Timmons MB, Bisogni JJ (2006). Engineering analysis of the stoichiometry of "
              "photoautotrophic, autotrophic, and heterotrophic removal of ammonia–nitrogen in aquaculture "
              "systems. *Aquaculture*, 257, 346–358.",
-        url="https://ag.arizona.edu/azaqua/ista/ISTA7/RecircWorkshop/", doi=None),
+        doi="10.1016/j.aquaculture.2006.03.019"),
     "r_uvi": dict(
         cite="Rakocy JE, Bailey DS, Shultz RC, Danaher JJ。A Commercial-Scale Aquaponic System Developed "
              "at the University of the Virgin Islands。",
@@ -373,7 +372,7 @@ REFS = {
         cite="The applicability of anaerobically treated domestic wastewater as a nutrient medium in "
              "hydroponic lettuce cultivation: Nitrogen toxicity and health risk assessment。"
              "*Science of the Total Environment*。",
-        url="https://www.sciencedirect.com/science/article/abs/pii/S0048969721015503", doi=None),
+        doi="10.1016/j.scitotenv.2021.146482"),
     "r_acidophilic": dict(
         cite="Acidophilic nitrification of biogas digestates accelerates sustainable hydroponics by "
              "enhancing phosphorus dissolution (2023). *Environmental Technology & Innovation*。",
@@ -381,7 +380,7 @@ REFS = {
     "r_tomato_digestate": dict(
         cite="Organic Waste-Based Fertilizer in Hydroponics Increases Tomato Fruit Size but Reduces Fruit "
              "Quality。*Frontiers in Plant Science*。",
-        url="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8261069/", doi=None),
+        doi="10.3389/fpls.2021.680030"),
     "r_udert": dict(
         cite="Udert KM, Wächter M (2012). Complete nutrient recovery from source-separated urine by "
              "nitrification and distillation. *Water Research*, 46, 453–464.",
@@ -399,7 +398,7 @@ REFS = {
     "r_bmp_wh": dict(
         cite="Biochemical methane potential test of untreated and hot air oven pretreated water hyacinth: "
              "A comparative study。*Journal of Cleaner Production*。",
-        url="https://www.sciencedirect.com/science/article/abs/pii/S0959652617316876", doi=None),
+        doi="10.1016/j.jclepro.2017.07.231"),
     "r_duckweed_starch": dict(
         cite="High starch duckweed biomass production and its highly-efficient conversion to bioethanol "
              "(2023). *Environmental Technology & Innovation*。",

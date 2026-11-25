@@ -108,6 +108,6 @@ NH₄⁺ + 2 O₂ → NO₃⁻ + 2 H⁺ + H₂O
 
 ## 參考文獻
 
-1. Ebeling JM, Timmons MB, Bisogni JJ (2006). Engineering analysis of the stoichiometry of photoautotrophic, autotrophic, and heterotrophic removal of ammonia–nitrogen in aquaculture systems. *Aquaculture*, 257. https://ag.arizona.edu/azaqua/ista/ISTA7/RecircWorkshop/
+1. Ebeling JM, Timmons MB, Bisogni JJ (2006). Engineering analysis of the stoichiometry of photoautotrophic, autotrophic, and heterotrophic removal of ammonia–nitrogen in aquaculture systems. *Aquaculture*, 257. https://doi.org/10.1016/j.aquaculture.2006.03.019
 2. Oklahoma State University Extension / SRAC-5007。Principles of Small-Scale Aquaponics。https://extension.okstate.edu/fact-sheets/print-publications/srac/principles-of-small-scale-aquaponics-srac-5007.pdf
 3. Rakocy JE, Bailey DS, Shultz RC, Danaher JJ。A Commercial-Scale Aquaponic System Developed at the University of the Virgin Islands。https://tag2grow.org/wp-content/uploads/2021/09/UVI-Aquaponics.pdf

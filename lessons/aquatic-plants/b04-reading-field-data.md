@@ -85,4 +85,4 @@ g N/m²/d ＝ 流量（m³/d）× 進流濃度（mg N/L）× 去除率 ÷ 1000 �
 
 1. 大漢溪畔表面流人工濕地除氮機制相關碩士論文（臺灣博碩士論文知識加值系統）。https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id=%22103NCHU5105069%22.&searchmode=basic
 2. 行政院環境保護署（現環境部）。淡水河流域 5 處人工濕地（新海、浮洲、打鳥埤、城林、鹿角溪）101 年度水質淨化成效。https://enews.moenv.gov.tw/File/18B1FAD90A675052
-3. Effect of *Ipomoea aquatica* floating-bed on the quantity and distribution of nitrogen cycling bacteria and nitrogen removal. https://pure.ecnu.edu.cn/en/publications/effect-of-ipomoea-aquatica-floating-bed-on-the-quantity-and-distr/
+3. Effect of *Ipomoea aquatica* floating-bed on the quantity and distribution of nitrogen cycling bacteria and nitrogen removal. https://doi.org/10.5846/stxb201103240370

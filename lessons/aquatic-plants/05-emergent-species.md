@@ -105,6 +105,6 @@
 2. Sun H, Liu F, Xu S, et al. (2017). Myriophyllum aquaticum Constructed Wetland Effectively Removes Nitrogen in Swine Wastewater. *Frontiers in Microbiology*, 8, 1932. https://doi.org/10.3389/fmicb.2017.01932
 3. Wang et al. (2016). The inhibition and adaptability of four wetland plant species to high concentration of ammonia wastewater and nitrogen removal efficiency in constructed wetlands. *Bioresource Technology*, 202, 198–205. https://doi.org/10.1016/j.biortech.2015.11.049
 4. Luo P, Liu F, Zhang S, et al. (2018). Nitrogen removal and recovery from lagoon-pretreated swine wastewater by constructed wetlands under sustainable plant harvesting management. *Bioresource Technology*. https://doi.org/10.1016/j.biortech.2018.03.017
-5. Effect of *Ipomoea aquatica* floating-bed on the quantity and distribution of nitrogen cycling bacteria and nitrogen removal. https://pure.ecnu.edu.cn/en/publications/effect-of-ipomoea-aquatica-floating-bed-on-the-quantity-and-distr/
+5. Effect of *Ipomoea aquatica* floating-bed on the quantity and distribution of nitrogen cycling bacteria and nitrogen removal. https://doi.org/10.5846/stxb201103240370
 6. Phytoremediatory efficiency of *Chrysopogon zizanioides* in the treatment of landfill leachate: a case study (2019). *Environmental Science and Pollution Research*. https://pubmed.ncbi.nlm.nih.gov/30756356/
 7. Microbial removal and plant uptake of nitrogen in constructed wetlands: mesocosm tests on influencing factors (2019). *Environmental Science and Pollution Research*. https://doi.org/10.1007/s11356-018-3543-4

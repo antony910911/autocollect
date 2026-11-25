@@ -99,10 +99,10 @@
 6. Batstone DJ, Keller J, Angelidaki I, et al. (2002). The IWA Anaerobic Digestion Model No 1 (ADM1). *Water Science and Technology*, 45(10), 65–73. https://doi.org/10.2166/wst.2002.0292
 7. Bernard O, Hadj-Sadok Z, Dochain D, Genovesi A, Steyer JP (2001). Dynamical model development and parameter identification for an anaerobic wastewater treatment process. *Biotechnology and Bioengineering*, 75, 424–438. https://doi.org/10.1002/bit.10036
 8. Torfs E, Nicolaï N, Daneshgar S, et al. (2022). The transition of WRRF models to digital twin applications. *Water Science and Technology*, 85(10), 2840–2853. https://doi.org/10.2166/wst.2022.107
-9. （同濟大學研究團隊）(2024). Machine learning for enhancing prediction of biogas production and building a VFA/ALK soft sensor in full-scale dry anaerobic digestion of kitchen food waste. *Journal of Environmental Management*. https://www.sciencedirect.com/science/article/abs/pii/S0301479724031761
-10. (2023). Prediction of biogas production of industrial scale anaerobic digestion plant by machine learning algorithms. *Chemosphere*. https://www.sciencedirect.com/science/article/abs/pii/S0045653523012432
-11. Feature engineering and supervised machine learning to forecast biogas production during municipal anaerobic co-digestion. PMC10928704. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10928704/
-12. Application of machine learning for FOS/TAC soft sensing in bio-electrochemical anaerobic digestion. PMC11901494. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11901494/
+9. （同濟大學研究團隊）(2024). Machine learning for enhancing prediction of biogas production and building a VFA/ALK soft sensor in full-scale dry anaerobic digestion of kitchen food waste. *Journal of Environmental Management*. https://doi.org/10.1016/j.jenvman.2024.123190
+10. (2023). Prediction of biogas production of industrial scale anaerobic digestion plant by machine learning algorithms. *Chemosphere*. https://doi.org/10.1016/j.chemosphere.2023.138976
+11. Feature engineering and supervised machine learning to forecast biogas production during municipal anaerobic co-digestion. PMC10928704. https://doi.org/10.1021/acsestengg.3c00435
+12. Application of machine learning for FOS/TAC soft sensing in bio-electrochemical anaerobic digestion. PMC11901494. https://doi.org/10.3390/molecules30051092
 13. Kalman RE (1960). A new approach to linear filtering and prediction problems. *Journal of Basic Engineering*, 82, 35–45. https://doi.org/10.1115/1.3662552
 14. Comparison of Unscented Kalman Filter Design for Agricultural Anaerobic Digestion Model（arXiv:2310.15958）. https://arxiv.org/abs/2310.15958
 15. Breiman L (2001). Random forests. *Machine Learning*, 45, 5–32. https://doi.org/10.1023/A:1010933404324

@@ -96,10 +96,10 @@
 ## 參考文獻
 
 1. Mohedano RA, Costa RHR, Tavares FA, Belli Filho P (2012). High nutrient removal rate from swine wastes and protein biomass production by full-scale duckweed ponds. *Bioresource Technology*, 112, 98–104. https://doi.org/10.1016/j.biortech.2012.02.083
-2. Vymazal J (2013). The use of hybrid constructed wetlands for wastewater treatment with special attention to nitrogen removal: A review of a recent development. *Water Research*, 47, 4795–4811. https://www.sciencedirect.com/science/article/pii/S0043135413004375
+2. Vymazal J (2013). The use of hybrid constructed wetlands for wastewater treatment with special attention to nitrogen removal: A review of a recent development. *Water Research*, 47, 4795–4811. https://doi.org/10.1016/j.watres.2013.05.029
 3. Reddy KR, Tucker JC (1983). Productivity and nutrient uptake of water hyacinth, *Eichhornia crassipes* I. Effect of nitrogen source. *Economic Botany*, 37, 237–247. https://doi.org/10.1007/BF02858790
 4. 大漢溪畔表面流人工濕地除氮機制相關碩士論文（臺灣博碩士論文知識加值系統）。https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id=%22103NCHU5105069%22.&searchmode=basic
 5. A Pilot-Scale Evaluation of Duckweed Cultivation for Pig Manure Treatment and Feed Production (2025). *Plants*, 14, 2680. https://doi.org/10.3390/plants14172680
 6. Sun H, Liu F, Xu S, et al. (2017). Myriophyllum aquaticum Constructed Wetland Effectively Removes Nitrogen in Swine Wastewater. *Frontiers in Microbiology*, 8, 1932. https://doi.org/10.3389/fmicb.2017.01932
-7. Application of floating treatment wetlands for stormwater runoff: A critical review of the recent developments with emphasis on heavy metals and nutrient removal. https://www.researchgate.net/publication/349737859
-8. Field Evaluation of a Constructed Floating Wetland for Nutrients and PFAS Attenuation in a Treatment Lagoon. *ACS ES&T Water*. https://pubs.acs.org/aewcaa/article/6/4/2278/5146861/
+7. Application of floating treatment wetlands for stormwater runoff: A critical review of the recent developments with emphasis on heavy metals and nutrient removal. https://doi.org/10.1016/j.scitotenv.2021.146044
+8. Field Evaluation of a Constructed Floating Wetland for Nutrients and PFAS Attenuation in a Treatment Lagoon. *ACS ES&T Water*. https://doi.org/10.1021/acsestwater.5c01268

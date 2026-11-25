@@ -160,7 +160,7 @@ Prokka 之所以能快，是因為它假設「基因沒有內含子、就在一�
 
 ## 參考文獻
 
-1. Banno I (1967). Studies on the sexuality of *Rhodotorula*. *The Journal of General and Applied Microbiology*, 13, 167–196.（確立 *Rhodosporidium toruloides* 的有性世代；IFO 8766 為 IFO 0559 × IFO 0880 的接合株，菌種保存機構的目錄可查到對應編號 NBRC 8766、CBS 6016、DSM 4444）
+1. Banno I (1967). Studies on the sexuality of *Rhodotorula*. *The Journal of General and Applied Microbiology*, 13, 167–196.（確立 *Rhodosporidium toruloides* 的有性世代；IFO 8766 為 IFO 0559 × IFO 0880 的接合株，菌種保存機構的目錄可查到對應編號 NBRC 8766、CBS 6016、DSM 4444） https://doi.org/10.2323/jgam.13.167
 2. Coradetti ST, Pinel D, Geiselman GM, et al. (2018). Functional genomics of lipid metabolism in the oleaginous yeast *Rhodosporidium toruloides*. *eLife*, 7, e32110. https://doi.org/10.7554/eLife.32110
 3. Simão FA, Waterhouse RM, Ioannidis P, Kriventseva EV, Zdobnov EM (2015). BUSCO: assessing genome assembly and annotation completeness with single-copy orthologs. *Bioinformatics*, 31, 3210–3212. https://doi.org/10.1093/bioinformatics/btv351
 4. Brůna T, Hoff KJ, Lomsadze A, Stanke M, Borodovsky M (2021). BRAKER2: automatic eukaryotic genome annotation with GeneMark-EP+ and AUGUSTUS supported by a protein database. *NAR Genomics and Bioinformatics*, 3, lqaa108. https://doi.org/10.1093/nargab/lqaa108

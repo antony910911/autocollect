@@ -85,7 +85,7 @@
 
 ## 參考文獻
 
-1. Lowering pH enables duckweed (*Lemna minor* L.) growth on toxic concentrations of high-nutrient agricultural wastewater（Aberystwyth University 研究紀錄；期刊與年份未查證）。https://research.aber.ac.uk/en/publications/lowering-ph-enables-duckweed-lemna-minor-l-growth-on-toxic-concen/
+1. Lowering pH enables duckweed (*Lemna minor* L.) growth on toxic concentrations of high-nutrient agricultural wastewater (2023). *Journal of Cleaner Production*. https://doi.org/10.1016/j.jclepro.2023.136392
 2. Wang C, Zhang S, Li W, et al. (2019). Complex regulatory network allows Myriophyllum aquaticum to thrive under high-concentration ammonia toxicity. *Scientific Reports*, 9. https://doi.org/10.1038/s41598-019-41236-8
 3. Wang et al. (2016). The inhibition and adaptability of four wetland plant species to high concentration of ammonia wastewater and nitrogen removal efficiency in constructed wetlands. *Bioresource Technology*, 202, 198–205. https://doi.org/10.1016/j.biortech.2015.11.049
 4. Sun H, Liu F, Xu S, et al. (2017). Myriophyllum aquaticum Constructed Wetland Effectively Removes Nitrogen in Swine Wastewater. *Frontiers in Microbiology*, 8, 1932. https://doi.org/10.3389/fmicb.2017.01932

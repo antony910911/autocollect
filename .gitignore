@@ -3,3 +3,6 @@ __pycache__/
 .venv/
 .env
 .pytest_cache/
+
+# 核實教材時抓下來的論文全文與中間檔（不進版本控制）
+.audit/

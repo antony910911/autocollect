@@ -89,7 +89,7 @@
 ## 參考文獻
 
 1. Mohedano RA, Costa RHR, Tavares FA, Belli Filho P (2012). High nutrient removal rate from swine wastes and protein biomass production by full-scale duckweed ponds. *Bioresource Technology*, 112, 98–104. https://doi.org/10.1016/j.biortech.2012.02.083
-2. Biochemical methane potential test of untreated and hot air oven pretreated water hyacinth: A comparative study. *Journal of Cleaner Production*. https://www.sciencedirect.com/science/article/abs/pii/S0959652617316876
+2. Biochemical methane potential test of untreated and hot air oven pretreated water hyacinth: A comparative study. *Journal of Cleaner Production*. https://doi.org/10.1016/j.jclepro.2017.07.231
 3. High starch duckweed biomass production and its highly-efficient conversion to bioethanol (2023). *Environmental Technology & Innovation*. https://ui.adsabs.harvard.edu/abs/2023EnvTI..3203296G
 4. Udert KM, Wächter M (2012). Complete nutrient recovery from source-separated urine by nitrification and distillation. *Water Research*（線上先行 2011）。 https://www.eawag.ch/fileadmin/Domain1/Abteilungen/eng/projekte/vuna/doc/VUNA_Handbook_Urine_Treatment.pdf
 5. Constructed wetland–microbial fuel cell 系統回顧（*RSC Advances*, 2024）。https://pubs.rsc.org/en/content/articlepdf/2024/ra/d4ra04658g
