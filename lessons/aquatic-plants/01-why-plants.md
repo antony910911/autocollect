@@ -42,12 +42,17 @@
 
 三個完全不同的系統，收割佔比都落在兩到四成。**剩下的六到八成是根圈微生物做的**——硝化加脫硝。
 
+> **但這個「兩到四成」是中位數的印象，不是定律。** 一組粉綠狐尾藻中試濕地做的質量平衡顯示，
+> 植物吸收佔進流氮負荷 13.0–55.0%、微生物 33.0–67.5%、底泥 4.9–8.0%；
+> 而收割帶走的氮佔「總去除量」的比例，在不同濕地單元之間是 **0.85–100%** [5]。
+> 進流濃度、收割頻率與單元在串聯中的位置，都會把這個比例推到兩端。
+
 這個結論有兩個實務意義：
 
 1. **植物的角色一半是「基質」。** 它提供根表面讓微生物附著、把氧氣送到根圈、遮光抑制藻類。選哪一種植物當然有差，但「有沒有給微生物一個好環境」更關鍵。
-2. **如果你的目標是回收氮（做飼料、做肥料），那你只能回收兩三成。** 其他的被微生物變成氮氣跑掉了。想提高回收比例，就要壓抑脫硝——那會和「讓放流水達標」的目標衝突（分區三第 5 章會再談）。
+2. **如果你的目標是回收氮（做飼料、做肥料），多數情況下只回收得到兩三成。** 其他的被微生物變成氮氣跑掉了（上面那段的範圍提醒：在某些條件下可以更高，但不能當預設）。想提高回收比例，就要壓抑脫硝——那會和「讓放流水達標」的目標衝突（分區三第 5 章會再談）。
 
-> **一個反過來算的例子。** 布袋蓮那篇文獻 [4] 同時給了「最適條件下吸氮 2.161 g N/m²/d」與「生物量 53 g 乾重/m²/d」。兩個相除，隱含的植體含氮率是 **4.08%**——比一般草本植物高不少。這可能是奢侈吸收（luxury uptake，植物在氮充足時吸超過自己需要的量），也可能是兩個數字來自不同處理組。摘要看不出來，所以這筆只能當上限參考。
+> **一個反過來算的例子。** 布袋蓮那篇文獻 [5] 同時給了「最適條件下吸氮 2.161 g N/m²/d」與「生物量 53 g 乾重/m²/d」。兩個相除，隱含的植體含氮率是 **4.08%**——比一般草本植物高不少。這可能是奢侈吸收（luxury uptake，植物在氮充足時吸超過自己需要的量），也可能是兩個數字來自不同處理組。摘要看不出來，所以這筆只能當上限參考。
 
 ## 1.3 質量平衡：唯一能分辨的方法
 
@@ -93,4 +98,5 @@
 1. A Pilot-Scale Evaluation of Duckweed Cultivation for Pig Manure Treatment and Feed Production (2025). *Plants*, 14, 2680. https://doi.org/10.3390/plants14172680
 2. Mohedano RA, Costa RHR, Tavares FA, Belli Filho P (2012). High nutrient removal rate from swine wastes and protein biomass production by full-scale duckweed ponds. *Bioresource Technology*, 112, 98–104. https://doi.org/10.1016/j.biortech.2012.02.083
 3. Vymazal J (2007). Removal of nutrients in various types of constructed wetlands. *Science of the Total Environment*, 380, 48–65. https://doi.org/10.1016/j.scitotenv.2006.09.014
-4. Reddy KR, Tucker JC (1983). Productivity and nutrient uptake of water hyacinth, *Eichhornia crassipes* I. Effect of nitrogen source. *Economic Botany*, 37, 237–247. https://doi.org/10.1007/BF02858790
+4. Luo P, Liu F, Zhang S, et al. (2018). Nitrogen removal and recovery from lagoon-pretreated swine wastewater by constructed wetlands under sustainable plant harvesting management. *Bioresource Technology*. https://doi.org/10.1016/j.biortech.2018.03.017
+5. Reddy KR, Tucker JC (1983). Productivity and nutrient uptake of water hyacinth, *Eichhornia crassipes* I. Effect of nitrogen source. *Economic Botany*, 37, 237–247. https://doi.org/10.1007/BF02858790

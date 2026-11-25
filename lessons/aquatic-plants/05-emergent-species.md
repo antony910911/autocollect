@@ -22,9 +22,17 @@
 | 可存活的銨濃度 | > 26 mM（約 364 mg N/L）[1] | abstract |
 | 中試濕地氨氮去除率 | 98.3%（600 天平均）[2] | abstract |
 | 當時的氮負荷 | 9 kg N/ha/d（＝ 0.9 g N/m²/d）[2] | abstract |
-| 植物吸收佔進水總氮 | 17.9–42.2%（`secondary`） | secondary |
+| 氨氮／總氮去除率（另一組中試）| 87.7–97.9%／85.4–96.1% [4] | abstract |
+| 收割回收的總氮 | 120–222 g N/m²/年（進流總氮 21.8–282 mg/L）[4] | abstract |
+| 質量平衡：植物吸收／底泥／微生物 | **13.0–55.0%／4.9–8.0%／33.0–67.5%**（佔進流總氮負荷）[4] | abstract |
 
-600 天的連續運轉資料在這個領域很少見，值得一讀。注意最後一列：**植物吸收只佔兩到四成**，和第 1 章浮萍、人工濕地算出來的比例一致——三個完全不同的系統給出同一個結論。
+600 天的連續運轉資料在這個領域很少見，值得一讀。
+
+最後一列是同一個團隊另一組中試做的質量平衡 [4]，它比第 1 章那個「收割佔兩三成」的說法複雜一些：
+**植物吸收佔進流氮負荷 13.0–55.0%，微生物佔 33.0–67.5%，底泥只佔 4.9–8.0%。**
+同一篇還指出，收割帶走的氮佔「總去除量」的比例在不同濕地單元之間是 **0.85–100%**——
+範圍大到幾乎沒有代表性。所以「植物吸收大約兩三成」是個中位數的印象，不是一條定律；
+**進流濃度、收割頻率與濕地單元的位置都會把它推到兩端。**
 
 **代價**：它在台灣是外來種，而且是沉水／漂浮莖形態，逸出風險高、收割不如浮萍容易。要用它就要把圍封寫進計畫。
 
@@ -69,11 +77,11 @@
 
 ### 香根草：高鹽、高金屬、垃圾滲出水
 
-香根草不是水生植物，但在水耕與浸潤床的配置下被用來處理高污染廢水。水耕試驗把銨從 39.52 降到 4.85 mg/L [5]；以**未稀釋的垃圾滲出水**灌溉時，存活強烈取決於滲出水的組成，作者的結論是**必須逐案評估耐受性** [5]。
+香根草不是水生植物，但在水耕與浸潤床的配置下被用來處理高污染廢水。水耕試驗把銨從 39.52 降到 4.85 mg/L [6]；以**未稀釋的垃圾滲出水**灌溉時，存活強烈取決於滲出水的組成，作者的結論是**必須逐案評估耐受性** [6]。
 
 ## 5.4 風車草與莎草屬：一個值得正面測的缺口
 
-有一項中型試驗發現莎草屬（*Cyperus* spp.）的生長優於香蒲，作者把原因歸於它的氨耐受度較高 [6]。但這是間接比較，**沒有門檻數字**。
+有一項中型試驗發現莎草屬（*Cyperus* spp.）的生長優於香蒲，作者把原因歸於它的氨耐受度較高 [7]。但這是間接比較，**沒有門檻數字**。
 
 莎草屬在台灣常見、生長快、好取得。要找一個「值得做、做得出來、文獻還沒做」的題目，這是一個。
 
@@ -96,6 +104,7 @@
 1. Wang C, Zhang S, Li W, et al. (2019). Complex regulatory network allows Myriophyllum aquaticum to thrive under high-concentration ammonia toxicity. *Scientific Reports*, 9. https://doi.org/10.1038/s41598-019-41236-8
 2. Sun H, Liu F, Xu S, et al. (2017). Myriophyllum aquaticum Constructed Wetland Effectively Removes Nitrogen in Swine Wastewater. *Frontiers in Microbiology*, 8, 1932. https://doi.org/10.3389/fmicb.2017.01932
 3. Wang et al. (2016). The inhibition and adaptability of four wetland plant species to high concentration of ammonia wastewater and nitrogen removal efficiency in constructed wetlands. *Bioresource Technology*, 202, 198–205. https://doi.org/10.1016/j.biortech.2015.11.049
-4. Effect of *Ipomoea aquatica* floating-bed on the quantity and distribution of nitrogen cycling bacteria and nitrogen removal. https://pure.ecnu.edu.cn/en/publications/effect-of-ipomoea-aquatica-floating-bed-on-the-quantity-and-distr/
-5. Phytoremediatory efficiency of *Chrysopogon zizanioides* in the treatment of landfill leachate: a case study (2019). *Environmental Science and Pollution Research*. https://pubmed.ncbi.nlm.nih.gov/30756356/
-6. Microbial removal and plant uptake of nitrogen in constructed wetlands: mesocosm tests on influencing factors (2019). *Environmental Science and Pollution Research*. https://doi.org/10.1007/s11356-018-3543-4
+4. Luo P, Liu F, Zhang S, et al. (2018). Nitrogen removal and recovery from lagoon-pretreated swine wastewater by constructed wetlands under sustainable plant harvesting management. *Bioresource Technology*. https://doi.org/10.1016/j.biortech.2018.03.017
+5. Effect of *Ipomoea aquatica* floating-bed on the quantity and distribution of nitrogen cycling bacteria and nitrogen removal. https://pure.ecnu.edu.cn/en/publications/effect-of-ipomoea-aquatica-floating-bed-on-the-quantity-and-distr/
+6. Phytoremediatory efficiency of *Chrysopogon zizanioides* in the treatment of landfill leachate: a case study (2019). *Environmental Science and Pollution Research*. https://pubmed.ncbi.nlm.nih.gov/30756356/
+7. Microbial removal and plant uptake of nitrogen in constructed wetlands: mesocosm tests on influencing factors (2019). *Environmental Science and Pollution Research*. https://doi.org/10.1007/s11356-018-3543-4

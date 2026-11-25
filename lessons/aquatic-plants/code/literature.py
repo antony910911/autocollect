@@ -130,8 +130,16 @@ CASES = [
          conf="abstract", ref="r_duckweed_pilot"),
     dict(key="myrio_cw", zh="粉綠狐尾藻三級表面流濕地", year="2017", scale="中試",
          what="單一物種栽種、處理養豬廢水、連續 600 天",
-         result="氮負荷 9 kg N/ha/d 下氨氮平均去除 98.3%；植物吸收佔進水總氮 17.9–42.2%",
-         conf="abstract", ref="r_myrio_cw"),
+         result="氮負荷 9 kg N/ha/d 下氨氮平均去除 98.3%（全文已核對）",
+         conf="abstract", ref="r_myrio_cw",
+         note="2026-11 用 Europe PMC 全文核對過：98.3% 與 9 kg N/ha/d 都在原文。"
+              "先前寫的「植物吸收 17.9–42.2%」不在這篇裡，是轉述錯誤，已改用 r_luo2018 的質量平衡"),
+    dict(key="myrio_harvest", zh="粉綠狐尾藻濕地的氮質量平衡", year="2018", scale="中試",
+         what="三級表面流濕地、三種進流強度、多次收割",
+         result="氨氮去除 87.7–97.9%、總氮 85.4–96.1%；收割回收 120–222 g N/m²/年；"
+                "質量平衡：植物吸收 13.0–55.0%、底泥 4.9–8.0%、微生物 33.0–67.5%（佔進流氮負荷）；"
+                "收割佔總去除量 0.85–100%",
+         conf="abstract", ref="r_luo2018"),
     dict(key="nasa_disney", zh="NASA／迪士尼世界布袋蓮系統", year="1970–80 年代", scale="實場原型",
          what="污水廠旁的布袋蓮塘，後來還試過把收割的植體與污泥拿去產甲烷",
          result="搜尋結果給出 69% 總氮、92% 氨氮等數字，但無法確認對應哪一份報告",
@@ -194,6 +202,12 @@ REFS = {
         cite="Sun H, Liu F, Xu S, et al. (2017). Myriophyllum aquaticum Constructed Wetland Effectively "
              "Removes Nitrogen in Swine Wastewater. *Frontiers in Microbiology*, 8, 1932.",
         doi="10.3389/fmicb.2017.01932"),
+    "r_luo2018": dict(
+        cite="Luo P, Liu F, Zhang S, et al. (2018). Nitrogen removal and recovery from lagoon-pretreated "
+             "swine wastewater by constructed wetlands under sustainable plant harvesting management. "
+             "*Bioresource Technology*.",
+        doi="10.1016/j.biortech.2018.03.017",
+        note="摘要由 Europe PMC 直接取得（不是搜尋摘要轉述）"),
     "r_korner2001": dict(
         cite="Körner S, Das SK, Veenstra S, Vermaat JE (2001). The effect of pH variation at the "
              "ammonium/ammonia equilibrium in wastewater and its toxicity to *Lemna gibba*. "

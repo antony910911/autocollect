@@ -137,11 +137,21 @@ Folio 的上傳由 GitHub Actions（`.github/workflows/lessons.yml`）做，**�
 
 ### 環境限制
 
-- **沒有對外網路，只有 WebSearch 工具可用**。`curl` 會被閘道擋（403），`WebFetch` 對期刊網站、
-  NCBI 等網域直接 DNS 失敗。所以：
-  - 不能下載 BiGG、Yeast8、rhto-GEM 等模型檔 → 這類程式要寫成「使用者在自己電腦上執行」
-  - 不能跑 BLAST、不能連 Crossref → DOI 核對只能靠 CI
-  - 不能讀論文全文 → 只能靠 WebSearch 的摘要，**而且要在教材裡標明沒核對過全文**
+- **對外網路是白名單制**（Default 環境，limited）。2026-11 已加入這些主機，所以現在可以：
+  - **本機核對 DOI**：`api.crossref.org` → `python lessons/_tools/check_refs.py lessons/<課程>`
+    推送前就能驗，不用等 CI。
+  - **讀開放取用全文**：`www.ebi.ac.uk`（Europe PMC REST，`/{PMCID}/fullTextXML` 直接給全文）、
+    `pmc.ncbi.nlm.nih.gov`、`eutils.ncbi.nlm.nih.gov`、`journals.plos.org`、`www.mdpi.com`、
+    `www.frontiersin.org`、`www.biorxiv.org`。
+  - **找論文與開放版本**：`api.openalex.org`、`api.unpaywall.org`、`doi.org`。
+  - **仍然讀不到付費全文**（Elsevier、Wiley、Springer 的付費牆）。要讀的話三條路：
+    使用者自己下載 PDF 丟進來、用出版社的 TDM API 金鑰（`request_credential`）、
+    或接上使用者自己的電腦（Remote Control）走機構權限。
+  - 還是不能下載 BiGG、Yeast8、rhto-GEM 等模型檔（那些主機沒開），也不能跑 BLAST。
+  - **教材規矩不變**：沒核對過全文的數字要標 `secondary`。
+    **而且已經證實會錯**——水生植物教材原本寫「粉綠狐尾藻的植物吸收佔 17.9–42.2%」，
+    抓到全文之後發現那篇根本沒有這個數字，正確的是另一篇的 13.0–55.0%。
+    **能抓全文的時候就抓**，不要停在搜尋摘要。
 - **背景指令不要接 `| tail`**。`tail` 會把輸出整個緩衝住，工作跑了十分鐘你也看不到進度。
   用 `python -u` 直接輸出，或重導到檔案再讀。
 - Chromium 在 `/opt/pw-browsers/chromium`，`svgkit.render()` 已處理。
