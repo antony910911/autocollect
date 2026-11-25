@@ -81,6 +81,12 @@ glob 分別是 `0[1-9]-*.md`、`b0[1-9]-*.md`、`c0[1-9]-*.md`，導讀各自是
 - **數字要是真的算出來的**。圖和表裡的數值由 `code/` 的程式產生，結果存成 JSON，章節引用那份 JSON。不要憑印象寫數字。
 - **誠實**。模擬資料要標明是模擬；推論要標明是推論（例如各課的「創新思路」章整章標示為推論）；模型失準、參數無法辨識、外推不可信這類負面結果要照實寫出來，那通常是最有價值的教學點。
 - **參考文獻放每章最後**，格式 `1. 作者 (年). 標題. *期刊*, 卷, 頁. https://doi.org/...`。CI 會逐筆到 Crossref 核對標題與年份，**寫錯會讓 build 失敗**，所以不確定的文獻寧可不放 DOI（只放網址），也不要猜 DOI 或猜標題。
+  - **找 DOI 的方法**：`api.crossref.org/works?query.bibliographic=<標題>` 做標題檢索。
+    2026-11 用這招把原本沒有 DOI 的 82 筆相異文獻撈回 16 篇的 DOI。
+    **注意 Crossref 會命中「supporting information」的 DOI（結尾 `.s001`）、期刊本身的 DOI、
+    CABI 條目**——拿到之後要再打一次 `api.crossref.org/works/<DOI>` 確認標題與年份才能用。
+  - **政府文件、研討會論文、技術報告、機構典藏、新聞本來就不在 Crossref**，查不到是正常的，
+    不要硬塞一個 DOI 上去。
 - **圖要檢查**。畫完一定要用 Read 看一次 PNG。常見問題：
   - 標籤重疊、文字超出方塊或畫布
   - 對數軸負號變成亂碼（用 `FuncFormatter` 自己格式化）
@@ -105,6 +111,9 @@ glob 分別是 `0[1-9]-*.md`、`b0[1-9]-*.md`、`c0[1-9]-*.md`，導讀各自是
     它會載入 `figures/src/` 底下**所有** `*diagrams*.py`，所以一門課有不只一支也查得到。
     **但它抓不到「兩個方塊互相壓到」**（卡片之間本來就會巢狀），那個還是要用 Read 看圖。
   - `python lessons/_tools/check_layout.py`——Folio **頁面上**文字區塊與圖片會不會疊。
+  - `python lessons/_tools/check_claims.py`——**章節裡的數字是不是真的出現在它所引的那篇文獻裡**。
+    這一支不是 CI 關卡（單位換算、四捨五入、自己算的數字都會被標成找不到），
+    它的工作是把要人工覆核的句子挑出來。用法與第一次全面核實的結果寫在該檔開頭。
   連線的六條規則與反模式清單寫在 `.claude/skills/lesson-chapter/SKILL.md`，畫圖前先看一遍。
 - **顏色、字級、間距都在 `lessons/_tools/tokens.py`**，不要在個別的 `diagrams.py` 裡寫色碼。
   改了 token 要重跑各課的 `figures/src/diagrams.py` 與 `charts.py`。
@@ -134,6 +143,21 @@ python lessons/_tools/check_geometry.py lessons/<課程>
 ```
 
 Folio 的上傳由 GitHub Actions（`.github/workflows/lessons.yml`）做，**本機沒有 `FOLIO_SYNC_TOKEN`**，所以推送到分支後要去確認 Actions 的兩個 job（核對 DOI、上傳到 Folio）都成功。
+
+### 2026-11 的一次全面核實
+
+用新開的 Crossref 與 Europe PMC 權限，把所有教材核實了一次。做法與結果：
+
+| 層級 | 做法 | 結果 |
+|---|---|---|
+| DOI ↔ 標題／年份 | `check_refs.py`（CI 本來就在做） | **378 筆全過** |
+| 沒有 DOI 的文獻 | Crossref 標題檢索（82 筆相異） | 撈回 **16 篇的 DOI**，其餘確認是非期刊來源 |
+| 數字 ↔ 全文 | 抓 57 篇 OA 全文逐一比對 | 86 個數字全文確認、68 個摘要確認、**8 個覆核後確認無誤**、162 個因付費牆查不到 |
+
+**抓到的唯一一個真錯**在水生植物教材（已修）：「植物吸收佔 17.9–42.2%」掛在 Sun et al. 2017 底下，
+但那篇全文裡根本沒有這兩個數字，正確的是 Luo et al. 2018 的 13.0–55.0%。
+
+**教訓**：`secondary` 等級（只看搜尋摘要轉述）的數字真的會錯。**能抓全文就抓**。
 
 ### 環境限制
 
